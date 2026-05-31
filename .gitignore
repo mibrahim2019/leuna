@@ -79,3 +79,8 @@ documenso-signing.p12.base64
 
 # tmp
 tmp/
+leuna-signing.key
+leuna-signing.crt
+leuna-signing.p12
+leuna-signing.p12.base64
+leuna-signing.passphrase
