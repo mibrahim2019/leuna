@@ -180,7 +180,6 @@ test.describe.skip('Enterprise Feature Restrictions', () => {
         embedAuthoringWhiteLabel: true,
         cfr21: true,
         authenticationPortal: true,
-        billing: true,
       }),
     );
 

@@ -4,5 +4,9 @@ const path = require('path');
 
 module.exports = {
   ...baseConfig,
-  content: [`templates/**/*.{ts,tsx}`],
+  content: [
+    `templates/**/*.{ts,tsx}`,
+    `template-components/**/*.{ts,tsx}`,
+    `providers/**/*.{ts,tsx}`,
+  ],
 };

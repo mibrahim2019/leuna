@@ -1,7 +1,7 @@
 import type { Envelope } from '@prisma/client';
 import { DocumentDataType, EnvelopeType } from '@prisma/client';
 
-import { getServerLimits } from '@documenso/ee/server-only/limits/server';
+import { getServerLimits } from '@documenso/lib/server-only/limits/server';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { jobs } from '@documenso/lib/jobs/client';
 import { createDocumentData } from '@documenso/lib/server-only/document-data/create-document-data';
@@ -10,6 +10,7 @@ import { sendDocument } from '@documenso/lib/server-only/document/send-document'
 import { createEnvelope } from '@documenso/lib/server-only/envelope/create-envelope';
 import { duplicateEnvelope } from '@documenso/lib/server-only/envelope/duplicate-envelope';
 import { updateEnvelope } from '@documenso/lib/server-only/envelope/update-envelope';
+import { assertPolarProductAccess } from '@documenso/lib/server-only/polar/customer';
 import {
   ZCreateDocumentFromDirectTemplateResponseSchema,
   createDocumentFromDirectTemplate,
@@ -559,7 +560,10 @@ export const templateRouter = router({
       const limits = await getServerLimits({ userId: ctx.user.id, teamId });
 
       if (limits.remaining.documents === 0) {
-        throw new Error('You have reached your document limit.');
+        throw new AppError(AppErrorCode.LIMIT_EXCEEDED, {
+          message: 'You have reached your document limit.',
+          statusCode: 400,
+        });
       }
 
       // Backwards compatibility mapping since we need the envelopeItemId for the custom document data.
@@ -591,6 +595,8 @@ export const templateRouter = router({
       });
 
       if (distributeDocument) {
+        await assertPolarProductAccess({ userId: ctx.user.id });
+
         await sendDocument({
           id: {
             type: 'envelopeId',

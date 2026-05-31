@@ -8,40 +8,40 @@
     --background: 0 0% 100%;
     --foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 97.25%;
+    --muted-foreground: 222.2 47.4% 11.2%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
 
     --card: 0 0% 100%;
-    --card-border: 214.3 31.8% 91.4%;
+    --card-border: 0 0% 82%;
     --card-border-tint: 112 205 159;
     --card-foreground: 222.2 47.4% 11.2%;
 
-    --field-card: 95 74% 90%;
-    --field-card-border: 95.08 71.08% 67.45%;
+    --field-card: 231 45% 96%;
+    --field-card-border: 231.89 85.06% 34.12%;
     --field-card-foreground: 222.2 47.4% 11.2%;
 
     --widget: 0 0% 97%;
     --widget-foreground: 0 0% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --border: 0 0% 82%;
+    --input: 0 0% 82%;
 
-    --primary: 95.08 71.08% 67.45%;
-    --primary-foreground: 95.08 71.08% 10%;
+    --primary: 0 0% 7.84%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 0 0% 97.25%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 0 0% 97.25%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
 
-    --ring: 95.08 71.08% 67.45%;
+    --ring: 0 0% 7.84%;
 
     --radius: 0.5rem;
 
@@ -82,18 +82,18 @@
     --new-white-800: 0, 0%, 90%;
     --new-white-900: 0, 0%, 100%;
 
-    /* Primary - Green */
-    --new-primary-50: 98, 73%, 97%;
-    --new-primary-100: 95, 73%, 94%;
-    --new-primary-200: 94, 70%, 87%;
-    --new-primary-300: 95, 71%, 81%;
-    --new-primary-400: 95, 71%, 74%;
-    --new-primary-500: 95, 71%, 67%;
-    --new-primary-600: 95, 71%, 54%;
-    --new-primary-700: 95, 71%, 41%;
-    --new-primary-800: 95, 71%, 27%;
-    --new-primary-900: 95, 72%, 14%;
-    --new-primary-950: 95, 72%, 7%;
+    /* Primary - Brand blue (#0D21A1 @ 600) */
+    --new-primary-50: 232, 100%, 97%;
+    --new-primary-100: 232, 95%, 94%;
+    --new-primary-200: 232, 90%, 88%;
+    --new-primary-300: 232, 88%, 78%;
+    --new-primary-400: 232, 86%, 65%;
+    --new-primary-500: 232, 85%, 50%;
+    --new-primary-600: 231.89, 85.06%, 34.12%;
+    --new-primary-700: 232, 88%, 28%;
+    --new-primary-800: 232, 90%, 20%;
+    --new-primary-900: 232, 92%, 14%;
+    --new-primary-950: 232, 95%, 8%;
 
     /* Secondary - Info */
     --new-info-50: 210, 54%, 95%;
@@ -164,19 +164,19 @@
 
     --field-border: 214.3 31.8% 91.4%;
 
-    --primary: 95.08 71.08% 67.45%;
-    --primary-foreground: 95.08 71.08% 10%;
+    --primary: 0 0% 7.84%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 23.4%;
-    --secondary-foreground: 95.08 71.08% 67.45%;
+    --secondary-foreground: 0 0% 98%;
 
     --accent: 0 0% 27.9%;
-    --accent-foreground: 95.08 71.08% 67.45%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 87% 62%;
     --destructive-foreground: 0 87% 19%;
 
-    --ring: 95.08 71.08% 67.45%;
+    --ring: 0 0% 7.84%;
 
     --radius: 0.5rem;
 
@@ -198,6 +198,29 @@
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
+  }
+
+  input:not([type='checkbox']):not([type='radio']):not([type='file']):not([type='color']),
+  textarea,
+  select {
+    color: hsl(0 0% 0%);
+    caret-color: hsl(0 0% 0%);
+  }
+
+  input:not([type='checkbox']):not([type='radio']):not([type='file']):not([type='color']):-webkit-autofill,
+  input:not([type='checkbox']):not([type='radio']):not([type='file']):not([type='color']):-webkit-autofill:hover,
+  input:not([type='checkbox']):not([type='radio']):not([type='file']):not([type='color']):-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: hsl(0 0% 0%);
+    caret-color: hsl(0 0% 0%);
+    -webkit-box-shadow: 0 0 0 1000px hsl(0 0% 100%) inset;
+    box-shadow: 0 0 0 1000px hsl(0 0% 100%) inset;
+    transition: background-color 5000s ease-in-out 0s;
   }
 }
 

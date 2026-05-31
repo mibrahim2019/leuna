@@ -66,7 +66,7 @@ export default function TeamsSettingsGroupsPage() {
         defaultValue={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder={t`Search`}
-        className="mb-4"
+        className="bg-widget mb-4"
       />
 
       <TeamGroupsTable />

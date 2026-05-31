@@ -1,0 +1,112 @@
+import type { ReactNode } from 'react';
+
+import { MenuIcon } from 'lucide-react';
+import { Trans } from '@lingui/react/macro';
+import { Link } from 'react-router';
+
+import { POLAR_LIFETIME_PURCHASE_PATH } from '@documenso/lib/constants/polar';
+import { cn } from '@documenso/ui/lib/utils';
+import { Button } from '@documenso/ui/primitives/button';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '@documenso/ui/primitives/sheet';
+
+import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
+
+const MARKETING_NAV_ITEMS = [
+  { href: '/#use-cases', label: <Trans>Use Cases</Trans> },
+  { href: '/#integrations', label: <Trans>Integrations</Trans> },
+  { href: '/#security', label: <Trans>Security</Trans> },
+  { href: '/#pricing', label: <Trans>Pricing</Trans> },
+] as const;
+
+export type MarketingHeaderProps = {
+  ctaLabel: ReactNode;
+};
+
+export const MarketingHeader = ({ ctaLabel }: MarketingHeaderProps) => (
+  <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-white">
+    <div className="mx-auto flex w-full max-w-screen-xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 sm:py-3 md:px-8">
+      <Link to="/" className="shrink-0" aria-label="Leuna home">
+        <SignWordmarkLogo
+          className="gap-2.5 text-[1.125rem] font-semibold text-foreground sm:text-[1.125rem]"
+          leunaClassName="font-semibold text-[#171717]"
+          signClassName="font-semibold text-[#2563eb]"
+          iconWrapperClassName="h-[1.05em] w-[1.05em] rounded-none border-0 bg-transparent shadow-none"
+          iconClassName="h-[0.78em] rotate-0"
+        />
+      </Link>
+
+      <nav aria-label="Main" className="hidden items-center gap-6 text-sm font-medium text-black lg:flex">
+        {MARKETING_NAV_ITEMS.map(({ href, label }) => (
+          <Link key={href} to={href} className="transition-colors hover:text-foreground">
+            {label}
+          </Link>
+        ))}
+      </nav>
+
+      <div className="hidden items-center gap-3 text-sm font-medium text-black lg:flex">
+        <Link to="/signin" className="transition-colors hover:text-foreground">
+          <Trans>Login</Trans>
+        </Link>
+        <Button asChild className="h-9 px-4 text-sm">
+          <Link to={POLAR_LIFETIME_PURCHASE_PATH}>{ctaLabel}</Link>
+        </Button>
+      </div>
+
+      <div className="flex lg:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              type="button"
+              variant="outline"
+              className="h-12 w-12 shrink-0 border-border/50 bg-background p-0 text-foreground hover:bg-muted"
+              aria-label="Open navigation menu"
+            >
+              <MenuIcon className="h-5 w-5 text-foreground" aria-hidden />
+            </Button>
+          </SheetTrigger>
+          <SheetContent
+            position="right"
+            className="flex w-full !max-w-sm flex-col gap-6 border-l border-border/50"
+          >
+            <SheetTitle className="sr-only">
+              <Trans>Navigation menu</Trans>
+            </SheetTitle>
+            <nav aria-label="Main" className="flex flex-col gap-1 border-b border-border/50 pb-6">
+              {MARKETING_NAV_ITEMS.map(({ href, label }) => (
+                <SheetClose key={href} asChild>
+                  <Link
+                    to={href}
+                    className="rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-muted"
+                  >
+                    {label}
+                  </Link>
+                </SheetClose>
+              ))}
+            </nav>
+            <div className="flex flex-col gap-3">
+              <SheetClose asChild>
+                <Link
+                  to="/signin"
+                  className="rounded-lg px-3 py-3 text-base font-medium text-black transition-colors hover:bg-muted hover:text-foreground"
+                >
+                  <Trans>Login</Trans>
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Button asChild className="w-full">
+                  <Link to={POLAR_LIFETIME_PURCHASE_PATH}>{ctaLabel}</Link>
+                </Button>
+              </SheetClose>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+    </div>
+  </header>
+);

@@ -69,5 +69,13 @@ scripts/bench-*
 .documenso-license.json
 .documenso-license-backup.json
 
+# local signing artifacts
+documenso-signing.crt
+documenso-signing.key
+documenso-signing.p12
+documenso-signing.p12.base64
+*.p12
+*.p12.base64
+
 # tmp
 tmp/

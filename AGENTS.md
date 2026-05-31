@@ -1,4 +1,4 @@
-# Agent Guidelines for Documenso
+# Agent Guidelines for Sign Leuna
 
 ## Build/Test/Lint Commands
 

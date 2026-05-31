@@ -35,7 +35,7 @@ export default function ApiTokensPage() {
             On this page, you can create and manage API tokens. See our{' '}
             <a
               className="text-primary underline"
-              href={'https://docs.documenso.com/developers/public-api'}
+              href={'https://docs.leuna.app/developers/public-api'}
               target="_blank"
             >
               Documentation
@@ -80,7 +80,7 @@ export default function ApiTokensPage() {
           {tokens && tokens.length > 0 && (
             <div className="mt-4 flex max-w-xl flex-col gap-y-4">
               {tokens.map((token) => (
-                <div key={token.id} className="rounded-lg border border-border p-4">
+                <div key={token.id} className="bg-widget rounded-lg border border-border p-4">
                   <div className="flex items-center justify-between gap-x-4">
                     <div>
                       <h5 className="text-base">{token.name}</h5>

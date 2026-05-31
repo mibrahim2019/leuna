@@ -11,20 +11,28 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://docs.documenso.com'),
+  metadataBase: new URL('https://docs.leuna.app'),
   title: {
-    template: '%s | Documenso Docs',
-    default: 'Documenso Docs',
+    template: '%s | Sign Docs',
+    default: 'Sign Docs',
   },
   description:
-    'The official documentation for Documenso, the open-source document signing platform.',
+    'The official documentation for Sign, the open-source document signing platform.',
   openGraph: {
-    siteName: 'Documenso Docs',
+    siteName: 'Sign Docs',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     site: '@documenso',
+  },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
   },
 };
 
@@ -32,7 +40,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex min-h-screen flex-col">
-        <PlausibleProvider domain="documenso.com">
+        <PlausibleProvider domain="leuna.app">
           <RootProvider>{children}</RootProvider>
         </PlausibleProvider>
       </body>

@@ -78,7 +78,7 @@ export const AdminUserDeleteDialog = ({ className, user }: AdminUserDeleteDialog
           <AlertDescription className="mr-2">
             <Trans>
               Delete the users account and all its contents. This action is irreversible and will
-              cancel their subscription, so proceed with caution.
+              delete their account data, so proceed with caution.
             </Trans>
           </AlertDescription>
         </div>

@@ -13,7 +13,12 @@ import * as z from 'zod';
 
 import { useCurrentEnvelopeEditor } from '@documenso/lib/client-only/providers/envelope-editor-provider';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
+import {
+  POLAR_ACCESS_REQUIRED_ERROR_CODE,
+  POLAR_UNAVAILABLE_ERROR_CODE,
+} from '@documenso/lib/constants/polar';
 import { DO_NOT_INVALIDATE_QUERY_ON_MUTATION } from '@documenso/lib/constants/trpc';
+import { AppError } from '@documenso/lib/errors/app-error';
 import { extractDocumentAuthMethods } from '@documenso/lib/utils/document-auth';
 import { getRecipientsWithMissingFields } from '@documenso/lib/utils/recipients';
 import { zEmail } from '@documenso/lib/utils/zod';
@@ -197,9 +202,16 @@ export const EnvelopeDistributeDialog = ({
 
       setIsOpen(false);
     } catch (err) {
+      const error = AppError.parseError(err);
+
       toast({
         title: t`Something went wrong`,
-        description: t`This envelope could not be distributed at this time. Please try again.`,
+        description:
+          error.code === POLAR_ACCESS_REQUIRED_ERROR_CODE
+            ? t`Lifetime access is required before you can send documents.`
+            : error.code === POLAR_UNAVAILABLE_ERROR_CODE
+              ? t`We could not verify purchase access right now. Please try again.`
+              : t`This envelope could not be distributed at this time. Please try again.`,
         variant: 'destructive',
         duration: 7500,
       });
@@ -270,11 +282,7 @@ export const EnvelopeDistributeDialog = ({
                   </TabsList>
                 </Tabs>
 
-                <div
-                  className={cn('min-h-72', {
-                    'min-h-[23rem]': organisation.organisationClaim.flags.emailDomains,
-                  })}
-                >
+                <div className="min-h-[23rem]">
                   <AnimatePresence initial={false} mode="wait">
                     {isSyncing ? (
                       <motion.div
@@ -297,47 +305,45 @@ export const EnvelopeDistributeDialog = ({
                             className="mt-2 flex flex-col gap-y-4 rounded-lg"
                             disabled={form.formState.isSubmitting}
                           >
-                            {organisation.organisationClaim.flags.emailDomains && (
-                              <FormField
-                                control={form.control}
-                                name="meta.emailId"
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormLabel>
-                                      <Trans>Email Sender</Trans>
-                                    </FormLabel>
-                                    <FormControl>
-                                      <Select
-                                        {...field}
-                                        value={field.value === null ? '-1' : field.value}
-                                        onValueChange={(value) =>
-                                          field.onChange(value === '-1' ? null : value)
-                                        }
+                            <FormField
+                              control={form.control}
+                              name="meta.emailId"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>
+                                    <Trans>Email Sender</Trans>
+                                  </FormLabel>
+                                  <FormControl>
+                                    <Select
+                                      {...field}
+                                      value={field.value === null ? '-1' : field.value}
+                                      onValueChange={(value) =>
+                                        field.onChange(value === '-1' ? null : value)
+                                      }
+                                    >
+                                      <SelectTrigger
+                                        loading={isLoadingEmails}
+                                        className="bg-background"
                                       >
-                                        <SelectTrigger
-                                          loading={isLoadingEmails}
-                                          className="bg-background"
-                                        >
-                                          <SelectValue />
-                                        </SelectTrigger>
+                                        <SelectValue />
+                                      </SelectTrigger>
 
-                                        <SelectContent>
-                                          {emails.map((email) => (
-                                            <SelectItem key={email.id} value={email.id}>
-                                              {email.email}
-                                            </SelectItem>
-                                          ))}
+                                      <SelectContent>
+                                        {emails.map((email) => (
+                                          <SelectItem key={email.id} value={email.id}>
+                                            {email.email}
+                                          </SelectItem>
+                                        ))}
 
-                                          <SelectItem value={'-1'}>Documenso</SelectItem>
-                                        </SelectContent>
-                                      </Select>
-                                    </FormControl>
+                                        <SelectItem value={'-1'}>Sign</SelectItem>
+                                      </SelectContent>
+                                    </Select>
+                                  </FormControl>
 
-                                    <FormMessage />
-                                  </FormItem>
-                                )}
-                              />
-                            )}
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
                             <FormField
                               control={form.control}

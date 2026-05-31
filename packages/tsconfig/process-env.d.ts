@@ -2,7 +2,9 @@ declare namespace NodeJS {
   export interface ProcessEnv {
     PORT?: string;
     NEXT_PUBLIC_WEBAPP_URL?: string;
-    NEXT_PRIVATE_DOCUMENSO_LICENSE_KEY?: string;
+    NEXT_PUBLIC_SOURCE_CODE_URL?: string;
+    NEXT_PUBLIC_SOURCE_CODE_REVISION?: string;
+    NEXT_PUBLIC_SOURCE_CODE_REVISION_URL?: string;
 
     NEXT_PRIVATE_GOOGLE_CLIENT_ID?: string;
     NEXT_PRIVATE_GOOGLE_CLIENT_SECRET?: string;
@@ -18,9 +20,6 @@ declare namespace NodeJS {
     NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY: string;
 
     NEXT_PRIVATE_LOGGER_FILE_PATH?: string;
-
-    NEXT_PRIVATE_STRIPE_API_KEY: string;
-    NEXT_PRIVATE_STRIPE_WEBHOOK_SECRET: string;
 
     NEXT_PUBLIC_UPLOAD_TRANSPORT?: 'database' | 's3';
     NEXT_PRIVATE_UPLOAD_ENDPOINT?: string;
@@ -108,5 +107,10 @@ declare namespace NodeJS {
     GOOGLE_VERTEX_PROJECT_ID?: string;
     GOOGLE_VERTEX_LOCATION?: string;
     GOOGLE_VERTEX_API_KEY?: string;
+
+    POLAR_ACCESS_TOKEN?: string;
+    POLAR_SERVER?: 'sandbox' | 'production';
+    POLAR_LIFETIME_PRODUCT_ID?: string;
+    POLAR_ACCESS_BENEFIT_ID?: string;
   }
 }

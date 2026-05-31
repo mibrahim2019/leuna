@@ -36,7 +36,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   // });
 
   // const providers = accounts.map((account) => account.provider);
-  // let hasEmailPasswordAccount = providers.includes('DOCUMENSO');
+  // let hasEmailPasswordAccount = providers.includes('SIGN_DOCUTRACKER');
 
   const hasEmailPasswordAccount: boolean = await prisma.user
     .count({

@@ -7,6 +7,7 @@ import { RECIPIENT_ROLES_DESCRIPTION } from '@documenso/lib/constants/recipient-
 
 import { Button, Section, Text } from '../components';
 import { TemplateDocumentImage } from './template-document-image';
+import { emailStyles } from './template-styles';
 
 export interface TemplateDocumentInviteProps {
   inviterName: string;
@@ -41,7 +42,7 @@ export const TemplateDocumentInvite = ({
       <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
 
       <Section>
-        <Text className="text-primary mx-auto mb-0 max-w-[80%] text-center text-lg font-semibold">
+        <Text className={emailStyles.title}>
           {match({ selfSigner, organisationType, includeSenderDetails, teamName })
             .with({ selfSigner: true }, () => (
               <Trans>
@@ -77,7 +78,7 @@ export const TemplateDocumentInvite = ({
             ))}
         </Text>
 
-        <Text className="my-1 text-center text-base text-slate-400">
+        <Text className={emailStyles.bodyWide}>
           {match(role)
             .with(RecipientRole.SIGNER, () => <Trans>Continue by signing the document.</Trans>)
             .with(RecipientRole.VIEWER, () => <Trans>Continue by viewing the document.</Trans>)
@@ -90,10 +91,7 @@ export const TemplateDocumentInvite = ({
         </Text>
 
         <Section className="mb-6 mt-8 text-center">
-          <Button
-            className="bg-documenso-500 text-sbase inline-flex items-center justify-center rounded-lg px-6 py-3 text-center font-medium text-black no-underline"
-            href={signDocumentLink}
-          >
+          <Button className={emailStyles.primaryButton} href={signDocumentLink}>
             {match(role)
               .with(RecipientRole.SIGNER, () => <Trans>View Document to sign</Trans>)
               .with(RecipientRole.VIEWER, () => <Trans>View Document</Trans>)

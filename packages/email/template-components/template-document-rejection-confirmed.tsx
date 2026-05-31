@@ -1,6 +1,7 @@
 import { Trans } from '@lingui/react/macro';
 
 import { Container, Heading, Section, Text } from '../components';
+import { emailStyles } from './template-styles';
 
 interface TemplateDocumentRejectionConfirmedProps {
   recipientName: string;
@@ -18,11 +19,11 @@ export function TemplateDocumentRejectionConfirmed({
   return (
     <Container>
       <Section>
-        <Heading className="text-2xl font-semibold">
+        <Heading className={emailStyles.heading}>
           <Trans>Rejection Confirmed</Trans>
         </Heading>
 
-        <Text className="text-primary text-base">
+        <Text className={emailStyles.bodyLeft}>
           <Trans>
             This email confirms that you have rejected the document{' '}
             <strong className="font-bold">"{documentName}"</strong> sent by {documentOwnerName}.
@@ -30,12 +31,12 @@ export function TemplateDocumentRejectionConfirmed({
         </Text>
 
         {reason && (
-          <Text className="text-base font-medium text-slate-400">
+          <Text className={emailStyles.subtleLeft}>
             <Trans>Rejection reason: {reason}</Trans>
           </Text>
         )}
 
-        <Text className="text-base">
+        <Text className={emailStyles.bodyLeft}>
           <Trans>
             The document owner has been notified of this rejection. No further action is required
             from you at this time. The document owner may contact you with any questions regarding

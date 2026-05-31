@@ -2,6 +2,7 @@ import { Trans } from '@lingui/react/macro';
 
 import { Column, Img, Section, Text } from '../components';
 import { TemplateDocumentImage } from './template-document-image';
+import { cn, emailStyles } from './template-styles';
 
 export interface TemplateDocumentPendingProps {
   documentName: string;
@@ -23,7 +24,7 @@ export const TemplateDocumentPending = ({
       <Section>
         <Section className="mb-4">
           <Column align="center">
-            <Text className="text-base font-semibold text-blue-500">
+            <Text className={cn(emailStyles.statusLabel, 'text-[#376aa3]')}>
               <Img
                 src={getAssetUrl('/static/clock.png')}
                 className="-mt-0.5 mr-2 inline h-7 w-7 align-middle"
@@ -33,11 +34,11 @@ export const TemplateDocumentPending = ({
           </Column>
         </Section>
 
-        <Text className="text-primary mb-0 text-center text-lg font-semibold">
+        <Text className={emailStyles.title}>
           <Trans>“{documentName}” has been signed</Trans>
         </Text>
 
-        <Text className="mx-auto mb-6 mt-1 max-w-[80%] text-center text-base text-slate-400">
+        <Text className={emailStyles.bodyWide}>
           <Trans>
             We're still waiting for other signers to sign this document.
             <br />

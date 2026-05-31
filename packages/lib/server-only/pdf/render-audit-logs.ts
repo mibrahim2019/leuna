@@ -6,8 +6,6 @@ import Konva from 'konva';
 import 'konva/skia-backend';
 import type { DateTimeFormatOptions } from 'luxon';
 import { DateTime } from 'luxon';
-import fs from 'node:fs';
-import path from 'node:path';
 import type { Canvas } from 'skia-canvas';
 import { Image as SkiaImage } from 'skia-canvas';
 import { match } from 'ts-pattern';
@@ -21,6 +19,7 @@ import { DOCUMENT_AUDIT_LOG_TYPE } from '../../types/document-audit-logs';
 import type { TDocumentAuditLog } from '../../types/document-audit-logs';
 import { formatDocumentAuditLogAction } from '../../utils/document-audit-logs';
 import { ensureFontLibrary } from './helpers';
+import { readBrandingLogo } from './resolve-branding-logo';
 
 export type AuditLogRecipient = {
   id: number;
@@ -446,8 +445,7 @@ const renderBranding = () => {
 
   const brandingHeight = 16;
 
-  const logoPath = path.join(process.cwd(), 'public/static/logo.png');
-  const logo = fs.readFileSync(logoPath);
+  const logo = readBrandingLogo();
 
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const img = new SkiaImage(logo) as unknown as HTMLImageElement;
@@ -693,7 +691,7 @@ const getAuditLogIndicatorColor = (type: string) =>
       ),
       () => '#3b82f6', // bg-blue-500
     )
-    .otherwise(() => '#f1f5f9'); // bg-muted
+    .otherwise(() => '#f8f8f8'); // bg-muted
 
 const formatUserAgent = (userAgent: string | null | undefined, userAgentInfo: UAParser.IResult) => {
   if (!userAgent) {

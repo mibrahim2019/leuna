@@ -58,7 +58,7 @@ export const FolderCard = ({ folder, onMove, onSettings, onDelete }: FolderCardP
 
   return (
     <Link to={formatPath()} data-folder-id={folder.id} data-folder-name={folder.name}>
-      <Card className="hover:bg-muted/50 border-border h-full border transition-all">
+      <Card className="bg-widget hover:bg-muted/50 border-border h-full border transition-all">
         <CardContent className="p-4">
           <div className="flex min-w-0 items-center gap-3">
             <FolderIcon className="text-documenso h-6 w-6 flex-shrink-0" />
@@ -143,7 +143,7 @@ export const FolderCard = ({ folder, onMove, onSettings, onDelete }: FolderCardP
 
 export const FolderCardEmpty = ({ type }: { type: FolderType }) => {
   return (
-    <Card className="hover:bg-muted/50 border-border h-full border transition-all">
+    <Card className="bg-widget hover:bg-muted/50 border-border h-full border transition-all">
       <CardContent className="p-4">
         <div className="flex items-center gap-3">
           <FolderPlusIcon className="text-muted-foreground/60 h-6 w-6" />

@@ -13,6 +13,10 @@ import * as z from 'zod';
 
 import { APP_DOCUMENT_UPLOAD_SIZE_LIMIT } from '@documenso/lib/constants/app';
 import {
+  POLAR_ACCESS_REQUIRED_ERROR_CODE,
+  POLAR_UNAVAILABLE_ERROR_CODE,
+} from '@documenso/lib/constants/polar';
+import {
   TEMPLATE_RECIPIENT_EMAIL_PLACEHOLDER_REGEX,
   TEMPLATE_RECIPIENT_NAME_PLACEHOLDER_REGEX,
 } from '@documenso/lib/constants/template';
@@ -211,6 +215,18 @@ export function TemplateUseDialog({
       if (error.code === 'DOCUMENT_SEND_FAILED') {
         toastPayload.description = _(
           msg`The document was created but could not be sent to recipients.`,
+        );
+      }
+
+      if (error.code === POLAR_ACCESS_REQUIRED_ERROR_CODE) {
+        toastPayload.description = _(
+          msg`Lifetime access is required before you can create and send documents from templates.`,
+        );
+      }
+
+      if (error.code === POLAR_UNAVAILABLE_ERROR_CODE) {
+        toastPayload.description = _(
+          msg`We could not verify purchase access right now. Please try again.`,
         );
       }
 

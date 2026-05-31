@@ -18,7 +18,6 @@ import {
 import { unsafeGetEntireEnvelope } from '@documenso/lib/server-only/admin/get-entire-document';
 import { decryptSecondaryData } from '@documenso/lib/server-only/crypto/decrypt';
 import { getDocumentCertificateAuditLogs } from '@documenso/lib/server-only/document/get-document-certificate-audit-logs';
-import { getOrganisationClaimByTeamId } from '@documenso/lib/server-only/organisation/get-organisation-claims';
 import { DOCUMENT_AUDIT_LOG_TYPE } from '@documenso/lib/types/document-audit-logs';
 import { extractDocumentAuthMethods } from '@documenso/lib/utils/document-auth';
 import { mapSecondaryIdToDocumentId } from '@documenso/lib/utils/envelope';
@@ -33,7 +32,7 @@ import {
   TableRow,
 } from '@documenso/ui/primitives/table';
 
-import { BrandingLogo } from '~/components/general/branding-logo';
+import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
 
 import type { Route } from './+types/certificate';
 
@@ -69,8 +68,6 @@ export async function loader({ request }: Route.LoaderArgs) {
     throw redirect('/');
   }
 
-  const organisationClaim = await getOrganisationClaimByTeamId({ teamId: envelope.teamId });
-
   const documentLanguage = ZSupportedLanguageCodeSchema.parse(envelope.documentMeta?.language);
 
   const auditLogs = await getDocumentCertificateAuditLogs({
@@ -96,7 +93,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       deletedAt: envelope.deletedAt,
       documentMeta: envelope.documentMeta,
     },
-    hidePoweredBy: organisationClaim.flags.hidePoweredBy,
+    hidePoweredBy: true,
     documentLanguage,
     auditLogs,
     messages,
@@ -404,7 +401,7 @@ export default function SigningCertificate({ loaderData }: Route.ComponentProps)
             <p className="flex-shrink-0 text-sm font-medium print:text-xs">
               {_(msg`Signing certificate provided by`)}:
             </p>
-            <BrandingLogo className="max-h-6 print:max-h-4" />
+            <SignWordmarkLogo className="text-2xl print:text-xl" />
           </div>
         </div>
       )}

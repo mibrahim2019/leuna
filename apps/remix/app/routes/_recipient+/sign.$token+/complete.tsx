@@ -5,7 +5,7 @@ import { CheckCircle2, Clock8, DownloadIcon, Loader2 } from 'lucide-react';
 import { Link } from 'react-router';
 import { match } from 'ts-pattern';
 
-import signingCelebration from '@documenso/assets/images/signing-celebration.png';
+const signingCelebration = '/static/login.jpg';
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
 import { useOptionalSession } from '@documenso/lib/client-only/providers/session';
 import { getDocumentAndSenderByToken } from '@documenso/lib/server-only/document/get-document-by-token';
@@ -143,7 +143,8 @@ export default function CompletedSigningPage({ loaderData }: Route.ComponentProp
   return (
     <div
       className={cn(
-        '-mx-4 flex flex-col items-center overflow-hidden px-4 pt-16 md:-mx-8 md:px-8 lg:pt-20 xl:pt-28',
+        'signing-area -mx-4 min-h-screen bg-[#f7f7f5] px-4 pt-16 md:-mx-8 md:px-8 lg:pt-20 xl:pt-28',
+        'flex flex-col items-center overflow-hidden',
         { 'pt-0 lg:pt-0 xl:pt-0': canSignUp },
       )}
     >

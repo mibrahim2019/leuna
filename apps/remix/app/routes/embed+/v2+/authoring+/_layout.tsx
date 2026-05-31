@@ -5,12 +5,14 @@ import { OrganisationMemberRole, OrganisationType, TeamMemberRole } from '@prism
 import { Outlet, isRouteErrorResponse, useLoaderData } from 'react-router';
 import { match } from 'ts-pattern';
 
-import { PAID_PLAN_LIMITS } from '@documenso/ee/server-only/limits/constants';
-import { LimitsProvider } from '@documenso/ee/server-only/limits/provider/client';
+import {
+  DEFAULT_MINIMUM_ENVELOPE_ITEM_COUNT,
+  UNRESTRICTED_LIMITS,
+} from '@documenso/lib/server-only/limits/constants';
+import { LimitsProvider } from '@documenso/lib/server-only/limits/provider/client';
 import { OrganisationProvider } from '@documenso/lib/client-only/providers/organisation';
 import { APP_I18N_OPTIONS } from '@documenso/lib/constants/i18n';
 import { verifyEmbeddingPresignToken } from '@documenso/lib/server-only/embedding-presign/verify-embedding-presign-token';
-import { getOrganisationClaimByTeamId } from '@documenso/lib/server-only/organisation/get-organisation-claims';
 import { getTeamSettings } from '@documenso/lib/server-only/team/get-team-settings';
 import { ZBaseEmbedDataSchema } from '@documenso/lib/types/embed-base-schemas';
 import { dynamicActivate } from '@documenso/lib/utils/i18n';
@@ -40,10 +42,6 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
     throw new Response('Invalid token', { status: 404 });
   }
 
-  const organisationClaim = await getOrganisationClaimByTeamId({
-    teamId: result.teamId,
-  });
-
   const teamSettings = await getTeamSettings({
     userId: result.userId,
     teamId: result.teamId,
@@ -53,7 +51,6 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
     token,
     userId: result.userId,
     teamId: result.teamId,
-    organisationClaim,
     preferences: {
       aiFeaturesEnabled: teamSettings.aiFeaturesEnabled,
     },
@@ -61,11 +58,11 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 };
 
 export default function AuthoringLayout() {
-  const { token, teamId, organisationClaim, preferences } = useLoaderData<typeof loader>();
+  const { token, teamId, preferences } = useLoaderData<typeof loader>();
 
   const [hasFinishedInit, setHasFinishedInit] = useState(false);
 
-  const allowEmbedAuthoringWhiteLabel = organisationClaim.flags.embedAuthoringWhiteLabel ?? false;
+  const allowEmbedAuthoringWhiteLabel = true;
 
   useLayoutEffect(() => {
     try {
@@ -132,11 +129,8 @@ export default function AuthoringLayout() {
     name: '',
     url: '',
     avatarImageId: null,
-    customerId: null,
     ownerUserId: -1,
-    organisationClaim,
     teams: [team],
-    subscription: null,
     currentOrganisationRole: OrganisationMemberRole.MEMBER,
   };
 
@@ -149,9 +143,10 @@ export default function AuthoringLayout() {
           <LimitsProvider
             disableLimitsFetch={true}
             initialValue={{
-              quota: PAID_PLAN_LIMITS,
-              remaining: PAID_PLAN_LIMITS,
-              maximumEnvelopeItemCount: organisationClaim.envelopeItemCount,
+              quota: UNRESTRICTED_LIMITS,
+              remaining: UNRESTRICTED_LIMITS,
+              hasProductAccess: true,
+              maximumEnvelopeItemCount: DEFAULT_MINIMUM_ENVELOPE_ITEM_COUNT,
             }}
             teamId={team.id}
           >
@@ -188,7 +183,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
               <li>
                 <Trans>
                   If you are using staging, ensure that you have set the host prop on the embedding
-                  component to the staging domain (https://stg-app.documenso.com)
+                  component to the staging domain (https://stg-app.leuna.app)
                 </Trans>
               </li>
             </ul>

@@ -2,6 +2,7 @@ import { Trans } from '@lingui/react/macro';
 
 import { Button, Section, Text } from '../components';
 import { TemplateDocumentImage } from './template-document-image';
+import { emailStyles } from './template-styles';
 
 export type TemplateForgotPasswordProps = {
   resetPasswordLink: string;
@@ -17,19 +18,16 @@ export const TemplateForgotPassword = ({
       <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
 
       <Section className="flex-row items-center justify-center">
-        <Text className="text-primary mx-auto mb-0 max-w-[80%] text-center text-lg font-semibold">
+        <Text className={emailStyles.title}>
           <Trans>Forgot your password?</Trans>
         </Text>
 
-        <Text className="my-1 text-center text-base text-slate-400">
+        <Text className={emailStyles.bodyWide}>
           <Trans>That's okay, it happens! Click the button below to reset your password.</Trans>
         </Text>
 
         <Section className="mb-6 mt-8 text-center">
-          <Button
-            className="bg-documenso-500 inline-flex items-center justify-center rounded-lg px-6 py-3 text-center text-sm font-medium text-black no-underline"
-            href={resetPasswordLink}
-          >
+          <Button className={emailStyles.primaryButton} href={resetPasswordLink}>
             <Trans>Reset Password</Trans>
           </Button>
         </Section>

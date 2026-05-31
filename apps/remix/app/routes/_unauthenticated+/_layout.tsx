@@ -1,24 +1,15 @@
+import { Trans } from '@lingui/react/macro';
 import { Outlet } from 'react-router';
 
-import backgroundPattern from '@documenso/assets/images/background-pattern.png';
+import { MarketingHeader } from '~/components/general/marketing-header';
 
 export default function Layout() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-12 md:p-12 lg:p-24">
-      <div>
-        <div className="absolute -inset-[min(600px,max(400px,60vw))] -z-[1] flex items-center justify-center opacity-70">
-          <img
-            src={backgroundPattern}
-            alt="background pattern"
-            className="dark:brightness-95 dark:contrast-[70%] dark:invert dark:sepia"
-            style={{
-              mask: 'radial-gradient(rgba(255, 255, 255, 1) 0%, transparent 80%)',
-              WebkitMask: 'radial-gradient(rgba(255, 255, 255, 1) 0%, transparent 80%)',
-            }}
-          />
-        </div>
+    <main className="dashboard-area dark-mode-disabled relative min-h-screen overflow-hidden bg-[#f7f7f5]">
+      <MarketingHeader ctaLabel={<Trans>Claim Lifetime Access</Trans>} />
 
-        <div className="relative w-full">
+      <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-8 px-4 py-4 md:px-8 md:py-6 lg:px-12 lg:py-8">
+        <div className="relative flex w-full flex-1 items-center justify-center">
           <Outlet />
         </div>
       </div>

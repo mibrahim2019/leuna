@@ -7,7 +7,6 @@ import { prisma } from '@documenso/prisma';
 import { ZSupportedLanguageCodeSchema } from '../../constants/i18n';
 import { parseDocumentAuditLogData } from '../../utils/document-audit-logs';
 import { getTranslations } from '../../utils/i18n';
-import { getOrganisationClaimByTeamId } from '../organisation/get-organisation-claims';
 import type { GenerateCertificatePdfOptions } from './generate-certificate-pdf';
 import { renderAuditLogs } from './render-audit-logs';
 
@@ -30,8 +29,7 @@ export const generateAuditLogPdf = async (options: GenerateAuditLogPdfOptions) =
 
   const documentLanguage = ZSupportedLanguageCodeSchema.parse(language);
 
-  const [organisationClaim, partialAuditLogs, messages] = await Promise.all([
-    getOrganisationClaimByTeamId({ teamId: envelope.teamId }),
+  const [partialAuditLogs, messages] = await Promise.all([
     getAuditLogs(envelope.id),
     getTranslations(documentLanguage),
   ]);
@@ -49,7 +47,7 @@ export const generateAuditLogPdf = async (options: GenerateAuditLogPdfOptions) =
     envelopeItems,
     recipients,
     auditLogs,
-    hidePoweredBy: organisationClaim.flags.hidePoweredBy ?? false,
+    hidePoweredBy: true,
     pageWidth,
     pageHeight,
     i18n,

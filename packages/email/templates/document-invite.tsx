@@ -6,12 +6,12 @@ import { OrganisationType } from '@prisma/client';
 
 import { RECIPIENT_ROLES_DESCRIPTION } from '@documenso/lib/constants/recipient-roles';
 
-import { Body, Container, Head, Hr, Html, Img, Link, Preview, Section, Text } from '../components';
-import { useBranding } from '../providers/branding';
+import { Link, Section, Text } from '../components';
 import { TemplateCustomMessageBody } from '../template-components/template-custom-message-body';
 import type { TemplateDocumentInviteProps } from '../template-components/template-document-invite';
 import { TemplateDocumentInvite } from '../template-components/template-document-invite';
-import { TemplateFooter } from '../template-components/template-footer';
+import { TemplateShell } from '../template-components/template-shell';
+import { emailStyles } from '../template-components/template-styles';
 
 export type DocumentInviteEmailTemplateProps = Partial<TemplateDocumentInviteProps> & {
   customBody?: string;
@@ -25,9 +25,9 @@ export type DocumentInviteEmailTemplateProps = Partial<TemplateDocumentInvitePro
 
 export const DocumentInviteEmailTemplate = ({
   inviterName = 'Lucas Smith',
-  inviterEmail = 'lucas@documenso.com',
-  documentName = 'Open Source Pledge.pdf',
-  signDocumentLink = 'https://documenso.com',
+  inviterEmail = 'lucas@leuna.app',
+  documentName = ' Pledge.pdf',
+  signDocumentLink = 'https://leuna.app',
   assetBaseUrl = 'http://localhost:3002',
   customBody,
   role,
@@ -37,7 +37,6 @@ export const DocumentInviteEmailTemplate = ({
   organisationType,
 }: DocumentInviteEmailTemplateProps) => {
   const { _ } = useLingui();
-  const branding = useBranding();
 
   const action = _(RECIPIENT_ROLES_DESCRIPTION[role].actionVerb).toLowerCase();
 
@@ -53,77 +52,48 @@ export const DocumentInviteEmailTemplate = ({
     previewText = msg`Please ${action} your document ${documentName}`;
   }
 
-  const getAssetUrl = (path: string) => {
-    return new URL(path, assetBaseUrl).toString();
-  };
-
   return (
-    <Html>
-      <Head />
-      <Preview>{_(previewText)}</Preview>
-
-      <Body className="mx-auto my-auto bg-white font-sans">
+    <TemplateShell
+      previewText={_(previewText)}
+      assetBaseUrl={assetBaseUrl}
+      supplementaryContent={
         <Section>
-          <Container className="mx-auto mb-2 mt-8 max-w-xl rounded-lg border border-solid border-slate-200 p-4 backdrop-blur-sm">
-            <Section>
-              {branding.brandingEnabled && branding.brandingLogo ? (
-                <Img src={branding.brandingLogo} alt="Branding Logo" className="mb-4 h-6" />
-              ) : (
-                <Img
-                  src={getAssetUrl('/static/logo.png')}
-                  alt="Documenso Logo"
-                  className="mb-4 h-6"
-                />
-              )}
+          {organisationType === OrganisationType.PERSONAL && (
+            <Text className={emailStyles.bodyLeft}>
+              <Trans>
+                {inviterName}{' '}
+                <Link className={emailStyles.mutedLink} href="mailto:{inviterEmail}">
+                  ({inviterEmail})
+                </Link>
+              </Trans>
+            </Text>
+          )}
 
-              <TemplateDocumentInvite
-                inviterName={inviterName}
-                inviterEmail={inviterEmail}
-                documentName={documentName}
-                signDocumentLink={signDocumentLink}
-                assetBaseUrl={assetBaseUrl}
-                role={role}
-                selfSigner={selfSigner}
-                organisationType={organisationType}
-                teamName={teamName}
-                includeSenderDetails={includeSenderDetails}
-              />
-            </Section>
-          </Container>
-
-          <Container className="mx-auto mt-12 max-w-xl">
-            <Section>
-              {organisationType === OrganisationType.PERSONAL && (
-                <Text className="my-4 text-base font-semibold">
-                  <Trans>
-                    {inviterName}{' '}
-                    <Link className="font-normal text-slate-400" href="mailto:{inviterEmail}">
-                      ({inviterEmail})
-                    </Link>
-                  </Trans>
-                </Text>
-              )}
-
-              <Text className="mt-2 text-base text-slate-400">
-                {customBody ? (
-                  <TemplateCustomMessageBody text={customBody} />
-                ) : (
-                  <Trans>
-                    {inviterName} has invited you to {action} the document "{documentName}".
-                  </Trans>
-                )}
-              </Text>
-            </Section>
-          </Container>
-
-          <Hr className="mx-auto mt-12 max-w-xl" />
-
-          <Container className="mx-auto max-w-xl">
-            <TemplateFooter />
-          </Container>
+          {customBody ? (
+            <TemplateCustomMessageBody text={customBody} />
+          ) : (
+            <Text className={emailStyles.bodyLeft}>
+              <Trans>
+                {inviterName} has invited you to {action} the document "{documentName}".
+              </Trans>
+            </Text>
+          )}
         </Section>
-      </Body>
-    </Html>
+      }
+    >
+      <TemplateDocumentInvite
+        inviterName={inviterName}
+        inviterEmail={inviterEmail}
+        documentName={documentName}
+        signDocumentLink={signDocumentLink}
+        assetBaseUrl={assetBaseUrl}
+        role={role}
+        selfSigner={selfSigner}
+        organisationType={organisationType}
+        teamName={teamName}
+        includeSenderDetails={includeSenderDetails}
+      />
+    </TemplateShell>
   );
 };
 

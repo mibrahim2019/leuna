@@ -6,10 +6,8 @@ import { motion } from 'framer-motion';
 import { AlertTriangle, Plus } from 'lucide-react';
 import type { FileRejection } from 'react-dropzone';
 import { useDropzone } from 'react-dropzone';
-import { Link } from 'react-router';
 
-import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
-import { APP_DOCUMENT_UPLOAD_SIZE_LIMIT, IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
+import { APP_DOCUMENT_UPLOAD_SIZE_LIMIT } from '@documenso/lib/constants/app';
 import { megabytesToBytes } from '@documenso/lib/universal/unit-convertions';
 
 import {
@@ -51,8 +49,6 @@ export const DocumentDropzone = ({
   ...props
 }: DocumentDropzoneProps) => {
   const { _ } = useLingui();
-
-  const organisation = useCurrentOrganisation();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -165,11 +161,9 @@ export const DocumentDropzone = ({
             {_(disabled ? disabledMessage : msg`Drag & drop your PDF here.`)}
           </p>
 
-          {disabled && IS_BILLING_ENABLED() && (
-            <Button className="hover:bg-warning/80 bg-warning mt-4 w-32" asChild>
-              <Link to={`/o/${organisation.url}/settings/billing`}>
-                <Trans>Upgrade</Trans>
-              </Link>
+          {disabled && (
+            <Button className="mt-4 w-32" disabled>
+              <Trans>Unavailable</Trans>
             </Button>
           )}
         </CardContent>

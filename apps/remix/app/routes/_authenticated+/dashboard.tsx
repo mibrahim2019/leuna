@@ -63,7 +63,7 @@ export default function DashboardPage() {
         </div>
 
         {organisations.length === 0 && (
-          <div className="mb-12 mt-6 flex flex-col items-center justify-center rounded-lg border py-32">
+          <div className="bg-widget border-border/50 mb-12 mt-6 flex flex-col items-center justify-center rounded-lg border py-32">
             <Building2Icon className="h-10 w-10" />
 
             <div className="mt-2 flex flex-col items-center gap-0.5">
@@ -105,7 +105,7 @@ export default function DashboardPage() {
               {organisations.map((org) => (
                 <div key={org.id} className="group relative">
                   <Link to={`/o/${org.url}`}>
-                    <Card className="h-full border pr-6 transition-all hover:bg-muted/50">
+                    <Card className="bg-widget border-border/50 h-full border pr-6 transition-all hover:bg-muted/50">
                       <CardContent className="p-4">
                         <div className="flex items-center gap-3">
                           <Avatar className="h-10 w-10 border border-solid">
@@ -184,7 +184,7 @@ export default function DashboardPage() {
                 {teams.map((team) => (
                   <div key={team.id} className="group relative">
                     <Link to={`/t/${team.url}`}>
-                      <Card className="w-[350px] shrink-0 border transition-all hover:bg-muted/50">
+                      <Card className="bg-widget border-border/50 w-[350px] shrink-0 border transition-all hover:bg-muted/50">
                         <CardContent className="p-4">
                           <div className="flex items-center gap-3">
                             <Avatar className="h-10 w-10 border border-solid">

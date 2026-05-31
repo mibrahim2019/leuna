@@ -8,9 +8,13 @@ import { ErrorCode as DropzoneErrorCode, type FileRejection } from 'react-dropzo
 import { useNavigate } from 'react-router';
 import { match } from 'ts-pattern';
 
-import { useLimits } from '@documenso/ee/server-only/limits/provider/client';
+import { useLimits } from '@documenso/lib/server-only/limits/provider/client';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
 import { useSession } from '@documenso/lib/client-only/providers/session';
+import {
+  POLAR_ACCESS_REQUIRED_ERROR_CODE,
+  POLAR_UNAVAILABLE_ERROR_CODE,
+} from '@documenso/lib/constants/polar';
 import { TIME_ZONES } from '@documenso/lib/constants/time-zones';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { formatDocumentsPath, formatTemplatesPath } from '@documenso/lib/utils/teams';
@@ -52,19 +56,18 @@ export const EnvelopeUploadButton = ({ className, type, folderId }: EnvelopeUplo
     (timezone) => timezone === Intl.DateTimeFormat().resolvedOptions().timeZone,
   );
 
-  const { quota, remaining, refreshLimits, maximumEnvelopeItemCount } = useLimits();
+  const { quota, remaining, refreshLimits, maximumEnvelopeItemCount, hasProductAccess } =
+    useLimits();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const { mutateAsync: createEnvelope } = trpc.envelope.create.useMutation();
 
   const disabledMessage = useMemo(() => {
-    if (organisation.subscription && remaining.documents === 0) {
-      return msg`Document upload disabled due to unpaid invoices`;
-    }
-
     if (remaining.documents === 0) {
-      return msg`You have reached your document limit.`;
+      return hasProductAccess
+        ? msg`You have reached your document limit.`
+        : msg`Lifetime access is required to upload documents.`;
     }
 
     if (!user.emailVerified) {
@@ -72,7 +75,7 @@ export const EnvelopeUploadButton = ({ className, type, folderId }: EnvelopeUplo
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remaining.documents, user.emailVerified, team]);
+  }, [hasProductAccess, remaining.documents, user.emailVerified]);
 
   const onFileDrop = async (files: File[]) => {
     try {
@@ -129,7 +132,18 @@ export const EnvelopeUploadButton = ({ className, type, folderId }: EnvelopeUplo
         .with('INVALID_DOCUMENT_FILE', () => t`You cannot upload encrypted PDFs.`)
         .with(
           AppErrorCode.LIMIT_EXCEEDED,
-          () => t`You have reached your document limit for this month. Please upgrade your plan.`,
+          () =>
+            hasProductAccess
+              ? t`You have reached your document limit for this month.`
+              : t`Lifetime access is required before you can upload documents.`,
+        )
+        .with(
+          POLAR_ACCESS_REQUIRED_ERROR_CODE,
+          () => t`Lifetime access is required before you can upload documents.`,
+        )
+        .with(
+          POLAR_UNAVAILABLE_ERROR_CODE,
+          () => t`We could not verify purchase access right now. Please try again.`,
         )
         .with(
           'ENVELOPE_ITEM_LIMIT_EXCEEDED',

@@ -26,7 +26,7 @@ datasource db {
 
 // Todo: (RR7) Remove after RR7 migration.
 enum IdentityProvider {
-  DOCUMENSO
+  SIGN_DOCUTRACKER
   GOOGLE
   OIDC
 }
@@ -48,7 +48,7 @@ model User {
   updatedAt        DateTime         @default(now()) @updatedAt
   lastSignedIn     DateTime         @default(now())
   roles            Role[]           @default([USER])
-  identityProvider IdentityProvider @default(DOCUMENSO) // Todo: (RR7) Remove after RR7 migration.
+  identityProvider IdentityProvider @default(SIGN_DOCUTRACKER) // Todo: (RR7) Remove after RR7 migration.
   avatarImageId    String?
   disabled         Boolean          @default(false)
 
@@ -62,6 +62,8 @@ model User {
   twoFactorSecret      String?
   twoFactorEnabled     Boolean @default(false)
   twoFactorBackupCodes String?
+
+  polarCustomerId String? // Polar's internal customer UUID
 
   folders   Folder[]
   envelopes Envelope[]
@@ -232,61 +234,6 @@ model ApiToken {
   team      Team              @relation(fields: [teamId], references: [id], onDelete: Cascade)
 }
 
-enum SubscriptionStatus {
-  ACTIVE
-  PAST_DUE
-  INACTIVE
-}
-
-model Subscription {
-  id                Int                @id @default(autoincrement())
-  status            SubscriptionStatus @default(INACTIVE)
-  planId            String             @unique
-  priceId           String
-  periodEnd         DateTime?
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  cancelAtPeriodEnd Boolean            @default(false)
-
-  customerId String
-
-  organisationId String       @unique
-  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
-
-  @@index([organisationId])
-}
-
-/// @zod.import(["import { ZClaimFlagsSchema } from '@documenso/lib/types/subscription';"])
-model SubscriptionClaim {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  name   String
-  locked Boolean @default(false)
-
-  teamCount         Int
-  memberCount       Int
-  envelopeItemCount Int
-
-  flags Json /// [ClaimFlags] @zod.custom.use(ZClaimFlagsSchema)
-}
-
-/// @zod.import(["import { ZClaimFlagsSchema } from '@documenso/lib/types/subscription';"])
-model OrganisationClaim {
-  id        String   @id
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  originalSubscriptionClaimId String?
-  organisation                Organisation?
-
-  teamCount         Int
-  memberCount       Int
-  envelopeItemCount Int
-
-  flags Json /// [ClaimFlags] @zod.custom.use(ZClaimFlagsSchema)
-}
 
 model Account {
   id                String   @id @default(cuid())
@@ -692,12 +639,6 @@ model Organisation {
   name          String
   url           String           @unique
   avatarImageId String?
-
-  customerId   String?       @unique
-  subscription Subscription?
-
-  organisationClaimId String            @unique
-  organisationClaim   OrganisationClaim @relation(fields: [organisationClaimId], references: [id])
 
   members OrganisationMember[]
   invites OrganisationMemberInvite[]

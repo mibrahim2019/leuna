@@ -5,7 +5,6 @@ import { Trans } from '@lingui/react/macro';
 import { ReadStatus } from '@prisma/client';
 import { Link } from 'react-router';
 
-import LogoImage from '@documenso/assets/logo.png';
 import { authClient } from '@documenso/auth/client';
 import { useSession } from '@documenso/lib/client-only/providers/session';
 import { isPersonalLayout } from '@documenso/lib/utils/organisations';
@@ -13,6 +12,7 @@ import { trpc } from '@documenso/trpc/react';
 import { Sheet, SheetContent } from '@documenso/ui/primitives/sheet';
 import { ThemeSwitcher } from '@documenso/ui/primitives/theme-switcher';
 
+import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
 import { useOptionalCurrentTeam } from '~/providers/team';
 
 export type AppNavMobileProps = {
@@ -83,14 +83,8 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
   return (
     <Sheet open={isMenuOpen} onOpenChange={onMenuOpenChange}>
       <SheetContent className="flex w-full max-w-[350px] flex-col">
-        <Link to="/" onClick={handleMenuItemClick}>
-          <img
-            src={LogoImage}
-            alt="Documenso Logo"
-            className="dark:invert"
-            width={170}
-            height={25}
-          />
+        <Link to="/" onClick={handleMenuItemClick} aria-label="Leuna home">
+          <SignWordmarkLogo className="text-[1.125rem] text-foreground dark:text-white" signClassName="text-[#2563eb]" />
         </Link>
 
         <div className="mt-8 flex w-full flex-col items-start gap-y-4">
@@ -124,7 +118,7 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
           </div>
 
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Documenso, Inc.
+            © {new Date().getFullYear()} Leuna, Inc.
             <br />
             <Trans>All rights reserved.</Trans>
           </p>

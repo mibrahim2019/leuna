@@ -13,7 +13,7 @@ import { GripVerticalIcon, HelpCircle, Plus, Trash } from 'lucide-react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { prop, sortBy } from 'remeda';
 
-import { useLimits } from '@documenso/ee/server-only/limits/provider/client';
+import { useLimits } from '@documenso/lib/server-only/limits/provider/client';
 import { useAutoSave } from '@documenso/lib/client-only/hooks/use-autosave';
 import { useDebouncedValue } from '@documenso/lib/client-only/hooks/use-debounced-value';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
@@ -824,8 +824,7 @@ export const AddSignersFormPartial = ({
                                 )}
                               />
 
-                              {showAdvancedSettings &&
-                                organisation.organisationClaim.flags.cfr21 && (
+                              {showAdvancedSettings && (
                                   <FormField
                                     control={form.control}
                                     name={`signers.${index}.actionAuth`}
@@ -955,7 +954,7 @@ export const AddSignersFormPartial = ({
               </Button>
             </div>
 
-            {!alwaysShowAdvancedSettings && organisation.organisationClaim.flags.cfr21 && (
+            {!alwaysShowAdvancedSettings && (
               <div className="mt-4 flex flex-row items-center">
                 <Checkbox
                   id="showAdvancedRecipientSettings"

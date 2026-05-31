@@ -1,9 +1,10 @@
 import { EnvelopeType } from '@prisma/client';
 
-import { getServerLimits } from '@documenso/ee/server-only/limits/server';
+import { getServerLimits } from '@documenso/lib/server-only/limits/server';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { sendDocument } from '@documenso/lib/server-only/document/send-document';
 import { getEnvelopeById } from '@documenso/lib/server-only/envelope/get-envelope-by-id';
+import { assertPolarProductAccess } from '@documenso/lib/server-only/polar/customer';
 import { createDocumentFromTemplate } from '@documenso/lib/server-only/template/create-document-from-template';
 import { putNormalizedPdfFileServerSide } from '@documenso/lib/universal/upload/put-file.server';
 import { formatSigningLink } from '@documenso/lib/utils/recipients';
@@ -155,6 +156,8 @@ export const useEnvelopeRoute = authenticatedProcedure
 
     // Distribute document if requested
     if (distributeDocument) {
+      await assertPolarProductAccess({ userId: user.id });
+
       await sendDocument({
         id: {
           type: 'envelopeId',

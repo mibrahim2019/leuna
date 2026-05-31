@@ -2,6 +2,7 @@ import { Trans } from '@lingui/react/macro';
 
 import { Link, Section, Text } from '../components';
 import { useBranding } from '../providers/branding';
+import { emailStyles } from './template-styles';
 
 export type TemplateFooterProps = {
   isDocument?: boolean;
@@ -13,11 +14,11 @@ export const TemplateFooter = ({ isDocument = true }: TemplateFooterProps) => {
   return (
     <Section>
       {isDocument && !branding.brandingHidePoweredBy && (
-        <Text className="my-4 text-base text-slate-400">
+        <Text className={emailStyles.footerText}>
           <Trans>
             This document was sent using{' '}
-            <Link className="text-[#7AC455]" href="https://documen.so/mail-footer">
-              Documenso
+            <Link className={emailStyles.footerLink} href="https://documen.so/mail-footer">
+              Sign
             </Link>
             .
           </Trans>
@@ -25,7 +26,7 @@ export const TemplateFooter = ({ isDocument = true }: TemplateFooterProps) => {
       )}
 
       {branding.brandingEnabled && branding.brandingCompanyDetails && (
-        <Text className="my-8 text-sm text-slate-400">
+        <Text className={emailStyles.footerText}>
           {branding.brandingCompanyDetails.split('\n').map((line, idx) => {
             return (
               <>
@@ -38,8 +39,8 @@ export const TemplateFooter = ({ isDocument = true }: TemplateFooterProps) => {
       )}
 
       {!branding.brandingEnabled && (
-        <Text className="my-8 text-sm text-slate-400">
-          Documenso, Inc.
+        <Text className={emailStyles.footerText}>
+          Sign, Inc.
           <br />
           2261 Market Street, #5211, San Francisco, CA 94114, USA
         </Text>

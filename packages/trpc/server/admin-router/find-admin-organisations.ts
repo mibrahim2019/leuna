@@ -59,29 +59,12 @@ export const findAdminOrganisations = async ({
           },
         },
         {
-          customerId: {
-            contains: query,
-            mode: Prisma.QueryMode.insensitive,
-          },
-        },
-        {
           name: {
             contains: query,
             mode: Prisma.QueryMode.insensitive,
           },
         },
       ],
-    };
-  }
-
-  if (query && query.startsWith('claim:')) {
-    whereClause = {
-      organisationClaim: {
-        originalSubscriptionClaimId: {
-          contains: query.slice(6),
-          mode: Prisma.QueryMode.insensitive,
-        },
-      },
     };
   }
 
@@ -134,7 +117,6 @@ export const findAdminOrganisations = async ({
         updatedAt: true,
         name: true,
         url: true,
-        customerId: true,
         owner: {
           select: {
             id: true,
@@ -142,7 +124,6 @@ export const findAdminOrganisations = async ({
             name: true,
           },
         },
-        subscription: true,
       },
     }),
     prisma.organisation.count({

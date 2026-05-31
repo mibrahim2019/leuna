@@ -1,0 +1,8 @@
+export const POLAR_LIFETIME_PURCHASE_PATH = '/purchase/lifetime';
+export const POLAR_LIFETIME_SUCCESS_PATH = '/purchase/lifetime/success';
+
+export const POLAR_ACCESS_REQUIRED_ERROR_CODE = 'POLAR_ACCESS_REQUIRED';
+export const POLAR_UNAVAILABLE_ERROR_CODE = 'POLAR_UNAVAILABLE';
+export const POLAR_NOT_CONFIGURED_ERROR_CODE = 'POLAR_NOT_CONFIGURED';
+
+export const POLAR_EXTERNAL_CUSTOMER_ID_PREFIX = 'documenso_user_';

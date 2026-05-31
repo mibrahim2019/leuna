@@ -78,7 +78,7 @@ export const AdminUserDisableDialog = ({
           <AlertDescription className="mr-2">
             <Trans>
               Disabling the user results in the user not being able to use the account. It also
-              disables all the related contents such as subscription, webhooks, teams, and API keys.
+              disables all the related contents such as webhooks, teams, and API keys.
             </Trans>
           </AlertDescription>
         </div>

@@ -1,6 +1,7 @@
 import { msg } from '@lingui/core/macro';
 import { redirect } from 'react-router';
 
+import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
 import {
   IS_GOOGLE_SSO_ENABLED,
   IS_MICROSOFT_SSO_ENABLED,
@@ -18,8 +19,12 @@ export function meta() {
   return appMetaTags(msg`Sign Up`);
 }
 
-export function loader({ request }: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const NEXT_PUBLIC_DISABLE_SIGNUP = env('NEXT_PUBLIC_DISABLE_SIGNUP');
+  const url = new URL(request.url);
+  let returnTo = url.searchParams.get('returnTo') ?? undefined;
+
+  returnTo = isValidReturnTo(returnTo) ? normalizeReturnTo(returnTo) : undefined;
 
   // SSR env variables.
   const isGoogleSSOEnabled = IS_GOOGLE_SSO_ENABLED;
@@ -27,12 +32,18 @@ export function loader({ request }: Route.LoaderArgs) {
   const isOIDCSSOEnabled = IS_OIDC_SSO_ENABLED;
 
   if (NEXT_PUBLIC_DISABLE_SIGNUP === 'true') {
-    throw redirect('/signin');
+    const redirectPath = returnTo
+      ? `/signin?returnTo=${encodeURIComponent(returnTo)}`
+      : '/signin';
+
+    throw redirect(redirectPath);
   }
 
-  let returnTo = new URL(request.url).searchParams.get('returnTo') ?? undefined;
+  const { isAuthenticated } = await getOptionalSession(request);
 
-  returnTo = isValidReturnTo(returnTo) ? normalizeReturnTo(returnTo) : undefined;
+  if (isAuthenticated) {
+    throw redirect(returnTo || '/');
+  }
 
   return {
     isGoogleSSOEnabled,
@@ -47,7 +58,7 @@ export default function SignUp({ loaderData }: Route.ComponentProps) {
 
   return (
     <SignUpForm
-      className="w-screen max-w-screen-2xl px-4 md:px-16 lg:-my-16"
+      className="mx-auto w-full max-w-screen-2xl px-4 md:px-8 lg:py-8"
       isGoogleSSOEnabled={isGoogleSSOEnabled}
       isMicrosoftSSOEnabled={isMicrosoftSSOEnabled}
       isOIDCSSOEnabled={isOIDCSSOEnabled}

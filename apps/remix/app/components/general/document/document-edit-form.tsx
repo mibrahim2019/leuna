@@ -6,12 +6,17 @@ import { DocumentDistributionMethod, DocumentStatus } from '@prisma/client';
 import { useNavigate, useSearchParams } from 'react-router';
 import { z } from 'zod';
 
+import {
+  POLAR_ACCESS_REQUIRED_ERROR_CODE,
+  POLAR_UNAVAILABLE_ERROR_CODE,
+} from '@documenso/lib/constants/polar';
 import { DocumentSignatureType } from '@documenso/lib/constants/document';
 import { isValidLanguageCode } from '@documenso/lib/constants/i18n';
 import {
   DO_NOT_INVALIDATE_QUERY_ON_MUTATION,
   SKIP_QUERY_BATCH_META,
 } from '@documenso/lib/constants/trpc';
+import { AppError } from '@documenso/lib/errors/app-error';
 import type { TDocument } from '@documenso/lib/types/document';
 import { ZDocumentAccessAuthTypesSchema } from '@documenso/lib/types/document-auth';
 import { getDocumentDataUrlForPdfViewer } from '@documenso/lib/utils/envelope-download';
@@ -398,11 +403,18 @@ export const DocumentEditForm = ({
         await navigate(`${documentRootPath}/${document.envelopeId}`);
       }
     } catch (err) {
+      const error = AppError.parseError(err);
+
       console.error(err);
 
       toast({
         title: _(msg`Error`),
-        description: _(msg`An error occurred while sending the document.`),
+        description:
+          error.code === POLAR_ACCESS_REQUIRED_ERROR_CODE
+            ? _(msg`Lifetime access is required before you can send documents.`)
+            : error.code === POLAR_UNAVAILABLE_ERROR_CODE
+              ? _(msg`We could not verify purchase access right now. Please try again.`)
+              : _(msg`An error occurred while sending the document.`),
         variant: 'destructive',
       });
     }

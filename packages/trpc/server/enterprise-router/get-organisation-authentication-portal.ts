@@ -36,17 +36,16 @@ export const getOrganisationAuthenticationPortal = async ({
   userId,
   organisationId,
 }: GetOrganisationAuthenticationPortalOptions) => {
-  const organisation = await prisma.organisation.findFirst({
-    where: buildOrganisationWhereQuery({
-      organisationId,
-      userId,
-      roles: ORGANISATION_MEMBER_ROLE_PERMISSIONS_MAP['MANAGE_ORGANISATION'],
-    }),
-    include: {
-      organisationClaim: true,
-      organisationAuthenticationPortal: {
-        select: {
-          defaultOrganisationRole: true,
+    const organisation = await prisma.organisation.findFirst({
+      where: buildOrganisationWhereQuery({
+        organisationId,
+        userId,
+        roles: ORGANISATION_MEMBER_ROLE_PERMISSIONS_MAP['MANAGE_ORGANISATION'],
+      }),
+      include: {
+        organisationAuthenticationPortal: {
+          select: {
+            defaultOrganisationRole: true,
           enabled: true,
           clientId: true,
           wellKnownUrl: true,
@@ -58,17 +57,11 @@ export const getOrganisationAuthenticationPortal = async ({
     },
   });
 
-  if (!organisation) {
-    throw new AppError(AppErrorCode.NOT_FOUND, {
-      message: 'Organisation not found',
-    });
-  }
-
-  if (!organisation.organisationClaim.flags.authenticationPortal) {
-    throw new AppError(AppErrorCode.NOT_FOUND, {
-      message: 'Authentication portal not found',
-    });
-  }
+    if (!organisation) {
+      throw new AppError(AppErrorCode.NOT_FOUND, {
+        message: 'Organisation not found',
+      });
+    }
 
   const portal = organisation.organisationAuthenticationPortal;
 

@@ -58,6 +58,7 @@
     "@ts-rest/core": "^3.52.1",
     "@ts-rest/open-api": "^3.52.1",
     "@ts-rest/serverless": "^3.52.1",
+    "baseline-browser-mapping": "^2.10.18",
     "dotenv": "^17.2.3",
     "dotenv-cli": "^11.0.0",
     "eslint": "^8.57.0",
@@ -82,7 +83,7 @@
     "vite": "^7.2.4",
     "vite-plugin-static-copy": "^3.1.4",
     "zod-openapi": "^4.2.4",
-    "zod-prisma-types": "3.3.5"
+    "zod-prisma-types": "^3.3.11"
   },
   "dependencies": {
     "@ai-sdk/google-vertex": "3.0.81",

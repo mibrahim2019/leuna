@@ -9,8 +9,8 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Prerequisites
 
-- A Documenso account (cloud or self-hosted)
-- A Documenso account on any plan (Free, Individual, Team, or Enterprise)
+- A Sign Leuna account (cloud or self-hosted)
+- A Sign Leuna account on any plan (Free, Individual, Team, or Enterprise)
 
 <Callout type="info">
   Free accounts include API access with a limit of 5 documents per month. [Upgrade to a paid
@@ -24,7 +24,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
 <Step>
 ### Open settings
 
-- Log in to your Documenso account
+- Log in to your Sign Leuna account
 - Click your avatar in the top right corner
 - Select **Settings** from the dropdown menu
 
@@ -73,14 +73,14 @@ Include the token in the `Authorization` header of your HTTP requests.
 ### cURL
 
 ```bash
-curl https://app.documenso.com/api/v2/documents \
+curl https://app.leuna.app/api/v2/documents \
   -H "Authorization: api_xxxxxxxxxxxxxxxx"
 ```
 
 ### JavaScript / TypeScript
 
 ```typescript
-const response = await fetch('https://app.documenso.com/api/v2/documents', {
+const response = await fetch('https://app.leuna.app/api/v2/documents', {
   method: 'GET',
   headers: {
     Authorization: 'api_xxxxxxxxxxxxxxxx',
@@ -92,12 +92,12 @@ const documents = await response.json();
 
 ### Using the TypeScript SDK
 
-Documenso provides official SDKs that handle authentication for you:
+Sign Leuna provides official SDKs that handle authentication for you:
 
 ```typescript
-import { Documenso } from '@documenso/sdk-typescript';
+import { Sign Leuna } from '@documenso/sdk-typescript';
 
-const client = new Documenso({
+const client = new Sign Leuna({
   apiKey: 'api_xxxxxxxxxxxxxxxx',
 });
 
@@ -110,14 +110,14 @@ SDKs are available for [TypeScript](https://github.com/documenso/sdk-typescript)
 
 | Environment | Base URL                               |
 | ----------- | -------------------------------------- |
-| Production  | `https://app.documenso.com/api/v2`     |
-| Staging     | `https://stg-app.documenso.com/api/v2` |
+| Production  | `https://app.leuna.app/api/v2`     |
+| Staging     | `https://stg-app.leuna.app/api/v2` |
 | Self-hosted | `https://your-domain.com/api/v2`       |
 
 <Callout type="info">
   API V1 is deprecated. Use V2 for all new integrations. V1 only works with legacy documents created
   before the envelope system. If you need V1 documentation for migration purposes, see the [V1
-  OpenAPI reference](https://app.documenso.com/api/v1/openapi).
+  OpenAPI reference](https://app.leuna.app/api/v1/openapi).
 </Callout>
 
 <Callout type="info">
@@ -142,12 +142,12 @@ Store your token in an environment variable rather than hardcoding it:
 
 ```bash
 # .env (do not commit this file)
-DOCUMENSO_API_KEY=api_xxxxxxxxxxxxxxxx
+SIGN_DOCUTRACKER_API_KEY=api_xxxxxxxxxxxxxxxx
 ```
 
 ```typescript
-const client = new Documenso({
-  apiKey: process.env.DOCUMENSO_API_KEY,
+const client = new Sign Leuna({
+  apiKey: process.env.SIGN_DOCUTRACKER_API_KEY,
 });
 ```
 

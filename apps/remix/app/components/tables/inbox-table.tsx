@@ -115,7 +115,7 @@ export const InboxTable = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="bg-widget relative rounded-md">
       <DataTable
         columns={columns}
         data={results.data}

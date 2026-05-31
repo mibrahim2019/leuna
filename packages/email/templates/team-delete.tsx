@@ -3,10 +3,10 @@ import { useLingui } from '@lingui/react';
 
 import { formatTeamUrl } from '@documenso/lib/utils/teams';
 
-import { Body, Container, Head, Hr, Html, Img, Preview, Section, Text } from '../components';
-import { useBranding } from '../providers/branding';
-import { TemplateFooter } from '../template-components/template-footer';
+import { Section, Text } from '../components';
 import TemplateImage from '../template-components/template-image';
+import { TemplateShell } from '../template-components/template-shell';
+import { emailStyles } from '../template-components/template-styles';
 
 export type TeamDeleteEmailProps = {
   assetBaseUrl: string;
@@ -16,11 +16,10 @@ export type TeamDeleteEmailProps = {
 
 export const TeamDeleteEmailTemplate = ({
   assetBaseUrl = 'http://localhost:3002',
-  baseUrl = 'https://documenso.com',
+  baseUrl = 'https://leuna.app',
   teamUrl = 'demo',
 }: TeamDeleteEmailProps) => {
   const { _ } = useLingui();
-  const branding = useBranding();
 
   const previewText = msg`A team you were a part of has been deleted`;
 
@@ -29,50 +28,23 @@ export const TeamDeleteEmailTemplate = ({
   const description = msg`The following team has been deleted. You will no longer be able to access this team and its documents`;
 
   return (
-    <Html>
-      <Head />
-      <Preview>{_(previewText)}</Preview>
+    <TemplateShell previewText={_(previewText)} assetBaseUrl={assetBaseUrl} isDocument={false}>
+      <Section>
+        <TemplateImage
+          className="mx-auto"
+          assetBaseUrl={assetBaseUrl}
+          staticAsset="delete-team.png"
+        />
+      </Section>
 
-      <Body className="mx-auto my-auto font-sans">
-        <Section className="bg-white text-slate-500">
-          <Container className="mx-auto mb-2 mt-8 max-w-xl rounded-lg border border-solid border-slate-200 p-2 backdrop-blur-sm">
-            {branding.brandingEnabled && branding.brandingLogo ? (
-              <Img src={branding.brandingLogo} alt="Branding Logo" className="mb-4 h-6 p-2" />
-            ) : (
-              <TemplateImage
-                assetBaseUrl={assetBaseUrl}
-                className="mb-4 h-6 p-2"
-                staticAsset="logo.png"
-              />
-            )}
+      <Section>
+        <Text className={emailStyles.title}>{_(title)}</Text>
 
-            <Section>
-              <TemplateImage
-                className="mx-auto"
-                assetBaseUrl={assetBaseUrl}
-                staticAsset="delete-team.png"
-              />
-            </Section>
+        <Text className={emailStyles.bodyWide}>{_(description)}</Text>
 
-            <Section className="p-2 text-slate-500">
-              <Text className="text-center text-lg font-medium text-black">{_(title)}</Text>
-
-              <Text className="my-1 text-center text-base">{_(description)}</Text>
-
-              <div className="mx-auto my-2 w-fit rounded-lg bg-gray-50 px-4 py-2 text-base font-medium text-slate-600">
-                {formatTeamUrl(teamUrl, baseUrl)}
-              </div>
-            </Section>
-          </Container>
-
-          <Hr className="mx-auto mt-12 max-w-xl" />
-
-          <Container className="mx-auto max-w-xl">
-            <TemplateFooter isDocument={false} />
-          </Container>
-        </Section>
-      </Body>
-    </Html>
+        <div className={emailStyles.pill}>{formatTeamUrl(teamUrl, baseUrl)}</div>
+      </Section>
+    </TemplateShell>
   );
 };
 

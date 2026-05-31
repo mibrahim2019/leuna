@@ -2,6 +2,7 @@ import { Trans } from '@lingui/react/macro';
 
 import { Column, Img, Section, Text } from '../components';
 import { TemplateDocumentImage } from './template-document-image';
+import { cn, emailStyles } from './template-styles';
 
 export interface TemplateDocumentRecipientSignedProps {
   documentName: string;
@@ -29,7 +30,7 @@ export const TemplateDocumentRecipientSigned = ({
       <Section>
         <Section className="mb-4">
           <Column align="center">
-            <Text className="text-base font-semibold text-[#7AC455]">
+            <Text className={cn(emailStyles.statusLabel, 'text-[#4f8f2f]')}>
               <Img
                 src={getAssetUrl('/static/completed.png')}
                 className="-mt-0.5 mr-2 inline h-7 w-7 align-middle"
@@ -39,13 +40,13 @@ export const TemplateDocumentRecipientSigned = ({
           </Column>
         </Section>
 
-        <Text className="text-primary mb-0 text-center text-lg font-semibold">
+        <Text className={emailStyles.title}>
           <Trans>
             {recipientReference} has signed "{documentName}"
           </Trans>
         </Text>
 
-        <Text className="mx-auto mb-6 mt-1 max-w-[80%] text-center text-base text-slate-400">
+        <Text className={emailStyles.bodyWide}>
           <Trans>{recipientReference} has completed signing the document.</Trans>
         </Text>
       </Section>

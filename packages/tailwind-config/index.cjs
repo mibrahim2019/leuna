@@ -68,18 +68,18 @@ module.exports = {
           foreground: 'hsl(var(--widget-foreground))',
         },
         documenso: {
-          DEFAULT: '#A2E771',
-          50: '#FFFFFF',
-          100: '#FDFFFD',
-          200: '#E7F9DA',
-          300: '#D0F3B7',
-          400: '#B9ED94',
-          500: '#A2E771',
-          600: '#83DF41',
-          700: '#66C622',
-          800: '#4D9619',
-          900: '#356611',
-          950: '#284E0D',
+          DEFAULT: '#141414',
+          50: '#f7f7f7',
+          100: '#e8e8e8',
+          200: '#d1d1d1',
+          300: '#b0b0b0',
+          400: '#888888',
+          500: '#6d6d6d',
+          600: '#141414',
+          700: '#111111',
+          800: '#0d0d0d',
+          900: '#0a0a0a',
+          950: '#050505',
         },
         dawn: {
           DEFAULT: '#aaa89f',
@@ -165,10 +165,49 @@ module.exports = {
   ],
 };
 
+/** Keys that map to `hsl(var(--…))` in theme and are already defined in `theme.css` — do not emit duplicate :root vars (would override real HSL components with self-referential hsl()). */
+const SEMANTIC_COLOR_VAR_EXCLUDE = new Set([
+  'border',
+  'field-border',
+  'input',
+  'ring',
+  'background',
+  'foreground',
+  'muted',
+  'muted-foreground',
+  'popover',
+  'popover-foreground',
+  'card',
+  'card-foreground',
+  'field-card',
+  'field-card-border',
+  'field-card-foreground',
+  'widget',
+  'widget-foreground',
+  'primary',
+  'primary-foreground',
+  'secondary',
+  'secondary-foreground',
+  'accent',
+  'accent-foreground',
+  'destructive',
+  'destructive-foreground',
+  'warning',
+  'envelope-editor-background',
+  'recipient-green',
+  'recipient-blue',
+  'recipient-purple',
+  'recipient-orange',
+  'recipient-yellow',
+  'recipient-pink',
+]);
+
 function addVariablesForColors({ addBase, theme }) {
   let allColors = flattenColorPalette(theme('colors'));
   let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
+    Object.entries(allColors)
+      .filter(([key]) => !SEMANTIC_COLOR_VAR_EXCLUDE.has(key))
+      .map(([key, val]) => [`--${key}`, val]),
   );
 
   addBase({

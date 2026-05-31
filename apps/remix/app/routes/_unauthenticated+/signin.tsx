@@ -78,8 +78,8 @@ export default function SignIn({ loaderData }: Route.ComponentProps) {
   }, []);
 
   return (
-    <div className="w-screen max-w-lg px-4">
-      <div className="z-10 rounded-xl border border-border bg-neutral-100 p-6 dark:bg-background">
+    <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-center gap-8 px-4 md:px-8 lg:py-8 xl:gap-12">
+      <div className="z-10 flex min-h-[min(760px,80vh)] w-full max-w-lg flex-col rounded-xl border border-border bg-white p-6">
         {signupError && (
           <Alert variant="destructive" className="mb-4">
             <AlertDescription>{_(signupError)}</AlertDescription>
@@ -116,6 +116,14 @@ export default function SignIn({ loaderData }: Route.ComponentProps) {
             </Trans>
           </p>
         )}
+      </div>
+
+      <div className="relative hidden w-full max-w-lg overflow-hidden rounded-xl border border-border xl:flex">
+        <img
+          src="/static/login.jpg"
+          alt="Signin page visual"
+          className="block h-full min-h-[min(760px,80vh)] w-full object-cover object-center"
+        />
       </div>
     </div>
   );

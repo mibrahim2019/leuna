@@ -1,4 +1,4 @@
-import { DocumentSigningOrder, DocumentVisibility, TemplateType } from '@prisma/client';
+import prismaClient from '@prisma/client';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
 
@@ -38,6 +38,8 @@ import { ZDocumentExternalIdSchema } from '@documenso/trpc/server/document-route
 
 import { zfdFile, zodFormData } from '../../utils/zod-form-data';
 import { ZSignFieldWithTokenMutationSchema } from '../field-router/schema';
+
+const { DocumentSigningOrder, DocumentVisibility, TemplateType } = prismaClient;
 
 export const MAX_TEMPLATE_PUBLIC_TITLE_LENGTH = 50;
 export const MAX_TEMPLATE_PUBLIC_DESCRIPTION_LENGTH = 256;

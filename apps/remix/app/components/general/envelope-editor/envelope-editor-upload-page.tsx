@@ -7,7 +7,7 @@ import { Trans, useLingui } from '@lingui/react/macro';
 import { FileWarningIcon, GripVerticalIcon, Loader2Icon, PencilIcon, XIcon } from 'lucide-react';
 import { ErrorCode as DropzoneErrorCode, type FileRejection, useDropzone } from 'react-dropzone';
 
-import { useLimits } from '@documenso/ee/server-only/limits/provider/client';
+import { useLimits } from '@documenso/lib/server-only/limits/provider/client';
 import { useEnvelopeAutosave } from '@documenso/lib/client-only/hooks/use-envelope-autosave';
 import { useCurrentEnvelopeEditor } from '@documenso/lib/client-only/providers/envelope-editor-provider';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
@@ -421,10 +421,6 @@ export const EnvelopeEditorUploadPage = () => {
       return msg`Cannot upload items after the document has been sent`;
     }
 
-    if (organisation.subscription && remaining.documents === 0) {
-      return msg`Document upload disabled due to unpaid invoices`;
-    }
-
     if (maximumEnvelopeItemCount <= localFiles.length) {
       return msg({
         message: plural(maximumEnvelopeItemCount, {
@@ -436,7 +432,7 @@ export const EnvelopeEditorUploadPage = () => {
 
     return null;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [localFiles.length, maximumEnvelopeItemCount, remaining.documents]);
+  }, [localFiles.length, maximumEnvelopeItemCount]);
 
   const onFileDropRejected = (fileRejections: FileRejection[]) => {
     const maxItemsReached = fileRejections.some((fileRejection) =>

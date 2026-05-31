@@ -11,7 +11,6 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import { z } from 'zod';
 
-import communityCardsImage from '@documenso/assets/images/community-cards.png';
 import { authClient } from '@documenso/auth/client';
 import { useAnalytics } from '@documenso/lib/client-only/hooks/use-analytics';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
@@ -31,8 +30,6 @@ import { Input } from '@documenso/ui/primitives/input';
 import { PasswordInput } from '@documenso/ui/primitives/password-input';
 import { SignaturePadDialog } from '@documenso/ui/primitives/signature-pad/signature-pad-dialog';
 import { useToast } from '@documenso/ui/primitives/use-toast';
-
-import { UserProfileTimur } from '~/components/general/user-profile-timur';
 
 export const ZSignUpFormSchema = z
   .object({
@@ -59,6 +56,7 @@ export const SIGNUP_ERROR_MESSAGES: Record<string, MessageDescriptor> = {
   SIGNUP_DISABLED: msg`Signup is currently disabled or not available for your email domain.`,
   [AppErrorCode.ALREADY_EXISTS]: msg`User with this email already exists. Please use a different email address.`,
   [AppErrorCode.INVALID_REQUEST]: msg`We were unable to create your account. Please review the information you provided and try again.`,
+  [AppErrorCode.TOO_MANY_REQUESTS]: msg`Too many signup attempts from your network. Please wait a moment and try again.`,
 };
 
 export type TSignUpFormSchema = z.infer<typeof ZSignUpFormSchema>;
@@ -131,12 +129,18 @@ export const SignUpForm = ({
     } catch (err) {
       const error = AppError.parseError(err);
 
+      console.error('Signup failed', error);
+
+      const knownErrorMessage = SIGNUP_ERROR_MESSAGES[error.code];
       const errorMessage =
-        SIGNUP_ERROR_MESSAGES[error.code] ?? SIGNUP_ERROR_MESSAGES.INVALID_REQUEST;
+        knownErrorMessage ??
+        error.userMessage ??
+        (error.message && error.message !== error.code ? error.message : undefined) ??
+        _(SIGNUP_ERROR_MESSAGES.INVALID_REQUEST);
 
       toast({
         title: _(msg`An error occurred`),
-        description: _(errorMessage),
+        description: typeof errorMessage === 'string' ? errorMessage : _(errorMessage),
         variant: 'destructive',
       });
     }
@@ -144,7 +148,7 @@ export const SignUpForm = ({
 
   const onSignUpWithGoogleClick = async () => {
     try {
-      await authClient.google.signIn();
+      await authClient.google.signIn({ redirectPath: returnTo });
     } catch (err) {
       toast({
         title: _(msg`An unknown error occurred`),
@@ -158,7 +162,7 @@ export const SignUpForm = ({
 
   const onSignUpWithMicrosoftClick = async () => {
     try {
-      await authClient.microsoft.signIn();
+      await authClient.microsoft.signIn({ redirectPath: returnTo });
     } catch (err) {
       toast({
         title: _(msg`An unknown error occurred`),
@@ -172,7 +176,7 @@ export const SignUpForm = ({
 
   const onSignUpWithOIDCClick = async () => {
     try {
-      await authClient.oidc.signIn();
+      await authClient.oidc.signIn({ redirectPath: returnTo });
     } catch (err) {
       toast({
         title: _(msg`An unknown error occurred`),
@@ -197,35 +201,16 @@ export const SignUpForm = ({
   }, [form]);
 
   return (
-    <div className={cn('flex justify-center gap-x-12', className)}>
-      <div className="relative hidden flex-1 overflow-hidden rounded-xl border border-border xl:flex">
-        <div className="absolute -inset-8 -z-[2] backdrop-blur">
-          <img
-            src={communityCardsImage}
-            alt="community-cards"
-            className="h-full w-full object-cover dark:brightness-95 dark:contrast-[70%] dark:invert"
-          />
-        </div>
-
-        <div className="absolute -inset-8 -z-[1] bg-background/50 backdrop-blur-[2px]" />
-
-        <div className="relative flex h-full w-full flex-col items-center justify-evenly">
-          <div className="rounded-2xl border bg-background px-4 py-1 text-sm font-medium">
-            <Trans>User profiles are here!</Trans>
-          </div>
-
-          <div className="w-full max-w-md">
-            <UserProfileTimur
-              rows={2}
-              className="rounded-2xl border border-border bg-background shadow-md"
-            />
-          </div>
-
-          <div />
-        </div>
+    <div className={cn('mx-auto flex w-full items-center justify-center gap-8 xl:gap-12', className)}>
+      <div className="relative hidden w-full max-w-xl overflow-hidden rounded-xl border border-border xl:flex">
+        <img
+          src="/static/login.jpg"
+          alt="Signup page visual"
+          className="block h-full min-h-[min(920px,90vh)] w-full object-cover object-center"
+        />
       </div>
 
-      <div className="relative z-10 flex min-h-[min(850px,80vh)] w-full max-w-lg flex-col rounded-xl border border-border bg-neutral-100 p-6 dark:bg-background">
+      <div className="relative z-10 flex min-h-[min(920px,90vh)] w-full max-w-xl flex-col rounded-xl border border-border bg-white p-6">
         <div className="h-20">
           <h1 className="text-xl font-semibold md:text-2xl">
             <Trans>Create a new account</Trans>
@@ -248,8 +233,8 @@ export const SignUpForm = ({
           >
             <fieldset
               className={cn(
-                'flex h-[550px] w-full flex-col gap-y-4',
-                hasSocialAuthEnabled && 'h-[650px]',
+                'flex min-h-[550px] w-full flex-col gap-y-4',
+                hasSocialAuthEnabled && 'min-h-[650px]',
               )}
               disabled={isSubmitting}
             >

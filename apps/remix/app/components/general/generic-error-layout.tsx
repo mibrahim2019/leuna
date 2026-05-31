@@ -2,11 +2,9 @@ import type { MessageDescriptor } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
-import { motion } from 'framer-motion';
 import { ChevronLeft } from 'lucide-react';
 import { Link, useNavigate } from 'react-router';
 
-import backgroundPattern from '@documenso/assets/images/background-pattern.png';
 import { Button } from '@documenso/ui/primitives/button';
 
 type ErrorCodeMap = Record<
@@ -61,24 +59,6 @@ export const GenericErrorLayout = ({
 
   return (
     <div className="fixed inset-0 z-0 flex h-screen w-screen items-center justify-center">
-      <div className="absolute -inset-24 -z-10">
-        <motion.div
-          className="flex h-full w-full items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.8, transition: { duration: 0.5, delay: 0.5 } }}
-        >
-          <img
-            src={backgroundPattern}
-            alt="background pattern"
-            className="-ml-[50vw] -mt-[15vh] h-full scale-100 object-cover md:scale-100 lg:scale-[100%] dark:contrast-[70%] dark:invert dark:sepia"
-            style={{
-              mask: 'radial-gradient(rgba(255, 255, 255, 1) 0%, transparent 80%)',
-              WebkitMask: 'radial-gradient(rgba(255, 255, 255, 1) 0%, transparent 80%)',
-            }}
-          />
-        </motion.div>
-      </div>
-
       <div className="inset-0 mx-auto flex h-full flex-grow items-center justify-center px-6 py-32">
         <div>
           <p className="text-muted-foreground font-semibold">{_(subHeading)}</p>

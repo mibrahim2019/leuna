@@ -40,6 +40,7 @@ export const DocumentSearch = ({ initialValue = '' }: { initialValue?: string })
   return (
     <Input
       type="search"
+      className="bg-white placeholder:text-muted-foreground/90"
       placeholder={_(msg`Search documents...`)}
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}

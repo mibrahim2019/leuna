@@ -34,7 +34,7 @@ export const DateRangeFilter = ({ currentRange }: DateRangeFilterProps) => {
   return (
     <div className="flex items-center gap-2">
       <Select value={currentRange} onValueChange={handleRangeChange} disabled={isPending}>
-        <SelectTrigger className="w-48">
+        <SelectTrigger className="bg-widget w-48">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

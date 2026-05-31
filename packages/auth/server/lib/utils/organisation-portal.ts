@@ -1,5 +1,4 @@
-import { IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
-import { DOCUMENSO_ENCRYPTION_KEY } from '@documenso/lib/constants/crypto';
+import { SIGN_DOCUTRACKER_ENCRYPTION_KEY } from '@documenso/lib/constants/crypto';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { symmetricDecrypt } from '@documenso/lib/universal/crypto';
 import { formatOrganisationCallbackUrl } from '@documenso/lib/utils/organisation-authentication-portal';
@@ -28,7 +27,6 @@ export const getOrganisationAuthenticationPortalOptions = async (
             id: options.organisationId,
           },
     include: {
-      organisationClaim: true,
       organisationAuthenticationPortal: true,
       groups: true,
     },
@@ -40,16 +38,7 @@ export const getOrganisationAuthenticationPortalOptions = async (
     });
   }
 
-  if (!IS_BILLING_ENABLED()) {
-    throw new AppError(AppErrorCode.NOT_SETUP, {
-      message: 'Billing is not enabled',
-    });
-  }
-
-  if (
-    !organisation.organisationClaim.flags.authenticationPortal ||
-    !organisation.organisationAuthenticationPortal.enabled
-  ) {
+  if (!organisation.organisationAuthenticationPortal.enabled) {
     throw new AppError(AppErrorCode.NOT_SETUP, {
       message: 'Authentication portal is not enabled for this organisation',
     });
@@ -67,14 +56,14 @@ export const getOrganisationAuthenticationPortalOptions = async (
     });
   }
 
-  if (!DOCUMENSO_ENCRYPTION_KEY) {
+  if (!SIGN_DOCUTRACKER_ENCRYPTION_KEY) {
     throw new AppError(AppErrorCode.NOT_SETUP, {
       message: 'Encryption key is not set',
     });
   }
 
   const clientSecret = Buffer.from(
-    symmetricDecrypt({ key: DOCUMENSO_ENCRYPTION_KEY, data: encryptedClientSecret }),
+    symmetricDecrypt({ key: SIGN_DOCUTRACKER_ENCRYPTION_KEY, data: encryptedClientSecret }),
   ).toString('utf-8');
 
   return {

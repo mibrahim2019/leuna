@@ -9,7 +9,7 @@ import {
   isRouteErrorResponse,
   useLoaderData,
 } from 'react-router';
-import { PreventFlashOnWrongTheme, ThemeProvider, useTheme } from 'remix-themes';
+import { PreventFlashOnWrongTheme, Theme, ThemeProvider, useTheme } from 'remix-themes';
 
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
 import { SessionProvider } from '@documenso/lib/client-only/providers/session';
@@ -62,10 +62,12 @@ export async function loader({ request }: Route.LoaderArgs) {
     organisations = await getOrganisationSession({ userId: session.user.id });
   }
 
+  const specifiedTheme = getTheme() ?? Theme.LIGHT;
+
   return data(
     {
       lang,
-      theme: getTheme(),
+      theme: specifiedTheme,
       disableAnimations,
       session: session.isAuthenticated
         ? {
@@ -133,7 +135,7 @@ export function LayoutContent({ children }: { children: React.ReactNode }) {
             <div className="mx-auto flex h-auto max-w-screen-xl items-center justify-center px-4 py-3 text-sm font-medium">
               <div className="flex items-center">
                 <AlertTriangleIcon className="mr-2 h-4 w-4" />
-                <Trans>This is an expired license instance of Documenso</Trans>
+                <Trans>This is an expired license instance of Sign</Trans>
               </div>
             </div>
           </div>

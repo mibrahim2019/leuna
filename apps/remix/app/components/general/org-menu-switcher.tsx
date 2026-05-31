@@ -127,6 +127,7 @@ export const OrgMenuSwitcher = () => {
           <AvatarWithText
             avatarSrc={dropdownMenuAvatarText.avatarSrc}
             avatarFallback={dropdownMenuAvatarText.avatarFallback}
+            avatarFallbackClassName="bg-black text-white"
             primaryText={dropdownMenuAvatarText.primaryText}
             secondaryText={dropdownMenuAvatarText.secondaryText}
             rightSideComponent={

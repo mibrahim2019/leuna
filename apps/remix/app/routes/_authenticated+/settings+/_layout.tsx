@@ -18,7 +18,9 @@ export default function SettingsLayout() {
       </h1>
 
       <div className="mt-4 grid grid-cols-12 gap-x-8 md:mt-8">
-        <SettingsDesktopNav className="hidden md:col-span-3 md:flex" />
+        <div className="hidden md:col-span-3 md:block md:border-r md:border-border md:pr-8">
+          <SettingsDesktopNav className="w-full" />
+        </div>
         <SettingsMobileNav className="col-span-12 mb-8 md:hidden" />
 
         <div className="col-span-12 md:col-span-9">

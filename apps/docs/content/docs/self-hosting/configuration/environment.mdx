@@ -1,18 +1,18 @@
 ---
 title: Environment Variables
-description: Complete reference for all environment variables used to configure a self-hosted Documenso instance.
+description: Complete reference for all environment variables used to configure a self-hosted Sign Leuna instance.
 ---
 
 ## Required Variables
 
-These variables must be set for Documenso to function:
+These variables must be set for Sign Leuna to function:
 
 | Variable                                | Description                                                                                |
 | --------------------------------------- | ------------------------------------------------------------------------------------------ |
 | `NEXTAUTH_SECRET`                       | Secret key for NextAuth.js encryption and signing. Generate with `openssl rand -base64 32` |
 | `NEXT_PRIVATE_ENCRYPTION_KEY`           | Primary encryption key for symmetric encryption (minimum 32 characters)                    |
 | `NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY` | Secondary encryption key for symmetric encryption (minimum 32 characters)                  |
-| `NEXT_PUBLIC_WEBAPP_URL`                | Public URL of your Documenso instance (e.g., `https://sign.example.com`)                   |
+| `NEXT_PUBLIC_WEBAPP_URL`                | Public URL of your Sign Leuna instance (e.g., `https://sign.example.com`)                   |
 | `NEXT_PRIVATE_DATABASE_URL`             | PostgreSQL connection URL with connection pooling                                          |
 | `NEXT_PRIVATE_SMTP_FROM_ADDRESS`        | Email address used as the sender for all outgoing emails                                   |
 | `NEXT_PRIVATE_SMTP_FROM_NAME`           | Display name for the sender of outgoing emails                                             |
@@ -30,7 +30,7 @@ These variables must be set for Documenso to function:
 
 ## Database Configuration
 
-Documenso requires PostgreSQL 14 or higher.
+Sign Leuna requires PostgreSQL 14 or higher.
 
 | Variable                           | Required     | Description                                                                                |
 | ---------------------------------- | ------------ | ------------------------------------------------------------------------------------------ |
@@ -90,7 +90,7 @@ Callback URL: `https://<your-domain>/api/auth/callback/microsoft`
 
 ## Email Configuration
 
-Documenso supports multiple email transports for sending notifications.
+Sign Leuna supports multiple email transports for sending notifications.
 
 ### Transport Selection
 
@@ -148,7 +148,7 @@ For detailed email setup, see [Email Configuration](/docs/self-hosting/configura
 
 ## Storage Configuration
 
-Documenso can store documents in the database or S3-compatible storage.
+Sign Leuna can store documents in the database or S3-compatible storage.
 
 | Variable                                 | Description                                 | Default    |
 | ---------------------------------------- | ------------------------------------------- | ---------- |
@@ -182,7 +182,7 @@ For detailed storage setup, see [Storage Configuration](/docs/self-hosting/confi
 
 ## Signing Certificate Configuration
 
-Documenso requires a certificate to digitally sign documents.
+Sign Leuna requires a certificate to digitally sign documents.
 
 ### Transport Selection
 
@@ -229,7 +229,6 @@ For detailed certificate setup, see [Signing Certificate](/docs/self-hosting/con
 | `NEXT_PUBLIC_DISABLE_SIGNUP`          | Disable public user registration entirely                                           | `false` |
 | `NEXT_PRIVATE_ALLOWED_SIGNUP_DOMAINS` | Comma-separated list of email domains allowed to sign up (e.g., `example.com,acme.org`) |         |
 | `NEXT_PUBLIC_POSTHOG_KEY`             | PostHog API key for analytics and feature flags                                     |         |
-| `NEXT_PUBLIC_FEATURE_BILLING_ENABLED` | Enable billing features                                                             | `false` |
 
 ### Signup Restrictions
 
@@ -254,7 +253,7 @@ NEXT_PUBLIC_DISABLE_SIGNUP="true"
 
 ## AI Features
 
-Documenso can use Google Vertex AI for recipient and field detection.
+Sign Leuna can use Google Vertex AI for recipient and field detection.
 
 | Variable                   | Description                                    | Default  |
 | -------------------------- | ---------------------------------------------- | -------- |
@@ -268,7 +267,7 @@ AI features must also be enabled in organisation/team settings after configurati
 
 ## Background Jobs
 
-Documenso supports multiple background job providers for processing emails, documents, webhooks, and scheduled tasks.
+Sign Leuna supports multiple background job providers for processing emails, documents, webhooks, and scheduled tasks.
 
 ### Provider Selection
 
@@ -309,9 +308,9 @@ For setup guides and provider recommendations, see [Background Jobs](/docs/self-
 
 | Variable                      | Description                                  | Default |
 | ----------------------------- | -------------------------------------------- | ------- |
-| `DOCUMENSO_DISABLE_TELEMETRY` | Set to `true` to disable anonymous telemetry | `false` |
+| `SIGN_DOCUTRACKER_DISABLE_TELEMETRY` | Set to `true` to disable anonymous telemetry | `false` |
 
-Telemetry also auto-disables when `NEXT_PRIVATE_DOCUMENSO_LICENSE_KEY` is configured.
+Telemetry also auto-disables when `NEXT_PRIVATE_SIGN_DOCUTRACKER_LICENSE_KEY` is configured.
 
 Telemetry collects only: app version, installation ID, and node ID. No personal data is collected.
 
@@ -329,15 +328,10 @@ Telemetry collects only: app version, installation ID, and node ID. No personal 
 
 ## Enterprise Features
 
-These variables require an active [Enterprise Edition](/docs/policies/enterprise-edition) license. Obtain a license key from [license.documenso.com](https://license.documenso.com) and set it below to unlock enterprise features such as SSO, embed authoring, and 21 CFR Part 11 compliance.
-
-| Variable                             | Description                                      |
-| ------------------------------------ | ------------------------------------------------ |
-| `NEXT_PRIVATE_DOCUMENSO_LICENSE_KEY` | License key for enterprise features              |
-| `NEXT_PRIVATE_STRIPE_API_KEY`        | Stripe API key for billing                       |
-| `NEXT_PRIVATE_STRIPE_WEBHOOK_SECRET` | Stripe webhook secret                            |
-| `NEXT_PRIVATE_SES_ACCESS_KEY_ID`     | AWS SES access key for email domain verification |
-| `NEXT_PRIVATE_SES_SECRET_ACCESS_KEY` | AWS SES secret key                               |
+| Variable                         | Description                                      |
+| -------------------------------- | ------------------------------------------------ |
+| `NEXT_PRIVATE_SES_ACCESS_KEY_ID` | AWS SES access key for email domain verification |
+| `NEXT_PRIVATE_SES_SECRET_ACCESS_KEY` | AWS SES secret key                            |
 | `NEXT_PRIVATE_SES_REGION`            | AWS SES region                                   |
 
 ---
@@ -363,7 +357,7 @@ NEXT_PRIVATE_SMTP_HOST="smtp.example.com"
 NEXT_PRIVATE_SMTP_PORT=587
 NEXT_PRIVATE_SMTP_USERNAME="your-smtp-user"
 NEXT_PRIVATE_SMTP_PASSWORD="your-smtp-password"
-NEXT_PRIVATE_SMTP_FROM_NAME="Documenso"
+NEXT_PRIVATE_SMTP_FROM_NAME="Sign Leuna"
 NEXT_PRIVATE_SMTP_FROM_ADDRESS="noreply@example.com"
 
 # Signing (certificate must be configured)

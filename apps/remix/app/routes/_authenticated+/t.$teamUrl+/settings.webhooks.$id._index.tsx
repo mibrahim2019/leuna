@@ -265,17 +265,18 @@ export default function WebhookPage({ params }: Route.ComponentProps) {
       </SettingsHeader>
 
       <div className="mt-4">
-        <div className="mb-4 flex flex-row items-center justify-between gap-x-4">
+        <div className="mb-4 flex flex-row items-center justify-between gap-x-4 rounded-md border border-border bg-widget p-4">
           <Input
             defaultValue={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t`Search by ID`}
+            className="bg-widget"
           />
 
           <WebhookEventCombobox />
 
           <Tabs value={parsedSearchParams.status || ''} className="flex-shrink-0">
-            <TabsList>
+            <TabsList className="bg-widget">
               <TabsTrigger className="min-w-[60px] hover:text-foreground" value="" asChild>
                 <Link to={getTabHref('')}>
                   <Trans>All</Trans>
@@ -295,46 +296,48 @@ export default function WebhookPage({ params }: Route.ComponentProps) {
           </Tabs>
         </div>
 
-        <DataTable
-          columns={columns}
-          data={results.data}
-          perPage={results.perPage}
-          currentPage={results.currentPage}
-          totalPages={results.totalPages}
-          onPaginationChange={onPaginationChange}
-          onRowClick={(row) =>
-            WebhookLogsSheet.call({
-              webhookCall: row,
-            })
-          }
-          rowClassName="cursor-pointer group"
-          error={{
-            enable: isLogsLoadingError,
-          }}
-          skeleton={{
-            enable: isLogsLoading,
-            rows: 3,
-            component: (
-              <>
-                <TableCell>
-                  <Skeleton className="h-4 w-12 rounded-full" />
-                </TableCell>
-                <TableCell>
-                  <Skeleton className="h-4 w-12 rounded-full" />
-                </TableCell>
-                <TableCell>
-                  <Skeleton className="h-4 w-12 rounded-full" />
-                </TableCell>
-              </>
-            ),
-          }}
-        >
-          {(table) =>
-            results.totalPages > 1 && (
-              <DataTablePagination additionalInformation="VisibleCount" table={table} />
-            )
-          }
-        </DataTable>
+        <div className="bg-widget rounded-md">
+          <DataTable
+            columns={columns}
+            data={results.data}
+            perPage={results.perPage}
+            currentPage={results.currentPage}
+            totalPages={results.totalPages}
+            onPaginationChange={onPaginationChange}
+            onRowClick={(row) =>
+              WebhookLogsSheet.call({
+                webhookCall: row,
+              })
+            }
+            rowClassName="cursor-pointer group"
+            error={{
+              enable: isLogsLoadingError,
+            }}
+            skeleton={{
+              enable: isLogsLoading,
+              rows: 3,
+              component: (
+                <>
+                  <TableCell>
+                    <Skeleton className="h-4 w-12 rounded-full" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-12 rounded-full" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-12 rounded-full" />
+                  </TableCell>
+                </>
+              ),
+            }}
+          >
+            {(table) =>
+              results.totalPages > 1 && (
+                <DataTablePagination additionalInformation="VisibleCount" table={table} />
+              )
+            }
+          </DataTable>
+        </div>
       </div>
 
       <WebhookLogsSheet.Root />

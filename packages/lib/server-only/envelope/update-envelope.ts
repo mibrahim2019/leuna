@@ -63,11 +63,7 @@ export const updateEnvelope = async ({
       team: {
         select: {
           organisationId: true,
-          organisation: {
-            select: {
-              organisationClaim: true,
-            },
-          },
+          organisation: true,
         },
       },
     },
@@ -118,13 +114,6 @@ export const updateEnvelope = async ({
     data?.globalAccessAuth === undefined ? documentGlobalAccessAuth : data.globalAccessAuth;
   const newGlobalActionAuth =
     data?.globalActionAuth === undefined ? documentGlobalActionAuth : data.globalActionAuth;
-
-  // Check if user has permission to set the global action auth.
-  if (newGlobalActionAuth.length > 0 && !envelope.team.organisation.organisationClaim.flags.cfr21) {
-    throw new AppError(AppErrorCode.UNAUTHORIZED, {
-      message: 'You do not have permission to set the action auth',
-    });
-  }
 
   const authOptions = createDocumentAuthOptions({
     globalAccessAuth: newGlobalAccessAuth,

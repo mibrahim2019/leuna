@@ -108,48 +108,50 @@ export default function WebhookPage() {
         </div>
       )}
 
-      <DataTable
-        columns={columns}
-        data={results.data}
-        perPage={results.perPage}
-        currentPage={results.currentPage}
-        totalPages={results.totalPages}
-        error={{
-          enable: isError,
-        }}
-        emptyState={
-          <div className="flex h-60 flex-col items-center justify-center gap-y-4 text-muted-foreground/60">
-            <p>
-              <Trans>
-                You have no webhooks yet. Your webhooks will be shown here once you create them.
-              </Trans>
-            </p>
-          </div>
-        }
-        skeleton={{
-          enable: isLoading,
-          rows: 3,
-          component: (
-            <>
-              <TableCell>
-                <Skeleton className="h-4 w-24 rounded-full" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="h-4 w-8 rounded-full" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="h-4 w-12 rounded-full" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="h-4 w-12 rounded-full" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="h-4 w-6 rounded-full" />
-              </TableCell>
-            </>
-          ),
-        }}
-      />
+      <div className="bg-widget rounded-md">
+        <DataTable
+          columns={columns}
+          data={results.data}
+          perPage={results.perPage}
+          currentPage={results.currentPage}
+          totalPages={results.totalPages}
+          error={{
+            enable: isError,
+          }}
+          emptyState={
+            <div className="flex h-60 flex-col items-center justify-center gap-y-4 text-muted-foreground/60">
+              <p>
+                <Trans>
+                  You have no webhooks yet. Your webhooks will be shown here once you create them.
+                </Trans>
+              </p>
+            </div>
+          }
+          skeleton={{
+            enable: isLoading,
+            rows: 3,
+            component: (
+              <>
+                <TableCell>
+                  <Skeleton className="h-4 w-24 rounded-full" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 w-8 rounded-full" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 w-12 rounded-full" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 w-12 rounded-full" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 w-6 rounded-full" />
+                </TableCell>
+              </>
+            ),
+          }}
+        />
+      </div>
     </div>
   );
 }

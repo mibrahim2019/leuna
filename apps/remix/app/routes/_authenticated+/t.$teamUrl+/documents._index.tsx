@@ -39,7 +39,7 @@ import { useCurrentTeam } from '~/providers/team';
 import { appMetaTags } from '~/utils/meta';
 
 export function meta() {
-  return appMetaTags(msg`Documents`);
+  return appMetaTags(msg`Contracts`);
 }
 
 const ZSearchParamsSchema = ZFindDocumentsInternalRequestSchema.pick({
@@ -138,23 +138,16 @@ export default function DocumentsPage() {
       <div className="mx-auto w-full max-w-screen-xl px-4 md:px-8">
         <FolderGrid type={FolderType.DOCUMENT} parentId={folderId ?? null} />
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-x-4 gap-y-8">
+        <div className="mt-8 flex flex-col gap-6">
           <div className="flex flex-row items-center">
-            <Avatar className="mr-3 h-12 w-12 border-2 border-solid border-white dark:border-border">
-              {team.avatarImageId && <AvatarImage src={formatAvatarUrl(team.avatarImageId)} />}
-              <AvatarFallback className="text-xs text-muted-foreground">
-                {team.name.slice(0, 1)}
-              </AvatarFallback>
-            </Avatar>
-
             <h2 className="text-4xl font-semibold">
-              <Trans>Documents</Trans>
+              <Trans>Contracts</Trans>
             </h2>
           </div>
 
-          <div className="-m-1 flex flex-wrap gap-x-4 gap-y-6 overflow-hidden p-1">
+          <div className="-m-1 flex w-full flex-wrap gap-x-4 gap-y-6 overflow-hidden p-1">
             <Tabs value={findDocumentSearchParams.status || 'ALL'} className="overflow-x-auto">
-              <TabsList>
+              <TabsList className="bg-black text-white">
                 {[
                   ExtendedDocumentStatus.INBOX,
                   ExtendedDocumentStatus.PENDING,
@@ -172,7 +165,7 @@ export default function DocumentsPage() {
                   .map((value) => (
                     <TabsTrigger
                       key={value}
-                      className="min-w-[60px] hover:text-foreground"
+                      className="min-w-[60px] data-[state=active]:bg-white data-[state=active]:text-black data-[state=inactive]:text-white data-[state=inactive]:hover:bg-white/10 data-[state=inactive]:hover:text-white"
                       value={value}
                       asChild
                     >

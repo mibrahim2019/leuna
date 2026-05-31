@@ -50,11 +50,7 @@ export const createEnvelopeRecipients = async ({
       recipients: true,
       team: {
         select: {
-          organisation: {
-            select: {
-              organisationClaim: true,
-            },
-          },
+          organisation: true,
         },
       },
     },
@@ -75,13 +71,6 @@ export const createEnvelopeRecipients = async ({
   const recipientsHaveActionAuth = recipientsToCreate.some(
     (recipient) => recipient.actionAuth && recipient.actionAuth.length > 0,
   );
-
-  // Check if user has permission to set the global action auth.
-  if (recipientsHaveActionAuth && !envelope.team.organisation.organisationClaim.flags.cfr21) {
-    throw new AppError(AppErrorCode.UNAUTHORIZED, {
-      message: 'You do not have permission to set the action auth',
-    });
-  }
 
   const normalizedRecipients = recipientsToCreate.map((recipient) => ({
     ...recipient,

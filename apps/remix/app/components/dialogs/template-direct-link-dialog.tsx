@@ -15,9 +15,10 @@ import {
 import { Link, useRevalidator } from 'react-router';
 import { P, match } from 'ts-pattern';
 
-import { useLimits } from '@documenso/ee/server-only/limits/provider/client';
+import { useLimits } from '@documenso/lib/server-only/limits/provider/client';
 import { useCopyToClipboard } from '@documenso/lib/client-only/hooks/use-copy-to-clipboard';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
+import { POLAR_LIFETIME_PURCHASE_PATH } from '@documenso/lib/constants/polar';
 import { DIRECT_TEMPLATE_RECIPIENT_EMAIL } from '@documenso/lib/constants/direct-templates';
 import { RECIPIENT_ROLES_DESCRIPTION } from '@documenso/lib/constants/recipient-roles';
 import { DIRECT_TEMPLATE_DOCUMENTATION } from '@documenso/lib/constants/template';
@@ -69,7 +70,7 @@ export const TemplateDirectLinkDialog = ({
   onDeleteSuccess,
 }: TemplateDirectLinkDialogProps) => {
   const { toast } = useToast();
-  const { quota, remaining } = useLimits();
+  const { quota, remaining, hasProductAccess } = useLimits();
   const { _ } = useLingui();
   const { revalidate } = useRevalidator();
 
@@ -248,22 +249,36 @@ export const TemplateDirectLinkDialog = ({
                   {remaining.directTemplates === 0 && (
                     <Alert variant="warning">
                       <AlertTitle>
-                        <Trans>
-                          Direct template link usage exceeded ({quota.directTemplates}/
-                          {quota.directTemplates})
-                        </Trans>
+                        {hasProductAccess ? (
+                          <Trans>
+                            Direct template link usage exceeded ({quota.directTemplates}/
+                            {quota.directTemplates})
+                          </Trans>
+                        ) : (
+                          <Trans>Lifetime Access Required</Trans>
+                        )}
                       </AlertTitle>
                       <AlertDescription>
-                        <Trans>
-                          You have reached the maximum limit of {quota.directTemplates} direct
-                          templates.{' '}
-                          <Link
-                            className="mt-1 block underline underline-offset-4"
-                            to={`/o/${organisation.url}/settings/billing`}
-                          >
-                            Upgrade your account to continue!
-                          </Link>
-                        </Trans>
+                        {hasProductAccess ? (
+                          <Trans>
+                            You have reached the maximum limit of {quota.directTemplates} direct
+                            templates.
+                          </Trans>
+                        ) : (
+                          <div className="flex flex-col items-start gap-3">
+                            <p>
+                              <Trans>
+                                Claim lifetime access to create and manage direct template links.
+                              </Trans>
+                            </p>
+
+                            <Button asChild size="sm">
+                              <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                                <Trans>Claim Lifetime Access</Trans>
+                              </Link>
+                            </Button>
+                          </div>
+                        )}
                       </AlertDescription>
                     </Alert>
                   )}

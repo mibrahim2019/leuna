@@ -3,11 +3,9 @@ import { match } from 'ts-pattern';
 
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
 import { EnvelopeRenderProvider } from '@documenso/lib/client-only/providers/envelope-render-provider';
-import { IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { getEnvelopeForDirectTemplateSigning } from '@documenso/lib/server-only/envelope/get-envelope-for-direct-template-signing';
 import { getEnvelopeRequiredAccessData } from '@documenso/lib/server-only/envelope/get-envelope-required-access-data';
-import { getOrganisationClaimByTeamId } from '@documenso/lib/server-only/organisation/get-organisation-claims';
 import { getTemplateByDirectLinkToken } from '@documenso/lib/server-only/template/get-template-by-direct-link-token';
 import { DocumentAccessAuth } from '@documenso/lib/types/document-auth';
 import { extractDocumentAuthMethods } from '@documenso/lib/utils/document-auth';
@@ -38,25 +36,6 @@ async function handleV1Loader({ params, request }: Route.LoaderArgs) {
   // satisfy the type checker.
   if (!template || !template.directLink) {
     throw new Response('Not found', { status: 404 });
-  }
-
-  const organisationClaim = await getOrganisationClaimByTeamId({ teamId: template.teamId });
-
-  const allowEmbedSigningWhitelabel = organisationClaim.flags.embedSigningWhiteLabel;
-  const hidePoweredBy = organisationClaim.flags.hidePoweredBy;
-
-  // TODO: Make this more robust, we need to ensure the owner is either
-  // TODO: the member of a team that has an active subscription, is an early
-  // TODO: adopter or is an enterprise user.
-  if (IS_BILLING_ENABLED() && !organisationClaim.flags.embedSigning) {
-    throw data(
-      {
-        type: 'embed-paywall',
-      },
-      {
-        status: 403,
-      },
-    );
   }
 
   const { user } = await getOptionalSession(request);
@@ -102,8 +81,8 @@ async function handleV1Loader({ params, request }: Route.LoaderArgs) {
     template,
     recipient,
     fields,
-    hidePoweredBy,
-    allowEmbedSigningWhitelabel,
+    hidePoweredBy: true,
+    allowEmbedSigningWhitelabel: true,
   };
 }
 
@@ -156,22 +135,6 @@ async function handleV2Loader({ params, request }: Route.LoaderArgs) {
 
   const { envelope, recipient } = envelopeForSigning;
 
-  const organisationClaim = await getOrganisationClaimByTeamId({ teamId: envelope.teamId });
-
-  const allowEmbedSigningWhitelabel = organisationClaim.flags.embedSigningWhiteLabel;
-  const hidePoweredBy = organisationClaim.flags.hidePoweredBy;
-
-  if (IS_BILLING_ENABLED() && !organisationClaim.flags.embedSigning) {
-    throw data(
-      {
-        type: 'embed-paywall',
-      },
-      {
-        status: 403,
-      },
-    );
-  }
-
   const { derivedRecipientAccessAuth } = extractDocumentAuthMethods({
     documentAuth: envelope.authOptions,
     recipientAuth: recipient.authOptions,
@@ -201,8 +164,8 @@ async function handleV2Loader({ params, request }: Route.LoaderArgs) {
     token,
     user,
     envelopeForSigning,
-    hidePoweredBy,
-    allowEmbedSigningWhitelabel,
+    hidePoweredBy: true,
+    allowEmbedSigningWhitelabel: true,
   };
 }
 

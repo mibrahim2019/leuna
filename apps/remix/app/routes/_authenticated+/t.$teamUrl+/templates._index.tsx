@@ -104,13 +104,6 @@ export default function TemplatesPage() {
 
         <div className="mt-8">
           <div className="flex flex-row items-center">
-            <Avatar className="mr-3 h-12 w-12 border-2 border-solid border-white dark:border-border">
-              {team.avatarImageId && <AvatarImage src={formatAvatarUrl(team.avatarImageId)} />}
-              <AvatarFallback className="text-xs text-muted-foreground">
-                {team.name.slice(0, 1)}
-              </AvatarFallback>
-            </Avatar>
-
             <h1 className="truncate text-2xl font-semibold md:text-3xl">
               <Trans>Templates</Trans>
             </h1>
@@ -119,7 +112,7 @@ export default function TemplatesPage() {
           {showOrgTab && (
             <div className="mt-6">
               <Tabs value={view} onValueChange={handleViewChange} data-testid="template-view-tabs">
-                <TabsList>
+                <TabsList className="bg-widget">
                   <TabsTrigger
                     className="min-w-[60px] hover:text-foreground"
                     value="team"

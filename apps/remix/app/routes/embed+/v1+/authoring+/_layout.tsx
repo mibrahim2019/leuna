@@ -5,7 +5,6 @@ import { Outlet, useLoaderData } from 'react-router';
 
 import { APP_I18N_OPTIONS } from '@documenso/lib/constants/i18n';
 import { verifyEmbeddingPresignToken } from '@documenso/lib/server-only/embedding-presign/verify-embedding-presign-token';
-import { getOrganisationClaimByTeamId } from '@documenso/lib/server-only/organisation/get-organisation-claims';
 import { ZBaseEmbedAuthoringSchema } from '@documenso/lib/types/embed-authoring-base-schema';
 import { dynamicActivate } from '@documenso/lib/utils/i18n';
 import { TrpcProvider } from '@documenso/trpc/react';
@@ -29,20 +28,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 
   const result = await verifyEmbeddingPresignToken({ token }).catch(() => null);
 
-  let allowEmbedAuthoringWhiteLabel = false;
-
-  if (result) {
-    const organisationClaim = await getOrganisationClaimByTeamId({
-      teamId: result.teamId,
-    });
-
-    allowEmbedAuthoringWhiteLabel = organisationClaim.flags.embedAuthoringWhiteLabel ?? false;
-  }
-
   return {
     token,
     hasValidToken: !!result,
-    allowEmbedAuthoringWhiteLabel,
+    allowEmbedAuthoringWhiteLabel: true,
   };
 };
 

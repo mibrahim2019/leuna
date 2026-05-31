@@ -16,7 +16,7 @@ import { useFieldArray, useWatch } from 'react-hook-form';
 import { useRevalidator, useSearchParams } from 'react-router';
 import { isDeepEqual } from 'remeda';
 
-import { useLimits } from '@documenso/ee/server-only/limits/provider/client';
+import { useLimits } from '@documenso/lib/server-only/limits/provider/client';
 import { useDebouncedValue } from '@documenso/lib/client-only/hooks/use-debounced-value';
 import { ZEditorRecipientsFormSchema } from '@documenso/lib/client-only/hooks/use-editor-recipients';
 import { useCurrentEnvelopeEditor } from '@documenso/lib/client-only/providers/envelope-editor-provider';
@@ -665,27 +665,23 @@ export const EnvelopeEditorRecipientForm = () => {
         <Form {...form}>
           <div
             className={cn('-mt-2 mb-2 space-y-4 rounded-md bg-accent/50 p-4', {
-              hidden:
-                !editorConfig.recipients?.allowConfigureSigningOrder &&
-                !organisation.organisationClaim.flags.cfr21,
+              hidden: !editorConfig.recipients?.allowConfigureSigningOrder,
             })}
           >
-            {organisation.organisationClaim.flags.cfr21 && (
-              <div className="flex flex-row items-center">
-                <Checkbox
-                  id="showAdvancedRecipientSettings"
-                  checked={showAdvancedSettings}
-                  onCheckedChange={(value) => setShowAdvancedSettings(Boolean(value))}
-                />
+            <div className="flex flex-row items-center">
+              <Checkbox
+                id="showAdvancedRecipientSettings"
+                checked={showAdvancedSettings}
+                onCheckedChange={(value) => setShowAdvancedSettings(Boolean(value))}
+              />
 
-                <label
-                  className="ml-2 text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="showAdvancedRecipientSettings"
-                >
-                  <Trans>Show advanced settings</Trans>
-                </label>
-              </div>
-            )}
+              <label
+                className="ml-2 text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                htmlFor="showAdvancedRecipientSettings"
+              >
+                <Trans>Show advanced settings</Trans>
+              </label>
+            </div>
 
             {editorConfig.recipients?.allowConfigureSigningOrder && (
               <FormField
@@ -1050,8 +1046,7 @@ export const EnvelopeEditorRecipientForm = () => {
                                 </Button>
                               </div>
 
-                              {showAdvancedSettings &&
-                                organisation.organisationClaim.flags.cfr21 && (
+                              {showAdvancedSettings && (
                                   <FormField
                                     control={form.control}
                                     name={`signers.${index}.actionAuth`}

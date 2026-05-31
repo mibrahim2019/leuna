@@ -3,7 +3,13 @@ import { flatRoutes } from 'remix-flat-routes';
 
 export default remixRoutesOptionAdapter((defineRoutes) => {
   return flatRoutes('routes', defineRoutes, {
-    ignoredRouteFiles: ['**/.*'], // Ignore dot files (like .DS_Store)
+    ignoredRouteFiles: [
+      '**/.*',
+      '**/*.test.ts',
+      '**/*.test.tsx',
+      '**/*.spec.ts',
+      '**/*.spec.tsx',
+    ],
     //appDir: 'app',
     //routeDir: 'routes',
     //basePath: '/',

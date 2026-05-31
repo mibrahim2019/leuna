@@ -7,7 +7,6 @@ import { Link, useSearchParams } from 'react-router';
 
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
 import { useSession } from '@documenso/lib/client-only/providers/session';
-import { IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
 import { Button } from '@documenso/ui/primitives/button';
 
 import { SupportTicketForm } from '~/components/forms/support-ticket-form';
@@ -26,8 +25,6 @@ export default function SupportPage() {
 
   const teamId = searchParams.get('team');
 
-  const subscriptionStatus = organisation.subscription?.status;
-
   const handleSuccess = () => {
     setShowForm(false);
   };
@@ -45,7 +42,7 @@ export default function SupportPage() {
         </h1>
 
         <p className="mt-2 text-muted-foreground">
-          <Trans>Your current plan includes the following support channels:</Trans>
+          <Trans>Here are the support channels available to your workspace:</Trans>
         </p>
 
         <div className="mt-6 flex flex-col gap-4">
@@ -53,7 +50,7 @@ export default function SupportPage() {
             <h2 className="flex items-center gap-2 text-lg font-bold">
               <BookIcon className="h-5 w-5 text-muted-foreground" />
               <Link
-                to="https://docs.documenso.com"
+                to="https://docs.leuna.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
@@ -62,7 +59,7 @@ export default function SupportPage() {
               </Link>
             </h2>
             <p className="mt-1 text-muted-foreground">
-              <Trans>Read our documentation to get started with Documenso.</Trans>
+              <Trans>Read our documentation to get started with Leuna.</Trans>
             </p>
           </div>
           <div className="rounded-lg border p-4">
@@ -92,33 +89,29 @@ export default function SupportPage() {
               </Trans>
             </p>
           </div>
-          {organisation && IS_BILLING_ENABLED() && subscriptionStatus && (
-            <>
-              <div className="rounded-lg border p-4">
-                <h2 className="flex items-center gap-2 text-lg font-bold">
-                  <Link2Icon className="h-5 w-5 text-muted-foreground" />
-                  <Trans>Contact us</Trans>
-                </h2>
-                <p className="mt-1 text-muted-foreground">
-                  <Trans>We'll get back to you as soon as possible via email.</Trans>
-                </p>
-                <div className="mt-4">
-                  {!showForm ? (
-                    <Button variant="outline" size="sm" onClick={() => setShowForm(true)}>
-                      <Trans>Create a support ticket</Trans>
-                    </Button>
-                  ) : (
-                    <SupportTicketForm
-                      organisationId={organisation.id}
-                      teamId={teamId}
-                      onSuccess={handleSuccess}
-                      onClose={handleCloseForm}
-                    />
-                  )}
-                </div>
-              </div>
-            </>
-          )}
+          <div className="rounded-lg border p-4">
+            <h2 className="flex items-center gap-2 text-lg font-bold">
+              <Link2Icon className="h-5 w-5 text-muted-foreground" />
+              <Trans>Contact us</Trans>
+            </h2>
+            <p className="mt-1 text-muted-foreground">
+              <Trans>We'll get back to you as soon as possible via email.</Trans>
+            </p>
+            <div className="mt-4">
+              {!showForm ? (
+                <Button variant="outline" size="sm" onClick={() => setShowForm(true)}>
+                  <Trans>Create a support ticket</Trans>
+                </Button>
+              ) : (
+                <SupportTicketForm
+                  organisationId={organisation.id}
+                  teamId={teamId}
+                  onSuccess={handleSuccess}
+                  onClose={handleCloseForm}
+                />
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

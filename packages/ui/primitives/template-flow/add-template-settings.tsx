@@ -461,32 +461,30 @@ export const AddTemplateSettingsFormPartial = ({
               )}
             />
 
-            {organisation.organisationClaim.flags.cfr21 && (
-              <FormField
-                control={form.control}
-                name="globalActionAuth"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex flex-row items-center">
-                      <Trans>Recipient action authentication</Trans>
-                      <DocumentGlobalAuthActionTooltip />
-                    </FormLabel>
+            <FormField
+              control={form.control}
+              name="globalActionAuth"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex flex-row items-center">
+                    <Trans>Recipient action authentication</Trans>
+                    <DocumentGlobalAuthActionTooltip />
+                  </FormLabel>
 
-                    <FormControl>
-                      <DocumentGlobalAuthActionSelect
-                        {...field}
-                        onValueChange={(value) => {
-                          field.onChange(value);
-                          void handleAutoSave();
-                        }}
-                        value={field.value}
-                        disabled={field.disabled}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-            )}
+                  <FormControl>
+                    <DocumentGlobalAuthActionSelect
+                      {...field}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        void handleAutoSave();
+                      }}
+                      value={field.value}
+                      disabled={field.disabled}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
 
             {distributionMethod === DocumentDistributionMethod.EMAIL && (
               <Accordion type="multiple">
@@ -497,48 +495,46 @@ export const AddTemplateSettingsFormPartial = ({
 
                   <AccordionContent className="-mx-1 px-1 pt-4 text-sm leading-relaxed text-muted-foreground [&>div]:pb-0">
                     <div className="flex flex-col space-y-6">
-                      {organisation.organisationClaim.flags.emailDomains && (
-                        <FormField
-                          control={form.control}
-                          name="meta.emailId"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>
-                                <Trans>Email Sender</Trans>
-                              </FormLabel>
+                      <FormField
+                        control={form.control}
+                        name="meta.emailId"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>
+                              <Trans>Email Sender</Trans>
+                            </FormLabel>
 
-                              <FormControl>
-                                <Select
-                                  {...field}
-                                  value={field.value === null ? '-1' : field.value}
-                                  onValueChange={(value) =>
-                                    field.onChange(value === '-1' ? null : value)
-                                  }
+                            <FormControl>
+                              <Select
+                                {...field}
+                                value={field.value === null ? '-1' : field.value}
+                                onValueChange={(value) =>
+                                  field.onChange(value === '-1' ? null : value)
+                                }
+                              >
+                                <SelectTrigger
+                                  loading={isLoadingEmails}
+                                  className="bg-background"
                                 >
-                                  <SelectTrigger
-                                    loading={isLoadingEmails}
-                                    className="bg-background"
-                                  >
-                                    <SelectValue />
+                                  <SelectValue />
                                   </SelectTrigger>
 
-                                  <SelectContent>
-                                    {emails.map((email) => (
-                                      <SelectItem key={email.id} value={email.id}>
-                                        {email.email}
-                                      </SelectItem>
-                                    ))}
+                                <SelectContent>
+                                  {emails.map((email) => (
+                                    <SelectItem key={email.id} value={email.id}>
+                                      {email.email}
+                                    </SelectItem>
+                                  ))}
 
-                                    <SelectItem value={'-1'}>Documenso</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </FormControl>
+                                  <SelectItem value={'-1'}>Sign</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
 
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      )}
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
                       <FormField
                         control={form.control}

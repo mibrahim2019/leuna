@@ -119,7 +119,7 @@ export const TeamDeleteDialog = ({
         toastError = {
           title: _(msg`Unable to delete team`),
           description: _(
-            msg`Something went wrong while updating the team billing subscription, please contact support.`,
+            msg`Something went wrong while updating the team, please contact support.`,
           ),
           variant: 'destructive',
           duration: 15000,

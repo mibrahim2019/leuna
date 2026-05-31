@@ -47,7 +47,7 @@ export const PeriodSelector = () => {
 
   return (
     <Select defaultValue={period} onValueChange={onPeriodChange}>
-      <SelectTrigger className="text-muted-foreground max-w-[200px]">
+      <SelectTrigger className="text-muted-foreground max-w-[200px] bg-white">
         <SelectValue />
       </SelectTrigger>
 

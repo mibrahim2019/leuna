@@ -74,7 +74,7 @@ export const SettingsPublicProfileTemplatesTable = () => {
 
   return (
     <div>
-      <div className="mt-6 divide-y divide-neutral-200 overflow-hidden rounded-lg border border-neutral-200 dark:divide-foreground/30 dark:border-foreground/30">
+      <div className="bg-widget mt-6 divide-y divide-neutral-200 overflow-hidden rounded-lg border border-neutral-200 dark:divide-foreground/30 dark:border-foreground/30">
         {/* Loading and error handling states. */}
         {publicDirectTemplates.length === 0 && (
           <>
@@ -84,7 +84,7 @@ export const SettingsPublicProfileTemplatesTable = () => {
                 .map((_, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between gap-x-6 bg-background p-4"
+                    className="bg-widget flex items-center justify-between gap-x-6 p-4"
                   >
                     <div className="flex gap-x-2">
                       <FileIcon className="h-8 w-8 text-muted-foreground/40" strokeWidth={1.5} />
@@ -133,7 +133,7 @@ export const SettingsPublicProfileTemplatesTable = () => {
         {publicDirectTemplates.map((template) => (
           <div
             key={template.id}
-            className="flex items-center justify-between gap-x-6 bg-background p-4"
+            className="bg-widget flex items-center justify-between gap-x-6 p-4"
           >
             <div className="flex gap-x-2">
               <FileIcon

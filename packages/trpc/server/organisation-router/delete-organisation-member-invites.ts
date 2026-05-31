@@ -1,8 +1,6 @@
-import { syncMemberCountWithStripeSeatPlan } from '@documenso/ee/server-only/stripe/update-subscription-item-quantity';
 import { ORGANISATION_MEMBER_ROLE_PERMISSIONS_MAP } from '@documenso/lib/constants/organisations';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { getMemberOrganisationRole } from '@documenso/lib/server-only/team/get-member-roles';
-import { validateIfSubscriptionIsRequired } from '@documenso/lib/utils/billing';
 import {
   buildOrganisationWhereQuery,
   isOrganisationRoleWithinUserHierarchy,
@@ -37,8 +35,6 @@ export const deleteOrganisationMemberInvitesRoute = authenticatedProcedure
         roles: ORGANISATION_MEMBER_ROLE_PERMISSIONS_MAP['MANAGE_ORGANISATION'],
       }),
       include: {
-        organisationClaim: true,
-        subscription: true,
         members: {
           select: {
             id: true,
@@ -89,22 +85,6 @@ export const deleteOrganisationMemberInvitesRoute = authenticatedProcedure
       throw new AppError(AppErrorCode.UNAUTHORIZED, {
         message: 'User does not have permission to delete invitations for higher roles',
       });
-    }
-
-    const { organisationClaim } = organisation;
-
-    const subscription = validateIfSubscriptionIsRequired(organisation.subscription);
-
-    const numberOfCurrentMembers = organisation.members.length;
-    const numberOfCurrentInvites = organisation.invites.length;
-    const totalMemberCountWithInvites = numberOfCurrentMembers + numberOfCurrentInvites - 1;
-
-    if (subscription) {
-      await syncMemberCountWithStripeSeatPlan(
-        subscription,
-        organisationClaim,
-        totalMemberCountWithInvites,
-      );
     }
 
     await prisma.organisationMemberInvite.deleteMany({

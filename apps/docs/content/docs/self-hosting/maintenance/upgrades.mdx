@@ -1,6 +1,6 @@
 ---
 title: Upgrades
-description: Upgrade your self-hosted Documenso installation to get the latest features, security patches, and bug fixes.
+description: Upgrade your self-hosted Sign Leuna installation to get the latest features, security patches, and bug fixes.
 ---
 
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
@@ -10,7 +10,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
 ## Version Policy
 
-Documenso follows [Semantic Versioning](https://semver.org/):
+Sign Leuna follows [Semantic Versioning](https://semver.org/):
 
 | Version Type | Format  | Description                                |
 | ------------ | ------- | ------------------------------------------ |
@@ -37,7 +37,7 @@ For production deployments, pin to a specific version tag to avoid unexpected up
 
 ### View Current Version
 
-Check your running Documenso version:
+Check your running Sign Leuna version:
 
 <Tabs items={['Docker', 'Docker Compose', 'Kubernetes']}>
 <Tab value="Docker">
@@ -230,14 +230,14 @@ Or if using environment variable substitution:
 
 ```bash
 # In .env
-DOCUMENSO_VERSION=1.6.0
+SIGN_DOCUTRACKER_VERSION=1.6.0
 ```
 
 ```yaml
 # In compose.yml
 services:
   documenso:
-    image: documenso/documenso:${DOCUMENSO_VERSION:-latest}
+    image: documenso/documenso:${SIGN_DOCUTRACKER_VERSION:-latest}
 ```
 
 </Step>
@@ -340,7 +340,7 @@ curl http://localhost:3000/api/health
 
 ## Database Migrations
 
-Documenso runs database migrations automatically when the container starts. No manual intervention is required.
+Sign Leuna runs database migrations automatically when the container starts. No manual intervention is required.
 
 ### Migration Process
 

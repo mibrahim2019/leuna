@@ -100,7 +100,7 @@ export const FolderCreateDialog = ({
         {trigger ?? (
           <Button
             variant="outline"
-            className="flex items-center"
+            className="flex items-center bg-white"
             data-testid="folder-create-button"
           >
             <FolderPlusIcon className="mr-2 h-4 w-4" />

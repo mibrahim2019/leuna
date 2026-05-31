@@ -6,11 +6,10 @@ import { useRevalidator } from 'react-router';
 
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
 import { getDocumentAndSenderByToken } from '@documenso/lib/server-only/document/get-document-by-token';
-import { getOrganisationClaimByTeamId } from '@documenso/lib/server-only/organisation/get-organisation-claims';
 import { getRecipientByToken } from '@documenso/lib/server-only/recipient/get-recipient-by-token';
 import { ZSignDocumentEmbedDataSchema } from '@documenso/lib/types/embed-document-sign-schema';
 
-import { BrandingLogo } from '~/components/general/branding-logo';
+import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
 import { DocumentSigningAuthProvider } from '~/components/general/document-signing/document-signing-auth-provider';
 import { DocumentSigningProvider } from '~/components/general/document-signing/document-signing-provider';
 import { DocumentSigningRecipientProvider } from '~/components/general/document-signing/document-signing-recipient-provider';
@@ -52,16 +51,11 @@ export async function loader({ request }: Route.LoaderArgs) {
     });
   }
 
-  const organisationClaim = await getOrganisationClaimByTeamId({ teamId: firstDocument.teamId });
-
-  const allowWhitelabelling = organisationClaim.flags.embedSigningWhiteLabel;
-  const hidePoweredBy = organisationClaim.flags.hidePoweredBy;
-
   return superLoaderJson({
     envelopes,
     user,
-    hidePoweredBy,
-    allowWhitelabelling,
+    hidePoweredBy: true,
+    allowWhitelabelling: true,
   });
 }
 
@@ -287,7 +281,7 @@ export default function MultisignPage() {
             <span>
               <Trans>Powered by</Trans>
             </span>
-            <BrandingLogo className="ml-2 inline-block h-[14px]" />
+            <SignWordmarkLogo className="ml-2 inline-block text-[14px] leading-none" />
           </div>
         )}
       </div>
@@ -304,7 +298,7 @@ export default function MultisignPage() {
           <span>
             <Trans>Powered by</Trans>
           </span>
-          <BrandingLogo className="ml-2 inline-block h-[14px]" />
+          <SignWordmarkLogo className="ml-2 inline-block text-[14px] leading-none" />
         </div>
       )}
     </div>

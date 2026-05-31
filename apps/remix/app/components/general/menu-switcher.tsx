@@ -51,6 +51,7 @@ export const MenuSwitcher = () => {
           <AvatarWithText
             avatarSrc={formatAvatarUrl(user.avatarImageId)}
             avatarFallback={formatAvatarFallback(user.name || user.email)}
+            avatarFallbackClassName="bg-black text-white"
             primaryText={user.name}
             secondaryText={_(msg`Personal Account`)}
             rightSideComponent={

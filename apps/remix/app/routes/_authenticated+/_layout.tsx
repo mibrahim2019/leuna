@@ -13,9 +13,10 @@ import { Button } from '@documenso/ui/primitives/button';
 import { AppBanner } from '~/components/general/app-banner';
 import { Header } from '~/components/general/app-header';
 import { GenericErrorLayout } from '~/components/general/generic-error-layout';
-import { OrganisationBillingBanner } from '~/components/general/organisations/organisation-billing-banner';
+import { OpenSourceNotice } from '~/components/general/open-source-notice';
 import { VerifyEmailBanner } from '~/components/general/verify-email-banner';
 import { TeamProvider } from '~/providers/team';
+import { requirePolarAccessForRoute } from '../../utils/polar-auth-gate.server';
 
 import type { Route } from './+types/_layout';
 
@@ -27,16 +28,20 @@ import type { Route } from './+types/_layout';
 export const shouldRevalidate = () => false;
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const [session, banner] = await Promise.all([
-    getOptionalSession(request),
-    getSiteSettings().then((settings) =>
-      settings.find((setting) => setting.id === SITE_SETTINGS_BANNER_ID),
-    ),
-  ]);
+  const session = await getOptionalSession(request);
 
   if (!session.isAuthenticated) {
     throw redirect('/signin');
   }
+
+  await requirePolarAccessForRoute({
+    request,
+    userId: session.user.id,
+  });
+
+  const banner = await getSiteSettings().then((settings) =>
+    settings.find((setting) => setting.id === SITE_SETTINGS_BANNER_ID),
+  );
 
   return {
     banner,
@@ -110,21 +115,23 @@ export default function Layout({ loaderData, params, matches }: Route.ComponentP
   return (
     <OrganisationProvider organisation={currentOrganisation}>
       <TeamProvider team={currentTeam || null}>
-        <OrganisationBillingBanner />
+        <div className="dashboard-area min-h-screen bg-[#f7f7f5]">
+          {!user.emailVerified && <VerifyEmailBanner email={user.email} />}
 
-        {!user.emailVerified && <VerifyEmailBanner email={user.email} />}
+          {banner && !hideHeader && <AppBanner banner={banner} />}
 
-        {banner && !hideHeader && <AppBanner banner={banner} />}
+          {!hideHeader && <Header />}
 
-        {!hideHeader && <Header />}
+          <main
+            className={cn({
+              'pb-8 pt-8 md:pb-12 md:pt-12': !hideHeader,
+            })}
+          >
+            <Outlet />
+          </main>
 
-        <main
-          className={cn({
-            'mt-8 pb-8 md:mt-12 md:pb-12': !hideHeader,
-          })}
-        >
-          <Outlet />
-        </main>
+          <OpenSourceNotice />
+        </div>
       </TeamProvider>
     </OrganisationProvider>
   );

@@ -161,8 +161,7 @@ export default function TeamsSettingsPage({ loaderData }: Route.ComponentProps) 
 
               <AlertDescription className="mr-2">
                 <Trans>
-                  This team, and any associated data excluding billing invoices will be permanently
-                  deleted.
+                  This team and any associated data will be permanently deleted.
                 </Trans>
               </AlertDescription>
             </div>

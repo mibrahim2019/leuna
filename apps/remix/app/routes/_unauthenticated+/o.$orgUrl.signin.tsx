@@ -56,7 +56,6 @@ export async function loader({ request, params }: Route.LoaderArgs) {
     },
     select: {
       name: true,
-      organisationClaim: true,
       organisationAuthenticationPortal: {
         select: {
           enabled: true,
@@ -72,8 +71,7 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 
   if (
     !organisation ||
-    !organisation.organisationAuthenticationPortal.enabled ||
-    !organisation.organisationClaim.flags.authenticationPortal
+    !organisation.organisationAuthenticationPortal.enabled
   ) {
     throw new AppError(AppErrorCode.NOT_FOUND, {
       message: 'Organisation not found',
@@ -154,9 +152,35 @@ export default function OrganisationSignIn({ loaderData }: Route.ComponentProps)
     );
   }
 
+  if (action === 'community-edition-unavailable') {
+    return (
+      <div className="w-screen max-w-lg px-4">
+        <div>
+          <h2 className="text-2xl font-bold md:text-4xl">
+            <Trans>Organisation SSO is unavailable</Trans>
+          </h2>
+
+          <p className="mt-4 text-muted-foreground">
+            <Trans>
+              This deployment is running the community edition, so organisation SSO is disabled.
+            </Trans>
+          </p>
+
+          <div className="mt-4 flex items-center gap-x-2">
+            <Button asChild>
+              <Link to="/signin" replace>
+                <Trans>Return</Trans>
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="w-screen max-w-lg px-4">
-      <div className="z-10 rounded-xl border border-border bg-neutral-100 p-6 dark:bg-background">
+    <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-center gap-8 px-4 md:px-8 lg:py-8 xl:gap-12">
+      <div className="z-10 w-full max-w-lg rounded-xl border border-border bg-white p-6">
         <h1 className="text-2xl font-semibold">
           <Trans>Welcome to {organisationName}</Trans>
         </h1>
@@ -209,9 +233,17 @@ export default function OrganisationSignIn({ loaderData }: Route.ComponentProps)
 
         <div className="mt-1 flex items-center justify-center text-xs text-muted-foreground">
           <Link to="/signin">
-            <Trans>Return to Documenso sign in page here</Trans>
+            <Trans>Return to the Leuna sign-in page here</Trans>
           </Link>
         </div>
+      </div>
+
+      <div className="relative hidden w-full max-w-lg overflow-hidden rounded-xl border border-border xl:flex">
+        <img
+          src="/static/login.jpg"
+          alt="Signin page visual"
+          className="block h-full min-h-[min(760px,80vh)] w-full object-cover object-center"
+        />
       </div>
     </div>
   );

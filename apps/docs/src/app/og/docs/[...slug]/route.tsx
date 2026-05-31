@@ -9,7 +9,7 @@ export const revalidate = false;
 
 const loadAssets = async () => {
   const [logoBuffer, interRegularData, interSemiBoldData, interBoldData] = await Promise.all([
-    readFile(fileURLToPath(new URL('../../../../../public/logo.png', import.meta.url))),
+    readFile(fileURLToPath(new URL('../../../../../public/logo.svg', import.meta.url))),
     readFile(
       fileURLToPath(new URL('../../../../../public/fonts/inter-regular.ttf', import.meta.url)),
     ),
@@ -74,7 +74,7 @@ export async function GET(_req: Request, { params }: RouteContext<'/og/docs/[...
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoSrc} alt="Documenso" height="28" />
+          <img src={logoSrc} alt="Sign" height="28" />
           <span
             style={{
               color: '#D4D4D8',
@@ -133,7 +133,7 @@ export async function GET(_req: Request, { params }: RouteContext<'/og/docs/[...
         {/* Bottom: URL */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span style={{ color: '#A1A1AA', fontSize: '16px', fontWeight: 400 }}>
-            docs.documenso.com{page.url}
+            docs.leuna.app{page.url}
           </span>
         </div>
       </div>

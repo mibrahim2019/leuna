@@ -1,10 +1,10 @@
-# Documenso Architecture
+# Sign Leuna Architecture
 
-This document provides a high-level overview of the Documenso codebase to help humans and agents understand how the application is structured.
+This document provides a high-level overview of the Sign Leuna codebase to help humans and agents understand how the application is structured.
 
 ## Overview
 
-Documenso is an open-source document signing platform built as a **monorepo** using npm workspaces and Turborepo. The application enables users to create, send, and sign documents electronically.
+Sign Leuna is an open-source document signing platform built as a **monorepo** using npm workspaces and Turborepo. The application enables users to create, send, and sign documents electronically.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐

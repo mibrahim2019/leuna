@@ -70,7 +70,7 @@ Add a new "Re-register" action that deletes the SES identity and recreates it us
 ```typescript
 export const reregisterEmailDomain = async (options: { emailDomainId: string }) => {
   // 1. Fetch the EmailDomain record (including encrypted privateKey)
-  // 2. Decrypt the private key using DOCUMENSO_ENCRYPTION_KEY
+  // 2. Decrypt the private key using SIGN_DOCUTRACKER_ENCRYPTION_KEY
   // 3. Call DeleteEmailIdentityCommand on SES (ignore NotFoundException)
   // 4. Call CreateEmailIdentityCommand with BYODKIM using the SAME selector + private key
   // 5. Update EmailDomain status back to PENDING, update lastVerifiedAt

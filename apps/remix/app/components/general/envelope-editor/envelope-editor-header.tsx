@@ -26,7 +26,7 @@ import { Separator } from '@documenso/ui/primitives/separator';
 import { EnvelopeDistributeDialog } from '~/components/dialogs/envelope-distribute-dialog';
 import { EnvelopeRedistributeDialog } from '~/components/dialogs/envelope-redistribute-dialog';
 import { TemplateUseDialog } from '~/components/dialogs/template-use-dialog';
-import { BrandingLogo } from '~/components/general/branding-logo';
+import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
 import { DocumentAttachmentsPopover } from '~/components/general/document/document-attachments-popover';
 import { EmbeddedEditorAttachmentPopover } from '~/components/general/document/embedded-editor-attachment-popover';
 import { EnvelopeEditorSettingsDialog } from '~/components/general/envelope-editor/envelope-editor-settings-dialog';
@@ -84,7 +84,7 @@ export default function EnvelopeEditorHeader() {
             />
           ) : (
             <Link to="/">
-              <BrandingLogo className="h-6 w-auto" />
+              <SignWordmarkLogo className="text-[1.125rem]" signClassName="text-[#2563eb]" />
             </Link>
           )}
           <Separator orientation="vertical" className="h-6" />

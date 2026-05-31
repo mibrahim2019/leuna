@@ -156,7 +156,7 @@ export const DocumentsTable = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative rounded-md bg-white">
       <DataTable
         columns={columns}
         data={results.data}

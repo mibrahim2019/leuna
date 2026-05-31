@@ -28,7 +28,6 @@ export const ORGANISATION_MEMBER_ROLE_PERMISSIONS_MAP = {
    * - Manage organisation settings, changing name, url, etc.
    */
   DELETE_ORGANISATION: [OrganisationMemberRole.ADMIN],
-  MANAGE_BILLING: [OrganisationMemberRole.ADMIN],
   DELETE_ORGANISATION_TRANSFER_REQUEST: [OrganisationMemberRole.ADMIN],
   MANAGE_ORGANISATION: [OrganisationMemberRole.ADMIN, OrganisationMemberRole.MANAGER],
 } satisfies Record<string, OrganisationMemberRole[]>;

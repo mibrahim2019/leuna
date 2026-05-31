@@ -755,8 +755,7 @@ export const EnvelopeEditorSettingsDialog = ({
                     { activeTab: 'email', settings: { allowConfigureDistribution: true } },
                     () => (
                       <>
-                        {settings.allowConfigureEmailSender &&
-                          organisation.organisationClaim.flags.emailDomains && (
+                        {settings.allowConfigureEmailSender && (
                             <FormField
                               control={form.control}
                               name="meta.emailId"
@@ -788,7 +787,7 @@ export const EnvelopeEditorSettingsDialog = ({
                                           </SelectItem>
                                         ))}
 
-                                        <SelectItem value={'-1'}>Documenso</SelectItem>
+                                        <SelectItem value={'-1'}>Sign</SelectItem>
                                       </SelectContent>
                                     </Select>
                                   </FormControl>
@@ -879,28 +878,26 @@ export const EnvelopeEditorSettingsDialog = ({
                   )
                   .with({ activeTab: 'security' }, () => (
                     <>
-                      {organisation.organisationClaim.flags.cfr21 && (
-                        <FormField
-                          control={form.control}
-                          name="globalActionAuth"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="flex flex-row items-center">
-                                <Trans>Recipient action authentication</Trans>
-                                <DocumentGlobalAuthActionTooltip />
-                              </FormLabel>
+                      <FormField
+                        control={form.control}
+                        name="globalActionAuth"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex flex-row items-center">
+                              <Trans>Recipient action authentication</Trans>
+                              <DocumentGlobalAuthActionTooltip />
+                            </FormLabel>
 
-                              <FormControl>
-                                <DocumentGlobalAuthActionSelect
-                                  value={field.value}
-                                  disabled={field.disabled}
-                                  onValueChange={field.onChange}
-                                />
-                              </FormControl>
-                            </FormItem>
-                          )}
-                        />
-                      )}
+                            <FormControl>
+                              <DocumentGlobalAuthActionSelect
+                                value={field.value}
+                                disabled={field.disabled}
+                                onValueChange={field.onChange}
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
 
                       <FormField
                         control={form.control}

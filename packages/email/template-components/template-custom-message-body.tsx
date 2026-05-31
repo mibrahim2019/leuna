@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { emailStyles } from './template-styles';
+
 export type TemplateCustomMessageBodyProps = {
   text?: string;
 };
@@ -20,7 +22,7 @@ export const TemplateCustomMessageBody = ({ text }: TemplateCustomMessageBodyPro
   return paragraphs.map((paragraph, i) => (
     <p
       key={`p-${i}`}
-      className="whitespace-pre-line break-words font-sans text-base text-slate-400"
+      className={`whitespace-pre-line break-words font-sans ${emailStyles.bodyLeft}`}
     >
       {paragraph.split('\n').map((line, j) => (
         <React.Fragment key={`line-${i}-${j}`}>

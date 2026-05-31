@@ -5,7 +5,7 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
 import { keepPreviousData } from '@tanstack/react-query';
-import { CheckIcon, Loader, Monitor, Moon, Sun } from 'lucide-react';
+import { CheckIcon, Loader, Moon, Sun } from 'lucide-react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { useNavigate } from 'react-router';
 import { Theme, useTheme } from 'remix-themes';
@@ -338,7 +338,6 @@ const ThemeCommands = () => {
   const themes = [
     { label: msg`Light Mode`, theme: Theme.LIGHT, icon: Sun },
     { label: msg`Dark Mode`, theme: Theme.DARK, icon: Moon },
-    { label: msg`System Theme`, theme: null, icon: Monitor },
   ] as const;
 
   return themes.map((theme) => (

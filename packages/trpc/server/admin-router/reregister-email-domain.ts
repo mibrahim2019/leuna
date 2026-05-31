@@ -1,4 +1,4 @@
-import { reregisterEmailDomain } from '@documenso/ee/server-only/lib/reregister-email-domain';
+import { throwCommunityEditionUnavailable } from '@documenso/lib/server-only/community-edition';
 
 import { adminProcedure } from '../trpc';
 import {
@@ -18,5 +18,5 @@ export const reregisterEmailDomainRoute = adminProcedure
       },
     });
 
-    await reregisterEmailDomain({ emailDomainId });
+    return throwCommunityEditionUnavailable('Custom email domain re-registration');
   });

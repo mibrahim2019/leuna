@@ -8,14 +8,14 @@ import type { TDocumentEmailSettings } from '@documenso/lib/types/document-email
 import type { TDocumentFormValues } from '@documenso/lib/types/document-form-values';
 import type { TEnvelopeAttachmentType } from '@documenso/lib/types/envelope-attachment';
 import type { TFieldMetaNotOptionalSchema } from '@documenso/lib/types/field-meta';
-import type { TClaimFlags } from '@documenso/lib/types/subscription';
+import type { TOrganisationFeatureFlags } from '@documenso/lib/types/organisation-feature-flags';
 
 /**
  * Global types for Prisma.Json instances.
  */
 declare global {
   namespace PrismaJson {
-    type ClaimFlags = TClaimFlags;
+    type ClaimFlags = TOrganisationFeatureFlags;
 
     type DocumentFormValues = TDocumentFormValues;
     type DocumentAuthOptions = TDocumentAuthOptions;

@@ -189,46 +189,48 @@ export const TeamMembersTable = () => {
 
   return (
     <div className="space-y-8">
-      <DataTable
-        columns={columns}
-        data={results.data}
-        perPage={results.perPage}
-        currentPage={results.currentPage}
-        totalPages={results.totalPages}
-        onPaginationChange={onPaginationChange}
-        error={{
-          enable: isLoadingError,
-        }}
-        skeleton={{
-          enable: isLoading || groupQuery.isPending,
-          rows: 3,
-          component: (
-            <>
-              <TableCell className="w-1/2 py-4 pr-4">
-                <div className="flex w-full flex-row items-center">
-                  <Skeleton className="h-12 w-12 flex-shrink-0 rounded-full" />
+      <div className="bg-widget rounded-md">
+        <DataTable
+          columns={columns}
+          data={results.data}
+          perPage={results.perPage}
+          currentPage={results.currentPage}
+          totalPages={results.totalPages}
+          onPaginationChange={onPaginationChange}
+          error={{
+            enable: isLoadingError,
+          }}
+          skeleton={{
+            enable: isLoading || groupQuery.isPending,
+            rows: 3,
+            component: (
+              <>
+                <TableCell className="w-1/2 py-4 pr-4">
+                  <div className="flex w-full flex-row items-center">
+                    <Skeleton className="h-12 w-12 flex-shrink-0 rounded-full" />
 
-                  <div className="ml-2 flex flex-grow flex-col">
-                    <Skeleton className="h-4 w-1/3 max-w-[8rem]" />
-                    <Skeleton className="mt-1 h-4 w-1/2 max-w-[12rem]" />
+                    <div className="ml-2 flex flex-grow flex-col">
+                      <Skeleton className="h-4 w-1/3 max-w-[8rem]" />
+                      <Skeleton className="mt-1 h-4 w-1/2 max-w-[12rem]" />
+                    </div>
                   </div>
-                </div>
-              </TableCell>
-              <TableCell>
-                <Skeleton className="h-4 w-12 rounded-full" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="h-4 w-20 rounded-full" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="h-4 w-6 rounded-full" />
-              </TableCell>
-            </>
-          ),
-        }}
-      >
-        {(table) => <DataTablePagination additionalInformation="VisibleCount" table={table} />}
-      </DataTable>
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 w-12 rounded-full" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 w-20 rounded-full" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 w-6 rounded-full" />
+                </TableCell>
+              </>
+            ),
+          }}
+        >
+          {(table) => <DataTablePagination additionalInformation="VisibleCount" table={table} />}
+        </DataTable>
+      </div>
 
       <AnimateGenericFadeInOut key={groupQuery.isPending ? 'pending' : 'fetched'}>
         {!groupQuery.isPending && (

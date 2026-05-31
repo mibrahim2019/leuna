@@ -415,7 +415,14 @@ export default function EmbedPlaygroundPage() {
               type="text"
               value={token}
               onChange={(e) => setToken(e.target.value)}
-              style={{ width: '100%', padding: '4px', fontSize: '12px' }}
+              style={{
+                width: '100%',
+                padding: '4px',
+                fontSize: '12px',
+                color: '#000',
+                backgroundColor: '#fff',
+                border: '1px solid #ccc',
+              }}
               placeholder="api_... or presign token"
               required
             />
@@ -432,7 +439,14 @@ export default function EmbedPlaygroundPage() {
               type="text"
               value={externalId}
               onChange={(e) => setExternalId(e.target.value)}
-              style={{ width: '100%', padding: '4px', fontSize: '12px' }}
+              style={{
+                width: '100%',
+                padding: '4px',
+                fontSize: '12px',
+                color: '#000',
+                backgroundColor: '#fff',
+                border: '1px solid #ccc',
+              }}
               placeholder="your-correlation-id"
             />
           </div>
@@ -442,7 +456,14 @@ export default function EmbedPlaygroundPage() {
             <select
               value={mode}
               onChange={(e) => setMode(e.target.value as 'create' | 'edit')}
-              style={{ width: '100%', padding: '4px', fontSize: '12px' }}
+              style={{
+                width: '100%',
+                padding: '4px',
+                fontSize: '12px',
+                color: '#000',
+                backgroundColor: '#fff',
+                border: '1px solid #ccc',
+              }}
             >
               <option value="create">Create</option>
               <option value="edit">Edit</option>
@@ -458,7 +479,14 @@ export default function EmbedPlaygroundPage() {
                 <select
                   value={envelopeType}
                   onChange={(e) => setEnvelopeType(e.target.value as 'DOCUMENT' | 'TEMPLATE')}
-                  style={{ width: '100%', padding: '4px', fontSize: '12px' }}
+                  style={{
+                    width: '100%',
+                    padding: '4px',
+                    fontSize: '12px',
+                    color: '#000',
+                    backgroundColor: '#fff',
+                    border: '1px solid #ccc',
+                  }}
                 >
                   <option value="DOCUMENT">Document</option>
                   <option value="TEMPLATE">Template</option>
@@ -473,7 +501,14 @@ export default function EmbedPlaygroundPage() {
                   type="text"
                   value={folderId}
                   onChange={(e) => setFolderId(e.target.value)}
-                  style={{ width: '100%', padding: '4px', fontSize: '12px' }}
+                  style={{
+                    width: '100%',
+                    padding: '4px',
+                    fontSize: '12px',
+                    color: '#000',
+                    backgroundColor: '#fff',
+                    border: '1px solid #ccc',
+                  }}
                   placeholder="folder cuid"
                 />
               </div>
@@ -503,7 +538,14 @@ export default function EmbedPlaygroundPage() {
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              style={{ width: '100%', padding: '4px', fontSize: '12px' }}
+              style={{
+                width: '100%',
+                padding: '4px',
+                fontSize: '12px',
+                color: '#000',
+                backgroundColor: '#fff',
+                border: '1px solid #ccc',
+              }}
             >
               <option value="">Default (en)</option>
               <option value="de">German (de)</option>
@@ -579,7 +621,14 @@ export default function EmbedPlaygroundPage() {
                     type="text"
                     value={value}
                     onChange={(e) => setCssVars((prev) => ({ ...prev, [key]: e.target.value }))}
-                    style={{ flex: 1, padding: '2px 4px', fontSize: '11px' }}
+                    style={{
+                      flex: 1,
+                      padding: '2px 4px',
+                      fontSize: '11px',
+                      color: '#000',
+                      backgroundColor: '#fff',
+                      border: '1px solid #ccc',
+                    }}
                     placeholder={key === 'radius' ? '0.5rem' : '#hex or color'}
                   />
                   {value && (
@@ -620,6 +669,9 @@ export default function EmbedPlaygroundPage() {
                 fontSize: '11px',
                 fontFamily: 'monospace',
                 resize: 'vertical',
+                color: '#000',
+                backgroundColor: '#fff',
+                border: '1px solid #ccc',
               }}
               placeholder=".my-class { color: red; }"
             />

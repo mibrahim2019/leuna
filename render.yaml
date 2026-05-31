@@ -60,16 +60,8 @@ services:
       - key: NEXT_PRIVATE_SMTP_FROM_ADDRESS
         sync: false
 
-      # Stripe
-      - key: NEXT_PRIVATE_STRIPE_API_KEY
-        sync: false
-      - key: NEXT_PRIVATE_STRIPE_WEBHOOK_SECRET
-        sync: false
-
       # Features
       - key: NEXT_PUBLIC_POSTHOG_KEY
-        sync: false
-      - key: NEXT_PUBLIC_FEATURE_BILLING_ENABLED
         sync: false
 
       # Storage

@@ -9,11 +9,15 @@ import { ErrorCode as DropzoneErrorCode, type FileRejection, useDropzone } from 
 import { Link, useNavigate, useParams } from 'react-router';
 import { match } from 'ts-pattern';
 
-import { useLimits } from '@documenso/ee/server-only/limits/provider/client';
+import { useLimits } from '@documenso/lib/server-only/limits/provider/client';
 import { useAnalytics } from '@documenso/lib/client-only/hooks/use-analytics';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
 import { useSession } from '@documenso/lib/client-only/providers/session';
-import { APP_DOCUMENT_UPLOAD_SIZE_LIMIT, IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
+import { APP_DOCUMENT_UPLOAD_SIZE_LIMIT } from '@documenso/lib/constants/app';
+import {
+  POLAR_ACCESS_REQUIRED_ERROR_CODE,
+  POLAR_UNAVAILABLE_ERROR_CODE,
+} from '@documenso/lib/constants/polar';
 import { DEFAULT_DOCUMENT_TIME_ZONE, TIME_ZONES } from '@documenso/lib/constants/time-zones';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { megabytesToBytes } from '@documenso/lib/universal/unit-convertions';
@@ -54,18 +58,14 @@ export const EnvelopeDropZoneWrapper = ({
     TIME_ZONES.find((timezone) => timezone === Intl.DateTimeFormat().resolvedOptions().timeZone) ??
     DEFAULT_DOCUMENT_TIME_ZONE;
 
-  const { quota, remaining, refreshLimits, maximumEnvelopeItemCount } = useLimits();
+  const { quota, remaining, refreshLimits, maximumEnvelopeItemCount, hasProductAccess } =
+    useLimits();
 
   const { mutateAsync: createEnvelope } = trpc.envelope.create.useMutation();
 
   const isUploadDisabled = remaining.documents === 0 || !user.emailVerified;
 
   const onFileDrop = async (files: File[]) => {
-    if (isUploadDisabled && IS_BILLING_ENABLED()) {
-      await navigate(`/o/${organisation.url}/settings/billing`);
-      return;
-    }
-
     try {
       setIsLoading(true);
 
@@ -122,7 +122,18 @@ export const EnvelopeDropZoneWrapper = ({
         .with('INVALID_DOCUMENT_FILE', () => t`You cannot upload encrypted PDFs.`)
         .with(
           AppErrorCode.LIMIT_EXCEEDED,
-          () => t`You have reached your document limit for this month. Please upgrade your plan.`,
+          () =>
+            hasProductAccess
+              ? t`You have reached your document limit for this month.`
+              : t`Lifetime access is required before you can upload documents.`,
+        )
+        .with(
+          POLAR_ACCESS_REQUIRED_ERROR_CODE,
+          () => t`Lifetime access is required before you can upload documents.`,
+        )
+        .with(
+          POLAR_UNAVAILABLE_ERROR_CODE,
+          () => t`We could not verify purchase access right now. Please try again.`,
         )
         .with(
           'ENVELOPE_ITEM_LIMIT_EXCEEDED',
@@ -180,6 +191,7 @@ export const EnvelopeDropZoneWrapper = ({
     onDrop: (files) => void onFileDrop(files),
     onDropRejected: onFileDropRejected,
     noClick: true,
+    disabled: isUploadDisabled,
     noDragEventsBubbling: true,
   });
 
@@ -202,15 +214,6 @@ export const EnvelopeDropZoneWrapper = ({
             <p className="text-md mt-4 text-muted-foreground">
               <Trans>Drag and drop your PDF file here</Trans>
             </p>
-
-            {isUploadDisabled && IS_BILLING_ENABLED() && (
-              <Link
-                to={`/o/${organisation.url}/settings/billing`}
-                className="mt-4 text-sm text-amber-500 hover:underline dark:text-amber-400"
-              >
-                <Trans>Upgrade your plan to upload more documents</Trans>
-              </Link>
-            )}
 
             {!isUploadDisabled &&
               team?.id === undefined &&

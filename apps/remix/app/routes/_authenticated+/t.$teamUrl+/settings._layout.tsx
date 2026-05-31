@@ -135,7 +135,7 @@ export default function TeamsSettingsLayout() {
       <div className="mt-4 grid grid-cols-12 gap-x-8 md:mt-8">
         <div
           className={cn(
-            'col-span-12 mb-8 flex flex-wrap items-center justify-start gap-x-2 gap-y-4 md:col-span-3 md:w-full md:flex-col md:items-start md:gap-y-2',
+            'col-span-12 mb-8 flex flex-wrap items-center justify-start gap-x-2 gap-y-4 md:col-span-3 md:w-full md:flex-col md:items-start md:gap-y-2 md:border-r md:border-border md:pr-8',
           )}
         >
           {teamSettingRoutes.map((route) => (

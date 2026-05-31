@@ -141,7 +141,7 @@ export const createEnvelope = async ({
     include: {
       organisation: {
         select: {
-          organisationClaim: true,
+          id: true,
         },
       },
     },
@@ -230,16 +230,6 @@ export const createEnvelope = async ({
   const recipientsHaveActionAuth = data.recipients?.some(
     (recipient) => recipient.actionAuth && recipient.actionAuth.length > 0,
   );
-
-  // Check if user has permission to set the global action auth.
-  if (
-    (authOptions.globalActionAuth.length > 0 || recipientsHaveActionAuth) &&
-    !team.organisation.organisationClaim.flags.cfr21
-  ) {
-    throw new AppError(AppErrorCode.UNAUTHORIZED, {
-      message: 'You do not have permission to set the action auth',
-    });
-  }
 
   const visibility = visibilityOverride || settings.documentVisibility;
 
@@ -480,7 +470,7 @@ export const createEnvelope = async ({
           uniqueRecipientRefs.entries(),
           ([recipientIndex, name]) => ({
             envelopeId: envelope.id,
-            email: `recipient.${recipientIndex}@documenso.com`,
+            email: `recipient.${recipientIndex}@leuna.app`,
             name,
             role: RecipientRole.SIGNER,
             signingOrder: recipientIndex,

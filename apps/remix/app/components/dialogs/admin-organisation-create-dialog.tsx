@@ -150,8 +150,7 @@ export const AdminOrganisationCreateDialog = ({
               <Alert variant="neutral">
                 <AlertDescription className="mt-0">
                   <Trans>
-                    You will need to configure any claims or subscription after creating this
-                    organisation
+                    You can configure the organisation after creating it
                   </Trans>
                 </AlertDescription>
               </Alert>

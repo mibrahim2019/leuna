@@ -1,0 +1,71 @@
+Polar Product Snapshot
+Generated: 2026-04-23
+Source: Live Polar API query using the repository's configured production product and benefit IDs
+
+Configuration Used
+- Polar server: production
+- Product ID: 47bbc1a4-3001-47e2-ab51-3f4db2567910
+- Access benefit ID: 0f9202b7-0569-477f-bd56-d4dd6103df97
+
+Product
+- Name: Copy of E-signature Leuna
+- Description: null
+- Visibility: public
+- Billing model: one-time
+- Is recurring: false
+- Recurring interval: null
+- Trial interval: null
+- Is archived: false
+- Organization ID: 09b63743-9060-4406-8aaa-1a8d449d23ab
+- Created at: 2026-04-13T14:30:01.538897Z
+- Modified at: null
+- Metadata: {}
+
+Prices
+1. Price ID: 2466cabc-40b6-4418-8817-9c4626605bb5
+   Source: catalog
+   Amount type: free
+   Currency: usd
+   Tax behavior: null
+   Archived: false
+   Product ID: 47bbc1a4-3001-47e2-ab51-3f4db2567910
+   Type: one_time
+   Recurring interval: null
+   Created at: 2026-04-13T14:30:01.547669Z
+   Modified at: null
+
+Benefits Attached To Product
+1. Benefit ID: 0f9202b7-0569-477f-bd56-d4dd6103df97
+   Type: feature_flag
+   Description: Lifetime E-signature Access
+   Selectable: true
+   Deletable: true
+   Deleted: false
+   Organization ID: 09b63743-9060-4406-8aaa-1a8d449d23ab
+   Metadata: {}
+   Properties: {}
+   Created at: 2026-04-13T09:50:57.865769Z
+   Modified at: 2026-04-14T08:18:00.897857Z
+
+Standalone Benefit Lookup
+- Benefit ID: 0f9202b7-0569-477f-bd56-d4dd6103df97
+- Type: feature_flag
+- Description: Lifetime E-signature Access
+- Selectable: true
+- Deletable: true
+- Deleted: false
+- Organization ID: 09b63743-9060-4406-8aaa-1a8d449d23ab
+- Metadata: {}
+- Properties: {}
+- Created at: 2026-04-13T09:50:57.865769Z
+- Modified at: 2026-04-14T08:18:00.897857Z
+
+Other Product Resources
+- Meters: none returned on the product payload
+- Media assets: none
+- Attached custom fields: none
+
+Raw Notes
+- The current configured price is free, not a paid fixed amount.
+- The current configured access model depends on the attached benefit ID above.
+- The app checks for access by verifying that this exact benefit ID is present in the Polar customer state.

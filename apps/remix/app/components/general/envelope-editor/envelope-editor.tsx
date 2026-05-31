@@ -186,7 +186,7 @@ export const EnvelopeEditor = () => {
     envelopeEditorSteps.find((step) => step.id === searchParamsStep) || envelopeEditorSteps[0];
 
   return (
-    <div className="h-screen w-screen bg-envelope-editor-background">
+    <div className="envelope-editor-page h-screen w-screen bg-[#f7f7f5]">
       <EnvelopeEditorHeader />
 
       {/* Main Content Area */}

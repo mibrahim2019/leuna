@@ -1,6 +1,264 @@
 ---
 title: Railway
-description: Deploy Documenso on Railway with automatic builds from Git, managed PostgreSQL, and built-in networking. Use the one-click template or manual setup.
+description: Deploy Sign Leuna to Railway using the Railway CLI, an external PostgreSQL database, and environment variables for secrets and signing certificates.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+## Prerequisites
+
+Before you start, ensure you have:
+
+- A Railway account
+- An external PostgreSQL 14+ database
+- A custom domain if you want to serve Sign Leuna on your own hostname
+- Railway CLI installed locally
+- Your Sign Leuna repository cloned locally
+
+This guide assumes you are deploying from the repository root and using the production Dockerfile at
+[`docker/Dockerfile`](https://github.com/documenso/documenso/blob/main/docker/Dockerfile).
+
+<Callout type="warn">
+  Railway detects a `Dockerfile` only at the root of the source directory by default. This
+  repository keeps the production Dockerfile at `docker/Dockerfile`, so you must set
+  `RAILWAY_DOCKERFILE_PATH=docker/Dockerfile` on the Railway service before deploying.
+</Callout>
+
+## Install and Log In
+
+Install the Railway CLI:
+
+```bash
+brew install railway
+```
+
+Log in:
+
+```bash
+railway login
+```
+
+Verify the CLI is authenticated:
+
+```bash
+railway whoami
+```
+
+## Create the Railway Project and Service
+
+Run these commands from the repository root:
+
+```bash
+cd /path/to/documenso
+railway init --name documenso
+railway add --service documenso
+railway service documenso
+```
+
+If you already created the Railway project in another directory, use `railway link` instead of
+`railway init`.
+
+## Required Variables
+
+Set the following variables before the first deploy:
+
+| Variable                                | Required | Description |
+| --------------------------------------- | -------- | ----------- |
+| `RAILWAY_DOCKERFILE_PATH`               | Yes      | Tells Railway to build from `docker/Dockerfile` |
+| `NEXTAUTH_SECRET`                       | Yes      | Session secret |
+| `NEXT_PRIVATE_ENCRYPTION_KEY`           | Yes      | Primary encryption key |
+| `NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY` | Yes      | Secondary encryption key |
+| `NEXT_PUBLIC_WEBAPP_URL`                | Yes      | Public URL, for example `https://sign.example.com` |
+| `NEXT_PRIVATE_INTERNAL_WEBAPP_URL`      | Yes      | Internal callback URL, usually the same as `NEXT_PUBLIC_WEBAPP_URL` on Railway |
+| `NEXT_PRIVATE_DATABASE_URL`             | Yes      | PostgreSQL connection string |
+| `NEXT_PRIVATE_DIRECT_DATABASE_URL`      | When pooling | Direct PostgreSQL connection string for migrations |
+| `NEXT_PRIVATE_SMTP_TRANSPORT`           | Yes      | Set to `resend`, `smtp-auth`, `smtp-api`, or `mailchannels` |
+| `NEXT_PRIVATE_SMTP_FROM_NAME`           | Yes      | Sender name used in outgoing email |
+| `NEXT_PRIVATE_SMTP_FROM_ADDRESS`        | Yes      | Sender email address |
+| `NEXT_PRIVATE_SIGNING_PASSPHRASE`       | Yes      | Passphrase for the signing certificate |
+| `NEXT_PRIVATE_SIGNING_LOCAL_FILE_CONTENTS` | Recommended on Railway | Base64-encoded `.p12` certificate contents |
+
+## Set Environment Variables
+
+Generate the application secrets locally if you do not already have them:
+
+```bash
+echo "NEXTAUTH_SECRET=$(openssl rand -base64 32)"
+echo "NEXT_PRIVATE_ENCRYPTION_KEY=$(openssl rand -hex 32)"
+echo "NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY=$(openssl rand -hex 32)"
+```
+
+If you already created a local [`.env`](https://github.com/documenso/documenso/blob/main/.env.example),
+copy the values from there into the commands below.
+
+Set the core variables on Railway:
+
+```bash
+railway variable set --service documenso \
+  RAILWAY_DOCKERFILE_PATH=docker/Dockerfile \
+  NEXTAUTH_SECRET="<nextauth-secret>" \
+  NEXT_PRIVATE_ENCRYPTION_KEY="<primary-encryption-key>" \
+  NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY="<secondary-encryption-key>" \
+  NEXT_PUBLIC_WEBAPP_URL="https://sign.example.com" \
+  NEXT_PRIVATE_INTERNAL_WEBAPP_URL="https://sign.example.com" \
+  NEXT_PRIVATE_DATABASE_URL="postgresql://user:password@host:5432/documenso" \
+  NEXT_PRIVATE_DIRECT_DATABASE_URL="postgresql://user:password@host:5432/documenso" \
+  NEXT_PRIVATE_SMTP_TRANSPORT="resend" \
+  NEXT_PRIVATE_SMTP_FROM_NAME="Sign Leuna" \
+  NEXT_PRIVATE_SMTP_FROM_ADDRESS="noreply@example.com" \
+  NEXT_PRIVATE_RESEND_API_KEY="<resend-api-key>" \
+  NEXT_PRIVATE_GOOGLE_CLIENT_ID="<google-client-id>" \
+  NEXT_PRIVATE_GOOGLE_CLIENT_SECRET="<google-client-secret>" \
+  NEXT_PUBLIC_UPLOAD_TRANSPORT="database" \
+  NEXT_PRIVATE_JOBS_PROVIDER="local"
+```
+
+Do not set `PORT` manually on Railway. Railway injects the runtime port automatically.
+
+### Upload the Signing Certificate
+
+Railway does not provide host file mounts for your service, so use
+`NEXT_PRIVATE_SIGNING_LOCAL_FILE_CONTENTS` with a base64-encoded `.p12` certificate.
+
+Encode the certificate into a single line:
+
+```bash
+base64 -i /path/to/cert.p12 | tr -d '\n' > /tmp/documenso-cert.base64
+```
+
+Send the certificate contents to Railway:
+
+```bash
+cat /tmp/documenso-cert.base64 | railway variable set NEXT_PRIVATE_SIGNING_LOCAL_FILE_CONTENTS --stdin --service documenso
+```
+
+Set the certificate passphrase:
+
+```bash
+railway variable set --service documenso NEXT_PRIVATE_SIGNING_PASSPHRASE="<certificate-passphrase>"
+```
+
+<Callout type="warn">
+  Do not commit the certificate contents or passphrase to git. Keep the `.p12` file and its
+  passphrase in your secure secret storage.
+</Callout>
+
+### Optional Variables
+
+Set these only if you need them:
+
+```bash
+railway variable set --service documenso \
+  NEXT_PUBLIC_DISABLE_SIGNUP="true" \
+  NEXT_PRIVATE_ALLOWED_SIGNUP_DOMAINS="example.com,acme.org" \
+  SIGN_DOCUTRACKER_DISABLE_TELEMETRY="true"
+```
+
+## Deploy
+
+Deploy from the repository root:
+
+```bash
+railway up --service documenso
+```
+
+Watch build logs:
+
+```bash
+railway logs --build --service documenso
+```
+
+Watch runtime logs:
+
+```bash
+railway logs --service documenso
+```
+
+The container entrypoint runs Prisma migrations before starting the app, so a valid direct database
+connection must already be configured.
+
+## Configure the Domain
+
+Generate a Railway domain for the service:
+
+```bash
+railway domain --service documenso
+```
+
+Add your custom domain:
+
+```bash
+railway domain sign.example.com --service documenso
+```
+
+Railway will print the DNS record you need to create. Add that record at your DNS provider and wait
+for propagation.
+
+## Verify the Deployment
+
+List the configured variables:
+
+```bash
+railway variable list --service documenso --kv
+```
+
+Check the latest service status:
+
+```bash
+railway service status
+```
+
+Open a shell in the running service if you need to inspect the container:
+
+```bash
+railway ssh --service documenso
+```
+
+Once the domain resolves, verify the app:
+
+```bash
+curl https://sign.example.com/api/health
+curl https://sign.example.com/api/certificate-status
+```
+
+The health endpoint should report database connectivity and whether the signing certificate is
+available.
+
+## Updating the Deployment
+
+When you change environment variables without changing code:
+
+```bash
+railway redeploy --service documenso
+```
+
+When you change code locally:
+
+```bash
+railway up --service documenso
+```
+
+## Google OAuth Callback
+
+If you use Google OAuth, configure this callback URL in Google Cloud:
+
+```text
+https://sign.example.com/api/auth/callback/google
+```
+
+Use your real domain in place of `sign.example.com`.
+
+---
+
+## See Also
+
+- [Environment Variables](/docs/self-hosting/configuration/environment)
+- [Database Configuration](/docs/self-hosting/configuration/database)
+- [Email Configuration](/docs/self-hosting/configuration/email)
+- [Signing Certificate](/docs/self-hosting/configuration/signing-certificate)
+---
+title: Railway
+description: Deploy Sign Leuna on Railway with automatic builds from Git, managed PostgreSQL, and built-in networking. Use the one-click template or manual setup.
 ---
 
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
@@ -22,13 +280,13 @@ Before deploying, you need:
 
 ## One-Click Deploy
 
-The fastest way to deploy Documenso on Railway is using the official template:
+The fastest way to deploy Sign Leuna on Railway is using the official template:
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/bG6D4p)
 
 This template automatically provisions:
 
-- Documenso application service
+- Sign Leuna application service
 - PostgreSQL database
 - Required environment variables with secure defaults
 
@@ -74,14 +332,14 @@ This takes approximately 5-10 minutes for the initial build.
 
 Once deployed, Railway provides a URL like `documenso-production.up.railway.app`.
 
-Click the URL in the Railway dashboard to access your Documenso instance.
+Click the URL in the Railway dashboard to access your Sign Leuna instance.
 
 </Step>
 </Steps>
 
 ## Manual Deployment
 
-If you prefer more control over the setup, deploy Documenso manually:
+If you prefer more control over the setup, deploy Sign Leuna manually:
 
 {/* prettier-ignore */}
 <Steps>
@@ -92,7 +350,7 @@ If you prefer more control over the setup, deploy Documenso manually:
 - Click "New Project"
 - Select "Deploy from GitHub repo"
 - Connect your GitHub account if not already connected
-- Fork or select the [Documenso repository](https://github.com/documenso/documenso)
+- Fork or select the [Sign Leuna repository](https://github.com/documenso/documenso)
 
 </Step>
 
@@ -124,7 +382,7 @@ No additional build configuration is needed.
 <Step>
 ### Configure environment variables
 
-Click on the Documenso service and go to the "Variables" tab. Add the following variables:
+Click on the Sign Leuna service and go to the "Variables" tab. Add the following variables:
 
 **Required variables:**
 
@@ -140,7 +398,7 @@ NEXT_PRIVATE_SMTP_HOST=<your-smtp-host>
 NEXT_PRIVATE_SMTP_PORT=587
 NEXT_PRIVATE_SMTP_USERNAME=<your-smtp-username>
 NEXT_PRIVATE_SMTP_PASSWORD=<your-smtp-password>
-NEXT_PRIVATE_SMTP_FROM_NAME=Documenso
+NEXT_PRIVATE_SMTP_FROM_NAME=Sign Leuna
 NEXT_PRIVATE_SMTP_FROM_ADDRESS=noreply@yourdomain.com
 ```
 
@@ -156,7 +414,7 @@ NEXT_PRIVATE_SMTP_FROM_ADDRESS=noreply@yourdomain.com
 | `NEXT_PUBLIC_DISABLE_SIGNUP`          | Disable public signups                                 | `false` |
 | `NEXT_PRIVATE_ALLOWED_SIGNUP_DOMAINS` | Comma-separated list of allowed signup email domains   |         |
 | `NEXT_PRIVATE_SIGNING_PASSPHRASE`     | Passphrase for signing certificate                     | -       |
-| `DOCUMENSO_DISABLE_TELEMETRY`     | Disable anonymous telemetry        | `false` |
+| `SIGN_DOCUTRACKER_DISABLE_TELEMETRY`     | Disable anonymous telemetry        | `false` |
 
 </Step>
 
@@ -199,7 +457,7 @@ NEXT_PRIVATE_DATABASE_URL=${{Postgres.DATABASE_URL}}
 NEXT_PRIVATE_DIRECT_DATABASE_URL=${{Postgres.DATABASE_URL}}
 ```
 
-Documenso runs database migrations automatically on startup.
+Sign Leuna runs database migrations automatically on startup.
 
 ### Accessing the Database
 
@@ -236,7 +494,7 @@ Railway provides a generated URL by default. To use your own domain:
 <Step>
 ### Generate a domain
 
-- Click on your Documenso service
+- Click on your Sign Leuna service
 - Go to "Settings" > "Networking"
 - Click "Generate Domain" to get a Railway subdomain, or proceed to add a custom domain
 
@@ -280,7 +538,7 @@ Railway automatically provisions and renews SSL certificates for custom domains.
 
 ## Scaling Options
 
-Railway provides several options for scaling your Documenso deployment:
+Railway provides several options for scaling your Sign Leuna deployment:
 
 ### Vertical Scaling
 
@@ -289,9 +547,9 @@ Increase resources for your service:
 {/* prettier-ignore */}
 <Steps>
 <Step>
-### Open your Documenso service
+### Open your Sign Leuna service
 
-In the Railway dashboard, select the Documenso service.
+In the Railway dashboard, select the Sign Leuna service.
 
 </Step>
 <Step>
@@ -317,7 +575,7 @@ Railway supports horizontal scaling through replicas:
 <Step>
 ### Open service Settings
 
-In the Railway dashboard, select your Documenso service and open "Settings".
+In the Railway dashboard, select your Sign Leuna service and open "Settings".
 
 </Step>
 <Step>
@@ -335,7 +593,7 @@ Choose how many replicas to run; Railway will load-balance traffic across them.
 </Steps>
 
 <Callout type="warn">
-  Documenso stores sessions in the database, so horizontal scaling works without additional
+  Sign Leuna stores sessions in the database, so horizontal scaling works without additional
   configuration. However, ensure your database can handle the increased connection load.
 </Callout>
 
@@ -349,7 +607,7 @@ For high-traffic deployments:
 
 ## Cost Estimate
 
-Railway uses usage-based pricing. Estimated monthly costs for Documenso:
+Railway uses usage-based pricing. Estimated monthly costs for Sign Leuna:
 
 | Tier  | Resources                          | Estimated Cost |
 | ----- | ---------------------------------- | -------------- |
@@ -382,11 +640,11 @@ This is sufficient for testing but not recommended for production.
 
 ## Signing Certificate
 
-Documenso requires a signing certificate to sign documents. On Railway, you can:
+Sign Leuna requires a signing certificate to sign documents. On Railway, you can:
 
 ### Option 1: Use Generated Certificate (Default)
 
-Documenso generates a self-signed certificate automatically if none is provided. This works for testing but shows generic certificate information in signed documents.
+Sign Leuna generates a self-signed certificate automatically if none is provided. This works for testing but shows generic certificate information in signed documents.
 
 ### Option 2: Mount Custom Certificate
 
@@ -407,7 +665,7 @@ base64 -i your-cert.p12 | tr -d '\n'
 <Step>
 ### Add environment variables in Railway
 
-In your Documenso service variables, set:
+In your Sign Leuna service variables, set:
 
 ```bash
 NEXT_PRIVATE_SIGNING_LOCAL_FILE_CONTENTS=<base64-encoded-certificate>

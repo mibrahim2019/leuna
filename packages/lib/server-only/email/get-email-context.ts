@@ -9,13 +9,9 @@ import type {
   OrganisationEmail,
   OrganisationType,
 } from '@documenso/prisma/client';
-import {
-  EmailDomainStatus,
-  type OrganisationClaim,
-  type OrganisationGlobalSettings,
-} from '@documenso/prisma/client';
+import { EmailDomainStatus, type OrganisationGlobalSettings } from '@documenso/prisma/client';
 
-import { DOCUMENSO_INTERNAL_EMAIL } from '../../constants/email';
+import { SIGN_DOCUTRACKER_INTERNAL_EMAIL } from '../../constants/email';
 import { AppError, AppErrorCode } from '../../errors/app-error';
 import {
   organisationGlobalSettingsToBranding,
@@ -70,7 +66,6 @@ type EmailContextResponse = {
   allowedEmails: OrganisationEmail[];
   branding: BrandingSettings;
   settings: Omit<OrganisationGlobalSettings, 'id'>;
-  claims: OrganisationClaim;
   organisationType: OrganisationType;
   senderEmail: {
     name: string;
@@ -99,7 +94,7 @@ export const getEmailContext = async (
   if (options.emailType === 'INTERNAL') {
     return {
       ...emailContext,
-      senderEmail: DOCUMENSO_INTERNAL_EMAIL,
+      senderEmail: SIGN_DOCUTRACKER_INTERNAL_EMAIL,
       replyToEmail: undefined,
       emailLanguage, // Not sure if we want to use this for internal emails.
     };
@@ -110,7 +105,7 @@ export const getEmailContext = async (
   const senderEmailId = match(meta?.emailId)
     .with(P.string, (emailId) => emailId) // Explicit string means to use the provided email ID.
     .with(undefined, () => emailContext.settings.emailId) // Undefined means to use the inherited email ID.
-    .with(null, () => null) // Explicit null means to use the Documenso email.
+    .with(null, () => null) // Explicit null means to use the Sign email.
     .exhaustive();
 
   const foundSenderEmail = emailContext.allowedEmails.find((email) => email.id === senderEmailId);
@@ -125,7 +120,7 @@ export const getEmailContext = async (
         name: foundSenderEmail.emailName,
         address: foundSenderEmail.email,
       }
-    : DOCUMENSO_INTERNAL_EMAIL;
+    : SIGN_DOCUTRACKER_INTERNAL_EMAIL;
 
   return {
     ...emailContext,
@@ -141,7 +136,6 @@ const handleOrganisationEmailContext = async (organisationId: string) => {
       id: organisationId,
     },
     include: {
-      organisationClaim: true,
       organisationGlobalSettings: true,
       emailDomains: {
         omit: {
@@ -158,8 +152,6 @@ const handleOrganisationEmailContext = async (organisationId: string) => {
     throw new AppError(AppErrorCode.NOT_FOUND);
   }
 
-  const claims = organisation.organisationClaim;
-
   const allowedEmails = getAllowedEmails(organisation);
 
   return {
@@ -167,10 +159,9 @@ const handleOrganisationEmailContext = async (organisationId: string) => {
     branding: organisationGlobalSettingsToBranding(
       organisation.organisationGlobalSettings,
       organisation.id,
-      claims.flags.hidePoweredBy ?? false,
+      true,
     ),
     settings: organisation.organisationGlobalSettings,
-    claims,
     organisationType: organisation.type,
   };
 };
@@ -184,7 +175,6 @@ const handleTeamEmailContext = async (teamId: number) => {
       teamGlobalSettings: true,
       organisation: {
         include: {
-          organisationClaim: true,
           organisationGlobalSettings: true,
           emailDomains: {
             omit: {
@@ -204,7 +194,6 @@ const handleTeamEmailContext = async (teamId: number) => {
   }
 
   const organisation = team.organisation;
-  const claims = organisation.organisationClaim;
 
   const allowedEmails = getAllowedEmails(organisation);
 
@@ -218,10 +207,9 @@ const handleTeamEmailContext = async (teamId: number) => {
     branding: teamGlobalSettingsToBranding(
       teamSettings,
       teamId,
-      claims.flags.hidePoweredBy ?? false,
+      true,
     ),
     settings: teamSettings,
-    claims,
     organisationType: organisation.type,
   };
 };
@@ -229,13 +217,8 @@ const handleTeamEmailContext = async (teamId: number) => {
 const getAllowedEmails = (
   organisation: Organisation & {
     emailDomains: (Pick<EmailDomain, 'status'> & { emails: OrganisationEmail[] })[];
-    organisationClaim: OrganisationClaim;
   },
 ) => {
-  if (!organisation.organisationClaim.flags.emailDomains) {
-    return [];
-  }
-
   return organisation.emailDomains
     .filter((emailDomain) => emailDomain.status === EmailDomainStatus.ACTIVE)
     .flatMap((emailDomain) => emailDomain.emails);

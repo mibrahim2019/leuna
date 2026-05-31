@@ -1,5 +1,4 @@
-import { IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
-import { DOCUMENSO_ENCRYPTION_KEY } from '@documenso/lib/constants/crypto';
+import { SIGN_DOCUTRACKER_ENCRYPTION_KEY } from '@documenso/lib/constants/crypto';
 import { ORGANISATION_MEMBER_ROLE_PERMISSIONS_MAP } from '@documenso/lib/constants/organisations';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { symmetricEncrypt } from '@documenso/lib/universal/crypto';
@@ -25,12 +24,6 @@ export const updateOrganisationAuthenticationPortalRoute = authenticatedProcedur
       },
     });
 
-    if (!IS_BILLING_ENABLED()) {
-      throw new AppError(AppErrorCode.INVALID_REQUEST, {
-        message: 'Billing is not enabled',
-      });
-    }
-
     const organisation = await prisma.organisation.findFirst({
       where: buildOrganisationWhereQuery({
         organisationId,
@@ -39,18 +32,11 @@ export const updateOrganisationAuthenticationPortalRoute = authenticatedProcedur
       }),
       include: {
         organisationAuthenticationPortal: true,
-        organisationClaim: true,
       },
     });
 
     if (!organisation) {
       throw new AppError(AppErrorCode.UNAUTHORIZED);
-    }
-
-    if (!organisation.organisationClaim.flags.authenticationPortal) {
-      throw new AppError(AppErrorCode.INVALID_REQUEST, {
-        message: 'Authentication portal is not allowed for this organisation',
-      });
     }
 
     const {
@@ -80,10 +66,10 @@ export const updateOrganisationAuthenticationPortalRoute = authenticatedProcedur
 
     // Encrypt the secret if it is provided.
     if (clientSecret) {
-      const encryptionKey = DOCUMENSO_ENCRYPTION_KEY;
+      const encryptionKey = SIGN_DOCUTRACKER_ENCRYPTION_KEY;
 
       if (!encryptionKey) {
-        throw new Error('Missing DOCUMENSO_ENCRYPTION_KEY');
+        throw new Error('Missing SIGN_DOCUTRACKER_ENCRYPTION_KEY');
       }
 
       encryptedClientSecret = symmetricEncrypt({

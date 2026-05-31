@@ -212,6 +212,10 @@ const SheetDescription = React.forwardRef<
 
 SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
+const SheetClose = SheetPrimitive.Close;
+
+SheetClose.displayName = SheetPrimitive.Close.displayName;
+
 export {
   Sheet,
   SheetTrigger,
@@ -220,4 +224,5 @@ export {
   SheetFooter,
   SheetTitle,
   SheetDescription,
+  SheetClose,
 };

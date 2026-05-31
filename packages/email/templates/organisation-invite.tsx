@@ -2,21 +2,10 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
 
-import {
-  Body,
-  Button,
-  Container,
-  Head,
-  Hr,
-  Html,
-  Img,
-  Preview,
-  Section,
-  Text,
-} from '../components';
-import { useBranding } from '../providers/branding';
-import { TemplateFooter } from '../template-components/template-footer';
+import { Button, Section, Text } from '../components';
 import TemplateImage from '../template-components/template-image';
+import { TemplateShell } from '../template-components/template-shell';
+import { emailStyles } from '../template-components/template-styles';
 
 export type OrganisationInviteEmailProps = {
   assetBaseUrl: string;
@@ -28,86 +17,54 @@ export type OrganisationInviteEmailProps = {
 
 export const OrganisationInviteEmailTemplate = ({
   assetBaseUrl = 'http://localhost:3002',
-  baseUrl = 'https://documenso.com',
+  baseUrl = 'https://leuna.app',
   senderName = 'John Doe',
   organisationName = 'Organisation Name',
   token = '',
 }: OrganisationInviteEmailProps) => {
   const { _ } = useLingui();
-  const branding = useBranding();
 
-  const previewText = msg`Accept invitation to join an organisation on Documenso`;
+  const previewText = msg`Accept invitation to join an organisation on Leuna`;
 
   return (
-    <Html>
-      <Head />
-      <Preview>{_(previewText)}</Preview>
+    <TemplateShell previewText={_(previewText)} assetBaseUrl={assetBaseUrl} isDocument={false}>
+      <Section>
+        <TemplateImage className="mx-auto" assetBaseUrl={assetBaseUrl} staticAsset="add-user.png" />
+      </Section>
 
-      <Body className="mx-auto my-auto font-sans">
-        <Section className="bg-white text-slate-500">
-          <Container className="mx-auto mb-2 mt-8 max-w-xl rounded-lg border border-solid border-slate-200 p-2 backdrop-blur-sm">
-            {branding.brandingEnabled && branding.brandingLogo ? (
-              <Img src={branding.brandingLogo} alt="Branding Logo" className="mb-4 h-6 p-2" />
-            ) : (
-              <TemplateImage
-                assetBaseUrl={assetBaseUrl}
-                className="mb-4 h-6 p-2"
-                staticAsset="logo.png"
-              />
-            )}
+      <Section>
+        <Text className={emailStyles.title}>
+          <Trans>Join {organisationName} on Leuna</Trans>
+        </Text>
 
-            <Section>
-              <TemplateImage
-                className="mx-auto"
-                assetBaseUrl={assetBaseUrl}
-                staticAsset="add-user.png"
-              />
-            </Section>
+        <Text className={emailStyles.bodyWide}>
+          <Trans>You have been invited to join the following organisation</Trans>
+        </Text>
 
-            <Section className="p-2 text-slate-500">
-              <Text className="text-center text-lg font-medium text-black">
-                <Trans>Join {organisationName} on Documenso</Trans>
-              </Text>
+        <div className={emailStyles.pill}>{organisationName}</div>
 
-              <Text className="my-1 text-center text-base">
-                <Trans>You have been invited to join the following organisation</Trans>
-              </Text>
+        <Text className={emailStyles.body}>
+          <Trans>
+            by <span className="font-semibold text-[#141414]">{senderName}</span>
+          </Trans>
+        </Text>
 
-              <div className="mx-auto my-2 w-fit rounded-lg bg-gray-50 px-4 py-2 text-base font-medium text-slate-600">
-                {organisationName}
-              </div>
-
-              <Text className="my-1 text-center text-base">
-                <Trans>
-                  by <span className="text-slate-900">{senderName}</span>
-                </Trans>
-              </Text>
-
-              <Section className="mb-6 mt-6 text-center">
-                <Button
-                  className="bg-documenso-500 inline-flex items-center justify-center rounded-lg px-6 py-3 text-center text-sm font-medium text-black no-underline"
-                  href={`${baseUrl}/organisation/invite/${token}`}
-                >
-                  <Trans>Accept</Trans>
-                </Button>
-                <Button
-                  className="ml-4 inline-flex items-center justify-center rounded-lg bg-gray-50 px-6 py-3 text-center text-sm font-medium text-slate-600 no-underline"
-                  href={`${baseUrl}/organisation/decline/${token}`}
-                >
-                  <Trans>Decline</Trans>
-                </Button>
-              </Section>
-            </Section>
-          </Container>
-
-          <Hr className="mx-auto mt-12 max-w-xl" />
-
-          <Container className="mx-auto max-w-xl">
-            <TemplateFooter isDocument={false} />
-          </Container>
+        <Section className="mb-6 mt-6 text-center">
+          <Button
+            className={emailStyles.primaryButton}
+            href={`${baseUrl}/organisation/invite/${token}`}
+          >
+            <Trans>Accept</Trans>
+          </Button>
+          <Button
+            className={`${emailStyles.secondaryButton} ml-4`}
+            href={`${baseUrl}/organisation/decline/${token}`}
+          >
+            <Trans>Decline</Trans>
+          </Button>
         </Section>
-      </Body>
-    </Html>
+      </Section>
+    </TemplateShell>
   );
 };
 

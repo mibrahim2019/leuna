@@ -8,10 +8,14 @@ import type { FileRejection } from 'react-dropzone';
 import { useNavigate, useParams } from 'react-router';
 import { match } from 'ts-pattern';
 
-import { useLimits } from '@documenso/ee/server-only/limits/provider/client';
+import { useLimits } from '@documenso/lib/server-only/limits/provider/client';
 import { useAnalytics } from '@documenso/lib/client-only/hooks/use-analytics';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
 import { useSession } from '@documenso/lib/client-only/providers/session';
+import {
+  POLAR_ACCESS_REQUIRED_ERROR_CODE,
+  POLAR_UNAVAILABLE_ERROR_CODE,
+} from '@documenso/lib/constants/polar';
 import { DEFAULT_DOCUMENT_TIME_ZONE, TIME_ZONES } from '@documenso/lib/constants/time-zones';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { formatDocumentsPath, formatTemplatesPath } from '@documenso/lib/utils/teams';
@@ -55,7 +59,7 @@ export const DocumentUploadButtonLegacy = ({
     TIME_ZONES.find((timezone) => timezone === Intl.DateTimeFormat().resolvedOptions().timeZone) ??
     DEFAULT_DOCUMENT_TIME_ZONE;
 
-  const { quota, remaining, refreshLimits } = useLimits();
+  const { quota, remaining, refreshLimits, hasProductAccess } = useLimits();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -67,21 +71,14 @@ export const DocumentUploadButtonLegacy = ({
       return msg`Verify your email to upload documents.`;
     }
 
-    // No errors for templates.
-    if (type === EnvelopeType.TEMPLATE) {
-      return;
-    }
-
-    if (organisation.subscription && remaining.documents === 0) {
-      return msg`Document upload disabled due to unpaid invoices`;
-    }
-
     if (remaining.documents === 0) {
-      return msg`You have reached your document limit.`;
+      return hasProductAccess
+        ? msg`You have reached your document limit.`
+        : msg`Lifetime access is required to upload documents.`;
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remaining.documents, user.emailVerified, team, type]);
+  }, [hasProductAccess, remaining.documents, user.emailVerified]);
 
   const onFileDrop = async (file: File) => {
     try {
@@ -144,7 +141,18 @@ export const DocumentUploadButtonLegacy = ({
         .with('INVALID_DOCUMENT_FILE', () => msg`You cannot upload encrypted PDFs.`)
         .with(
           AppErrorCode.LIMIT_EXCEEDED,
-          () => msg`You have reached your document limit for this month. Please upgrade your plan.`,
+          () =>
+            hasProductAccess
+              ? msg`You have reached your document limit for this month.`
+              : msg`Lifetime access is required before you can upload documents.`,
+        )
+        .with(
+          POLAR_ACCESS_REQUIRED_ERROR_CODE,
+          () => msg`Lifetime access is required before you can upload documents.`,
+        )
+        .with(
+          POLAR_UNAVAILABLE_ERROR_CODE,
+          () => msg`We could not verify purchase access right now. Please try again.`,
         )
         .with(
           'ENVELOPE_ITEM_LIMIT_EXCEEDED',

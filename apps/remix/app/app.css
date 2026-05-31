@@ -69,3 +69,23 @@
     --font-noto: 'Noto Sans', 'Noto Sans Korean', 'Noto Sans Japanese', 'Noto Sans Chinese';
   }
 }
+
+/* Envelope editor page border color override */
+.envelope-editor-page * {
+  border-color: #e6e6e3;
+}
+
+/* Dashboard area border color override */
+.dashboard-area * {
+  border-color: #e6e6e3;
+}
+
+/* Document signing page border color override */
+.signing-area * {
+  border-color: #e6e6e3;
+}
+
+/* Marketing home page border color override */
+.home-page * {
+  border-color: #e6e6e3;
+}

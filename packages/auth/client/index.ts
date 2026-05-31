@@ -3,7 +3,7 @@ import { hc } from 'hono/client';
 import superjson from 'superjson';
 
 import { NEXT_PUBLIC_WEBAPP_URL } from '@documenso/lib/constants/app';
-import { AppError } from '@documenso/lib/errors/app-error';
+import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 
 import type { AuthAppType } from '../server';
 import type { SessionValidationResult } from '../server/lib/session/session';
@@ -342,22 +342,9 @@ export class AuthClient {
     },
     org: {
       signIn: async ({ orgUrl }: { orgUrl: string }) => {
-        const response = await this.client['oauth'].authorize.oidc.org[':orgUrl'].$post({
-          param: { orgUrl },
+        throw new AppError(AppErrorCode.NOT_SETUP, {
+          message: 'Organisation SSO is not available in the community edition.',
         });
-
-        if (!response.ok) {
-          const error = await response.json();
-
-          throw AppError.parseError(error);
-        }
-
-        const data = await response.json();
-
-        // Redirect to external OIDC provider URL.
-        if (data.redirectUrl) {
-          window.location.href = data.redirectUrl;
-        }
       },
     },
   };

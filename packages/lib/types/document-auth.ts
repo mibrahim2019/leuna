@@ -83,7 +83,7 @@ export const ZDocumentActionAuthTypesSchema = z
     DocumentAuth.PASSWORD,
   ])
   .describe(
-    'The type of authentication required for the recipient to sign the document. This field is restricted to Enterprise plan users only.',
+    'The type of authentication required for the recipient to sign the document.',
   );
 
 /**

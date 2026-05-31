@@ -1,5 +1,6 @@
 import { updateDocumentMeta } from '@documenso/lib/server-only/document-meta/upsert-document-meta';
 import { sendDocument } from '@documenso/lib/server-only/document/send-document';
+import { assertPolarProductAccess } from '@documenso/lib/server-only/polar/customer';
 import { formatSigningLink } from '@documenso/lib/utils/recipients';
 
 import { authenticatedProcedure } from '../trpc';
@@ -16,6 +17,8 @@ export const distributeEnvelopeRoute = authenticatedProcedure
   .mutation(async ({ input, ctx }) => {
     const { teamId } = ctx;
     const { envelopeId, meta = {} } = input;
+
+    await assertPolarProductAccess({ userId: ctx.user.id });
 
     ctx.logger.info({
       input: {

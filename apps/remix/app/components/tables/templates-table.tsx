@@ -14,12 +14,14 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router';
 
-import { useLimits } from '@documenso/ee/server-only/limits/provider/client';
+import { useLimits } from '@documenso/lib/server-only/limits/provider/client';
 import { useUpdateSearchParams } from '@documenso/lib/client-only/hooks/use-update-search-params';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
+import { POLAR_LIFETIME_PURCHASE_PATH } from '@documenso/lib/constants/polar';
 import { formatTemplatesPath } from '@documenso/lib/utils/teams';
 import type { TFindTemplatesResponse } from '@documenso/trpc/server/template-router/schema';
 import { Alert, AlertDescription, AlertTitle } from '@documenso/ui/primitives/alert';
+import { Button } from '@documenso/ui/primitives/button';
 import { Checkbox } from '@documenso/ui/primitives/checkbox';
 import type { DataTableColumnDef, RowSelectionState } from '@documenso/ui/primitives/data-table';
 import { DataTable } from '@documenso/ui/primitives/data-table';
@@ -59,7 +61,7 @@ export const TemplatesTable = ({
   onRowSelectionChange,
 }: TemplatesTableProps) => {
   const { _, i18n } = useLingui();
-  const { remaining } = useLimits();
+  const { remaining, hasProductAccess } = useLimits();
 
   const team = useCurrentTeam();
   const organisation = useCurrentOrganisation();
@@ -263,23 +265,33 @@ export const TemplatesTable = ({
   };
 
   return (
-    <div className="relative">
+    <div className="bg-widget relative rounded-md">
       {remaining.documents === 0 && (
         <Alert variant="warning" className="mb-4">
           <AlertTriangle className="h-4 w-4" />
           <AlertTitle>
-            <Trans>Document Limit Exceeded!</Trans>
+            {hasProductAccess ? (
+              <Trans>Document Limit Exceeded!</Trans>
+            ) : (
+              <Trans>Lifetime Access Required</Trans>
+            )}
           </AlertTitle>
           <AlertDescription className="mt-2">
-            <Trans>
-              You have reached your document limit.{' '}
-              <Link
-                className="underline underline-offset-4"
-                to={`/o/${organisation.url}/settings/billing`}
-              >
-                Upgrade your account to continue!
-              </Link>
-            </Trans>
+            {hasProductAccess ? (
+              <Trans>You have reached your document limit.</Trans>
+            ) : (
+              <div className="flex flex-col items-start gap-3">
+                <p>
+                  <Trans>Claim lifetime access to create documents from templates.</Trans>
+                </p>
+
+                <Button asChild size="sm">
+                  <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                    <Trans>Claim Lifetime Access</Trans>
+                  </Link>
+                </Button>
+              </div>
+            )}
           </AlertDescription>
         </Alert>
       )}
@@ -333,7 +345,7 @@ export const TemplatesTable = ({
       </DataTable>
 
       {isPending && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white/50">
+        <div className="absolute inset-0 flex items-center justify-center bg-background/50">
           <Loader className="h-8 w-8 animate-spin text-gray-500" />
         </div>
       )}

@@ -5,7 +5,7 @@ import { Link, redirect } from 'react-router';
 import { getOptionalLoaderContext } from 'server/utils/get-loader-session';
 import { match } from 'ts-pattern';
 
-import signingCelebration from '@documenso/assets/images/signing-celebration.png';
+const signingCelebration = '/static/login.jpg';
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
 import { EnvelopeRenderProvider } from '@documenso/lib/client-only/providers/envelope-render-provider';
 import { useOptionalSession } from '@documenso/lib/client-only/providers/session';
@@ -381,10 +381,10 @@ const SigningPageV1 = ({ data }: { data: Awaited<ReturnType<typeof handleV1Loade
               <Trans>
                 Want to send slick signing links like this one?{' '}
                 <Link
-                  to="https://documenso.com"
+                  to="https://leuna.app"
                   className="text-documenso-700 hover:text-documenso-600"
                 >
-                  Check out Documenso
+                  Check out Leuna
                 </Link>
                 .
               </Trans>
@@ -481,10 +481,10 @@ const SigningPageV2 = ({ data }: { data: Awaited<ReturnType<typeof handleV2Loade
               <Trans>
                 Want to send slick signing links like this one?{' '}
                 <Link
-                  to="https://documenso.com"
+                  to="https://leuna.app"
                   className="text-documenso-700 hover:text-documenso-600"
                 >
-                  Check out Documenso
+                  Check out Leuna
                 </Link>
                 .
               </Trans>

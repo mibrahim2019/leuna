@@ -6,14 +6,13 @@ import { PlusIcon } from 'lucide-react';
 import { ChevronLeft } from 'lucide-react';
 import { Link, Outlet, isRouteErrorResponse } from 'react-router';
 
-import LogoIcon from '@documenso/assets/logo_icon.png';
 import { useOptionalSession } from '@documenso/lib/client-only/providers/session';
 import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
 
 import { Header as AuthenticatedHeader } from '~/components/general/app-header';
-import { BrandingLogo } from '~/components/general/branding-logo';
 import { GenericErrorLayout } from '~/components/general/generic-error-layout';
+import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
 import { appMetaTags } from '~/utils/meta';
 
 import type { Route } from './+types/_layout';
@@ -44,7 +43,7 @@ export default function PublicProfileLayout() {
       ) : (
         <header
           className={cn(
-            'supports-backdrop-blur:bg-background/60 sticky top-0 z-[60] flex h-16 w-full items-center border-b border-b-transparent bg-background/95 backdrop-blur duration-200',
+            'supports-backdrop-blur:bg-background/60 sticky top-0 z-[60] flex h-14 w-full items-center border-b border-b-transparent bg-background/95 backdrop-blur duration-200',
             scrollY > 5 && 'border-b-border',
           )}
         >
@@ -52,16 +51,9 @@ export default function PublicProfileLayout() {
             <Link
               to="/"
               className="rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:inline"
+              aria-label="Leuna home"
             >
-              <BrandingLogo className="hidden h-6 w-auto sm:block" />
-
-              <img
-                src={LogoIcon}
-                alt="Documenso Logo"
-                width={48}
-                height={48}
-                className="h-10 w-auto sm:hidden dark:invert"
-              />
+              <SignWordmarkLogo className="text-[1.125rem]" signClassName="text-[#2563eb]" />
             </Link>
 
             <div className="flex flex-row items-center justify-center">

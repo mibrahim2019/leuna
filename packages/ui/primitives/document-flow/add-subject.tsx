@@ -212,44 +212,42 @@ export const AddSubjectFormPartial = ({
                     className="flex flex-col gap-y-4 rounded-lg border p-4"
                     disabled={form.formState.isSubmitting}
                   >
-                    {organisation.organisationClaim.flags.emailDomains && (
-                      <FormField
-                        control={form.control}
-                        name="meta.emailId"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>
-                              <Trans>Email Sender</Trans>
-                            </FormLabel>
-                            <FormControl>
-                              <Select
-                                {...field}
-                                value={field.value === null ? '-1' : field.value}
-                                onValueChange={(value) =>
-                                  field.onChange(value === '-1' ? null : value)
-                                }
-                              >
-                                <SelectTrigger loading={isLoadingEmails} className="bg-background">
-                                  <SelectValue />
-                                </SelectTrigger>
+                    <FormField
+                      control={form.control}
+                      name="meta.emailId"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            <Trans>Email Sender</Trans>
+                          </FormLabel>
+                          <FormControl>
+                            <Select
+                              {...field}
+                              value={field.value === null ? '-1' : field.value}
+                              onValueChange={(value) =>
+                                field.onChange(value === '-1' ? null : value)
+                              }
+                            >
+                              <SelectTrigger loading={isLoadingEmails} className="bg-background">
+                                <SelectValue />
+                              </SelectTrigger>
 
-                                <SelectContent>
-                                  {emails.map((email) => (
-                                    <SelectItem key={email.id} value={email.id}>
-                                      {email.email}
-                                    </SelectItem>
-                                  ))}
+                              <SelectContent>
+                                {emails.map((email) => (
+                                  <SelectItem key={email.id} value={email.id}>
+                                    {email.email}
+                                  </SelectItem>
+                                ))}
 
-                                  <SelectItem value={'-1'}>Documenso</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </FormControl>
+                                <SelectItem value={'-1'}>Sign</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
 
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    )}
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
                     <FormField
                       control={form.control}

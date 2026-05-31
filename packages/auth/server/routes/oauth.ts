@@ -2,9 +2,11 @@ import { sValidator } from '@hono/standard-validator';
 import { Hono } from 'hono';
 import { z } from 'zod';
 
+import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
+import { getCommunityEditionUnavailableMessage } from '@documenso/lib/server-only/community-edition';
+
 import { GoogleAuthOptions, MicrosoftAuthOptions, OidcAuthOptions } from '../config';
 import { handleOAuthAuthorizeUrl } from '../lib/utils/handle-oauth-authorize-url';
-import { getOrganisationAuthenticationPortalOptions } from '../lib/utils/organisation-portal';
 import type { HonoAuthContext } from '../types/context';
 
 const ZOAuthAuthorizeSchema = z.object({
@@ -53,17 +55,10 @@ export const oauthRoute = new Hono<HonoAuthContext>()
   /**
    * Organisation OIDC authorize endpoint.
    */
-  .post('/authorize/oidc/org/:orgUrl', async (c) => {
-    const orgUrl = c.req.param('orgUrl');
-
-    const { clientOptions } = await getOrganisationAuthenticationPortalOptions({
-      type: 'url',
-      organisationUrl: orgUrl,
+  .post('/authorize/oidc/org/:orgUrl', (c) => {
+    const error = new AppError(AppErrorCode.NOT_SETUP, {
+      message: getCommunityEditionUnavailableMessage('Organisation SSO'),
     });
 
-    return await handleOAuthAuthorizeUrl({
-      c,
-      clientOptions,
-      prompt: 'select_account',
-    });
+    return c.json(AppError.toJSON(error), 400);
   });

@@ -181,6 +181,7 @@ export const AvatarImageForm = ({ className, team, organisation }: AvatarImageFo
                       type="button"
                       variant="secondary"
                       size="sm"
+                      className="bg-widget"
                       {...getRootProps()}
                       loading={form.formState.isSubmitting}
                       disabled={form.formState.isSubmitting}

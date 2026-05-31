@@ -1,6 +1,6 @@
 import { EnvelopeType } from '@prisma/client';
 
-import { getServerLimits } from '@documenso/ee/server-only/limits/server';
+import { getServerLimits } from '@documenso/lib/server-only/limits/server';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { createEnvelope } from '@documenso/lib/server-only/envelope/create-envelope';
 import { extractPdfPlaceholders } from '@documenso/lib/server-only/pdf/auto-place-fields';
@@ -85,7 +85,7 @@ export const createEnvelopeRouteCaller = async ({
 
   if (remaining.documents <= 0) {
     throw new AppError(AppErrorCode.LIMIT_EXCEEDED, {
-      message: 'You have reached your document limit for this month. Please upgrade your plan.',
+      message: 'You have reached your document limit for this month.',
       statusCode: 400,
     });
   }

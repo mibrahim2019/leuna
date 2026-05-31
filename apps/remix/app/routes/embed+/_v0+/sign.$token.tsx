@@ -4,7 +4,6 @@ import { match } from 'ts-pattern';
 
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
 import { EnvelopeRenderProvider } from '@documenso/lib/client-only/providers/envelope-render-provider';
-import { IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { getDocumentAndSenderByToken } from '@documenso/lib/server-only/document/get-document-by-token';
 import { viewedDocument } from '@documenso/lib/server-only/document/viewed-document';
@@ -12,7 +11,6 @@ import { getEnvelopeForRecipientSigning } from '@documenso/lib/server-only/envel
 import { getEnvelopeRequiredAccessData } from '@documenso/lib/server-only/envelope/get-envelope-required-access-data';
 import { getCompletedFieldsForToken } from '@documenso/lib/server-only/field/get-completed-fields-for-token';
 import { getFieldsForToken } from '@documenso/lib/server-only/field/get-fields-for-token';
-import { getOrganisationClaimByTeamId } from '@documenso/lib/server-only/organisation/get-organisation-claims';
 import { getIsRecipientsTurnToSign } from '@documenso/lib/server-only/recipient/get-is-recipient-turn';
 import { getRecipientByToken } from '@documenso/lib/server-only/recipient/get-recipient-by-token';
 import { getRecipientsForAssistant } from '@documenso/lib/server-only/recipient/get-recipients-for-assistant';
@@ -58,25 +56,6 @@ async function handleV1Loader({ params, request }: Route.LoaderArgs) {
   // satisfy the type checker.
   if (!document || !recipient) {
     throw new Response('Not found', { status: 404 });
-  }
-
-  const organisationClaim = await getOrganisationClaimByTeamId({ teamId: document.teamId });
-
-  const allowEmbedSigningWhitelabel = organisationClaim.flags.embedSigningWhiteLabel;
-  const hidePoweredBy = organisationClaim.flags.hidePoweredBy;
-
-  // TODO: Make this more robust, we need to ensure the owner is either
-  // TODO: the member of a team that has an active subscription, is an early
-  // TODO: adopter or is an enterprise user.
-  if (IS_BILLING_ENABLED() && !organisationClaim.flags.embedSigning) {
-    throw data(
-      {
-        type: 'embed-paywall',
-      },
-      {
-        status: 403,
-      },
-    );
   }
 
   if (isRecipientExpired(recipient)) {
@@ -148,8 +127,8 @@ async function handleV1Loader({ params, request }: Route.LoaderArgs) {
     recipient,
     fields,
     completedFields,
-    hidePoweredBy,
-    allowEmbedSigningWhitelabel,
+    hidePoweredBy: true,
+    allowEmbedSigningWhitelabel: true,
   };
 }
 
@@ -203,22 +182,6 @@ async function handleV2Loader({ params, request }: Route.LoaderArgs) {
   }
 
   const { envelope, recipient, isRecipientsTurn, isExpired } = envelopeForSigning;
-
-  const organisationClaim = await getOrganisationClaimByTeamId({ teamId: envelope.teamId });
-
-  const allowEmbedSigningWhitelabel = organisationClaim.flags.embedSigningWhiteLabel;
-  const hidePoweredBy = organisationClaim.flags.hidePoweredBy;
-
-  if (IS_BILLING_ENABLED() && !organisationClaim.flags.embedSigning) {
-    throw data(
-      {
-        type: 'embed-paywall',
-      },
-      {
-        status: 403,
-      },
-    );
-  }
 
   if (isExpired) {
     throw data(
@@ -277,8 +240,8 @@ async function handleV2Loader({ params, request }: Route.LoaderArgs) {
     token,
     user,
     envelopeForSigning,
-    hidePoweredBy,
-    allowEmbedSigningWhitelabel,
+    hidePoweredBy: true,
+    allowEmbedSigningWhitelabel: true,
   };
 }
 

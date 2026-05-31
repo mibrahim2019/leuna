@@ -332,32 +332,30 @@ export const AddSettingsFormPartial = ({
               />
             )}
 
-            {organisation.organisationClaim.flags.cfr21 && (
-              <FormField
-                control={form.control}
-                name="globalActionAuth"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex flex-row items-center">
-                      <Trans>Recipient action authentication</Trans>
-                      <DocumentGlobalAuthActionTooltip />
-                    </FormLabel>
+            <FormField
+              control={form.control}
+              name="globalActionAuth"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex flex-row items-center">
+                    <Trans>Recipient action authentication</Trans>
+                    <DocumentGlobalAuthActionTooltip />
+                  </FormLabel>
 
-                    <FormControl>
-                      <DocumentGlobalAuthActionSelect
-                        {...field}
-                        onValueChange={(value) => {
-                          field.onChange(value);
-                          void handleAutoSave();
-                        }}
-                        value={field.value}
-                        disabled={field.disabled}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-            )}
+                  <FormControl>
+                    <DocumentGlobalAuthActionSelect
+                      {...field}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        void handleAutoSave();
+                      }}
+                      value={field.value}
+                      disabled={field.disabled}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
 
             <Accordion type="multiple" className="mt-6">
               <AccordionItem value="advanced-options" className="border-none">

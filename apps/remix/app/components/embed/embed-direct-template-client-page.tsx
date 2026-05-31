@@ -44,7 +44,7 @@ import { Label } from '@documenso/ui/primitives/label';
 import { SignaturePadDialog } from '@documenso/ui/primitives/signature-pad/signature-pad-dialog';
 import { useToast } from '@documenso/ui/primitives/use-toast';
 
-import { BrandingLogo } from '~/components/general/branding-logo';
+import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
 import PDFViewerLazy from '~/components/general/pdf-viewer/pdf-viewer-lazy';
 import { injectCss } from '~/utils/css-vars';
 
@@ -539,7 +539,7 @@ export const EmbedDirectTemplateClientPage = ({
           <span>
             <Trans>Powered by</Trans>
           </span>
-          <BrandingLogo className="ml-2 inline-block h-[14px]" />
+          <SignWordmarkLogo className="ml-2 inline-block text-[14px] leading-none" />
         </div>
       )}
     </div>

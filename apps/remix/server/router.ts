@@ -8,7 +8,6 @@ import type { Logger } from 'pino';
 import { tsRestHonoApp } from '@documenso/api/hono';
 import { auth } from '@documenso/auth/server';
 import { jobsClient } from '@documenso/lib/jobs/client';
-import { LicenseClient } from '@documenso/lib/server-only/license/license-client';
 import { createRateLimitMiddleware } from '@documenso/lib/server-only/rate-limit/rate-limit-middleware';
 import {
   aiRateLimit,
@@ -124,13 +123,10 @@ app.use(`/api/v2-beta/*`, async (c) =>
 );
 
 // Start telemetry client for anonymous usage tracking.
-// Can be disabled by setting DOCUMENSO_DISABLE_TELEMETRY=true
+// Can be disabled by setting SIGN_DOCUTRACKER_DISABLE_TELEMETRY=true
 if (env('NODE_ENV') !== 'development') {
   void TelemetryClient.start();
 }
-
-// Start license client to verify license on startup.
-void LicenseClient.start();
 
 // Start cron scheduler for background jobs (e.g. envelope expiration sweep).
 // No-op for Inngest provider which handles cron externally.

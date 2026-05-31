@@ -1,4 +1,4 @@
-import { type HTMLAttributes, useEffect, useState } from 'react';
+import { type HTMLAttributes, useState } from 'react';
 
 import { ReadStatus } from '@prisma/client';
 import { InboxIcon, MenuIcon, SearchIcon } from 'lucide-react';
@@ -11,7 +11,7 @@ import { trpc } from '@documenso/trpc/react';
 import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
 
-import { BrandingLogo } from '~/components/general/branding-logo';
+import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
 
 import { AppCommandMenu } from './app-command-menu';
 import { AppNavDesktop } from './app-nav-desktop';
@@ -28,7 +28,6 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 
   const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
 
   const { data: unreadCountData } = trpc.document.inbox.getCount.useQuery(
     {
@@ -39,21 +38,10 @@ export const Header = ({ className, ...props }: HeaderProps) => {
     },
   );
 
-  useEffect(() => {
-    const onScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', onScroll);
-
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   return (
     <header
       className={cn(
-        'supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-[60] flex h-16 w-full items-center border-b border-b-transparent backdrop-blur duration-200',
-        scrollY > 5 && 'border-b-border',
+        'supports-backdrop-blur:bg-white/80 bg-white border-b-border sticky top-0 z-[60] flex h-14 w-full items-center border-b backdrop-blur duration-200',
         className,
       )}
       {...props}
@@ -63,12 +51,16 @@ export const Header = ({ className, ...props }: HeaderProps) => {
           to={getRootHref(params)}
           className="focus-visible:ring-ring ring-offset-background hidden rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 md:inline"
         >
-          <BrandingLogo className="h-6 w-auto" />
+          <SignWordmarkLogo className="text-[1.125rem]" signClassName="text-[#2563eb]" />
         </Link>
 
         <AppNavDesktop setIsCommandMenuOpen={setIsCommandMenuOpen} />
 
-        <Button asChild variant="outline" className="relative hidden h-10 w-10 rounded-lg md:flex">
+        <Button
+          asChild
+          variant="outline"
+          className="bg-widget relative hidden h-10 w-10 rounded-lg md:flex"
+        >
           <Link to="/inbox" className="relative block h-10 w-10">
             <InboxIcon className="text-muted-foreground hover:text-foreground h-5 w-5 flex-shrink-0 transition-colors" />
 

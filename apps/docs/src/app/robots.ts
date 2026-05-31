@@ -4,9 +4,8 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      allow: '/',
+      disallow: '/',
     },
-    host: 'https://docs.documenso.com',
-    sitemap: 'https://docs.documenso.com/sitemap.xml',
+    host: 'https://docs.leuna.app',
   };
 }

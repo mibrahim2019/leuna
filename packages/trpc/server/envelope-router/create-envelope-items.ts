@@ -47,11 +47,7 @@ export const createEnvelopeItemsRoute = authenticatedProcedure
         },
         team: {
           select: {
-            organisation: {
-              select: {
-                organisationClaim: true,
-              },
-            },
+            id: true,
           },
         },
       },
@@ -68,18 +64,6 @@ export const createEnvelopeItemsRoute = authenticatedProcedure
     if (!canFileBeChanged) {
       throw new AppError(AppErrorCode.INVALID_REQUEST, {
         message: 'Envelope item is not editable',
-      });
-    }
-
-    const organisationClaim = envelope.team.organisation.organisationClaim;
-
-    const remainingEnvelopeItems =
-      organisationClaim.envelopeItemCount - envelope.envelopeItems.length - files.length;
-
-    if (remainingEnvelopeItems < 0) {
-      throw new AppError('ENVELOPE_ITEM_LIMIT_EXCEEDED', {
-        message: `You cannot upload more than ${organisationClaim.envelopeItemCount} envelope items`,
-        statusCode: 400,
       });
     }
 

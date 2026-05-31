@@ -8,6 +8,7 @@ import { Button } from '@documenso/ui/primitives/button';
 
 import { Header as AuthenticatedHeader } from '~/components/general/app-header';
 import { GenericErrorLayout } from '~/components/general/generic-error-layout';
+import { OpenSourceNotice } from '~/components/general/open-source-notice';
 
 import type { Route } from './+types/_layout';
 
@@ -38,6 +39,8 @@ export default function RecipientLayout({ matches }: Route.ComponentProps) {
       >
         <Outlet />
       </main>
+
+      <OpenSourceNotice />
     </div>
   );
 }

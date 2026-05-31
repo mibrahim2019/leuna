@@ -1,15 +1,5 @@
 import { extendZodWithOpenApi } from '@anatine/zod-openapi';
-import {
-  DocumentDataType,
-  DocumentDistributionMethod,
-  DocumentSigningOrder,
-  FieldType,
-  ReadStatus,
-  RecipientRole,
-  SendStatus,
-  SigningStatus,
-} from '@prisma/client';
-import { TemplateType } from '@prisma/client';
+import prismaClient from '@prisma/client';
 import { z } from 'zod';
 
 import { DATE_FORMATS, DEFAULT_DOCUMENT_DATE_FORMAT } from '@documenso/lib/constants/date-formats';
@@ -25,6 +15,18 @@ import { ZDocumentEmailSettingsSchema } from '@documenso/lib/types/document-emai
 import { ZEnvelopeAttachmentTypeSchema } from '@documenso/lib/types/envelope-attachment';
 import { ZFieldMetaPrefillFieldsSchema, ZFieldMetaSchema } from '@documenso/lib/types/field-meta';
 import { zEmail } from '@documenso/lib/utils/zod';
+
+const {
+  DocumentDataType,
+  DocumentDistributionMethod,
+  DocumentSigningOrder,
+  FieldType,
+  ReadStatus,
+  RecipientRole,
+  SendStatus,
+  SigningStatus,
+  TemplateType,
+} = prismaClient;
 
 extendZodWithOpenApi(z);
 

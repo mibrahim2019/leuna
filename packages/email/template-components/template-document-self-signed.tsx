@@ -4,6 +4,7 @@ import { env } from '@documenso/lib/utils/env';
 
 import { Button, Column, Img, Link, Section, Text } from '../components';
 import { TemplateDocumentImage } from './template-document-image';
+import { cn, emailStyles } from './template-styles';
 
 export interface TemplateDocumentSelfSignedProps {
   documentName: string;
@@ -29,7 +30,7 @@ export const TemplateDocumentSelfSigned = ({
       <Section className="flex-row items-center justify-center">
         <Section>
           <Column align="center">
-            <Text className="text-base font-semibold text-[#7AC455]">
+            <Text className={cn(emailStyles.statusLabel, 'text-[#4f8f2f]')}>
               <Img
                 src={getAssetUrl('/static/completed.png')}
                 className="-mt-0.5 mr-2 inline h-7 w-7 align-middle"
@@ -39,17 +40,17 @@ export const TemplateDocumentSelfSigned = ({
           </Column>
         </Section>
 
-        <Text className="text-primary mb-0 mt-6 text-center text-lg font-semibold">
+        <Text className={`${emailStyles.title} mt-6`}>
           <Trans>You have signed “{documentName}”</Trans>
         </Text>
 
-        <Text className="mx-auto mb-6 mt-1 max-w-[80%] text-center text-base text-slate-400">
+        <Text className={emailStyles.bodyWide}>
           <Trans>
             Create a{' '}
             <Link
               href={signUpUrl}
               target="_blank"
-              className="text-documenso-700 hover:text-documenso-600 whitespace-nowrap"
+              className={`${emailStyles.footerLink} whitespace-nowrap`}
             >
               free account
             </Link>{' '}
@@ -58,10 +59,7 @@ export const TemplateDocumentSelfSigned = ({
         </Text>
 
         <Section className="mb-6 mt-8 text-center">
-          <Button
-            href={signUpUrl}
-            className="mr-4 rounded-lg border border-solid border-slate-200 px-4 py-2 text-center text-sm font-medium text-black no-underline"
-          >
+          <Button href={signUpUrl} className={`${emailStyles.secondaryButton} mr-4`}>
             <Img
               src={getAssetUrl('/static/user-plus.png')}
               className="mb-0.5 mr-2 inline h-5 w-5 align-middle"
@@ -69,15 +67,12 @@ export const TemplateDocumentSelfSigned = ({
             <Trans>Create account</Trans>
           </Button>
 
-          <Button
-            className="rounded-lg border border-solid border-slate-200 px-4 py-2 text-center text-sm font-medium text-black no-underline"
-            href="https://documenso.com/pricing"
-          >
+          <Button className={emailStyles.secondaryButton} href="https://leuna.app">
             <Img
               src={getAssetUrl('/static/review.png')}
               className="mb-0.5 mr-2 inline h-5 w-5 align-middle"
             />
-            <Trans>View plans</Trans>
+            <Trans>Learn more</Trans>
           </Button>
         </Section>
       </Section>

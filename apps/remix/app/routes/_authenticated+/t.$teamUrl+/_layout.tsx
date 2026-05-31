@@ -1,56 +1,55 @@
-import { useMemo } from 'react';
-
 import { msg } from '@lingui/core/macro';
 import { Trans } from '@lingui/react/macro';
-import { SubscriptionStatus } from '@prisma/client';
-import { Link, Outlet } from 'react-router';
+import { Link, Outlet, useLoaderData } from 'react-router';
 
+import { getSession } from '@documenso/auth/server/lib/utils/get-session';
 import {
   DEFAULT_MINIMUM_ENVELOPE_ITEM_COUNT,
-  PAID_PLAN_LIMITS,
-} from '@documenso/ee/server-only/limits/constants';
-import { LimitsProvider } from '@documenso/ee/server-only/limits/provider/client';
-import { useOptionalCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
+  UNRESTRICTED_LIMITS,
+} from '@documenso/lib/server-only/limits/constants';
+import { LimitsProvider } from '@documenso/lib/server-only/limits/provider/client';
+import { getServerLimits } from '@documenso/lib/server-only/limits/server';
+import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
+import { getTeamByUrl } from '@documenso/lib/server-only/team/get-team';
 import { TrpcProvider } from '@documenso/trpc/react';
 import { Button } from '@documenso/ui/primitives/button';
 
 import { GenericErrorLayout } from '~/components/general/generic-error-layout';
 import { useOptionalCurrentTeam } from '~/providers/team';
 
-export default function Layout() {
-  const team = useOptionalCurrentTeam();
-  const organisation = useOptionalCurrentOrganisation();
+import type { Route } from './+types/_layout';
 
-  const limits = useMemo(() => {
-    if (!organisation) {
-      return undefined;
-    }
+export async function loader({ request, params }: Route.LoaderArgs) {
+  const { user } = await getSession(request);
 
-    if (
-      organisation?.subscription &&
-      organisation.subscription.status === SubscriptionStatus.INACTIVE
-    ) {
+  try {
+    const team = await getTeamByUrl({
+      userId: user.id,
+      teamUrl: params.teamUrl,
+    });
+
+    return {
+      limits: await getServerLimits({
+        userId: user.id,
+        teamId: team.id,
+      }),
+    };
+  } catch (err) {
+    const error = AppError.parseError(err);
+
+    if (error.code === AppErrorCode.NOT_FOUND) {
       return {
-        quota: {
-          documents: 0,
-          recipients: 0,
-          directTemplates: 0,
-        },
-        remaining: {
-          documents: 0,
-          recipients: 0,
-          directTemplates: 0,
-        },
-        maximumEnvelopeItemCount: 0,
+        limits: undefined,
       };
     }
 
-    return {
-      quota: PAID_PLAN_LIMITS,
-      remaining: PAID_PLAN_LIMITS,
-      maximumEnvelopeItemCount: DEFAULT_MINIMUM_ENVELOPE_ITEM_COUNT,
-    };
-  }, [organisation?.subscription]);
+    throw err;
+  }
+}
+
+export default function Layout() {
+  const { limits } = useLoaderData<typeof loader>();
+  const team = useOptionalCurrentTeam();
 
   if (!team) {
     return (
@@ -83,7 +82,17 @@ export default function Layout() {
   return (
     <div key={team.url}>
       <TrpcProvider headers={trpcHeaders}>
-        <LimitsProvider initialValue={limits} teamId={team.id}>
+        <LimitsProvider
+          initialValue={
+            limits ?? {
+              quota: UNRESTRICTED_LIMITS,
+              remaining: UNRESTRICTED_LIMITS,
+              hasProductAccess: true,
+              maximumEnvelopeItemCount: DEFAULT_MINIMUM_ENVELOPE_ITEM_COUNT,
+            }
+          }
+          teamId={team.id}
+        >
           <Outlet />
         </LimitsProvider>
       </TrpcProvider>
