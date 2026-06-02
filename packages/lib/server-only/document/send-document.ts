@@ -127,6 +127,34 @@ export const sendDocument = async ({
     throw new Error('Missing envelope items');
   }
 
+  const isRecipientSigningRequestEmailEnabled = extractDerivedDocumentEmailSettings(
+    envelope.documentMeta,
+  ).recipientSigningRequest;
+
+  const shouldSendRecipientSigningRequestEmail =
+    sendEmail === true || (isRecipientSigningRequestEmailEnabled && sendEmail === undefined);
+
+  if (shouldSendRecipientSigningRequestEmail) {
+    const recipientsWithInvalidEmail = recipientsToNotify.filter(
+      (recipient) =>
+        recipient.sendStatus !== SendStatus.SENT &&
+        recipient.role !== RecipientRole.CC &&
+        !isRecipientEmailValidForSending(recipient),
+    );
+
+    if (recipientsWithInvalidEmail.length > 0) {
+      const invalidRecipientDescriptions = recipientsWithInvalidEmail
+        .map((recipient) =>
+          recipient.name ? `${recipient.name} (id: ${recipient.id})` : `Recipient ${recipient.id}`,
+        )
+        .join(', ');
+
+      throw new AppError(AppErrorCode.INVALID_REQUEST, {
+        message: `The following recipients need a valid email before this document can be sent by email: ${invalidRecipientDescriptions}.`,
+      });
+    }
+  }
+
   if (envelope.formValues) {
     await Promise.all(
       envelope.envelopeItems.map(async (envelopeItem) => {
@@ -297,14 +325,10 @@ export const sendDocument = async ({
     });
   });
 
-  const isRecipientSigningRequestEmailEnabled = extractDerivedDocumentEmailSettings(
-    envelope.documentMeta,
-  ).recipientSigningRequest;
-
   // Only send email if one of the following is true:
   // - It is explicitly set
   // - The email is enabled for signing requests AND sendEmail is undefined
-  if (sendEmail || (isRecipientSigningRequestEmailEnabled && sendEmail === undefined)) {
+  if (shouldSendRecipientSigningRequestEmail) {
     await Promise.all(
       recipientsToNotify.map(async (recipient) => {
         if (recipient.sendStatus === SendStatus.SENT || recipient.role === RecipientRole.CC) {

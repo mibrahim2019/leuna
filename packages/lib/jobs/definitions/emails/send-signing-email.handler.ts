@@ -93,6 +93,10 @@ export const run = async ({
     return;
   }
 
+  if (!isRecipientEmailValidForSending(recipient)) {
+    return;
+  }
+
   const { branding, emailLanguage, settings, organisationType, senderEmail, replyToEmail } =
     await getEmailContext({
       emailType: 'RECIPIENT',
@@ -109,6 +113,7 @@ export const run = async ({
   const recipientEmailType = RECIPIENT_ROLE_TO_EMAIL_TYPE[recipient.role];
 
   const { email, name } = recipient;
+
   const selfSigner = email === user.email;
 
   const i18n = await getI18nInstance(emailLanguage);
@@ -178,33 +183,31 @@ export const run = async ({
     includeSenderDetails: settings.includeSenderDetails,
   });
 
-  if (isRecipientEmailValidForSending(recipient)) {
-    await io.runTask('send-signing-email', async () => {
-      const [html, text] = await Promise.all([
-        renderEmailWithI18N(template, { lang: emailLanguage, branding }),
-        renderEmailWithI18N(template, {
-          lang: emailLanguage,
-          branding,
-          plainText: true,
-        }),
-      ]);
+  await io.runTask('send-signing-email', async () => {
+    const [html, text] = await Promise.all([
+      renderEmailWithI18N(template, { lang: emailLanguage, branding }),
+      renderEmailWithI18N(template, {
+        lang: emailLanguage,
+        branding,
+        plainText: true,
+      }),
+    ]);
 
-      await mailer.sendMail({
-        to: {
-          name: recipient.name,
-          address: recipient.email,
-        },
-        from: senderEmail,
-        replyTo: replyToEmail,
-        subject: renderCustomEmailTemplate(
-          documentMeta?.subject || emailSubject,
-          customEmailTemplate,
-        ),
-        html,
-        text,
-      });
+    await mailer.sendMail({
+      to: {
+        name: recipient.name,
+        address: recipient.email,
+      },
+      from: senderEmail,
+      replyTo: replyToEmail,
+      subject: renderCustomEmailTemplate(
+        documentMeta?.subject || emailSubject,
+        customEmailTemplate,
+      ),
+      html,
+      text,
     });
-  }
+  });
 
   await io.runTask('update-recipient', async () => {
     await prisma.recipient.update({
