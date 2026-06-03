@@ -50,6 +50,8 @@ export const adminSuperDeleteDocument = async ({
     });
   }
 
+  const { status, user } = envelope;
+
   const { branding, settings, senderEmail, replyToEmail } = await getEmailContext({
     emailType: 'RECIPIENT',
     source: {
@@ -59,8 +61,6 @@ export const adminSuperDeleteDocument = async ({
     meta: envelope.documentMeta,
     senderUserName: user.name,
   });
-
-  const { status, user } = envelope;
 
   const isDocumentDeletedEmailEnabled = extractDerivedDocumentEmailSettings(
     envelope.documentMeta,

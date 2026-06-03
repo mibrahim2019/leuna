@@ -258,7 +258,7 @@ export const EnvelopeEditorSettingsDialog = ({
   const emails = emailData?.data || organisationEmails || [];
   const showEmailSenderField =
     IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED &&
-    settings.allowConfigureEmailSender &&
+    settings?.allowConfigureEmailSender === true &&
     emails.length > 0;
 
   const canUpdateVisibility = canAccessTeamDocument(team.currentTeamRole, envelope.visibility);
