@@ -5,11 +5,11 @@ import { MarketingHeader } from '~/components/general/marketing-header';
 
 export default function Layout() {
   return (
-    <main className="dashboard-area dark-mode-disabled relative min-h-screen overflow-hidden bg-[#E5E5F7]">
+    <main className="dashboard-area dark-mode-disabled relative min-h-screen overflow-hidden bg-[#fff]">
       <div
         className="absolute inset-0 opacity-80"
         style={{
-          backgroundImage: 'radial-gradient(#ffff 1px, #E5E5F7 1px)',
+          backgroundImage: 'radial-gradient(#444CF7 1px, #E5E5F7 1px)',
           backgroundSize: '10px 10px',
         }}
         aria-hidden
