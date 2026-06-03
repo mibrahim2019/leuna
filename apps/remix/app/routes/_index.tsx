@@ -232,71 +232,32 @@ export default function Home() {
           </div>
 
           <div className="w-full py-2 md:py-4 lg:py-5">
-            <div className="w-full">
-              <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2 lg:items-center lg:gap-8">
-                <div className="w-full min-w-0">
-                  <p className="text-sm font-medium text-black">
-                    <Trans>Pay once only.</Trans>
-                  </p>
+            <div className="mx-auto w-full max-w-3xl text-center">
+              <p className="text-sm font-medium text-black">
+                <Trans>Pay once only.</Trans>
+              </p>
 
-                  <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-                    <Trans>Sign contracts online. Pay once. Own it forever $99</Trans>
-                  </h1>
+              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+                <Trans>Sign contracts online. Pay once. Own it forever $99</Trans>
+              </h1>
 
-                  <p className="mt-3 text-base text-black md:text-lg">
-                    <Trans>Send, sign, and store unlimited contracts. No subscriptions.</Trans>
-                  </p>
+              <p className="mt-3 text-base text-black md:text-lg">
+                <Trans>Send, sign, and store unlimited contracts. No subscriptions.</Trans>
+              </p>
 
-                  <div className="mt-6 flex justify-center lg:justify-start">
-                    <Button asChild size="lg">
-                      <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
-                        <Trans>Get Lifetime Access - $99</Trans>
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-
-                <Card className="w-full rounded-md border border-border/50 bg-white shadow-none lg:ml-auto lg:max-w-xl">
-                  <CardContent className="flex h-full flex-col p-5 md:p-7">
-                    <div className="mx-auto w-fit rounded-full border border-border/50 bg-muted px-4 py-1 text-sm font-medium text-black">
-                      <Trans>Lifetime Deal</Trans>
-                    </div>
-
-                    <CardTitle className="mt-4 text-center text-2xl md:text-3xl">
-                      <Trans>Pay once and use Forever</Trans>
-                    </CardTitle>
-
-                    <div className="mt-4 text-center text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
-                      <Trans>{LIFETIME_DEAL_PRICE}</Trans>{' '}
-                    </div>
-
-                    <div className="mt-5 text-left text-black">
-                      <ul className="divide-y text-sm">
-                        <li className="py-2.5">
-                          <Trans>Unlimited Contracts</Trans>
-                        </li>
-                        <li className="py-2.5">
-                          <Trans>Reusable Templates</Trans>
-                        </li>
-                        <li className="py-2.5">
-                          <Trans>Team Collaboration</Trans>
-                        </li>
-                        <li className="py-2.5">
-                          <Trans>Custom Branding Controls</Trans>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="mt-5 flex justify-center">
-                      <Button asChild size="lg" variant="secondary">
-                        <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
-                          <Trans>Get Started</Trans>
-                        </Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+              <div className="mt-6 flex justify-center">
+                <Button asChild size="lg">
+                  <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
+                    <Trans>Get Lifetime Access - $99</Trans>
+                  </Link>
+                </Button>
               </div>
+
+              <img
+                src="/static/desktop-hero.png"
+                alt="Leuna document signing dashboard"
+                className="mt-8 w-full rounded-md border border-border/50 object-cover md:mt-10"
+              />
             </div>
           </div>
 
