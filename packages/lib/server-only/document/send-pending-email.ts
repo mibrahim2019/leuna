@@ -38,6 +38,11 @@ export const sendPendingEmail = async ({ id, recipientId }: SendPendingEmailOpti
         },
       },
       documentMeta: true,
+      user: {
+        select: {
+          name: true,
+        },
+      },
     },
   });
 
@@ -56,6 +61,7 @@ export const sendPendingEmail = async ({ id, recipientId }: SendPendingEmailOpti
       teamId: envelope.teamId,
     },
     meta: envelope.documentMeta,
+    senderUserName: envelope.user.name,
   });
 
   const isDocumentPendingEmailEnabled = extractDerivedDocumentEmailSettings(

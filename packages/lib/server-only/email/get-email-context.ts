@@ -13,6 +13,7 @@ import { EmailDomainStatus, type OrganisationGlobalSettings } from '@documenso/p
 
 import { LEUNA_DEFAULT_SENDER_EMAIL } from '../../constants/email';
 import { AppError, AppErrorCode } from '../../errors/app-error';
+import { formatRecipientEmailSenderName } from '../../utils/format-recipient-email-sender-name';
 import {
   organisationGlobalSettingsToBranding,
   teamGlobalSettingsToBranding,
@@ -43,6 +44,12 @@ type BaseGetEmailContextOptions = {
    * - RECIPIENT: Emails to recipients, such as document sent, document signed, etc.
    */
   emailType: 'INTERNAL' | 'RECIPIENT';
+
+  /**
+   * Document sender display name for recipient emails (e.g. "Jane Doe via leuna.app").
+   * Only applied when using the platform default sender, not custom organisation emails.
+   */
+  senderUserName?: string | null;
 };
 
 type InternalGetEmailContextOptions = BaseGetEmailContextOptions & {
@@ -78,7 +85,7 @@ type EmailContextResponse = {
 export const getEmailContext = async (
   options: GetEmailContextOptions,
 ): Promise<EmailContextResponse> => {
-  const { source, meta } = options;
+  const { source, meta, senderUserName } = options;
 
   let emailContext: Omit<EmailContextResponse, 'senderEmail' | 'replyToEmail' | 'emailLanguage'>;
 
@@ -120,7 +127,10 @@ export const getEmailContext = async (
         name: foundSenderEmail.emailName,
         address: foundSenderEmail.email,
       }
-    : LEUNA_DEFAULT_SENDER_EMAIL;
+    : {
+        name: formatRecipientEmailSenderName(senderUserName),
+        address: LEUNA_DEFAULT_SENDER_EMAIL.address,
+      };
 
   return {
     ...emailContext,

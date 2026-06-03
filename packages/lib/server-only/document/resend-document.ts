@@ -142,6 +142,7 @@ export const resendDocument = async ({
         teamId: envelope.teamId,
       },
       meta: envelope.documentMeta,
+      senderUserName: user.name,
     });
 
   await Promise.all(

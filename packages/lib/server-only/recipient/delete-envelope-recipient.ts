@@ -160,6 +160,7 @@ export const deleteEnvelopeRecipient = async ({
         teamId: envelope.teamId,
       },
       meta: envelope.documentMeta,
+      senderUserName: user.name,
     });
 
     const [html, text] = await Promise.all([

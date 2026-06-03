@@ -5,7 +5,10 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
-import { FROM_ADDRESS } from '@documenso/lib/constants/email';
+import {
+  FROM_ADDRESS,
+  IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED,
+} from '@documenso/lib/constants/email';
 import {
   DEFAULT_DOCUMENT_EMAIL_SETTINGS,
   ZDocumentEmailSettingsSchema,
@@ -70,12 +73,18 @@ export const EmailPreferencesForm = ({
   });
 
   const { data: emailData, isLoading: isLoadingEmails } =
-    trpc.enterprise.organisation.email.find.useQuery({
-      organisationId: organisation.id,
-      perPage: 100,
-    });
+    trpc.enterprise.organisation.email.find.useQuery(
+      {
+        organisationId: organisation.id,
+        perPage: 100,
+      },
+      {
+        enabled: IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED,
+      },
+    );
 
   const emails = emailData?.data || [];
+  const showDefaultEmailField = IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED && emails.length > 0;
 
   return (
     <Form {...form}>
@@ -84,45 +93,47 @@ export const EmailPreferencesForm = ({
           className="flex h-full max-w-2xl flex-col gap-y-6"
           disabled={form.formState.isSubmitting}
         >
-          <FormField
-            control={form.control}
-            name="emailId"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel>
-                  <Trans>Default Email</Trans>
-                </FormLabel>
+          {showDefaultEmailField && (
+            <FormField
+              control={form.control}
+              name="emailId"
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  <FormLabel>
+                    <Trans>Default Email</Trans>
+                  </FormLabel>
 
-                <FormControl>
-                  <Select
-                    {...field}
-                    value={field.value === null ? '-1' : field.value}
-                    onValueChange={(value) => field.onChange(value === '-1' ? null : value)}
-                  >
-                    <SelectTrigger loading={isLoadingEmails}>
-                      <SelectValue />
-                    </SelectTrigger>
+                  <FormControl>
+                    <Select
+                      {...field}
+                      value={field.value === null ? '-1' : field.value}
+                      onValueChange={(value) => field.onChange(value === '-1' ? null : value)}
+                    >
+                      <SelectTrigger loading={isLoadingEmails}>
+                        <SelectValue />
+                      </SelectTrigger>
 
-                    <SelectContent>
-                      {emails.map((email) => (
-                        <SelectItem key={email.id} value={email.id}>
-                          {email.email}
+                      <SelectContent>
+                        {emails.map((email) => (
+                          <SelectItem key={email.id} value={email.id}>
+                            {email.email}
+                          </SelectItem>
+                        ))}
+
+                        <SelectItem value={'-1'}>
+                          {canInherit ? <Trans>Inherit from organisation</Trans> : FROM_ADDRESS}
                         </SelectItem>
-                      ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
 
-                      <SelectItem value={'-1'}>
-                        {canInherit ? <Trans>Inherit from organisation</Trans> : FROM_ADDRESS}
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-
-                <FormDescription>
-                  <Trans>The default email to use when sending emails to recipients</Trans>
-                </FormDescription>
-              </FormItem>
-            )}
-          />
+                  <FormDescription>
+                    <Trans>The default email to use when sending emails to recipients</Trans>
+                  </FormDescription>
+                </FormItem>
+              )}
+            />
+          )}
 
           <FormField
             control={form.control}

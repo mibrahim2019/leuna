@@ -54,6 +54,8 @@ export const run = async ({
     },
   });
 
+  const { documentMeta, user: documentOwner } = envelope;
+
   const { branding, emailLanguage, senderEmail, replyToEmail } = await getEmailContext({
     emailType: 'RECIPIENT',
     source: {
@@ -61,9 +63,8 @@ export const run = async ({
       teamId: envelope.teamId,
     },
     meta: envelope.documentMeta,
+    senderUserName: documentOwner.name,
   });
-
-  const { documentMeta, user: documentOwner } = envelope;
 
   // Check if document cancellation emails are enabled
   const isEmailEnabled = extractDerivedDocumentEmailSettings(documentMeta).documentDeleted;

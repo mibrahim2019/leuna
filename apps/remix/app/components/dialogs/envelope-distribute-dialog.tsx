@@ -13,7 +13,7 @@ import * as z from 'zod';
 
 import { useCurrentEnvelopeEditor } from '@documenso/lib/client-only/providers/envelope-editor-provider';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
-import { FROM_NAME } from '@documenso/lib/constants/email';
+import { IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED } from '@documenso/lib/constants/email';
 import {
   POLAR_ACCESS_REQUIRED_ERROR_CODE,
   POLAR_UNAVAILABLE_ERROR_CODE,
@@ -127,10 +127,12 @@ export const EnvelopeDistributeDialog = ({
       },
       {
         ...DO_NOT_INVALIDATE_QUERY_ON_MUTATION,
+        enabled: IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED,
       },
     );
 
   const emails = emailData?.data || [];
+  const showEmailSenderField = IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED && emails.length > 0;
 
   const distributionMethod = watch('meta.distributionMethod');
 
@@ -277,7 +279,7 @@ export const EnvelopeDistributeDialog = ({
                       <Trans>Email</Trans>
                     </TabsTrigger>
                     <TabsTrigger className="w-full" value={DocumentDistributionMethod.NONE}>
-                      <Trans>None</Trans>
+                      <Trans>Copy link</Trans>
                     </TabsTrigger>
                   </TabsList>
                 </Tabs>
@@ -305,45 +307,45 @@ export const EnvelopeDistributeDialog = ({
                             className="mt-2 flex flex-col gap-y-4 rounded-lg"
                             disabled={form.formState.isSubmitting}
                           >
-                            <FormField
-                              control={form.control}
-                              name="meta.emailId"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>
-                                    <Trans>Email Sender</Trans>
-                                  </FormLabel>
-                                  <FormControl>
-                                    <Select
-                                      {...field}
-                                      value={field.value === null ? '-1' : field.value}
-                                      onValueChange={(value) =>
-                                        field.onChange(value === '-1' ? null : value)
-                                      }
-                                    >
-                                      <SelectTrigger
-                                        loading={isLoadingEmails}
-                                        className="bg-background"
+                            {showEmailSenderField && (
+                              <FormField
+                                control={form.control}
+                                name="meta.emailId"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>
+                                      <Trans>Email Sender</Trans>
+                                    </FormLabel>
+                                    <FormControl>
+                                      <Select
+                                        {...field}
+                                        value={field.value === null ? '-1' : field.value}
+                                        onValueChange={(value) =>
+                                          field.onChange(value === '-1' ? null : value)
+                                        }
                                       >
-                                        <SelectValue />
-                                      </SelectTrigger>
+                                        <SelectTrigger
+                                          loading={isLoadingEmails}
+                                          className="bg-background"
+                                        >
+                                          <SelectValue />
+                                        </SelectTrigger>
 
-                                      <SelectContent>
-                                        {emails.map((email) => (
-                                          <SelectItem key={email.id} value={email.id}>
-                                            {email.email}
-                                          </SelectItem>
-                                        ))}
+                                        <SelectContent>
+                                          {emails.map((email) => (
+                                            <SelectItem key={email.id} value={email.id}>
+                                              {email.email}
+                                            </SelectItem>
+                                          ))}
+                                        </SelectContent>
+                                      </Select>
+                                    </FormControl>
 
-                                        <SelectItem value={'-1'}>{FROM_NAME}</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </FormControl>
-
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            )}
 
                             <FormField
                               control={form.control}
@@ -456,7 +458,7 @@ export const EnvelopeDistributeDialog = ({
                     {distributionMethod === DocumentDistributionMethod.EMAIL ? (
                       <Trans>Send</Trans>
                     ) : (
-                      <Trans>Generate Links</Trans>
+                      <Trans>Copy links</Trans>
                     )}
                   </Button>
                 </DialogFooter>

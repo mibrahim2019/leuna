@@ -122,7 +122,7 @@ export const DEFAULT_EDITOR_CONFIG: EnvelopeEditorConfig = {
     allowConfigureRedirectUrl: true,
     allowConfigureDistribution: true,
     allowConfigureExpirationPeriod: true,
-    allowConfigureEmailSender: true,
+    allowConfigureEmailSender: false,
     allowConfigureEmailReplyTo: true,
   },
   actions: {
@@ -180,7 +180,7 @@ export const DEFAULT_EMBEDDED_EDITOR_CONFIG = {
     allowConfigureRedirectUrl: true,
     allowConfigureDistribution: true,
     allowConfigureExpirationPeriod: true,
-    allowConfigureEmailSender: true,
+    allowConfigureEmailSender: false,
     allowConfigureEmailReplyTo: true,
   },
   actions: {

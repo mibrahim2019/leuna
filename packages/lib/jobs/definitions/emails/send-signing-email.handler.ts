@@ -105,6 +105,7 @@ export const run = async ({
         teamId: envelope.teamId,
       },
       meta: envelope.documentMeta,
+      senderUserName: user.name,
     });
 
   const customEmail = envelope?.documentMeta;

@@ -57,6 +57,7 @@ export const adminSuperDeleteDocument = async ({
       teamId: envelope.teamId,
     },
     meta: envelope.documentMeta,
+    senderUserName: user.name,
   });
 
   const { status, user } = envelope;

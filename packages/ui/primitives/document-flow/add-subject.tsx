@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 
 import { useAutoSave } from '@documenso/lib/client-only/hooks/use-autosave';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
-import { FROM_NAME } from '@documenso/lib/constants/email';
+import { IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED } from '@documenso/lib/constants/email';
 import { RECIPIENT_ROLES_DESCRIPTION } from '@documenso/lib/constants/recipient-roles';
 import type { TDocument } from '@documenso/lib/types/document';
 import { ZDocumentEmailSettingsSchema } from '@documenso/lib/types/document-email';
@@ -107,12 +107,18 @@ export const AddSubjectFormPartial = ({
   } = form;
 
   const { data: emailData, isLoading: isLoadingEmails } =
-    trpc.enterprise.organisation.email.find.useQuery({
-      organisationId: organisation.id,
-      perPage: 100,
-    });
+    trpc.enterprise.organisation.email.find.useQuery(
+      {
+        organisationId: organisation.id,
+        perPage: 100,
+      },
+      {
+        enabled: IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED,
+      },
+    );
 
   const emails = emailData?.data || [];
+  const showEmailSenderField = IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED && emails.length > 0;
 
   const GoNextLabel = {
     [DocumentDistributionMethod.EMAIL]: {
@@ -195,7 +201,7 @@ export const AddSubjectFormPartial = ({
                 <Trans>Email</Trans>
               </TabsTrigger>
               <TabsTrigger className="w-full" value={DocumentDistributionMethod.NONE}>
-                <Trans>None</Trans>
+                <Trans>Copy link</Trans>
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -213,42 +219,42 @@ export const AddSubjectFormPartial = ({
                     className="flex flex-col gap-y-4 rounded-lg border p-4"
                     disabled={form.formState.isSubmitting}
                   >
-                    <FormField
-                      control={form.control}
-                      name="meta.emailId"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>
-                            <Trans>Email Sender</Trans>
-                          </FormLabel>
-                          <FormControl>
-                            <Select
-                              {...field}
-                              value={field.value === null ? '-1' : field.value}
-                              onValueChange={(value) =>
-                                field.onChange(value === '-1' ? null : value)
-                              }
-                            >
-                              <SelectTrigger loading={isLoadingEmails} className="bg-background">
-                                <SelectValue />
-                              </SelectTrigger>
+                    {showEmailSenderField && (
+                      <FormField
+                        control={form.control}
+                        name="meta.emailId"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>
+                              <Trans>Email Sender</Trans>
+                            </FormLabel>
+                            <FormControl>
+                              <Select
+                                {...field}
+                                value={field.value === null ? '-1' : field.value}
+                                onValueChange={(value) =>
+                                  field.onChange(value === '-1' ? null : value)
+                                }
+                              >
+                                <SelectTrigger loading={isLoadingEmails} className="bg-background">
+                                  <SelectValue />
+                                </SelectTrigger>
 
-                              <SelectContent>
-                                {emails.map((email) => (
-                                  <SelectItem key={email.id} value={email.id}>
-                                    {email.email}
-                                  </SelectItem>
-                                ))}
+                                <SelectContent>
+                                  {emails.map((email) => (
+                                    <SelectItem key={email.id} value={email.id}>
+                                      {email.email}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
 
-                                <SelectItem value={'-1'}>{FROM_NAME}</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </FormControl>
-
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
 
                     <FormField
                       control={form.control}

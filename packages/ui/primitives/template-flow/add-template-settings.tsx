@@ -15,7 +15,7 @@ import {
   DOCUMENT_DISTRIBUTION_METHODS,
   DOCUMENT_SIGNATURE_TYPES,
 } from '@documenso/lib/constants/document';
-import { FROM_NAME } from '@documenso/lib/constants/email';
+import { IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED } from '@documenso/lib/constants/email';
 import { SUPPORTED_LANGUAGES } from '@documenso/lib/constants/i18n';
 import { DEFAULT_DOCUMENT_TIME_ZONE, TIME_ZONES } from '@documenso/lib/constants/time-zones';
 import { ZDocumentEmailSettingsSchema } from '@documenso/lib/types/document-email';
@@ -143,12 +143,18 @@ export const AddTemplateSettingsFormPartial = ({
   const emailSettings = form.watch('meta.emailSettings');
 
   const { data: emailData, isLoading: isLoadingEmails } =
-    trpc.enterprise.organisation.email.find.useQuery({
-      organisationId: organisation.id,
-      perPage: 100,
-    });
+    trpc.enterprise.organisation.email.find.useQuery(
+      {
+        organisationId: organisation.id,
+        perPage: 100,
+      },
+      {
+        enabled: IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED,
+      },
+    );
 
   const emails = emailData?.data || [];
+  const showEmailSenderField = IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED && emails.length > 0;
 
   const canUpdateVisibility = match(currentTeamMemberRole)
     .with(TeamMemberRole.ADMIN, () => true)
@@ -389,8 +395,8 @@ export const AddTemplateSettingsFormPartial = ({
                           </li>
                           <li>
                             <Trans>
-                              <strong>None</strong> - We will generate links which you can send to
-                              the recipients manually.
+                              <strong>Copy link</strong> - We will generate signing links which you
+                              can copy and send to recipients yourself.
                             </Trans>
                           </li>
                         </ul>
@@ -496,43 +502,46 @@ export const AddTemplateSettingsFormPartial = ({
 
                   <AccordionContent className="-mx-1 px-1 pt-4 text-sm leading-relaxed text-muted-foreground [&>div]:pb-0">
                     <div className="flex flex-col space-y-6">
-                      <FormField
-                        control={form.control}
-                        name="meta.emailId"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>
-                              <Trans>Email Sender</Trans>
-                            </FormLabel>
+                      {showEmailSenderField && (
+                        <FormField
+                          control={form.control}
+                          name="meta.emailId"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>
+                                <Trans>Email Sender</Trans>
+                              </FormLabel>
 
-                            <FormControl>
-                              <Select
-                                {...field}
-                                value={field.value === null ? '-1' : field.value}
-                                onValueChange={(value) =>
-                                  field.onChange(value === '-1' ? null : value)
-                                }
-                              >
-                                <SelectTrigger loading={isLoadingEmails} className="bg-background">
-                                  <SelectValue />
-                                </SelectTrigger>
+                              <FormControl>
+                                <Select
+                                  {...field}
+                                  value={field.value === null ? '-1' : field.value}
+                                  onValueChange={(value) =>
+                                    field.onChange(value === '-1' ? null : value)
+                                  }
+                                >
+                                  <SelectTrigger
+                                    loading={isLoadingEmails}
+                                    className="bg-background"
+                                  >
+                                    <SelectValue />
+                                  </SelectTrigger>
 
-                                <SelectContent>
-                                  {emails.map((email) => (
-                                    <SelectItem key={email.id} value={email.id}>
-                                      {email.email}
-                                    </SelectItem>
-                                  ))}
+                                  <SelectContent>
+                                    {emails.map((email) => (
+                                      <SelectItem key={email.id} value={email.id}>
+                                        {email.email}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </FormControl>
 
-                                  <SelectItem value={'-1'}>{FROM_NAME}</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </FormControl>
-
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      )}
 
                       <FormField
                         control={form.control}

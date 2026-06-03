@@ -70,6 +70,8 @@ export const sendCompletedEmail = async ({ id, requestMetadata }: SendDocumentOp
     throw new Error('Document has no recipients');
   }
 
+  const { user: owner } = envelope;
+
   const { branding, emailLanguage, senderEmail, replyToEmail } = await getEmailContext({
     emailType: 'RECIPIENT',
     source: {
@@ -77,9 +79,8 @@ export const sendCompletedEmail = async ({ id, requestMetadata }: SendDocumentOp
       teamId: envelope.teamId,
     },
     meta: envelope.documentMeta,
+    senderUserName: owner.name,
   });
-
-  const { user: owner } = envelope;
 
   const completedDocumentEmailAttachments = await Promise.all(
     envelope.envelopeItems.map(async (envelopeItem) => {

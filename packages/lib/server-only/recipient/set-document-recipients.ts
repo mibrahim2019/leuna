@@ -95,6 +95,7 @@ export const setDocumentRecipients = async ({
       teamId,
     },
     meta: envelope.documentMeta,
+    senderUserName: user.name,
   });
 
   const recipientsHaveActionAuth = recipients.some(

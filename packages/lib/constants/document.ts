@@ -44,7 +44,7 @@ export const DOCUMENT_DISTRIBUTION_METHODS: Record<string, DocumentDistributionM
   },
   [DocumentDistributionMethod.NONE]: {
     value: DocumentDistributionMethod.NONE,
-    description: msg`None`,
+    description: msg`Copy link`,
   },
 } satisfies Record<DocumentDistributionMethod, DocumentDistributionMethodTypeData>;
 

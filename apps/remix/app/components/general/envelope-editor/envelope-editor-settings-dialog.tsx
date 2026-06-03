@@ -25,7 +25,7 @@ import {
   DOCUMENT_DISTRIBUTION_METHODS,
   DOCUMENT_SIGNATURE_TYPES,
 } from '@documenso/lib/constants/document';
-import { FROM_NAME } from '@documenso/lib/constants/email';
+import { IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED } from '@documenso/lib/constants/email';
 import { ZEnvelopeExpirationPeriod } from '@documenso/lib/constants/envelope-expiration';
 import {
   SUPPORTED_LANGUAGES,
@@ -249,11 +249,17 @@ export const EnvelopeEditorSettingsDialog = ({
       },
       {
         ...DO_NOT_INVALIDATE_QUERY_ON_MUTATION,
-        enabled: Boolean(organisationEmails !== undefined && organisation.id),
+        enabled:
+          IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED &&
+          Boolean(organisationEmails !== undefined && organisation.id),
       },
     );
 
   const emails = emailData?.data || organisationEmails || [];
+  const showEmailSenderField =
+    IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED &&
+    settings.allowConfigureEmailSender &&
+    emails.length > 0;
 
   const canUpdateVisibility = canAccessTeamDocument(team.currentTeamRole, envelope.visibility);
 
@@ -756,7 +762,7 @@ export const EnvelopeEditorSettingsDialog = ({
                     { activeTab: 'email', settings: { allowConfigureDistribution: true } },
                     () => (
                       <>
-                        {settings.allowConfigureEmailSender && (
+                        {showEmailSenderField && (
                           <FormField
                             control={form.control}
                             name="meta.emailId"
@@ -787,8 +793,6 @@ export const EnvelopeEditorSettingsDialog = ({
                                           {email.email}
                                         </SelectItem>
                                       ))}
-
-                                      <SelectItem value={'-1'}>{FROM_NAME}</SelectItem>
                                     </SelectContent>
                                   </Select>
                                 </FormControl>

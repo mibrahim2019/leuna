@@ -81,6 +81,7 @@ export const run = async ({
       teamId: envelope.teamId,
     },
     meta: envelope.documentMeta,
+    senderUserName: documentOwner.name,
   });
 
   const i18n = await getI18nInstance(emailLanguage);

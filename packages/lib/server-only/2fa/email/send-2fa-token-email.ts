@@ -47,6 +47,11 @@ export const send2FATokenEmail = async ({ token, envelopeId }: Send2FATokenEmail
         },
       },
       documentMeta: true,
+      user: {
+        select: {
+          name: true,
+        },
+      },
       team: {
         select: {
           teamEmail: true,
@@ -88,6 +93,7 @@ export const send2FATokenEmail = async ({ token, envelopeId }: Send2FATokenEmail
       teamId: envelope.teamId,
     },
     meta: envelope.documentMeta,
+    senderUserName: envelope.user.name,
   });
 
   const i18n = await getI18nInstance(emailLanguage);

@@ -1,5 +1,10 @@
 import { env } from '../utils/env';
 
+/**
+ * Custom organisation email senders (verified domains). Disabled in community edition.
+ */
+export const IS_CUSTOM_ORGANISATION_EMAIL_SENDER_ENABLED = false;
+
 export const FROM_ADDRESS = env('NEXT_PRIVATE_SMTP_FROM_ADDRESS') || 'noreply@leuna.app';
 export const FROM_NAME = env('NEXT_PRIVATE_SMTP_FROM_NAME') || 'Leuna';
 
