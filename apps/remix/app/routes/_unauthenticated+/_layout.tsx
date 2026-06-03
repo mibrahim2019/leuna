@@ -5,10 +5,21 @@ import { MarketingHeader } from '~/components/general/marketing-header';
 
 export default function Layout() {
   return (
-    <main className="dashboard-area dark-mode-disabled relative min-h-screen overflow-hidden bg-[#f7f7f5]">
-      <MarketingHeader ctaLabel={<Trans>Claim Lifetime Access</Trans>} />
+    <main className="dashboard-area dark-mode-disabled relative min-h-screen overflow-hidden bg-[#E5E5F7]">
+      <div
+        className="absolute inset-0 opacity-80"
+        style={{
+          backgroundImage: 'radial-gradient(#444CF7 1px, #E5E5F7 1px)',
+          backgroundSize: '10px 10px',
+        }}
+        aria-hidden
+      />
 
-      <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-8 px-4 py-4 md:px-8 md:py-6 lg:px-12 lg:py-8">
+      <div className="relative z-10">
+        <MarketingHeader ctaLabel={<Trans>Claim Lifetime Access</Trans>} />
+      </div>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-screen-2xl flex-col gap-8 px-4 py-4 md:px-8 md:py-6 lg:px-12 lg:py-8">
         <div className="relative flex w-full flex-1 items-center justify-center">
           <Outlet />
         </div>
