@@ -46,9 +46,15 @@ export const MarketingHeader = ({ ctaLabel }: MarketingHeaderProps) => (
       </nav>
 
       <div className="hidden items-center gap-3 text-sm font-medium text-black lg:flex">
-        <Link to="/signin" className="transition-colors hover:text-foreground">
-          <Trans>Login</Trans>
-        </Link>
+        <Button
+          asChild
+          variant="outline"
+          className="h-9 border-black bg-white px-4 text-sm text-black hover:bg-muted"
+        >
+          <Link to="/signin">
+            <Trans>Login</Trans>
+          </Link>
+        </Button>
         <Button asChild className="h-9 px-4 text-sm">
           <Link to={POLAR_LIFETIME_SIGNUP_PATH}>{ctaLabel}</Link>
         </Button>
@@ -87,12 +93,15 @@ export const MarketingHeader = ({ ctaLabel }: MarketingHeaderProps) => (
             </nav>
             <div className="flex flex-col gap-3">
               <SheetClose asChild>
-                <Link
-                  to="/signin"
-                  className="rounded-lg px-3 py-3 text-base font-medium text-black transition-colors hover:bg-muted hover:text-foreground"
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full border-black bg-white text-black hover:bg-muted"
                 >
-                  <Trans>Login</Trans>
-                </Link>
+                  <Link to="/signin">
+                    <Trans>Login</Trans>
+                  </Link>
+                </Button>
               </SheetClose>
               <SheetClose asChild>
                 <Button asChild className="w-full">
