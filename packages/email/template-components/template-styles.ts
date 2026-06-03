@@ -1,6 +1,13 @@
+/** Matches DotPatternPageBackground on sign-in / sign-up. */
+export const emailDotPatternBackground = {
+  backgroundColor: '#FFFFFF',
+  backgroundImage: 'radial-gradient(#e8e8e8 1px, #FFFFFF 1px)',
+  backgroundSize: '10px 10px',
+} as const;
+
 export const emailStyles = {
-  page: 'mx-auto my-auto bg-[#f3f4f6] font-sans text-[#111827]',
-  pageSection: 'bg-[#f3f4f6] px-4 py-10 text-[#111827]',
+  page: 'mx-auto my-auto bg-white font-sans text-[#111827]',
+  pageSection: 'bg-white px-4 py-10 text-[#111827]',
   card: 'mx-auto mt-8 max-w-2xl rounded-[24px] border border-solid border-[#e5e7eb] bg-white px-8 py-8 shadow-sm',
   cardHeader: 'mb-8 border-0 border-b border-solid border-[#eceff1] pb-6',
   content: '',

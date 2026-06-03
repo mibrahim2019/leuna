@@ -4,7 +4,7 @@ import { Body, Container, Head, Hr, Html, Img, Preview, Section } from '../compo
 import { useBranding } from '../providers/branding';
 import { TemplateFooter } from './template-footer';
 import TemplateImage from './template-image';
-import { cn, emailStyles } from './template-styles';
+import { cn, emailDotPatternBackground, emailStyles } from './template-styles';
 
 export type TemplateShellProps = {
   assetBaseUrl?: string;
@@ -32,12 +32,12 @@ export const TemplateShell = ({
       <Head />
       <Preview>{previewText}</Preview>
 
-      <Body className={emailStyles.page}>
-        <Section className={emailStyles.pageSection}>
+      <Body className={emailStyles.page} style={emailDotPatternBackground}>
+        <Section className={emailStyles.pageSection} style={emailDotPatternBackground}>
           <Container className={cn(emailStyles.card, cardClassName)}>
             <Section className={emailStyles.cardHeader}>
               {branding.brandingEnabled && branding.brandingLogo ? (
-                <Img src={branding.brandingLogo} alt="Branding Logo" className={emailStyles.logo} />
+                <Img src={branding.brandingLogo} alt="Leuna" className={emailStyles.logo} />
               ) : (
                 <TemplateImage
                   assetBaseUrl={assetBaseUrl}
@@ -47,9 +47,7 @@ export const TemplateShell = ({
               )}
             </Section>
 
-            <Section className={cn(emailStyles.content, contentClassName)}>
-              {children}
-            </Section>
+            <Section className={cn(emailStyles.content, contentClassName)}>{children}</Section>
           </Container>
 
           {supplementaryContent ? (

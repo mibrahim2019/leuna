@@ -17,8 +17,8 @@ export const TemplateFooter = ({ isDocument = true }: TemplateFooterProps) => {
         <Text className={emailStyles.footerText}>
           <Trans>
             This document was sent using{' '}
-            <Link className={emailStyles.footerLink} href="https://documen.so/mail-footer">
-              Sign
+            <Link className={emailStyles.footerLink} href="https://leuna.app">
+              Leuna
             </Link>
             .
           </Trans>
@@ -40,9 +40,9 @@ export const TemplateFooter = ({ isDocument = true }: TemplateFooterProps) => {
 
       {!branding.brandingEnabled && (
         <Text className={emailStyles.footerText}>
-          Sign, Inc.
-          <br />
-          2261 Market Street, #5211, San Francisco, CA 94114, USA
+          <Link className={emailStyles.footerLink} href="https://leuna.app">
+            Leuna
+          </Link>
         </Text>
       )}
     </Section>
