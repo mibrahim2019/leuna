@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/react/macro';
 
 import { Section, Text } from '../components';
-import { TemplateDocumentImage } from './template-document-image';
 import { emailStyles } from './template-styles';
 
 export interface TemplateDocumentDeleteProps {
@@ -17,8 +16,6 @@ export const TemplateDocumentDelete = ({
 }: TemplateDocumentDeleteProps) => {
   return (
     <>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section>
         <Text className={`${emailStyles.titleLeft} mt-6`}>
           <Trans>Your document has been deleted by an admin!</Trans>

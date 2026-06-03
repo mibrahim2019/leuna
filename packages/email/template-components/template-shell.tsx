@@ -26,6 +26,7 @@ export const TemplateShell = ({
   contentClassName,
 }: TemplateShellProps) => {
   const branding = useBranding();
+  const hasFooter = branding.brandingEnabled && Boolean(branding.brandingCompanyDetails);
 
   return (
     <Html>
@@ -54,11 +55,14 @@ export const TemplateShell = ({
             <Container className={emailStyles.supplemental}>{supplementaryContent}</Container>
           ) : null}
 
-          <Hr className={emailStyles.divider} />
-
-          <Container className="mx-auto max-w-2xl">
-            <TemplateFooter isDocument={isDocument} />
-          </Container>
+          {hasFooter ? (
+            <>
+              <Hr className={emailStyles.divider} />
+              <Container className="mx-auto max-w-2xl">
+                <TemplateFooter isDocument={isDocument} />
+              </Container>
+            </>
+          ) : null}
         </Section>
       </Body>
     </Html>

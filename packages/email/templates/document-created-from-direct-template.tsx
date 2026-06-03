@@ -6,7 +6,6 @@ import { RecipientRole } from '@prisma/client';
 import { RECIPIENT_ROLES_DESCRIPTION } from '@documenso/lib/constants/recipient-roles';
 
 import { Button, Section, Text } from '../components';
-import TemplateDocumentImage from '../template-components/template-document-image';
 import { TemplateShell } from '../template-components/template-shell';
 import { emailStyles } from '../template-components/template-styles';
 
@@ -33,8 +32,6 @@ export const DocumentCreatedFromDirectTemplateEmailTemplate = ({
 
   return (
     <TemplateShell previewText={_(previewText)} assetBaseUrl={assetBaseUrl}>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section>
         <Text className={emailStyles.title}>
           <Trans>

@@ -6,7 +6,6 @@ import { P, match } from 'ts-pattern';
 import { RECIPIENT_ROLES_DESCRIPTION } from '@documenso/lib/constants/recipient-roles';
 
 import { Button, Section, Text } from '../components';
-import { TemplateDocumentImage } from './template-document-image';
 import { emailStyles } from './template-styles';
 
 export interface TemplateDocumentInviteProps {
@@ -26,7 +25,6 @@ export const TemplateDocumentInvite = ({
   inviterName,
   documentName,
   signDocumentLink,
-  assetBaseUrl,
   role,
   selfSigner,
   teamName,
@@ -39,8 +37,6 @@ export const TemplateDocumentInvite = ({
 
   return (
     <>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section>
         <Text className={emailStyles.title}>
           {match({ selfSigner, organisationType, includeSenderDetails, teamName })

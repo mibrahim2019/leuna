@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/react/macro';
 
 import { Button, Section, Text } from '../components';
-import { TemplateDocumentImage } from './template-document-image';
 import { emailStyles } from './template-styles';
 
 export type TemplateRecipientExpiredProps = {
@@ -23,8 +22,6 @@ export const TemplateRecipientExpired = ({
 
   return (
     <>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section>
         <Text className={emailStyles.title}>
           <Trans>

@@ -3,7 +3,6 @@ import { Trans } from '@lingui/react/macro';
 import { env } from '@documenso/lib/utils/env';
 
 import { Button, Column, Img, Link, Section, Text } from '../components';
-import { TemplateDocumentImage } from './template-document-image';
 import { cn, emailStyles } from './template-styles';
 
 export interface TemplateDocumentSelfSignedProps {
@@ -25,8 +24,6 @@ export const TemplateDocumentSelfSigned = ({
 
   return (
     <>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section className="flex-row items-center justify-center">
         <Section>
           <Column align="center">

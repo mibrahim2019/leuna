@@ -4,7 +4,6 @@ import { Trans } from '@lingui/react/macro';
 
 import { Section, Text } from '../components';
 import type { TemplateDocumentCancelProps } from '../template-components/template-document-cancel';
-import TemplateDocumentImage from '../template-components/template-document-image';
 import { TemplateShell } from '../template-components/template-shell';
 import { emailStyles } from '../template-components/template-styles';
 
@@ -21,8 +20,6 @@ export const RecipientRemovedFromDocumentTemplate = ({
 
   return (
     <TemplateShell previewText={_(previewText)} assetBaseUrl={assetBaseUrl}>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section>
         <Text className={emailStyles.title}>
           <Trans>

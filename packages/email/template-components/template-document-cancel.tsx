@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/react/macro';
 
 import { Section, Text } from '../components';
-import { TemplateDocumentImage } from './template-document-image';
 import { emailStyles } from './template-styles';
 
 export interface TemplateDocumentCancelProps {
@@ -20,8 +19,6 @@ export const TemplateDocumentCancel = ({
 }: TemplateDocumentCancelProps) => {
   return (
     <>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section>
         <Text className={emailStyles.title}>
           <Trans>

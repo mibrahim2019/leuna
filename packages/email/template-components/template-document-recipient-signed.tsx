@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/react/macro';
 
 import { Column, Img, Section, Text } from '../components';
-import { TemplateDocumentImage } from './template-document-image';
 import { cn, emailStyles } from './template-styles';
 
 export interface TemplateDocumentRecipientSignedProps {
@@ -25,8 +24,6 @@ export const TemplateDocumentRecipientSigned = ({
 
   return (
     <>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section>
         <Section className="mb-4">
           <Column align="center">

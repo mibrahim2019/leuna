@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/react/macro';
 
 import { Button, Section, Text } from '../components';
-import { TemplateDocumentImage } from './template-document-image';
 import { emailStyles } from './template-styles';
 
 export type TemplateConfirmationEmailProps = {
@@ -15,8 +14,6 @@ export const TemplateConfirmationEmail = ({
 }: TemplateConfirmationEmailProps) => {
   return (
     <>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section className="flex-row items-center justify-center">
         <Text className={emailStyles.title}>
           <Trans>Welcome to Leuna!</Trans>

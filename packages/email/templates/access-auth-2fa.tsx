@@ -33,7 +33,6 @@ export const AccessAuth2FAEmailTemplate = ({
         userEmail={userEmail}
         userName={userName}
         expiresInMinutes={expiresInMinutes}
-        assetBaseUrl={assetBaseUrl}
       />
     </TemplateShell>
   );

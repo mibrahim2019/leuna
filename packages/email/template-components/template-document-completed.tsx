@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/react/macro';
 
 import { Button, Column, Img, Section, Text } from '../components';
-import { TemplateDocumentImage } from './template-document-image';
 import { cn, emailStyles } from './template-styles';
 
 export interface TemplateDocumentCompletedProps {
@@ -23,8 +22,6 @@ export const TemplateDocumentCompleted = ({
 
   return (
     <>
-      <TemplateDocumentImage className="mt-6" assetBaseUrl={assetBaseUrl} />
-
       <Section>
         <Section className="mb-4">
           <Column align="center">
