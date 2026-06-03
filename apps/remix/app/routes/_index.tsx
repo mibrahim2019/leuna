@@ -211,7 +211,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 export default function Home() {
   return (
     <main className="home-page dark-mode-disabled relative min-h-screen overflow-x-hidden bg-white">
-      <MarketingHeader ctaLabel={<Trans>Get Lifetime Access</Trans>} />
+      <MarketingHeader ctaLabel={<Trans>Sign Up</Trans>} />
 
       <div className="mx-auto w-full max-w-screen-xl px-4 pb-4 pt-1 md:px-8 md:pb-6 md:pt-2 lg:px-12 lg:pb-8 lg:pt-2">
         <div className="relative flex flex-col">
@@ -247,7 +247,7 @@ export default function Home() {
                     <Trans>Send, sign, and store unlimited contracts. No subscriptions.</Trans>
                   </p>
 
-                  <div className="mt-6">
+                  <div className="mt-6 flex justify-center lg:justify-start">
                     <Button asChild size="lg">
                       <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                         <Trans>Get Lifetime Access - $99</Trans>
@@ -290,7 +290,7 @@ export default function Home() {
                     <div className="mt-5 flex justify-center">
                       <Button asChild size="lg" variant="secondary">
                         <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
-                          <Trans>Claim Your Lifetime Deal</Trans>
+                          <Trans>Get Started</Trans>
                         </Link>
                       </Button>
                     </div>
@@ -387,7 +387,7 @@ export default function Home() {
             <div className="mt-6 flex justify-center">
               <Button asChild size="lg" variant="secondary">
                 <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
-                  <Trans>Get Lifetime Access</Trans>
+                  <Trans>Get Started</Trans>
                 </Link>
               </Button>
             </div>
@@ -428,7 +428,7 @@ export default function Home() {
             <div className="mt-6 flex justify-center">
               <Button asChild size="lg" variant="secondary">
                 <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
-                  <Trans>Get Lifetime Access</Trans>
+                  <Trans>Sign Up</Trans>
                 </Link>
               </Button>
             </div>
@@ -500,7 +500,7 @@ export default function Home() {
                   <div className="mt-3 flex justify-center">
                     <Button asChild size="lg">
                       <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
-                        <Trans>Get Lifetime Access</Trans>
+                        <Trans>Get Started</Trans>
                       </Link>
                     </Button>
                   </div>
@@ -574,7 +574,7 @@ export default function Home() {
                 <BrandingLogoIcon className="h-9 w-9" />
               </Link>
               <p className="mt-3 text-sm text-white/80">
-                <Trans> e-signing. One payment. No limits.</Trans>
+                <Trans>One payment. No limits.</Trans>
               </p>
               <p className="mt-4 text-sm text-white/70">
                 <Trans>© {new Date().getFullYear()} Leuna. All rights reserved.</Trans>

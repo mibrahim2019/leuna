@@ -14,8 +14,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: apps/remix/app/routes/_index.tsx
-msgid " e-signing. One payment. No limits."
-msgstr " e-signing. One payment. No limits."
+msgid " One payment. No limits."
+msgstr " One payment. No limits."
 
 #: apps/remix/app/routes/_index.tsx
 msgid ". Proudly transparent."

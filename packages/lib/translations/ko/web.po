@@ -19,7 +19,7 @@ msgstr ""
 "X-Crowdin-File-ID: 8\n"
 
 #: apps/remix/app/routes/_index.tsx
-msgid " e-signing. One payment. No limits."
+msgid " One payment. No limits."
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx

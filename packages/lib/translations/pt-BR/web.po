@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: apps/remix/app/routes/_index.tsx
-msgid " e-signing. One payment. No limits."
+msgid " One payment. No limits."
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx

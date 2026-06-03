@@ -1,25 +1,26 @@
+import { useEffect, useState } from 'react';
+
 import { msg } from '@lingui/core/macro';
 import { Trans } from '@lingui/react/macro';
-import { useEffect, useState } from 'react';
 import { Link, redirect, useLoaderData, useNavigate, useRevalidator } from 'react-router';
-
-import { useSession } from '@documenso/lib/client-only/providers/session';
-import { prisma } from '@documenso/prisma';
 
 import { extractCookieFromHeaders } from '@documenso/auth/server/lib/utils/cookies';
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
+import { useSession } from '@documenso/lib/client-only/providers/session';
 import {
   POLAR_LIFETIME_PURCHASE_PATH,
   POLAR_LIFETIME_SUCCESS_PATH,
 } from '@documenso/lib/constants/polar';
-import { getPolarCustomerAccessState } from '@documenso/lib/server-only/polar/customer';
 import { polarClient } from '@documenso/lib/server-only/polar/client';
+import { getPolarCustomerAccessState } from '@documenso/lib/server-only/polar/customer';
 import { getTeams } from '@documenso/lib/server-only/team/get-teams';
 import { logger } from '@documenso/lib/utils/logger';
 import { formatDocumentsPath } from '@documenso/lib/utils/teams';
+import { prisma } from '@documenso/prisma';
 import { ZTeamUrlSchema } from '@documenso/trpc/server/team-router/schema';
 import { Button } from '@documenso/ui/primitives/button';
 
+import { DotPatternPageBackground } from '~/components/general/dot-pattern-page-background';
 import { appMetaTags } from '~/utils/meta';
 
 const AUTO_REFRESH_LIMIT = 6;
@@ -214,7 +215,7 @@ export default function PurchaseLifetimeSuccessRoute() {
 
     const timeout = globalThis.setTimeout(() => {
       setAutoRefreshCount((currentCount) => currentCount + 1);
-      revalidator.revalidate();
+      void revalidator.revalidate();
     }, AUTO_REFRESH_INTERVAL_MS);
 
     return () => globalThis.clearTimeout(timeout);
@@ -246,7 +247,7 @@ export default function PurchaseLifetimeSuccessRoute() {
       }
 
       timeout = globalThis.setTimeout(() => {
-        navigate(continuePath, { replace: true });
+        void navigate(continuePath, { replace: true });
       }, AUTO_CONTINUE_DELAY_MS);
     })();
 
@@ -260,71 +261,72 @@ export default function PurchaseLifetimeSuccessRoute() {
   }, [continuePath, hasProductAccess, navigate, refreshSession]);
 
   return (
-    <main className="mx-auto flex min-h-[calc(100vh-8rem)] w-full max-w-2xl flex-col justify-center px-4 py-16">
-      <div className="rounded-3xl border border-border bg-background p-8 shadow-sm">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          <Trans>Lifetime Access</Trans>
-        </p>
+    <DotPatternPageBackground className="dark-mode-disabled">
+      <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col justify-center px-4 py-16">
+        <div className="rounded-3xl border border-border bg-background p-8 shadow-sm">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            <Trans>Lifetime Access</Trans>
+          </p>
 
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-          {hasProductAccess ? (
-            <Trans>Your access is active.</Trans>
-          ) : (
-            <Trans>We are still verifying your purchase.</Trans>
-          )}
-        </h1>
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+            {hasProductAccess ? (
+              <Trans>Your access is active.</Trans>
+            ) : (
+              <Trans>We are still verifying your purchase.</Trans>
+            )}
+          </h1>
 
-        <p className="mt-4 text-base text-muted-foreground">
-          {hasProductAccess ? (
-            <Trans>
-              Your Leuna account now has the lifetime access benefit. We are refreshing your
-              access and taking you to your workspace now.
-            </Trans>
-          ) : checkoutId ? (
-            <Trans>
-              Checkout finished, but Polar has not returned the benefit grant yet. Refresh access
-              below in a moment or restart checkout if needed.
-            </Trans>
-          ) : (
-            <Trans>
-              We could not confirm a completed checkout yet. Refresh access below or start checkout
-              again.
-            </Trans>
-          )}
-        </p>
+          <p className="mt-4 text-base text-muted-foreground">
+            {hasProductAccess ? (
+              <Trans>
+                Your Leuna account now has the lifetime access benefit. We are refreshing your
+                access and taking you to your workspace now.
+              </Trans>
+            ) : checkoutId ? (
+              <Trans>
+                Checkout finished, but Polar has not returned the benefit grant yet. Refresh access
+                below in a moment or restart checkout if needed.
+              </Trans>
+            ) : (
+              <Trans>
+                We could not confirm a completed checkout yet. Refresh access below or start
+                checkout again.
+              </Trans>
+            )}
+          </p>
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          {hasProductAccess ? (
-            <Button asChild size="lg">
-              <Link to={continuePath}>
-                <Trans>Continue to Workspace</Trans>
-              </Link>
-            </Button>
-          ) : (
-            <>
-              <Button
-                type="button"
-                size="lg"
-                onClick={() => revalidator.revalidate()}
-                disabled={revalidator.state !== 'idle'}
-              >
-                {revalidator.state === 'idle' ? (
-                  <Trans>Refresh Access</Trans>
-                ) : (
-                  <Trans>Refreshing...</Trans>
-                )}
-              </Button>
-
-              <Button asChild size="lg" variant="outline">
-                <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
-                  <Trans>Claim Lifetime Access</Trans>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            {hasProductAccess ? (
+              <Button asChild size="lg">
+                <Link to={continuePath}>
+                  <Trans>Continue to Workspace</Trans>
                 </Link>
               </Button>
-            </>
-          )}
+            ) : (
+              <>
+                <Button
+                  type="button"
+                  size="lg"
+                  onClick={async () => revalidator.revalidate()}
+                  disabled={revalidator.state !== 'idle'}
+                >
+                  {revalidator.state === 'idle' ? (
+                    <Trans>Refresh Access</Trans>
+                  ) : (
+                    <Trans>Refreshing...</Trans>
+                  )}
+                </Button>
 
+                <Button asChild size="lg" variant="outline">
+                  <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                    <Trans>Claim Lifetime Access</Trans>
+                  </Link>
+                </Button>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </DotPatternPageBackground>
   );
 }
