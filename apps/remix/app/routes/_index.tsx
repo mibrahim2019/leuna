@@ -359,8 +359,6 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="mt-3 w-full border-b border-border/50" aria-hidden />
-
             <div className="mt-3 w-full">
               <p className="text-base text-black md:text-lg">
                 <Trans>Leuna fits into your existing workflow</Trans>
@@ -408,8 +406,6 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="mt-3 w-full border-b border-border/50" aria-hidden />
-
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {SECURITY_ITEMS.map((item) => (
                 <Card
@@ -451,9 +447,7 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="mt-3 w-full border-b border-border/50" aria-hidden />
-
-            <div className="mt-8 grid gap-4 lg:grid-cols-2">
+            <div className="mx-auto mt-8 w-full max-w-xl">
               <Card className="w-full rounded-md border border-border/50 bg-white shadow-none">
                 <CardContent className="flex h-full flex-col p-5 md:p-7">
                   <div className="mx-auto w-fit rounded-full border border-border/50 bg-muted px-4 py-1 text-sm font-medium text-black">
@@ -527,8 +521,6 @@ export default function Home() {
                 <Trans>Pay once. Send contracts for life.</Trans>
               </h2>
 
-              <div className="-mx-6 mt-3 border-b border-border/50 md:-mx-10" aria-hidden />
-
               <div className="mt-6 flex justify-center">
                 <Button asChild size="lg">
                   <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
@@ -552,8 +544,6 @@ export default function Home() {
                   <Trans>Frequently asked questions</Trans>
                 </h2>
               </div>
-
-              <div className="mt-3 w-full border-b border-border/50" aria-hidden />
 
               <Card className="mx-auto mt-8 max-w-3xl rounded-md border border-border/50 bg-white shadow-none">
                 <CardContent className="p-6 md:p-8">
