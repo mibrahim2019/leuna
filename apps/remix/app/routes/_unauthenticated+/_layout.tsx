@@ -7,9 +7,9 @@ export default function Layout() {
   return (
     <main className="dashboard-area dark-mode-disabled relative min-h-screen overflow-hidden bg-[#fff]">
       <div
-        className="absolute inset-0 opacity-80"
+        className="absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(#444444 1px, #FFFFFF 1px)',
+          backgroundImage: 'radial-gradient(#e8e8e8 1px, #FFFFFF 1px)',
           backgroundSize: '10px 10px',
         }}
         aria-hidden

@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@documenso/tsconfig": "*",
-    "@react-email/preview-server": "^5.2.10",
+    "@react-email/preview-server": "^5.0.6",
     "@types/nodemailer": "^7.0.4"
   }
 }
