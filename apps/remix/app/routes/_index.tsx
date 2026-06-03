@@ -28,6 +28,7 @@ import {
 } from '@documenso/ui/primitives/card';
 
 import { BrandingLogoIcon } from '~/components/general/branding-logo-icon';
+import { BrowserFrame } from '~/components/general/browser-frame';
 import { MarketingHeader } from '~/components/general/marketing-header';
 import { appMetaTags } from '~/utils/meta';
 
@@ -252,12 +253,16 @@ export default function Home() {
                   </Link>
                 </Button>
               </div>
+            </div>
 
-              <img
-                src="/static/desktop-hero.png"
-                alt="Leuna document signing dashboard"
-                className="mt-8 w-full rounded-md border border-border/50 object-cover md:mt-10"
-              />
+            <div className="relative left-1/2 mt-8 w-screen max-w-[100vw] -translate-x-1/2 px-4 md:mt-10 md:px-8 lg:px-12">
+              <BrowserFrame className="mx-auto w-full">
+                <img
+                  src="/static/desktop-hero.png"
+                  alt="Leuna document signing dashboard"
+                  className="w-full object-cover object-top"
+                />
+              </BrowserFrame>
             </div>
           </div>
 
