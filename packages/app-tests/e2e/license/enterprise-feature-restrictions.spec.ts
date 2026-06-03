@@ -7,8 +7,8 @@ import { seedUser } from '@documenso/prisma/seed/users';
 
 import { apiSignin } from '../fixtures/authentication';
 
-const LICENSE_FILE_NAME = '.documenso-license.json';
-const LICENSE_BACKUP_FILE_NAME = '.documenso-license-backup.json';
+const LICENSE_FILE_NAME = '.leuna-license.json';
+const LICENSE_BACKUP_FILE_NAME = '.leuna-license-backup.json';
 
 /**
  * Get the path to the license file.
@@ -17,7 +17,7 @@ const LICENSE_BACKUP_FILE_NAME = '.documenso-license-backup.json';
  * Tests run from packages/app-tests, so we need to go up to the root then into apps/remix.
  */
 const getLicenseFilePath = () => {
-  // From packages/app-tests/e2e/license -> ../../../../apps/remix/.documenso-license.json
+  // From packages/app-tests/e2e/license -> ../../../../apps/remix/.leuna-license.json
   return path.join(__dirname, '../../../../apps/remix', LICENSE_FILE_NAME);
 };
 

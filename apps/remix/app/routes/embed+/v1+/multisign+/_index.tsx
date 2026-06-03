@@ -9,10 +9,10 @@ import { getDocumentAndSenderByToken } from '@documenso/lib/server-only/document
 import { getRecipientByToken } from '@documenso/lib/server-only/recipient/get-recipient-by-token';
 import { ZSignDocumentEmbedDataSchema } from '@documenso/lib/types/embed-document-sign-schema';
 
-import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
 import { DocumentSigningAuthProvider } from '~/components/general/document-signing/document-signing-auth-provider';
 import { DocumentSigningProvider } from '~/components/general/document-signing/document-signing-provider';
 import { DocumentSigningRecipientProvider } from '~/components/general/document-signing/document-signing-recipient-provider';
+import { WordmarkLogo } from '~/components/general/wordmark-logo';
 import { injectCss } from '~/utils/css-vars';
 import { superLoaderJson, useSuperLoaderData } from '~/utils/super-json-loader';
 
@@ -281,7 +281,7 @@ export default function MultisignPage() {
             <span>
               <Trans>Powered by</Trans>
             </span>
-            <SignWordmarkLogo className="ml-2 inline-block text-[14px] leading-none" />
+            <WordmarkLogo variant="dark" className="ml-2 inline-block h-3.5 w-auto align-middle" />
           </div>
         )}
       </div>
@@ -298,7 +298,7 @@ export default function MultisignPage() {
           <span>
             <Trans>Powered by</Trans>
           </span>
-          <SignWordmarkLogo className="ml-2 inline-block text-[14px] leading-none" />
+          <WordmarkLogo variant="dark" className="ml-2 inline-block h-3.5 w-auto align-middle" />
         </div>
       )}
     </div>

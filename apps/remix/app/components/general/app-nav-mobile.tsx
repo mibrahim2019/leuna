@@ -12,7 +12,7 @@ import { trpc } from '@documenso/trpc/react';
 import { Sheet, SheetContent } from '@documenso/ui/primitives/sheet';
 import { ThemeSwitcher } from '@documenso/ui/primitives/theme-switcher';
 
-import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
+import { WordmarkLogo } from '~/components/general/wordmark-logo';
 import { useOptionalCurrentTeam } from '~/providers/team';
 
 export type AppNavMobileProps = {
@@ -84,7 +84,7 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
     <Sheet open={isMenuOpen} onOpenChange={onMenuOpenChange}>
       <SheetContent className="flex w-full max-w-[350px] flex-col">
         <Link to="/" onClick={handleMenuItemClick} aria-label="Leuna home">
-          <SignWordmarkLogo className="text-[1.125rem] text-foreground dark:text-white" signClassName="text-[#2563eb]" />
+          <WordmarkLogo className="h-7" />
         </Link>
 
         <div className="mt-8 flex w-full flex-col items-start gap-y-4">

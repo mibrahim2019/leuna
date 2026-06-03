@@ -1,0 +1,9 @@
+[
+  {
+    "AllowedOrigins": ["https://leuna.app", "https://www.leuna.app"],
+    "AllowedMethods": ["GET", "PUT", "HEAD"],
+    "AllowedHeaders": ["*"],
+    "ExposeHeaders": ["ETag"],
+    "MaxAgeSeconds": 3600
+  }
+]

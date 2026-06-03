@@ -12,7 +12,7 @@ import { Button } from '@documenso/ui/primitives/button';
 
 import { Header as AuthenticatedHeader } from '~/components/general/app-header';
 import { GenericErrorLayout } from '~/components/general/generic-error-layout';
-import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
+import { WordmarkLogo } from '~/components/general/wordmark-logo';
 import { appMetaTags } from '~/utils/meta';
 
 import type { Route } from './+types/_layout';
@@ -53,7 +53,7 @@ export default function PublicProfileLayout() {
               className="rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:inline"
               aria-label="Leuna home"
             >
-              <SignWordmarkLogo className="text-[1.125rem]" signClassName="text-[#2563eb]" />
+              <WordmarkLogo className="h-7" />
             </Link>
 
             <div className="flex flex-row items-center justify-center">

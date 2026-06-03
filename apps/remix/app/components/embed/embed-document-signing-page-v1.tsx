@@ -31,8 +31,8 @@ import { RadioGroup, RadioGroupItem } from '@documenso/ui/primitives/radio-group
 import { SignaturePadDialog } from '@documenso/ui/primitives/signature-pad/signature-pad-dialog';
 import { useToast } from '@documenso/ui/primitives/use-toast';
 
-import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
 import PDFViewerLazy from '~/components/general/pdf-viewer/pdf-viewer-lazy';
+import { WordmarkLogo } from '~/components/general/wordmark-logo';
 import { injectCss } from '~/utils/css-vars';
 
 import { DocumentSigningAttachmentsPopover } from '../general/document-signing/document-signing-attachments-popover';
@@ -537,7 +537,7 @@ export const EmbedSignDocumentV1ClientPage = ({
             <span>
               <Trans>Powered by</Trans>
             </span>
-            <SignWordmarkLogo className="ml-2 inline-block text-[14px] leading-none" />
+            <WordmarkLogo variant="dark" className="ml-2 inline-block h-3.5 w-auto align-middle" />
           </div>
         )}
       </div>

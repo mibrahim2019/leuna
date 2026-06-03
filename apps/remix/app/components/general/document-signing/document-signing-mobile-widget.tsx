@@ -10,9 +10,9 @@ import { Button } from '@documenso/ui/primitives/button';
 
 import { useEmbedSigningContext } from '~/components/embed/embed-signing-context';
 
-import { SignWordmarkLogo } from '../sign-wordmark-logo';
 import EnvelopeSignerForm from '../envelope-signing/envelope-signer-form';
 import { EnvelopeSignerCompleteDialog } from '../envelope-signing/envelope-signing-complete-dialog';
+import { WordmarkLogo } from '../wordmark-logo';
 import { useRequiredEnvelopeSigningContext } from './envelope-signing-provider';
 
 export const DocumentSigningMobileWidget = () => {
@@ -125,7 +125,10 @@ export const DocumentSigningMobileWidget = () => {
                   <span>
                     <Trans>Powered by</Trans>
                   </span>
-                  <SignWordmarkLogo className="ml-2 inline-block text-[14px] leading-none" />
+                  <WordmarkLogo
+                    variant="dark"
+                    className="ml-2 inline-block h-3.5 w-auto align-middle"
+                  />
                 </div>
               )}
             </div>

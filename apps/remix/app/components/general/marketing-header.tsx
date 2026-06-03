@@ -1,11 +1,10 @@
 import type { ReactNode } from 'react';
 
-import { MenuIcon } from 'lucide-react';
 import { Trans } from '@lingui/react/macro';
+import { MenuIcon } from 'lucide-react';
 import { Link } from 'react-router';
 
 import { POLAR_LIFETIME_PURCHASE_PATH } from '@documenso/lib/constants/polar';
-import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
 import {
   Sheet,
@@ -15,7 +14,7 @@ import {
   SheetTrigger,
 } from '@documenso/ui/primitives/sheet';
 
-import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
+import { WordmarkLogo } from '~/components/general/wordmark-logo';
 
 const MARKETING_NAV_ITEMS = [
   { href: '/#use-cases', label: <Trans>Use Cases</Trans> },
@@ -32,16 +31,13 @@ export const MarketingHeader = ({ ctaLabel }: MarketingHeaderProps) => (
   <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-white">
     <div className="mx-auto flex w-full max-w-screen-xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 sm:py-3 md:px-8">
       <Link to="/" className="shrink-0" aria-label="Leuna home">
-        <SignWordmarkLogo
-          className="gap-2.5 text-[1.125rem] font-semibold text-foreground sm:text-[1.125rem]"
-          leunaClassName="font-semibold text-[#171717]"
-          signClassName="font-semibold text-[#2563eb]"
-          iconWrapperClassName="h-[1.05em] w-[1.05em] rounded-none border-0 bg-transparent shadow-none"
-          iconClassName="h-[0.78em] rotate-0"
-        />
+        <WordmarkLogo variant="light" className="h-7 sm:h-8" />
       </Link>
 
-      <nav aria-label="Main" className="hidden items-center gap-6 text-sm font-medium text-black lg:flex">
+      <nav
+        aria-label="Main"
+        className="hidden items-center gap-6 text-sm font-medium text-black lg:flex"
+      >
         {MARKETING_NAV_ITEMS.map(({ href, label }) => (
           <Link key={href} to={href} className="transition-colors hover:text-foreground">
             {label}

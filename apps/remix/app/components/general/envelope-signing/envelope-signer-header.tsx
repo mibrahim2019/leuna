@@ -17,7 +17,8 @@ import { Separator } from '@documenso/ui/primitives/separator';
 
 import { EnvelopeDownloadDialog } from '~/components/dialogs/envelope-download-dialog';
 import { useEmbedSigningContext } from '~/components/embed/embed-signing-context';
-import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
+import { WordmarkLogo } from '~/components/general/wordmark-logo';
+
 import { DocumentSigningRejectDialog } from '../document-signing/document-signing-reject-dialog';
 import { useRequiredEnvelopeSigningContext } from '../document-signing/envelope-signing-provider';
 import { EnvelopeSignerCompleteDialog } from './envelope-signing-complete-dialog';
@@ -41,7 +42,7 @@ export const EnvelopeSignerHeader = () => {
                 className="h-6 w-auto"
               />
             ) : (
-              <SignWordmarkLogo className="text-[1rem] leading-none md:text-[1.125rem]" signClassName="text-[#2563eb]" />
+              <WordmarkLogo className="h-6 md:h-7" />
             )}
           </Link>
         )}

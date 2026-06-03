@@ -28,7 +28,7 @@ import {
 } from '@documenso/ui/primitives/card';
 
 import { MarketingHeader } from '~/components/general/marketing-header';
-import { SignWordmarkLogo } from '~/components/general/sign-wordmark-logo';
+import { WordmarkLogo } from '~/components/general/wordmark-logo';
 import { appMetaTags } from '~/utils/meta';
 
 import { requirePolarAccessForRoute } from '../utils/polar-auth-gate.server';
@@ -87,8 +87,8 @@ const FAQ_ITEMS = [
     question: <Trans>What is included in the lifetime deal?</Trans>,
     answer: (
       <Trans>
-        The lifetime deal includes access to the core Leuna signing workflows, reusable
-        templates, team collaboration features, custom branding controls.
+        The lifetime deal includes access to the core Leuna signing workflows, reusable templates,
+        team collaboration features, custom branding controls.
       </Trans>
     ),
   },
@@ -220,12 +220,12 @@ export async function loader({ request }: Route.LoaderArgs) {
 
 export default function Home() {
   return (
-    <main className="home-page dark-mode-disabled relative min-h-screen overflow-x-hidden bg-[#f7f7f5]">
+    <main className="home-page dark-mode-disabled relative min-h-screen overflow-x-hidden bg-[#fdfdfc]">
       <MarketingHeader ctaLabel={<Trans>Get Lifetime Access</Trans>} />
 
       <div className="mx-auto w-full max-w-screen-xl px-4 pb-4 pt-1 md:px-8 md:pb-6 md:pt-2 lg:px-12 lg:pb-8 lg:pt-2">
         <div className="relative flex flex-col">
-          <div className="mt-2 bg-[#f7f7f5] px-4 py-3 md:px-6">
+          <div className="mt-2 bg-[#fdfdfc] px-4 py-3 md:px-6">
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:gap-x-10 md:gap-y-6">
               {FEATURED_ON_LOGOS.map(({ src, alt }) => (
                 <img
@@ -252,8 +252,7 @@ export default function Home() {
 
                   <p className="mt-3 text-base text-black md:text-lg">
                     <Trans>
-                      Pay once for Leuna and keep sending contracts without another
-                      monthly bill
+                      Pay once for Leuna and keep sending contracts without another monthly bill
                     </Trans>
                   </p>
 
@@ -412,8 +411,8 @@ export default function Home() {
             <div className="mt-3 w-full">
               <p className="text-base text-black md:text-lg">
                 <Trans>
-                  Leuna fits into your existing workflow — from no-code automation with
-                  Zapier to full API access for teams building signing into their own products.
+                  Leuna fits into your existing workflow — from no-code automation with Zapier to
+                  full API access for teams building signing into their own products.
                 </Trans>
               </p>
             </div>
@@ -462,9 +461,9 @@ export default function Home() {
             <div className="mt-3 w-full">
               <p className="text-base text-black md:text-lg">
                 <Trans>
-                  Every signature on Leuna is cryptographically sealed, timestamped, and
-                  backed by a complete audit trail. Legally binding in the US and EU — and so you
-                  can verify exactly how it works.
+                  Every signature on Leuna is cryptographically sealed, timestamped, and backed by a
+                  complete audit trail. Legally binding in the US and EU — and so you can verify
+                  exactly how it works.
                 </Trans>
               </p>
             </div>
@@ -656,8 +655,8 @@ export default function Home() {
               <div className="mt-3 w-full text-center">
                 <p className="text-base text-black md:text-lg">
                   <Trans>
-                    A few quick answers to help you understand what is included and how Leuna
-                    Sign fits into your signing workflow.
+                    A few quick answers to help you understand what is included and how Leuna Sign
+                    fits into your signing workflow.
                   </Trans>
                 </p>
               </div>
@@ -688,7 +687,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-8 md:grid-cols-3">
             <div className="col-span-2 md:col-span-1">
               <Link to="/" className="inline-flex" aria-label="Leuna home">
-                <SignWordmarkLogo className="text-4xl text-foreground" />
+                <WordmarkLogo variant="light" className="h-9" />
               </Link>
               <p className="mt-3 text-sm text-black">
                 <Trans> e-signing. One payment. No limits.</Trans>
@@ -739,7 +738,10 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <Link to="/open-source" className="text-[10px] transition-colors hover:text-foreground">
+                  <Link
+                    to="/open-source"
+                    className="text-[10px] transition-colors hover:text-foreground"
+                  >
                     <Trans>Source Code</Trans>
                   </Link>
                 </li>
