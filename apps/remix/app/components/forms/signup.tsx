@@ -111,7 +111,7 @@ export const SignUpForm = ({
         signature,
       });
 
-      await navigate(returnTo ? returnTo : '/unverified-account');
+      await navigate('/unverified-account');
 
       toast({
         title: _(msg`Registration Successful`),
@@ -201,7 +201,9 @@ export const SignUpForm = ({
   }, [form]);
 
   return (
-    <div className={cn('mx-auto flex w-full items-center justify-center gap-8 xl:gap-12', className)}>
+    <div
+      className={cn('mx-auto flex w-full items-center justify-center gap-8 xl:gap-12', className)}
+    >
       <div className="relative hidden w-full max-w-xl overflow-hidden rounded-xl border border-border xl:flex">
         <img
           src="/static/login.jpg"
@@ -368,7 +370,10 @@ export const SignUpForm = ({
               <p className="mt-4 text-sm text-muted-foreground">
                 <Trans>
                   Already have an account?{' '}
-                  <Link to="/signin" className="text-documenso-700 duration-200 hover:opacity-70">
+                  <Link
+                    to={returnTo ? `/signin?returnTo=${encodeURIComponent(returnTo)}` : '/signin'}
+                    className="text-documenso-700 duration-200 hover:opacity-70"
+                  >
                     Sign in instead
                   </Link>
                 </Trans>

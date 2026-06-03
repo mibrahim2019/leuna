@@ -1,14 +1,17 @@
 import { Outlet, redirect, redirectDocument } from 'react-router';
 
-import { prisma } from '@documenso/prisma';
-
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
+import {
+  POLAR_LIFETIME_PURCHASE_PATH,
+  POLAR_LIFETIME_SIGNUP_PATH,
+  POLAR_LIFETIME_SUCCESS_PATH,
+} from '@documenso/lib/constants/polar';
 import { AppError } from '@documenso/lib/errors/app-error';
-import { POLAR_LIFETIME_PURCHASE_PATH, POLAR_LIFETIME_SUCCESS_PATH } from '@documenso/lib/constants/polar';
 import { createLifetimeCheckout } from '@documenso/lib/server-only/polar/checkout';
 import { getPolarCustomerAccessState } from '@documenso/lib/server-only/polar/customer';
 import { extractRequestMetadata } from '@documenso/lib/universal/extract-request-metadata';
 import { logger } from '@documenso/lib/utils/logger';
+import { prisma } from '@documenso/prisma';
 
 export async function loader({ request }: { request: Request }) {
   const session = await getOptionalSession(request);
@@ -25,7 +28,7 @@ export async function loader({ request }: { request: Request }) {
   }
 
   if (!session.isAuthenticated) {
-    throw redirect(`/signin?returnTo=${encodeURIComponent(POLAR_LIFETIME_PURCHASE_PATH)}`);
+    throw redirect(POLAR_LIFETIME_SIGNUP_PATH);
   }
 
   logger.info({

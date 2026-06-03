@@ -7,7 +7,7 @@ import docusignLogo from '@documenso/assets/docusign.png';
 import dropboxSignLogo from '@documenso/assets/dropbox-sign.webp';
 import { extractCookieFromHeaders } from '@documenso/auth/server/lib/utils/cookies';
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
-import { POLAR_LIFETIME_PURCHASE_PATH } from '@documenso/lib/constants/polar';
+import { POLAR_LIFETIME_SIGNUP_PATH } from '@documenso/lib/constants/polar';
 import { getTeams } from '@documenso/lib/server-only/team/get-teams';
 import { formatDocumentsPath } from '@documenso/lib/utils/teams';
 import { ZTeamUrlSchema } from '@documenso/trpc/server/team-router/schema';
@@ -242,7 +242,7 @@ export default function Home() {
 
                   <div className="mt-6">
                     <Button asChild size="lg">
-                      <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                      <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                         <Trans>Get Lifetime Access - $99</Trans>
                       </Link>
                     </Button>
@@ -282,7 +282,7 @@ export default function Home() {
 
                     <div className="mt-5 flex justify-center">
                       <Button asChild size="lg">
-                        <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                        <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                           <Trans>Claim Your Lifetime Deal</Trans>
                         </Link>
                       </Button>
@@ -330,7 +330,7 @@ export default function Home() {
                 ))}
                 <div className="pt-2">
                   <Button asChild size="lg" className="w-full sm:w-auto">
-                    <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                    <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                       <Trans>Get Lifetime Access - $99</Trans>
                     </Link>
                   </Button>
@@ -379,7 +379,7 @@ export default function Home() {
 
             <div className="mt-6 flex justify-center">
               <Button asChild size="lg">
-                <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                   <Trans>Get Lifetime Access</Trans>
                 </Link>
               </Button>
@@ -420,7 +420,7 @@ export default function Home() {
 
             <div className="mt-6 flex justify-center">
               <Button asChild size="lg">
-                <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                   <Trans>Get Lifetime Access</Trans>
                 </Link>
               </Button>
@@ -492,7 +492,7 @@ export default function Home() {
 
                   <div className="mt-3 flex justify-center">
                     <Button asChild size="lg">
-                      <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                      <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                         <Trans>Get Lifetime Access</Trans>
                       </Link>
                     </Button>
@@ -516,7 +516,7 @@ export default function Home() {
 
               <div className="mt-6 flex justify-center">
                 <Button asChild size="lg">
-                  <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
+                  <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                     <Trans>Get Access Now</Trans>
                   </Link>
                 </Button>

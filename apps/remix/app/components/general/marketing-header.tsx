@@ -4,7 +4,7 @@ import { Trans } from '@lingui/react/macro';
 import { MenuIcon } from 'lucide-react';
 import { Link } from 'react-router';
 
-import { POLAR_LIFETIME_PURCHASE_PATH } from '@documenso/lib/constants/polar';
+import { POLAR_LIFETIME_SIGNUP_PATH } from '@documenso/lib/constants/polar';
 import { Button } from '@documenso/ui/primitives/button';
 import {
   Sheet,
@@ -50,7 +50,7 @@ export const MarketingHeader = ({ ctaLabel }: MarketingHeaderProps) => (
           <Trans>Login</Trans>
         </Link>
         <Button asChild className="h-9 px-4 text-sm">
-          <Link to={POLAR_LIFETIME_PURCHASE_PATH}>{ctaLabel}</Link>
+          <Link to={POLAR_LIFETIME_SIGNUP_PATH}>{ctaLabel}</Link>
         </Button>
       </div>
 
@@ -96,7 +96,7 @@ export const MarketingHeader = ({ ctaLabel }: MarketingHeaderProps) => (
               </SheetClose>
               <SheetClose asChild>
                 <Button asChild className="w-full">
-                  <Link to={POLAR_LIFETIME_PURCHASE_PATH}>{ctaLabel}</Link>
+                  <Link to={POLAR_LIFETIME_SIGNUP_PATH}>{ctaLabel}</Link>
                 </Button>
               </SheetClose>
             </div>

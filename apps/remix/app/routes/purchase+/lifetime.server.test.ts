@@ -1,7 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Outlet } from 'react-router';
 
-import { POLAR_LIFETIME_SUCCESS_PATH } from '@documenso/lib/constants/polar';
+import {
+  POLAR_LIFETIME_SIGNUP_PATH,
+  POLAR_LIFETIME_SUCCESS_PATH,
+} from '@documenso/lib/constants/polar';
 
 const {
   logger,
@@ -87,6 +90,22 @@ describe('purchase lifetime loader', () => {
         userId: 1,
       }),
     );
+  });
+
+  it('redirects unauthenticated users to signup with the purchase return path', async () => {
+    mockGetOptionalSession.mockResolvedValue({
+      isAuthenticated: false,
+    });
+
+    const response = await loader({
+      request: new Request('https://documenso.local/purchase/lifetime'),
+    }).catch((error) => error);
+
+    expect(mockFindUnique).not.toHaveBeenCalled();
+    expect(mockGetPolarCustomerAccessState).not.toHaveBeenCalled();
+    expect(mockCreateLifetimeCheckout).not.toHaveBeenCalled();
+    expect(response).toBeInstanceOf(Response);
+    expect(response.headers.get('Location')).toBe(POLAR_LIFETIME_SIGNUP_PATH);
   });
 
   it('creates a checkout for the purchase route when access is missing', async () => {

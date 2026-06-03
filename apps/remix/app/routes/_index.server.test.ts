@@ -48,6 +48,10 @@ vi.mock('~/components/general/wordmark-logo', () => ({
   WordmarkLogo: vi.fn(),
 }));
 
+vi.mock('~/components/general/marketing-header', () => ({
+  MarketingHeader: vi.fn(),
+}));
+
 vi.mock('~/utils/meta', () => ({
   appMetaTags: vi.fn(),
 }));

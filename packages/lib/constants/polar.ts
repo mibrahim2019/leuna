@@ -1,4 +1,5 @@
 export const POLAR_LIFETIME_PURCHASE_PATH = '/purchase/lifetime';
+export const POLAR_LIFETIME_SIGNUP_PATH = `/signup?returnTo=${encodeURIComponent(POLAR_LIFETIME_PURCHASE_PATH)}`;
 export const POLAR_LIFETIME_SUCCESS_PATH = '/purchase/lifetime/success';
 
 export const POLAR_ACCESS_REQUIRED_ERROR_CODE = 'POLAR_ACCESS_REQUIRED';
