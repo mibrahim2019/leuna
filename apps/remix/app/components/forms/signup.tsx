@@ -201,18 +201,8 @@ export const SignUpForm = ({
   }, [form]);
 
   return (
-    <div
-      className={cn('mx-auto flex w-full items-center justify-center gap-8 xl:gap-12', className)}
-    >
-      <div className="relative hidden w-full max-w-xl overflow-hidden rounded-xl border border-border xl:flex">
-        <img
-          src="/static/login.jpg"
-          alt="Signup page visual"
-          className="block h-full min-h-[min(920px,90vh)] w-full object-cover object-center"
-        />
-      </div>
-
-      <div className="relative z-10 flex min-h-[min(920px,90vh)] w-full max-w-xl flex-col rounded-xl border border-border bg-white p-6">
+    <div className={cn('mx-auto flex w-full items-center justify-center', className)}>
+      <div className="relative z-10 flex w-full max-w-xl flex-col rounded-xl border border-border bg-white p-6">
         <div className="h-20">
           <h1 className="text-xl font-semibold md:text-2xl">
             <Trans>Create a new account</Trans>

@@ -32,9 +32,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const isOIDCSSOEnabled = IS_OIDC_SSO_ENABLED;
 
   if (NEXT_PUBLIC_DISABLE_SIGNUP === 'true') {
-    const redirectPath = returnTo
-      ? `/signin?returnTo=${encodeURIComponent(returnTo)}`
-      : '/signin';
+    const redirectPath = returnTo ? `/signin?returnTo=${encodeURIComponent(returnTo)}` : '/signin';
 
     throw redirect(redirectPath);
   }
@@ -58,7 +56,7 @@ export default function SignUp({ loaderData }: Route.ComponentProps) {
 
   return (
     <SignUpForm
-      className="mx-auto w-full max-w-screen-2xl px-4 md:px-8 lg:py-8"
+      className="mx-auto min-h-[calc(100vh-10rem)] w-full max-w-xl px-4 md:px-8 lg:py-8"
       isGoogleSSOEnabled={isGoogleSSOEnabled}
       isMicrosoftSSOEnabled={isMicrosoftSSOEnabled}
       isOIDCSSOEnabled={isOIDCSSOEnabled}

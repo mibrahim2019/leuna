@@ -69,10 +69,7 @@ export async function loader({ request, params }: Route.LoaderArgs) {
     },
   });
 
-  if (
-    !organisation ||
-    !organisation.organisationAuthenticationPortal.enabled
-  ) {
+  if (!organisation || !organisation.organisationAuthenticationPortal.enabled) {
     throw new AppError(AppErrorCode.NOT_FOUND, {
       message: 'Organisation not found',
     });
@@ -179,7 +176,7 @@ export default function OrganisationSignIn({ loaderData }: Route.ComponentProps)
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-center gap-8 px-4 md:px-8 lg:py-8 xl:gap-12">
+    <div className="mx-auto flex min-h-[calc(100vh-10rem)] w-full max-w-lg items-center justify-center px-4 md:px-8 lg:py-8">
       <div className="z-10 w-full max-w-lg rounded-xl border border-border bg-white p-6">
         <h1 className="text-2xl font-semibold">
           <Trans>Welcome to {organisationName}</Trans>
@@ -236,14 +233,6 @@ export default function OrganisationSignIn({ loaderData }: Route.ComponentProps)
             <Trans>Return to the Leuna sign-in page here</Trans>
           </Link>
         </div>
-      </div>
-
-      <div className="relative hidden w-full max-w-lg overflow-hidden rounded-xl border border-border xl:flex">
-        <img
-          src="/static/login.jpg"
-          alt="Signin page visual"
-          className="block h-full min-h-[min(760px,80vh)] w-full object-cover object-center"
-        />
       </div>
     </div>
   );
