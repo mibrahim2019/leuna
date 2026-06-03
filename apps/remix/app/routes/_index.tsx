@@ -232,7 +232,10 @@ export default function Home() {
                   key={src}
                   src={src}
                   alt={alt}
-                  className="h-7 w-auto max-w-[7.5rem] object-contain object-center md:h-8 md:max-w-[9rem]"
+                  className={cn(
+                    'h-7 w-auto max-w-[7.5rem] object-contain object-center md:h-8 md:max-w-[9rem]',
+                    alt === 'Product Hunt' && 'hidden sm:block',
+                  )}
                 />
               ))}
             </div>
@@ -410,10 +413,7 @@ export default function Home() {
 
             <div className="mt-3 w-full">
               <p className="text-base text-black md:text-lg">
-                <Trans>
-                  Leuna fits into your existing workflow — from no-code automation with Zapier to
-                  full API access for teams building signing into their own products.
-                </Trans>
+                <Trans>Leuna fits into your existing workflow</Trans>
               </p>
             </div>
 
@@ -458,16 +458,6 @@ export default function Home() {
 
             <div className="mt-3 w-full border-b border-border/50" aria-hidden />
 
-            <div className="mt-3 w-full">
-              <p className="text-base text-black md:text-lg">
-                <Trans>
-                  Every signature on Leuna is cryptographically sealed, timestamped, and backed by a
-                  complete audit trail. Legally binding in the US and EU — and so you can verify
-                  exactly how it works.
-                </Trans>
-              </p>
-            </div>
-
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {SECURITY_ITEMS.map((item) => (
                 <Card
@@ -509,15 +499,6 @@ export default function Home() {
 
             <div className="mt-3 w-full border-b border-border/50" aria-hidden />
 
-            <div className="mt-3 w-full text-center">
-              <p className="text-base text-black md:text-lg">
-                <Trans>
-                  Get the signing workflow you need without turning contracts into another monthly
-                  expense line.
-                </Trans>
-              </p>
-            </div>
-
             <div className="mt-8 grid gap-4 lg:grid-cols-2">
               <Card className="w-full rounded-md border border-border/50 bg-white shadow-none">
                 <CardContent className="flex h-full flex-col p-5 md:p-7">
@@ -537,13 +518,6 @@ export default function Home() {
                       <Trans>one-time payment</Trans>
                     </span>
                   </div>
-
-                  <CardDescription className="mt-3 text-center text-base leading-7 text-black">
-                    <Trans>
-                      Pay once for the contracts, templates, collaboration, and future product
-                      updates your team keeps using.
-                    </Trans>
-                  </CardDescription>
 
                   <div className="mt-5 text-left text-black">
                     <div className="text-sm font-medium">
@@ -621,13 +595,6 @@ export default function Home() {
 
               <div className="-mx-6 mt-3 border-b border-border/50 md:-mx-10" aria-hidden />
 
-              <p className="mt-3 w-full text-base text-black md:text-lg">
-                <Trans>
-                  If signatures are the thing you need, buy the signing workflow once and stop
-                  paying for it every month after that.
-                </Trans>
-              </p>
-
               <div className="mt-6 flex justify-center">
                 <Button asChild size="lg">
                   <Link to={POLAR_LIFETIME_PURCHASE_PATH}>
@@ -651,15 +618,6 @@ export default function Home() {
               </div>
 
               <div className="mt-3 w-full border-b border-border/50" aria-hidden />
-
-              <div className="mt-3 w-full text-center">
-                <p className="text-base text-black md:text-lg">
-                  <Trans>
-                    A few quick answers to help you understand what is included and how Leuna Sign
-                    fits into your signing workflow.
-                  </Trans>
-                </p>
-              </div>
 
               <Card className="mx-auto mt-8 max-w-3xl rounded-md border border-border/50 bg-white shadow-none">
                 <CardContent className="p-6 md:p-8">
