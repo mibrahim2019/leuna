@@ -15,7 +15,7 @@ import { getTranslations } from '@documenso/lib/utils/i18n';
 import { Card, CardContent } from '@documenso/ui/primitives/card';
 
 import appStylesheet from '~/app.css?url';
-import { WordmarkLogo } from '~/components/general/wordmark-logo';
+import { BrandingLogoIcon } from '~/components/general/branding-logo-icon';
 import { InternalAuditLogTable } from '~/components/tables/internal-audit-log-table';
 
 import type { Route } from './+types/audit-log';
@@ -192,7 +192,7 @@ export default function AuditLog({ loaderData }: Route.ComponentProps) {
       {!hidePoweredBy && (
         <div className="my-8 flex-row-reverse">
           <div className="flex items-end justify-end gap-x-4">
-            <WordmarkLogo variant="light" className="h-7 print:h-6" />
+            <BrandingLogoIcon className="h-7 w-7 print:h-6 print:w-6" />
           </div>
         </div>
       )}

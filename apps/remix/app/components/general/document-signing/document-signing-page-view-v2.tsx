@@ -34,11 +34,11 @@ import { useEmbedSigningContext } from '~/components/embed/embed-signing-context
 import { EnvelopeSignerPageRenderer } from '~/components/general/envelope-signing/envelope-signer-page-renderer';
 import { EnvelopePdfViewer } from '~/components/general/pdf-viewer/envelope-pdf-viewer';
 
+import { BrandingLogoIcon } from '../branding-logo-icon';
 import { DocumentSigningAttachmentsPopover } from '../document-signing/document-signing-attachments-popover';
 import { EnvelopeItemSelector } from '../envelope-editor/envelope-file-selector';
 import EnvelopeSignerForm from '../envelope-signing/envelope-signer-form';
 import { EnvelopeSignerHeader } from '../envelope-signing/envelope-signer-header';
-import { WordmarkLogo } from '../wordmark-logo';
 import { DocumentSigningMobileWidget } from './document-signing-mobile-widget';
 import { DocumentSigningRejectDialog } from './document-signing-reject-dialog';
 import { useRequiredEnvelopeSigningContext } from './envelope-signing-provider';
@@ -306,10 +306,7 @@ export const DocumentSigningPageViewV2 = () => {
                   <span>
                     <Trans>Powered by</Trans>
                   </span>
-                  <WordmarkLogo
-                    variant="dark"
-                    className="ml-2 inline-block h-3.5 w-auto align-middle"
-                  />
+                  <BrandingLogoIcon className="ml-2 inline-block h-3.5 w-3.5 align-middle" />
                 </a>
               )}
             </div>

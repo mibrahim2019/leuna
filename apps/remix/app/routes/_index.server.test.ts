@@ -44,8 +44,8 @@ vi.mock('@documenso/lib/utils/teams', () => ({
   formatDocumentsPath: mockFormatDocumentsPath,
 }));
 
-vi.mock('~/components/general/wordmark-logo', () => ({
-  WordmarkLogo: vi.fn(),
+vi.mock('~/components/general/branding-logo-icon', () => ({
+  BrandingLogoIcon: vi.fn(),
 }));
 
 vi.mock('~/components/general/marketing-header', () => ({

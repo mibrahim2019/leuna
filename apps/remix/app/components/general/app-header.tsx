@@ -11,7 +11,7 @@ import { trpc } from '@documenso/trpc/react';
 import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
 
-import { WordmarkLogo } from '~/components/general/wordmark-logo';
+import { BrandingLogoIcon } from '~/components/general/branding-logo-icon';
 
 import { AppCommandMenu } from './app-command-menu';
 import { AppNavDesktop } from './app-nav-desktop';
@@ -51,7 +51,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
           to={getRootHref(params)}
           className="hidden rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:inline"
         >
-          <WordmarkLogo variant="light" className="h-6" />
+          <BrandingLogoIcon className="h-6 w-6" />
         </Link>
 
         <AppNavDesktop setIsCommandMenuOpen={setIsCommandMenuOpen} />

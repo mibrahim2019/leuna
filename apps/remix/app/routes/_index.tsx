@@ -27,8 +27,8 @@ import {
   CardTitle,
 } from '@documenso/ui/primitives/card';
 
+import { BrandingLogoIcon } from '~/components/general/branding-logo-icon';
 import { MarketingHeader } from '~/components/general/marketing-header';
-import { WordmarkLogo } from '~/components/general/wordmark-logo';
 import { appMetaTags } from '~/utils/meta';
 
 import { requirePolarAccessForRoute } from '../utils/polar-auth-gate.server';
@@ -571,7 +571,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-8 md:grid-cols-3">
             <div className="col-span-2 md:col-span-1">
               <Link to="/" className="inline-flex" aria-label="Leuna home">
-                <WordmarkLogo variant="dark" className="h-9" />
+                <BrandingLogoIcon className="h-9 w-9" />
               </Link>
               <p className="mt-3 text-sm text-white/80">
                 <Trans> e-signing. One payment. No limits.</Trans>

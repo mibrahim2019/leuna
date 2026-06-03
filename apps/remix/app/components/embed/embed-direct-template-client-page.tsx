@@ -44,8 +44,8 @@ import { Label } from '@documenso/ui/primitives/label';
 import { SignaturePadDialog } from '@documenso/ui/primitives/signature-pad/signature-pad-dialog';
 import { useToast } from '@documenso/ui/primitives/use-toast';
 
+import { BrandingLogoIcon } from '~/components/general/branding-logo-icon';
 import PDFViewerLazy from '~/components/general/pdf-viewer/pdf-viewer-lazy';
-import { WordmarkLogo } from '~/components/general/wordmark-logo';
 import { injectCss } from '~/utils/css-vars';
 
 import type { DirectTemplateLocalField } from '../general/direct-template/direct-template-signing-form';
@@ -539,7 +539,7 @@ export const EmbedDirectTemplateClientPage = ({
           <span>
             <Trans>Powered by</Trans>
           </span>
-          <WordmarkLogo variant="dark" className="ml-2 inline-block h-3.5 w-auto align-middle" />
+          <BrandingLogoIcon className="ml-2 inline-block h-3.5 w-3.5 align-middle" />
         </div>
       )}
     </div>

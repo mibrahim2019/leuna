@@ -6,20 +6,14 @@ Status of the brand-mark rollout. **Done** items are already live in the working
 ## ✅ Already done (this pass)
 - Favicons (PNG): `apps/remix/public/{favicon-16x16,favicon-32x32,apple-touch-icon,android-chrome-192x192,android-chrome-512x512}.png`
 - Docs favicons: `apps/docs/public/{favicon-16x16,favicon-32x32,apple-touch-icon}.png`, `apps/docs/src/app/apple-icon.png`
-- Nav/wordmark icon + PDF fallback: `packages/assets/logo.svg`, `apps/remix/app/components/general/branding-logo-icon.tsx`
-- Email + app raster lockups: `packages/email/static/logo.png`, `apps/remix/public/static/logo.png`, `apps/docs/public/logo.png`
-- **Navbar + everywhere wordmark lockup** (replaced the live-text `SignWordmarkLogo`):
-  - New transparent lockup assets generated from `leuna-assets/email-header-logo-600x200.png`
-    (white keyed out, halos un-premultiplied): `packages/assets/wordmark.png` (black text, light
-    surfaces) + `packages/assets/wordmark-dark.png` (white text, dark surfaces).
-    Generator: `leuna-assets/make-wordmark.cjs`.
-  - New component `apps/remix/app/components/general/wordmark-logo.tsx` with a
-    `variant` prop (`auto` | `light` | `dark`) so the lockup contrasts on every surface.
-  - `SignWordmarkLogo` **deleted** (`apps/remix/app/components/general/sign-wordmark-logo.tsx`
-    removed); all 16 usages migrated — app/marketing/profile/signer/editor headers + mobile nav
-    (light/auto), and the near-black "Powered by" badges (dark). Test mock updated. `tsc` + `eslint` clean.
-- Emails confirmed on new branding: `template-shell.tsx` renders the new `logo.png` lockup; no stale
-  "Documenso" text in any email template/footer.
+- Nav icon + PDF fallback: `packages/assets/logo.svg`, `apps/remix/app/components/general/branding-logo-icon.tsx`
+  (yellow mark SVG only — no raster wordmark lockups in the app UI).
+- Email + docs raster header lockups: `packages/email/static/logo.png`, `apps/remix/public/static/logo.png`,
+  `apps/docs/public/logo.png` (wide lockup for email headers / docs; not used in app nav).
+- `SignWordmarkLogo` and interim `WordmarkLogo` / `wordmark.png` assets **removed**; all nav/signing/embed
+  headers use `BrandingLogoIcon` only.
+- Emails: `template-shell.tsx` loads `logo.png` via `template-image.tsx` (with `?v=` cache-bust); footer
+  copy says Leuna; no stale Documenso text in templates.
 
 ---
 
@@ -53,16 +47,14 @@ In `apps/remix/app/utils/meta.ts`:
 - Manifests `theme_color` set to brand yellow `#FFD400` in both
   `apps/remix/public/site.webmanifest` and `packages/assets/site.webmanifest`.
   `background_color` stays `#FFFFFF`.
-- ✅ ~~`SignWordmarkLogo` renders the "a" in `#2563eb` (blue)~~ — resolved: the live-text
-  wordmark was deleted and replaced everywhere by the `WordmarkLogo` image lockup (yellow mark +
-  black/white "leuna"). No blue accent remains in the wordmark.
+- App UI uses icon-only `BrandingLogoIcon` (no text lockup PNGs).
 
 ### 5. ✅ Legacy wordmark vector — DONE
 `apps/remix/app/components/general/branding-logo.tsx` (OLD swirl + wordmark vector) had no module
 imports and no `<BrandingLogo>` JSX usages — confirmed dead and **deleted**.
 
 ### 6. Verify in the running app — before merge
-- `apps/remix`: load the app, check the nav wordmark, browser-tab favicon, and a sent email.
+- `apps/remix`: load the app, check the nav icon, browser-tab favicon, and a sent email.
 - `apps/docs`: check tab favicon + header logo.
 - Send/preview one transactional email to confirm `packages/email/static/logo.png` looks right.
 - Generate a PDF with default branding to confirm `packages/assets/logo.svg` fallback renders.

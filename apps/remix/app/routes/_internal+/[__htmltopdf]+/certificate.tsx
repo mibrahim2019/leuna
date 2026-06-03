@@ -32,7 +32,7 @@ import {
   TableRow,
 } from '@documenso/ui/primitives/table';
 
-import { WordmarkLogo } from '~/components/general/wordmark-logo';
+import { BrandingLogoIcon } from '~/components/general/branding-logo-icon';
 
 import type { Route } from './+types/certificate';
 
@@ -401,7 +401,7 @@ export default function SigningCertificate({ loaderData }: Route.ComponentProps)
             <p className="flex-shrink-0 text-sm font-medium print:text-xs">
               {_(msg`Signing certificate provided by`)}:
             </p>
-            <WordmarkLogo variant="light" className="h-7 print:h-6" />
+            <BrandingLogoIcon className="h-7 w-7 print:h-6 print:w-6" />
           </div>
         </div>
       )}

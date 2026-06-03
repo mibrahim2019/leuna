@@ -7,6 +7,9 @@ export interface TemplateImageProps {
   alt?: string;
 }
 
+/** Busts cached email-client images when static branding assets change. */
+const STATIC_ASSET_VERSION = '2';
+
 export const TemplateImage = ({
   assetBaseUrl,
   className,
@@ -14,7 +17,10 @@ export const TemplateImage = ({
   alt = 'Leuna',
 }: TemplateImageProps) => {
   const getAssetUrl = (path: string) => {
-    return new URL(path, assetBaseUrl).toString();
+    const url = new URL(path, assetBaseUrl);
+    url.searchParams.set('v', STATIC_ASSET_VERSION);
+
+    return url.toString();
   };
 
   return <Img className={className} src={getAssetUrl(`/static/${staticAsset}`)} alt={alt} />;

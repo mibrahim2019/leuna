@@ -11,8 +11,8 @@ import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
 
 import { Header as AuthenticatedHeader } from '~/components/general/app-header';
+import { BrandingLogoIcon } from '~/components/general/branding-logo-icon';
 import { GenericErrorLayout } from '~/components/general/generic-error-layout';
-import { WordmarkLogo } from '~/components/general/wordmark-logo';
 import { appMetaTags } from '~/utils/meta';
 
 import type { Route } from './+types/_layout';
@@ -53,7 +53,7 @@ export default function PublicProfileLayout() {
               className="rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:inline"
               aria-label="Leuna home"
             >
-              <WordmarkLogo className="h-7" />
+              <BrandingLogoIcon className="h-7 w-7" />
             </Link>
 
             <div className="flex flex-row items-center justify-center">

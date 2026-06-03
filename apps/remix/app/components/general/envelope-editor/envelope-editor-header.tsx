@@ -26,10 +26,10 @@ import { Separator } from '@documenso/ui/primitives/separator';
 import { EnvelopeDistributeDialog } from '~/components/dialogs/envelope-distribute-dialog';
 import { EnvelopeRedistributeDialog } from '~/components/dialogs/envelope-redistribute-dialog';
 import { TemplateUseDialog } from '~/components/dialogs/template-use-dialog';
+import { BrandingLogoIcon } from '~/components/general/branding-logo-icon';
 import { DocumentAttachmentsPopover } from '~/components/general/document/document-attachments-popover';
 import { EmbeddedEditorAttachmentPopover } from '~/components/general/document/embedded-editor-attachment-popover';
 import { EnvelopeEditorSettingsDialog } from '~/components/general/envelope-editor/envelope-editor-settings-dialog';
-import { WordmarkLogo } from '~/components/general/wordmark-logo';
 
 import { TemplateDirectLinkBadge } from '../template/template-direct-link-badge';
 import { EnvelopeItemTitleInput } from './envelope-editor-title-input';
@@ -84,7 +84,7 @@ export default function EnvelopeEditorHeader() {
             />
           ) : (
             <Link to="/">
-              <WordmarkLogo className="h-7" />
+              <BrandingLogoIcon className="h-7 w-7" />
             </Link>
           )}
           <Separator orientation="vertical" className="h-6" />
