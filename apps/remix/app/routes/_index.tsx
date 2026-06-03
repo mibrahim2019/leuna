@@ -149,6 +149,13 @@ const INTEGRATIONS = [
   },
 ] as const;
 
+const FullBleedDivider = () => (
+  <div
+    className="relative left-1/2 w-screen -translate-x-1/2 border-b border-border/50"
+    aria-hidden
+  />
+);
+
 export function meta() {
   return appMetaTags(msg`Home`);
 }
@@ -203,12 +210,12 @@ export async function loader({ request }: Route.LoaderArgs) {
 
 export default function Home() {
   return (
-    <main className="home-page dark-mode-disabled relative min-h-screen overflow-x-hidden bg-[#fdfdfc]">
+    <main className="home-page dark-mode-disabled relative min-h-screen overflow-x-hidden bg-white">
       <MarketingHeader ctaLabel={<Trans>Get Lifetime Access</Trans>} />
 
       <div className="mx-auto w-full max-w-screen-xl px-4 pb-4 pt-1 md:px-8 md:pb-6 md:pt-2 lg:px-12 lg:pb-8 lg:pt-2">
         <div className="relative flex flex-col">
-          <div className="mt-2 bg-[#fdfdfc] px-4 py-3 md:px-6">
+          <div className="mt-2 bg-white px-4 py-3 md:px-6">
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:gap-x-10 md:gap-y-6">
               {FEATURED_ON_LOGOS.map(({ src, alt }) => (
                 <img
@@ -281,7 +288,7 @@ export default function Home() {
                     </div>
 
                     <div className="mt-5 flex justify-center">
-                      <Button asChild size="lg">
+                      <Button asChild size="lg" variant="secondary">
                         <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                           <Trans>Claim Your Lifetime Deal</Trans>
                         </Link>
@@ -293,7 +300,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-full border-b border-border/50" aria-hidden />
+          <FullBleedDivider />
 
           <section id="cost-comparison" className="border-border">
             <div className="m-8 grid grid-cols-1 gap-10 py-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start lg:gap-14">
@@ -329,7 +336,7 @@ export default function Home() {
                   </div>
                 ))}
                 <div className="pt-2">
-                  <Button asChild size="lg" className="w-full sm:w-auto">
+                  <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
                     <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                       <Trans>Get Lifetime Access - $99</Trans>
                     </Link>
@@ -338,6 +345,8 @@ export default function Home() {
               </div>
             </div>
           </section>
+
+          <FullBleedDivider />
 
           <section id="integrations" className="border-border py-6 md:py-8">
             <div className="w-full">
@@ -378,13 +387,15 @@ export default function Home() {
             </div>
 
             <div className="mt-6 flex justify-center">
-              <Button asChild size="lg">
+              <Button asChild size="lg" variant="secondary">
                 <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                   <Trans>Get Lifetime Access</Trans>
                 </Link>
               </Button>
             </div>
           </section>
+
+          <FullBleedDivider />
 
           <section id="security" className="border-border py-6 md:py-8">
             <div className="w-full">
@@ -419,13 +430,15 @@ export default function Home() {
             </div>
 
             <div className="mt-6 flex justify-center">
-              <Button asChild size="lg">
+              <Button asChild size="lg" variant="secondary">
                 <Link to={POLAR_LIFETIME_SIGNUP_PATH}>
                   <Trans>Get Lifetime Access</Trans>
                 </Link>
               </Button>
             </div>
           </section>
+
+          <FullBleedDivider />
 
           <section id="pricing" className="border-border py-6 md:py-8">
             <div className="w-full text-center">
@@ -502,6 +515,8 @@ export default function Home() {
             </div>
           </section>
 
+          <FullBleedDivider />
+
           <section className="border-border">
             <div className="w-full rounded-3xl border border-border/50 bg-white px-6 py-8 text-center md:px-10 md:py-10">
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-black">
@@ -523,6 +538,8 @@ export default function Home() {
               </div>
             </div>
           </section>
+
+          <FullBleedDivider />
 
           <section className="border-border py-6 md:py-8">
             <div className="w-full">
