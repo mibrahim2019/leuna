@@ -576,35 +576,38 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="border-t border-border/50 bg-white px-4 py-8 md:px-8 lg:px-12">
+      <footer className="bg-black px-4 py-8 text-white md:px-8 lg:px-12">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-3">
             <div className="col-span-2 md:col-span-1">
               <Link to="/" className="inline-flex" aria-label="Leuna home">
-                <WordmarkLogo variant="light" className="h-9" />
+                <WordmarkLogo variant="dark" className="h-9" />
               </Link>
-              <p className="mt-3 text-sm text-black">
+              <p className="mt-3 text-sm text-white/80">
                 <Trans> e-signing. One payment. No limits.</Trans>
+              </p>
+              <p className="mt-4 text-sm text-white/70">
+                <Trans>© {new Date().getFullYear()} Leuna. All rights reserved.</Trans>
               </p>
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-foreground">
+              <p className="text-sm font-semibold text-white">
                 <Trans>Product</Trans>
               </p>
-              <ul className="mt-3 space-y-2 text-sm text-black">
+              <ul className="mt-3 space-y-2 text-sm text-white/70">
                 <li>
-                  <a href="#integrations" className="transition-colors hover:text-foreground">
+                  <a href="#integrations" className="transition-colors hover:text-white">
                     <Trans>Integrations</Trans>
                   </a>
                 </li>
                 <li>
-                  <a href="#security" className="transition-colors hover:text-foreground">
+                  <a href="#security" className="transition-colors hover:text-white">
                     <Trans>Security</Trans>
                   </a>
                 </li>
                 <li>
-                  <a href="#pricing" className="transition-colors hover:text-foreground">
+                  <a href="#pricing" className="transition-colors hover:text-white">
                     <Trans>Pricing</Trans>
                   </a>
                 </li>
@@ -612,44 +615,35 @@ export default function Home() {
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-foreground">
+              <p className="text-sm font-semibold text-white">
                 <Trans>Legal</Trans>
               </p>
-              <ul className="mt-3 space-y-2 text-sm text-black">
+              <ul className="mt-3 space-y-2 text-sm text-white/70">
                 <li>
-                  <Link to="/privacy" className="transition-colors hover:text-foreground">
+                  <Link to="/privacy" className="transition-colors hover:text-white">
                     <Trans>Privacy Policy</Trans>
                   </Link>
                 </li>
                 <li>
-                  <Link to="/terms" className="transition-colors hover:text-foreground">
+                  <Link to="/terms" className="transition-colors hover:text-white">
                     <Trans>Terms of Service</Trans>
                   </Link>
                 </li>
                 <li>
-                  <a href="#security" className="transition-colors hover:text-foreground">
+                  <a href="#security" className="transition-colors hover:text-white">
                     <Trans>Security</Trans>
                   </a>
                 </li>
                 <li>
                   <Link
                     to="/open-source"
-                    className="text-[10px] transition-colors hover:text-foreground"
+                    className="text-[10px] transition-colors hover:text-white"
                   >
                     <Trans>Source Code</Trans>
                   </Link>
                 </li>
               </ul>
             </div>
-          </div>
-
-          <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-5 md:flex-row">
-            <p className="text-sm text-black">
-              <Trans>© {new Date().getFullYear()} Leuna. All rights reserved.</Trans>
-            </p>
-            <p className="text-sm text-black">
-              <Trans>. Proudly transparent.</Trans>
-            </p>
           </div>
         </div>
       </footer>
