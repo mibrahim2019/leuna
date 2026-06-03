@@ -25,41 +25,41 @@ Status of the brand-mark rollout. **Done** items are already live in the working
 
 ## 🔲 Remaining
 
-### 1. `favicon.ico` (multi-resolution) — HIGH
-sharp can't write true `.ico`. Three files still hold the OLD mark (PNG renamed `.ico`):
+### 1. ✅ `favicon.ico` (multi-resolution) — DONE
+All three `.ico` files now hold the new mark as a clean, true multi-resolution ICO
+(16/32/48 PNG-compressed entries, ~4 KB):
 - `apps/remix/public/favicon.ico`
 - `apps/docs/src/app/favicon.ico`
 - `packages/assets/favicon.ico`
 
-**How:** install a real ico encoder and bundle 16/32/48 from `leuna-assets/favicon-48x48.png`.
-```bash
-npx -y png-to-ico leuna-assets/favicon-16x16.png leuna-assets/favicon-32x32.png leuna-assets/favicon-48x48.png > apps/remix/public/favicon.ico
-# repeat for apps/docs/src/app/favicon.ico and packages/assets/favicon.ico
-```
-(Optional: also add `favicon.svg` from `packages/assets/logo.svg` and reference it in `apps/remix/app/root.tsx` head.)
+Note: `png-to-ico` upscaled and injected a stray 256×256 uncompressed BMP (~285 KB), and the
+source `leuna-assets/favicon-*.png` are oversized (72/120/168 px). Final ico was hand-built with
+sharp: resized exactly to 16/32/48 from `leuna-assets/favicon-48x48.png`, embedded as PNG.
+(Optional, not done: add `favicon.svg` from `packages/assets/logo.svg` + reference in `root.tsx` head.)
 
-### 2. Open Graph / social share image — HIGH (this is the "Google/social card")
+### 2. Open Graph / social share image — HIGH (this is the "Google/social card") — DEFERRED
 `apps/remix/app/utils/meta.ts` points `og:image` + `twitter:image` at `/opengraph-image.jpg`,
-which is still the old art and has NO matching export in `leuna-assets/`.
+and HAS NO matching export in `leuna-assets/` — **and the file `apps/remix/public/opengraph-image.jpg`
+does not even exist**, so social cards are currently broken (404). Owner chose to defer until a
+designed card is ready.
 - Export a 1200×630 OG card from the Pencil file (icon + "leuna" + tagline) into `leuna-assets/`.
-- Replace `apps/remix/public/opengraph-image.jpg` (resize/convert with sharp).
+- Add `apps/remix/public/opengraph-image.jpg` (resize/convert with sharp).
 
-### 3. Stale brand references in meta — MEDIUM
+### 3. ✅ Stale brand references in meta — DONE
 In `apps/remix/app/utils/meta.ts`:
-- `twitter:site` is still `@documenso` → change to the real Leuna handle (or remove).
+- `twitter:site` (`@documenso`) **removed** entirely (no Leuna handle yet).
 
-### 4. Brand color consistency — MEDIUM (design decision)
-- Manifests `theme_color` is blue `#0D21A1` in `apps/remix/public/site.webmanifest`
-  and `packages/assets/site.webmanifest`. Decide: keep, or move to the new palette
-  (icon yellow `#FFD400` / black). `background_color` is `#FFFFFF`.
+### 4. ✅ Brand color consistency — DONE (decision: yellow)
+- Manifests `theme_color` set to brand yellow `#FFD400` in both
+  `apps/remix/public/site.webmanifest` and `packages/assets/site.webmanifest`.
+  `background_color` stays `#FFFFFF`.
 - ✅ ~~`SignWordmarkLogo` renders the "a" in `#2563eb` (blue)~~ — resolved: the live-text
   wordmark was deleted and replaced everywhere by the `WordmarkLogo` image lockup (yellow mark +
   black/white "leuna"). No blue accent remains in the wordmark.
 
-### 5. Legacy wordmark vector — LOW
-`apps/remix/app/components/general/branding-logo.tsx` still contains the OLD swirl + wordmark
-vector (viewBox 0 0 2248 320). It has **no JSX usages** today, so it's cosmetic/dead code.
-Either delete it or redraw with the new mark to avoid confusion later.
+### 5. ✅ Legacy wordmark vector — DONE
+`apps/remix/app/components/general/branding-logo.tsx` (OLD swirl + wordmark vector) had no module
+imports and no `<BrandingLogo>` JSX usages — confirmed dead and **deleted**.
 
 ### 6. Verify in the running app — before merge
 - `apps/remix`: load the app, check the nav wordmark, browser-tab favicon, and a sent email.
