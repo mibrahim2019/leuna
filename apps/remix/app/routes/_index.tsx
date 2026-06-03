@@ -511,6 +511,39 @@ export default function Home() {
 
           <FullBleedDivider />
 
+          <section className="border-border py-6 md:py-8">
+            <div className="w-full">
+              <div className="w-full text-center">
+                <p className="text-sm font-medium uppercase tracking-[0.2em] text-black">
+                  <Trans>FAQ</Trans>
+                </p>
+
+                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+                  <Trans>Frequently asked questions</Trans>
+                </h2>
+              </div>
+
+              <Card className="mx-auto mt-8 max-w-3xl rounded-md border-0 bg-white shadow-none">
+                <CardContent className="p-6 md:p-8">
+                  <Accordion type="single" collapsible className="w-full">
+                    {FAQ_ITEMS.map((faqItem) => (
+                      <AccordionItem key={faqItem.id} value={faqItem.id} className="border-b-0">
+                        <AccordionTrigger className="text-left text-base text-foreground hover:no-underline">
+                          {faqItem.question}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-base leading-7 text-black">
+                          {faqItem.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          <FullBleedDivider />
+
           <section className="border-border">
             <div className="w-full bg-white px-6 py-8 text-center md:px-10 md:py-10">
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-black">
@@ -528,39 +561,6 @@ export default function Home() {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </section>
-
-          <FullBleedDivider />
-
-          <section className="border-border py-6 md:py-8">
-            <div className="w-full">
-              <div className="w-full text-center">
-                <p className="text-sm font-medium uppercase tracking-[0.2em] text-black">
-                  <Trans>FAQ</Trans>
-                </p>
-
-                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                  <Trans>Frequently asked questions</Trans>
-                </h2>
-              </div>
-
-              <Card className="mx-auto mt-8 max-w-3xl rounded-md border border-border/50 bg-white shadow-none">
-                <CardContent className="p-6 md:p-8">
-                  <Accordion type="single" collapsible className="w-full">
-                    {FAQ_ITEMS.map((faqItem) => (
-                      <AccordionItem key={faqItem.id} value={faqItem.id} className="border-border">
-                        <AccordionTrigger className="text-left text-base text-foreground hover:no-underline">
-                          {faqItem.question}
-                        </AccordionTrigger>
-                        <AccordionContent className="text-base leading-7 text-black">
-                          {faqItem.answer}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </CardContent>
-              </Card>
             </div>
           </section>
         </div>

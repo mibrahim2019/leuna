@@ -14,7 +14,7 @@ import {
   SheetTrigger,
 } from '@documenso/ui/primitives/sheet';
 
-import { BrandingLogoIcon } from '~/components/general/branding-logo-icon';
+import { BrandingLogo } from '~/components/general/branding-logo';
 
 const MARKETING_NAV_ITEMS = [
   { href: '/#use-cases', label: <Trans>Use Cases</Trans> },
@@ -31,7 +31,7 @@ export const MarketingHeader = ({ ctaLabel }: MarketingHeaderProps) => (
   <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-white">
     <div className="mx-auto flex w-full max-w-screen-xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 sm:py-3 md:px-8">
       <Link to="/" className="shrink-0" aria-label="Leuna home">
-        <BrandingLogoIcon className="h-7 w-7 sm:h-8 sm:w-8" />
+        <BrandingLogo />
       </Link>
 
       <nav
