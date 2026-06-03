@@ -3,7 +3,8 @@ import { env } from '../utils/env';
 export const FROM_ADDRESS = env('NEXT_PRIVATE_SMTP_FROM_ADDRESS') || 'noreply@leuna.app';
 export const FROM_NAME = env('NEXT_PRIVATE_SMTP_FROM_NAME') || 'Leuna';
 
-export const SIGN_DOCUTRACKER_INTERNAL_EMAIL = {
+/** Default platform sender when no organisation custom email is selected. */
+export const LEUNA_DEFAULT_SENDER_EMAIL = {
   name: FROM_NAME,
   address: FROM_ADDRESS,
 };

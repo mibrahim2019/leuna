@@ -1,4 +1,4 @@
-import { SIGN_DOCUTRACKER_ENCRYPTION_KEY } from '@documenso/lib/constants/crypto';
+import { LEUNA_ENCRYPTION_KEY } from '@documenso/lib/constants/crypto';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { symmetricDecrypt } from '@documenso/lib/universal/crypto';
 import { formatOrganisationCallbackUrl } from '@documenso/lib/utils/organisation-authentication-portal';
@@ -56,14 +56,14 @@ export const getOrganisationAuthenticationPortalOptions = async (
     });
   }
 
-  if (!SIGN_DOCUTRACKER_ENCRYPTION_KEY) {
+  if (!LEUNA_ENCRYPTION_KEY) {
     throw new AppError(AppErrorCode.NOT_SETUP, {
       message: 'Encryption key is not set',
     });
   }
 
   const clientSecret = Buffer.from(
-    symmetricDecrypt({ key: SIGN_DOCUTRACKER_ENCRYPTION_KEY, data: encryptedClientSecret }),
+    symmetricDecrypt({ key: LEUNA_ENCRYPTION_KEY, data: encryptedClientSecret }),
   ).toString('utf-8');
 
   return {

@@ -1,4 +1,4 @@
-import { SIGN_DOCUTRACKER_ENCRYPTION_KEY } from '@documenso/lib/constants/crypto';
+import { LEUNA_ENCRYPTION_KEY } from '@documenso/lib/constants/crypto';
 import { ORGANISATION_MEMBER_ROLE_PERMISSIONS_MAP } from '@documenso/lib/constants/organisations';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { symmetricEncrypt } from '@documenso/lib/universal/crypto';
@@ -66,10 +66,10 @@ export const updateOrganisationAuthenticationPortalRoute = authenticatedProcedur
 
     // Encrypt the secret if it is provided.
     if (clientSecret) {
-      const encryptionKey = SIGN_DOCUTRACKER_ENCRYPTION_KEY;
+      const encryptionKey = LEUNA_ENCRYPTION_KEY;
 
       if (!encryptionKey) {
-        throw new Error('Missing SIGN_DOCUTRACKER_ENCRYPTION_KEY');
+        throw new Error('Missing LEUNA_ENCRYPTION_KEY');
       }
 
       encryptedClientSecret = symmetricEncrypt({

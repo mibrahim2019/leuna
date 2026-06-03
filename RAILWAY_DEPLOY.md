@@ -92,7 +92,7 @@ NEXT_PRIVATE_UPLOAD_SECRET_ACCESS_KEY=<minio app secret key>
 | `NEXT_PUBLIC_WEBAPP_URL` | Set to `https://<your-app-domain>` (signed links + emails break otherwise). |
 | `NEXT_PRIVATE_INTERNAL_WEBAPP_URL` | `http://localhost:3000` (in-container self-calls). |
 | `POLAR_*` | Use the **production** set (`.env` L199-202). Delete the stray sandbox `railway variable set ...` lines (L204-207) from `.env`. |
-| `NEXT_PRIVATE_SMTP_FROM_ADDRESS` | Brand is Leuna; keep docutracker.io verified in Resend OR switch to a `leuna.app` sender — add SPF + DKIM + DMARC or mail goes to spam. |
+| `NEXT_PRIVATE_SMTP_FROM_ADDRESS` | Brand is Leuna; keep leuna.app verified in Resend OR switch to a `leuna.app` sender — add SPF + DKIM + DMARC or mail goes to spam. |
 | `NEXTAUTH_SECRET`, `NEXT_PRIVATE_ENCRYPTION_KEY`, `NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY` | Copy verbatim. ⚠️ **Back these up** — losing the encryption key makes stored data permanently undecryptable. |
 | `NEXT_PRIVATE_SIGNING_PASSPHRASE` + `..._LOCAL_FILE_CONTENTS` | Keep (self-signed local signing). Stronger signatures later: `gcloud-hsm` / CA cert + `NEXT_PRIVATE_SIGNING_TIMESTAMP_AUTHORITY`. |
 | `NEXT_PRIVATE_GOOGLE_CLIENT_*` | Add prod redirect URI `https://<your-app-domain>/api/auth/callback/google` in Google Console. |

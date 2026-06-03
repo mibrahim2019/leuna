@@ -89,7 +89,7 @@ curl -X POST "https://app.leuna.app/api/v2/template/direct/create" \
 </Tab>
 <Tab value="TypeScript">
 ```typescript
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 const response = await fetch(`${BASE_URL}/template/direct/create`, {
@@ -454,7 +454,7 @@ async function checkDocumentStatus(externalId: string) {
 This example shows a complete workflow for embedding direct link signing:
 
 ```typescript
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 // 1. Get template with direct link

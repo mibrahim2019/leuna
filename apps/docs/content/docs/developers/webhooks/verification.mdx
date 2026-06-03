@@ -67,7 +67,7 @@ const crypto = require('crypto');
 const app = express();
 app.use(express.json());
 
-const WEBHOOK_SECRET = process.env.SIGN_DOCUTRACKER_WEBHOOK_SECRET;
+const WEBHOOK_SECRET = process.env.LEUNA_WEBHOOK_SECRET;
 
 function verifyWebhookSignature(receivedSecret, expectedSecret) {
   if (!expectedSecret) {
@@ -122,7 +122,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-WEBHOOK_SECRET = os.environ.get('SIGN_DOCUTRACKER_WEBHOOK_SECRET')
+WEBHOOK_SECRET = os.environ.get('LEUNA_WEBHOOK_SECRET')
 
 def verify_webhook_signature(received_secret, expected_secret):
     """Verify the webhook signature using constant-time comparison."""
@@ -218,7 +218,7 @@ openssl rand -hex 32
 
 ```javascript
 // Good: Environment variable
-const WEBHOOK_SECRET = process.env.SIGN_DOCUTRACKER_WEBHOOK_SECRET;
+const WEBHOOK_SECRET = process.env.LEUNA_WEBHOOK_SECRET;
 
 // Bad: Hardcoded
 const WEBHOOK_SECRET = 'my-secret-key'; // Never do this

@@ -5,7 +5,7 @@ import { createTOTPKeyURI } from 'oslo/otp';
 
 import { prisma } from '@documenso/prisma';
 
-import { SIGN_DOCUTRACKER_ENCRYPTION_KEY } from '../../constants/crypto';
+import { LEUNA_ENCRYPTION_KEY } from '../../constants/crypto';
 import { symmetricEncrypt } from '../../universal/crypto';
 
 type SetupTwoFactorAuthenticationOptions = {
@@ -17,7 +17,7 @@ const ISSUER = 'Sign';
 export const setupTwoFactorAuthentication = async ({
   user,
 }: SetupTwoFactorAuthenticationOptions) => {
-  const key = SIGN_DOCUTRACKER_ENCRYPTION_KEY;
+  const key = LEUNA_ENCRYPTION_KEY;
 
   if (!key) {
     throw new Error('MISSING_ENCRYPTION_KEY');

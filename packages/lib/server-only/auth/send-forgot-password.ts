@@ -8,7 +8,7 @@ import { prisma } from '@documenso/prisma';
 
 import { getI18nInstance } from '../../client-only/providers/i18n-server';
 import { NEXT_PUBLIC_WEBAPP_URL } from '../../constants/app';
-import { env } from '../../utils/env';
+import { LEUNA_DEFAULT_SENDER_EMAIL } from '../../constants/email';
 import { renderEmailWithI18N } from '../../utils/render-email-with-i18n';
 
 export interface SendForgotPasswordOptions {
@@ -55,10 +55,7 @@ export const sendForgotPassword = async ({ userId }: SendForgotPasswordOptions) 
       address: user.email,
       name: user.name || '',
     },
-    from: {
-      name: env('NEXT_PRIVATE_SMTP_FROM_NAME') || 'Sign',
-      address: env('NEXT_PRIVATE_SMTP_FROM_ADDRESS') || 'noreply@leuna.app',
-    },
+    from: LEUNA_DEFAULT_SENDER_EMAIL,
     subject: i18n._(msg`Forgot Password?`),
     html,
     text,

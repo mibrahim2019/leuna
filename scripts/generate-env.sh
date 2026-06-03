@@ -137,7 +137,7 @@ while IFS= read -r line || [[ -n "$line" ]]; do
     'NEXT_PRIVATE_SMTP_PASSWORD="password"')
       printf 'NEXT_PRIVATE_SMTP_PASSWORD=\n'
       ;;
-    'NEXT_PRIVATE_SMTP_FROM_NAME="Sign"')
+    'NEXT_PRIVATE_SMTP_FROM_NAME="Leuna"')
       printf 'NEXT_PRIVATE_SMTP_FROM_NAME="CHANGE_ME"\n'
       ;;
     'NEXT_PRIVATE_SMTP_FROM_ADDRESS="noreply@leuna.app"')

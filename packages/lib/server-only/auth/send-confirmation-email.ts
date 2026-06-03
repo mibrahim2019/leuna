@@ -9,7 +9,7 @@ import { prisma } from '@documenso/prisma';
 import { getI18nInstance } from '../../client-only/providers/i18n-server';
 import { NEXT_PUBLIC_WEBAPP_URL } from '../../constants/app';
 import {
-  SIGN_DOCUTRACKER_INTERNAL_EMAIL,
+  LEUNA_DEFAULT_SENDER_EMAIL,
   USER_SIGNUP_VERIFICATION_TOKEN_IDENTIFIER,
 } from '../../constants/email';
 import { renderEmailWithI18N } from '../../utils/render-email-with-i18n';
@@ -62,7 +62,7 @@ export const sendConfirmationEmail = async ({ userId }: SendConfirmationEmailPro
       address: user.email,
       name: user.name || '',
     },
-    from: SIGN_DOCUTRACKER_INTERNAL_EMAIL,
+    from: LEUNA_DEFAULT_SENDER_EMAIL,
     subject: i18n._(msg`Please confirm your email`),
     html,
     text,

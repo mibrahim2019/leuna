@@ -1,6 +1,6 @@
 import type { User } from '@prisma/client';
 
-import { SIGN_DOCUTRACKER_ENCRYPTION_KEY } from '../../constants/crypto';
+import { LEUNA_ENCRYPTION_KEY } from '../../constants/crypto';
 
 type IsTwoFactorAuthenticationEnabledOptions = {
   user: User;
@@ -9,5 +9,5 @@ type IsTwoFactorAuthenticationEnabledOptions = {
 export const isTwoFactorAuthenticationEnabled = ({
   user,
 }: IsTwoFactorAuthenticationEnabledOptions) => {
-  return user.twoFactorEnabled && typeof SIGN_DOCUTRACKER_ENCRYPTION_KEY === 'string';
+  return user.twoFactorEnabled && typeof LEUNA_ENCRYPTION_KEY === 'string';
 };

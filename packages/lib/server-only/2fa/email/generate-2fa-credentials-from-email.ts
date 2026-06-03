@@ -2,9 +2,10 @@ import { hmac } from '@noble/hashes/hmac';
 import { sha256 } from '@noble/hashes/sha256';
 import { createTOTPKeyURI } from 'oslo/otp';
 
-import { SIGN_DOCUTRACKER_ENCRYPTION_KEY } from '../../../constants/crypto';
+import { LEUNA_ENCRYPTION_KEY } from '../../../constants/crypto';
+import { FROM_NAME } from '../../../constants/email';
 
-const ISSUER = 'Sign Email 2FA';
+const ISSUER = `${FROM_NAME} Email 2FA`;
 
 export type GenerateTwoFactorCredentialsFromEmailOptions = {
   envelopeId: string;
@@ -21,13 +22,13 @@ export const generateTwoFactorCredentialsFromEmail = ({
   envelopeId,
   email,
 }: GenerateTwoFactorCredentialsFromEmailOptions) => {
-  if (!SIGN_DOCUTRACKER_ENCRYPTION_KEY) {
-    throw new Error('Missing SIGN_DOCUTRACKER_ENCRYPTION_KEY');
+  if (!LEUNA_ENCRYPTION_KEY) {
+    throw new Error('Missing LEUNA_ENCRYPTION_KEY');
   }
 
   const identity = `email-2fa|v1|email:${email}|id:${envelopeId}`;
 
-  const secret = hmac(sha256, SIGN_DOCUTRACKER_ENCRYPTION_KEY, identity);
+  const secret = hmac(sha256, LEUNA_ENCRYPTION_KEY, identity);
 
   const uri = createTOTPKeyURI(ISSUER, email, secret);
 

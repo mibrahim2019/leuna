@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY } from '@documenso/lib/constants/crypto';
+import { LEUNA_ENCRYPTION_SECONDARY_KEY } from '@documenso/lib/constants/crypto';
 import { symmetricEncrypt } from '@documenso/lib/universal/crypto';
 
 export const ZEncryptedDataSchema = z.object({
@@ -25,7 +25,7 @@ export type EncryptDataOptions = {
  * @returns The encrypted data.
  */
 export const encryptSecondaryData = ({ data, expiresAt }: EncryptDataOptions) => {
-  if (!SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY) {
+  if (!LEUNA_ENCRYPTION_SECONDARY_KEY) {
     throw new Error('Missing encryption key');
   }
 
@@ -35,7 +35,7 @@ export const encryptSecondaryData = ({ data, expiresAt }: EncryptDataOptions) =>
   };
 
   return symmetricEncrypt({
-    key: SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY,
+    key: LEUNA_ENCRYPTION_SECONDARY_KEY,
     data: JSON.stringify(dataToEncrypt),
   });
 };

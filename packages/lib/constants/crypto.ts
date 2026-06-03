@@ -1,22 +1,22 @@
 import { env } from '../utils/env';
 
-export const SIGN_DOCUTRACKER_ENCRYPTION_KEY = env('NEXT_PRIVATE_ENCRYPTION_KEY');
+export const LEUNA_ENCRYPTION_KEY = env('NEXT_PRIVATE_ENCRYPTION_KEY');
 
-export const SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY = env('NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY');
+export const LEUNA_ENCRYPTION_SECONDARY_KEY = env('NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY');
 
 // if (typeof window === 'undefined') {
-//   if (!SIGN_DOCUTRACKER_ENCRYPTION_KEY || !SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY) {
-//     throw new Error('Missing SIGN_DOCUTRACKER_ENCRYPTION_KEY or SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY keys');
+//   if (!LEUNA_ENCRYPTION_KEY || !LEUNA_ENCRYPTION_SECONDARY_KEY) {
+//     throw new Error('Missing LEUNA_ENCRYPTION_KEY or LEUNA_ENCRYPTION_SECONDARY_KEY keys');
 //   }
 
-//   if (SIGN_DOCUTRACKER_ENCRYPTION_KEY === SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY) {
+//   if (LEUNA_ENCRYPTION_KEY === LEUNA_ENCRYPTION_SECONDARY_KEY) {
 //     throw new Error(
-//       'SIGN_DOCUTRACKER_ENCRYPTION_KEY and SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY cannot be equal',
+//       'LEUNA_ENCRYPTION_KEY and LEUNA_ENCRYPTION_SECONDARY_KEY cannot be equal',
 //     );
 //   }
 // }
 
-// if (SIGN_DOCUTRACKER_ENCRYPTION_KEY === 'CAFEBABE') {
+// if (LEUNA_ENCRYPTION_KEY === 'CAFEBABE') {
 //   console.warn('*********************************************************************');
 //   console.warn('*');
 //   console.warn('*');

@@ -123,7 +123,7 @@ app.use(`/api/v2-beta/*`, async (c) =>
 );
 
 // Start telemetry client for anonymous usage tracking.
-// Can be disabled by setting SIGN_DOCUTRACKER_DISABLE_TELEMETRY=true
+// Can be disabled by setting LEUNA_DISABLE_TELEMETRY=true
 if (env('NODE_ENV') !== 'development') {
   void TelemetryClient.start();
 }

@@ -126,7 +126,7 @@ curl -X GET "https://app.leuna.app/api/v2/template?type=PRIVATE&page=1&perPage=2
 </Tab>
 <Tab value="TypeScript">
 ```typescript
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 // List all templates
@@ -337,7 +337,7 @@ curl -X POST "https://app.leuna.app/api/v2/template/use" \
 </Tab>
 <Tab value="TypeScript">
 ```typescript
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 // Create document from template
@@ -925,7 +925,7 @@ See the [OpenAPI Reference](https://openapi.leuna.app) for the full request sche
 This example demonstrates a complete workflow for using templates to send contracts.
 
 ```typescript
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 async function sendEmploymentContract(employeeData: {

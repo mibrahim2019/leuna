@@ -15,6 +15,7 @@ import {
   DOCUMENT_DISTRIBUTION_METHODS,
   DOCUMENT_SIGNATURE_TYPES,
 } from '@documenso/lib/constants/document';
+import { FROM_NAME } from '@documenso/lib/constants/email';
 import { SUPPORTED_LANGUAGES } from '@documenso/lib/constants/i18n';
 import { DEFAULT_DOCUMENT_TIME_ZONE, TIME_ZONES } from '@documenso/lib/constants/time-zones';
 import { ZDocumentEmailSettingsSchema } from '@documenso/lib/types/document-email';
@@ -512,12 +513,9 @@ export const AddTemplateSettingsFormPartial = ({
                                   field.onChange(value === '-1' ? null : value)
                                 }
                               >
-                                <SelectTrigger
-                                  loading={isLoadingEmails}
-                                  className="bg-background"
-                                >
+                                <SelectTrigger loading={isLoadingEmails} className="bg-background">
                                   <SelectValue />
-                                  </SelectTrigger>
+                                </SelectTrigger>
 
                                 <SelectContent>
                                   {emails.map((email) => (
@@ -526,7 +524,7 @@ export const AddTemplateSettingsFormPartial = ({
                                     </SelectItem>
                                   ))}
 
-                                  <SelectItem value={'-1'}>Sign</SelectItem>
+                                  <SelectItem value={'-1'}>{FROM_NAME}</SelectItem>
                                 </SelectContent>
                               </Select>
                             </FormControl>

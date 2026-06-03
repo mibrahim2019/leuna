@@ -1,4 +1,4 @@
-import { SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY } from '@documenso/lib/constants/crypto';
+import { LEUNA_ENCRYPTION_SECONDARY_KEY } from '@documenso/lib/constants/crypto';
 import { ZEncryptedDataSchema } from '@documenso/lib/server-only/crypto/encrypt';
 import { symmetricDecrypt } from '@documenso/lib/universal/crypto';
 
@@ -9,13 +9,13 @@ import { symmetricDecrypt } from '@documenso/lib/universal/crypto';
  * @returns The decrypted value, or `null` if the data is invalid or expired.
  */
 export const decryptSecondaryData = (encryptedData: string): string | null => {
-  if (!SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY) {
+  if (!LEUNA_ENCRYPTION_SECONDARY_KEY) {
     throw new Error('Missing encryption key');
   }
 
   try {
     const decryptedBufferValue = symmetricDecrypt({
-      key: SIGN_DOCUTRACKER_ENCRYPTION_SECONDARY_KEY,
+      key: LEUNA_ENCRYPTION_SECONDARY_KEY,
       data: encryptedData,
     });
 

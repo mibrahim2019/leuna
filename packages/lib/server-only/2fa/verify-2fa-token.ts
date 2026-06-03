@@ -2,7 +2,7 @@ import type { User } from '@prisma/client';
 import { base32 } from '@scure/base';
 import { generateHOTP } from 'oslo/otp';
 
-import { SIGN_DOCUTRACKER_ENCRYPTION_KEY } from '../../constants/crypto';
+import { LEUNA_ENCRYPTION_KEY } from '../../constants/crypto';
 import { symmetricDecrypt } from '../../universal/crypto';
 
 type VerifyTwoFactorAuthenticationTokenOptions = {
@@ -20,10 +20,10 @@ export const verifyTwoFactorAuthenticationToken = async ({
   window = 1,
   period = 30_000,
 }: VerifyTwoFactorAuthenticationTokenOptions) => {
-  const key = SIGN_DOCUTRACKER_ENCRYPTION_KEY;
+  const key = LEUNA_ENCRYPTION_KEY;
 
   if (!key) {
-    throw new Error('Missing SIGN_DOCUTRACKER_ENCRYPTION_KEY');
+    throw new Error('Missing LEUNA_ENCRYPTION_KEY');
   }
 
   if (!user.twoFactorSecret) {

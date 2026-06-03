@@ -265,7 +265,7 @@ Here's a complete script that creates and sends a document:
 const fs = require('fs');
 const FormData = require('form-data');
 
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 async function createAndSendDocument(pdfPath, recipientEmail, recipientName) {

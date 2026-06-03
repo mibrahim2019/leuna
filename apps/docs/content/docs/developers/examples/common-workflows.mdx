@@ -28,7 +28,7 @@ The most common workflow: upload a PDF, add recipients with signature fields, an
 <Tabs items={['TypeScript', 'curl']}>
 <Tab value="TypeScript">
 ```typescript
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 type Recipient = {
@@ -262,7 +262,7 @@ Use templates for repeatable document workflows. This example creates an employm
 <Tabs items={['TypeScript', 'curl']}>
 <Tab value="TypeScript">
 ```typescript
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 type EmployeeData = {
@@ -479,7 +479,7 @@ Send the same document to multiple recipients in parallel. Useful for policy ack
 <Tabs items={['TypeScript', 'curl']}>
 <Tab value="TypeScript">
 ```typescript
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 type BulkRecipient = {
@@ -672,7 +672,7 @@ import express from 'express';
 const app = express();
 app.use(express.json());
 
-const WEBHOOK_SECRET = process.env.SIGN_DOCUTRACKER_WEBHOOK_SECRET;
+const WEBHOOK_SECRET = process.env.LEUNA_WEBHOOK_SECRET;
 
 type WebhookPayload = {
   event: string;
@@ -768,7 +768,7 @@ Register your endpoint in the Sign Leuna dashboard:
     <code>DOCUMENT_SIGNED</code>, <code>DOCUMENT_COMPLETED</code>, <code>DOCUMENT_REJECTED</code>
   </Step>
   <Step>
-    Enter your webhook secret (the same value stored in <code>SIGN_DOCUTRACKER_WEBHOOK_SECRET</code>)
+    Enter your webhook secret (the same value stored in <code>LEUNA_WEBHOOK_SECRET</code>)
   </Step>
   <Step>
     Click **Create Webhook**
@@ -832,7 +832,7 @@ After a document is completed, download the signed PDF with all signatures embed
 <Tabs items={['TypeScript', 'curl']}>
 <Tab value="TypeScript">
 ```typescript
-const API_TOKEN = process.env.SIGN_DOCUTRACKER_API_TOKEN;
+const API_TOKEN = process.env.LEUNA_API_TOKEN;
 const BASE_URL = 'https://app.leuna.app/api/v2';
 
 type DownloadVersion = 'signed' | 'original';

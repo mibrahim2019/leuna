@@ -13,6 +13,7 @@ import * as z from 'zod';
 
 import { useCurrentEnvelopeEditor } from '@documenso/lib/client-only/providers/envelope-editor-provider';
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
+import { FROM_NAME } from '@documenso/lib/constants/email';
 import {
   POLAR_ACCESS_REQUIRED_ERROR_CODE,
   POLAR_UNAVAILABLE_ERROR_CODE,
@@ -24,7 +25,6 @@ import { getRecipientsWithMissingFields } from '@documenso/lib/utils/recipients'
 import { zEmail } from '@documenso/lib/utils/zod';
 import { trpc, trpc as trpcReact } from '@documenso/trpc/react';
 import { DocumentSendEmailMessageHelper } from '@documenso/ui/components/document/document-send-email-message-helper';
-import { cn } from '@documenso/ui/lib/utils';
 import { Alert, AlertDescription } from '@documenso/ui/primitives/alert';
 import { Button } from '@documenso/ui/primitives/button';
 import {
@@ -335,7 +335,7 @@ export const EnvelopeDistributeDialog = ({
                                           </SelectItem>
                                         ))}
 
-                                        <SelectItem value={'-1'}>Sign</SelectItem>
+                                        <SelectItem value={'-1'}>{FROM_NAME}</SelectItem>
                                       </SelectContent>
                                     </Select>
                                   </FormControl>

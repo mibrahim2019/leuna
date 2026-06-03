@@ -11,7 +11,7 @@ import type {
 } from '@documenso/prisma/client';
 import { EmailDomainStatus, type OrganisationGlobalSettings } from '@documenso/prisma/client';
 
-import { SIGN_DOCUTRACKER_INTERNAL_EMAIL } from '../../constants/email';
+import { LEUNA_DEFAULT_SENDER_EMAIL } from '../../constants/email';
 import { AppError, AppErrorCode } from '../../errors/app-error';
 import {
   organisationGlobalSettingsToBranding,
@@ -94,7 +94,7 @@ export const getEmailContext = async (
   if (options.emailType === 'INTERNAL') {
     return {
       ...emailContext,
-      senderEmail: SIGN_DOCUTRACKER_INTERNAL_EMAIL,
+      senderEmail: LEUNA_DEFAULT_SENDER_EMAIL,
       replyToEmail: undefined,
       emailLanguage, // Not sure if we want to use this for internal emails.
     };
@@ -105,7 +105,7 @@ export const getEmailContext = async (
   const senderEmailId = match(meta?.emailId)
     .with(P.string, (emailId) => emailId) // Explicit string means to use the provided email ID.
     .with(undefined, () => emailContext.settings.emailId) // Undefined means to use the inherited email ID.
-    .with(null, () => null) // Explicit null means to use the Sign email.
+    .with(null, () => null) // Explicit null means to use the platform default sender.
     .exhaustive();
 
   const foundSenderEmail = emailContext.allowedEmails.find((email) => email.id === senderEmailId);
@@ -120,7 +120,7 @@ export const getEmailContext = async (
         name: foundSenderEmail.emailName,
         address: foundSenderEmail.email,
       }
-    : SIGN_DOCUTRACKER_INTERNAL_EMAIL;
+    : LEUNA_DEFAULT_SENDER_EMAIL;
 
   return {
     ...emailContext,
@@ -204,11 +204,7 @@ const handleTeamEmailContext = async (teamId: number) => {
 
   return {
     allowedEmails,
-    branding: teamGlobalSettingsToBranding(
-      teamSettings,
-      teamId,
-      true,
-    ),
+    branding: teamGlobalSettingsToBranding(teamSettings, teamId, true),
     settings: teamSettings,
     organisationType: organisation.type,
   };

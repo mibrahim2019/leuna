@@ -230,14 +230,14 @@ Or if using environment variable substitution:
 
 ```bash
 # In .env
-SIGN_DOCUTRACKER_VERSION=1.6.0
+LEUNA_VERSION=1.6.0
 ```
 
 ```yaml
 # In compose.yml
 services:
   documenso:
-    image: documenso/documenso:${SIGN_DOCUTRACKER_VERSION:-latest}
+    image: documenso/documenso:${LEUNA_VERSION:-latest}
 ```
 
 </Step>

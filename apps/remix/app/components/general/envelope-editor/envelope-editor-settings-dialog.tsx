@@ -25,6 +25,7 @@ import {
   DOCUMENT_DISTRIBUTION_METHODS,
   DOCUMENT_SIGNATURE_TYPES,
 } from '@documenso/lib/constants/document';
+import { FROM_NAME } from '@documenso/lib/constants/email';
 import { ZEnvelopeExpirationPeriod } from '@documenso/lib/constants/envelope-expiration';
 import {
   SUPPORTED_LANGUAGES,
@@ -756,47 +757,47 @@ export const EnvelopeEditorSettingsDialog = ({
                     () => (
                       <>
                         {settings.allowConfigureEmailSender && (
-                            <FormField
-                              control={form.control}
-                              name="meta.emailId"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>
-                                    <Trans>Email Sender</Trans>
-                                  </FormLabel>
+                          <FormField
+                            control={form.control}
+                            name="meta.emailId"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>
+                                  <Trans>Email Sender</Trans>
+                                </FormLabel>
 
-                                  <FormControl>
-                                    <Select
-                                      {...field}
-                                      value={field.value === null ? '-1' : field.value}
-                                      onValueChange={(value) =>
-                                        field.onChange(value === '-1' ? null : value)
-                                      }
+                                <FormControl>
+                                  <Select
+                                    {...field}
+                                    value={field.value === null ? '-1' : field.value}
+                                    onValueChange={(value) =>
+                                      field.onChange(value === '-1' ? null : value)
+                                    }
+                                  >
+                                    <SelectTrigger
+                                      loading={isLoadingEmails}
+                                      className="bg-background"
                                     >
-                                      <SelectTrigger
-                                        loading={isLoadingEmails}
-                                        className="bg-background"
-                                      >
-                                        <SelectValue />
-                                      </SelectTrigger>
+                                      <SelectValue />
+                                    </SelectTrigger>
 
-                                      <SelectContent>
-                                        {emails.map((email) => (
-                                          <SelectItem key={email.id} value={email.id}>
-                                            {email.email}
-                                          </SelectItem>
-                                        ))}
+                                    <SelectContent>
+                                      {emails.map((email) => (
+                                        <SelectItem key={email.id} value={email.id}>
+                                          {email.email}
+                                        </SelectItem>
+                                      ))}
 
-                                        <SelectItem value={'-1'}>Sign</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  </FormControl>
+                                      <SelectItem value={'-1'}>{FROM_NAME}</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </FormControl>
 
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                          )}
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        )}
 
                         {settings.allowConfigureEmailReplyTo && (
                           <FormField

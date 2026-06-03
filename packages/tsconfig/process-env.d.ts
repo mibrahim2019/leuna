@@ -112,5 +112,8 @@ declare namespace NodeJS {
     POLAR_SERVER?: 'sandbox' | 'production';
     POLAR_LIFETIME_PRODUCT_ID?: string;
     POLAR_ACCESS_BENEFIT_ID?: string;
+
+    LEUNA_DISABLE_TELEMETRY?: string;
+    NEXT_PRIVATE_LEUNA_LICENSE_KEY?: string;
   }
 }
