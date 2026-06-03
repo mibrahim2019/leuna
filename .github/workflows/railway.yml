@@ -1,0 +1,58 @@
+name: Deploy to Railway
+
+on:
+  workflow_run:
+    workflows: ['Continuous Integration']
+    branches: ['main']
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: railway-${{ github.event.workflow_run.head_branch || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID || vars.RAILWAY_PROJECT_ID }}
+      RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID || vars.RAILWAY_SERVICE_ID }}
+      RAILWAY_ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID || vars.RAILWAY_ENVIRONMENT_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Railway CLI
+        run: npm install --global @railway/cli
+
+      - name: Deploy to Railway
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          args=(--ci)
+
+          if [[ -n "${RAILWAY_SERVICE_ID:-}" ]]; then
+            args+=(--service "$RAILWAY_SERVICE_ID")
+          fi
+
+          if [[ -n "${RAILWAY_PROJECT_ID:-}" ]]; then
+            args+=(--project "$RAILWAY_PROJECT_ID")
+          fi
+
+          if [[ -n "${RAILWAY_ENVIRONMENT_ID:-}" ]]; then
+            args+=(--environment "$RAILWAY_ENVIRONMENT_ID")
+          fi
+
+          railway up "${args[@]}"
