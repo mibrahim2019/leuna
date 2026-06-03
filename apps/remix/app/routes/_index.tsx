@@ -518,7 +518,7 @@ export default function Home() {
           <FullBleedDivider />
 
           <section className="border-border">
-            <div className="w-full rounded-3xl border border-border/50 bg-white px-6 py-8 text-center md:px-10 md:py-10">
+            <div className="w-full bg-white px-6 py-8 text-center md:px-10 md:py-10">
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-black">
                 <Trans>Ready to Start?</Trans>
               </p>
