@@ -18,6 +18,14 @@ msgstr ""
 "X-Crowdin-File: web.po\n"
 "X-Crowdin-File-ID: 8\n"
 
+#: apps/remix/app/routes/_index.tsx
+msgid " e-signing. One payment. No limits."
+msgstr ""
+
+#: apps/remix/app/routes/_index.tsx
+msgid ". Proudly transparent."
+msgstr ""
+
 #: apps/remix/app/components/embed/authoring/configure-document-upload.tsx
 msgid ".PDF documents accepted (max {APP_DOCUMENT_UPLOAD_SIZE_LIMIT}MB)"
 msgstr "仅接受 .PDF 文档（最大 {APP_DOCUMENT_UPLOAD_SIZE_LIMIT}MB）"
@@ -57,29 +65,9 @@ msgstr "“{title}”已成功删除"
 msgid "\"{title}\" has been successfully hidden"
 msgstr ""
 
-#: apps/remix/app/routes/_index.tsx
-msgid "\"Sign gave our team a faster path from proposal to signature without adding extra operational work.\""
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "\"Finally, don't have to keep paying month on month just to send contracts.\""
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "\"I stopped thinking about whether a contract was worth sending. One payment removed the friction and the tool just became part of my workflow.\""
-msgstr ""
-
 #: apps/remix/app/components/forms/document-preferences-form.tsx
 msgid "\"Team Name\" has invited you to sign \"example document\"."
 msgstr "“Team Name”已邀请您签署“example document”。"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "\"We replaced scattered approval steps with a single signing flow that feels much easier for both our team and our customers.\""
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "\"We wanted the same signing essentials without another recurring bill. Sign gave us a cleaner workflow and a simpler budget.\""
-msgstr ""
 
 #: apps/remix/app/components/embed/embed-document-signing-page-v1.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-form.tsx
@@ -396,6 +384,11 @@ msgstr "{inviterName} 代表“{teamName}”已邀请您 {0}<0/>“{documentName
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {action} {documentName}"
 msgstr "{inviterName} 代表“{teamName}”已邀请您 {action} {documentName}"
+
+#: apps/remix/app/routes/_index.tsx
+#: apps/remix/app/routes/_index.tsx
+msgid "{LIFETIME_DEAL_PRICE}"
+msgstr ""
 
 #: apps/remix/app/components/dialogs/passkey-create-dialog.tsx
 msgid "{MAXIMUM_PASSKEYS, plural, one {You cannot have more than # passkey.} other {You cannot have more than # passkeys.}}"
@@ -800,14 +793,13 @@ msgstr "<0>键入</0> - 使用键盘输入的签名。"
 msgid "<0>Uploaded</0> - A signature that is uploaded from a file."
 msgstr "<0>上传</0> - 从文件上传的签名。"
 
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "$99"
-msgstr ""
-
 #: apps/remix/app/components/forms/token.tsx
 msgid "1 month"
 msgstr "1 个月"
+
+#: apps/remix/app/routes/_index.tsx
+msgid "100% compliant with eSIGN, UETA, and eIDAS regulations."
+msgstr ""
 
 #: apps/remix/app/components/forms/token.tsx
 msgid "12 months"
@@ -829,6 +821,18 @@ msgstr "双重验证令牌 (2FA token)"
 msgid "3 months"
 msgstr "3 个月"
 
+#: apps/remix/app/routes/_index.tsx
+msgid "3 Months of DocuSign = Our Lifetime Price"
+msgstr ""
+
+#: apps/remix/app/routes/_index.tsx
+msgid "4 Months of Adobe Sign = Our Lifetime Price"
+msgstr ""
+
+#: apps/remix/app/routes/_index.tsx
+msgid "4 Months of Dropbox Sign = Our Lifetime Price"
+msgstr ""
+
 #: apps/remix/app/routes/_unauthenticated+/organisation.sso.confirmation.$token.tsx
 msgid "400 Error"
 msgstr "400 错误"
@@ -841,10 +845,6 @@ msgstr "401 未授权"
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents.$id._layout.tsx
 msgid "404 Document not found"
 msgstr "404 未找到文档"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
-msgid "404 Email domain not found"
-msgstr "404 未找到邮箱域名"
 
 #: apps/remix/app/components/general/generic-error-layout.tsx
 msgid "404 not found"
@@ -915,14 +915,6 @@ msgstr "已通过您的直链模板创建了一个文档，需要您对其进行
 #: apps/remix/app/components/dialogs/template-use-dialog.tsx
 msgid "A draft document will be created"
 msgstr "将创建一份文档草稿"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "A few quick answers on pricing, legality, updates, and whether the offer fits the kind of workflow you run every week."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "A few quick answers to help you understand what is included and how Leuna fits into your signing workflow."
-msgstr ""
 
 #: packages/lib/utils/document-audit-logs.ts
 msgctxt "Audit log format"
@@ -1114,10 +1106,6 @@ msgstr "账号重新验证"
 msgid "Account unlinked"
 msgstr "账户已取消关联"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Accountability"
-msgstr ""
-
 #: apps/remix/app/components/general/document/document-page-view-dropdown.tsx
 #: apps/remix/app/components/tables/admin-document-logs-table.tsx
 #: apps/remix/app/components/tables/document-logs-table.tsx
@@ -1148,8 +1136,6 @@ msgstr "操作"
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains._index.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/unsealed-documents._index.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
 msgid "Actions"
 msgstr "操作"
@@ -1379,14 +1365,6 @@ msgstr "添加收件人以创建文档"
 msgid "Add these DNS records to verify your domain ownership"
 msgstr "添加这些 DNS 记录以验证您的域名所有权"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Add this URL to your provider's allowed redirect URIs"
-msgstr "将此 URL 添加到您的身份提供商的允许重定向 URI 中"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Add your entire team at no extra cost"
-msgstr ""
-
 #: apps/remix/app/components/forms/branding-preferences-form.tsx
 msgid "Additional brand information to display at the bottom of emails"
 msgstr "要显示在邮件底部的更多品牌信息"
@@ -1443,22 +1421,6 @@ msgstr "高级设置"
 msgid "After submission, a document will be automatically generated and added to your documents page. You will also receive a notification via email."
 msgstr "提交后，将自动生成一个文档并添加到您的“文档”页面。您还会收到一封电子邮件通知。"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Agency owner"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Agreements don't expire in someone's inbox. They expire on your schedule."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Agreements don't slip. Deadlines don't drift."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "AI Document Setup"
-msgstr ""
-
 #: apps/remix/app/components/general/admin-global-settings-section.tsx
 msgid "AI features"
 msgstr "AI 功能"
@@ -1470,10 +1432,6 @@ msgstr "AI 功能"
 #: apps/remix/app/components/dialogs/ai-features-enable-dialog.tsx
 msgid "AI features are disabled for your team. Please ask your team owner or organisation owner to enable them."
 msgstr "您团队的 AI 功能已被禁用。请联系您团队的所有者或组织所有者为其启用。"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "AI reads the contract and identifies where to collect signatures and data. No configuration. No formatting work. Intake starts in seconds."
-msgstr ""
 
 #: apps/remix/app/components/general/document/document-status.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks.$id._index.tsx
@@ -1558,10 +1516,6 @@ msgstr "允许文档收件人直接回复到此邮箱地址"
 msgid "Allow signers to dictate next signer"
 msgstr "允许签署人指定下一位签署人"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Allowed Email Domains"
-msgstr "允许的邮箱域名"
-
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
 #: packages/ui/primitives/document-flow/add-settings.tsx
@@ -1581,10 +1535,6 @@ msgstr "即将完成"
 #: apps/remix/app/components/forms/signup.tsx
 msgid "Already have an account? <0>Sign in instead</0>"
 msgstr "已经有账号？<0>改为登录</0>"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Amendments, updates, consents — send to hundreds of counterparties in a single action. Each gets their own agreement. You track them all."
-msgstr ""
 
 #: packages/email/templates/document-super-delete.tsx
 msgid "An admin has deleted your document \"{documentName}\"."
@@ -1609,7 +1559,6 @@ msgstr "已存在使用该地址的邮箱。"
 #: apps/remix/app/components/general/document-signing/access-auth-2fa-form.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: apps/remix/app/routes/embed+/v2+/authoring+/_layout.tsx
 msgid "An error occurred"
 msgstr "发生错误"
@@ -1909,14 +1858,6 @@ msgstr "API 令牌"
 msgid "App Version"
 msgstr "应用版本"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Approval Chains"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Approval Routing"
-msgstr ""
-
 #: apps/remix/app/components/general/document-signing/document-signing-complete-dialog.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-complete-dialog.tsx
 #: apps/remix/app/components/general/document/document-page-view-button.tsx
@@ -1965,14 +1906,6 @@ msgctxt "Recipient role progressive verb"
 msgid "Approving"
 msgstr "审批中"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Are the signatures legally binding?"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Are updates included?"
-msgstr ""
-
 #: apps/remix/app/components/dialogs/assistant-confirmation-dialog.tsx
 msgid "Are you sure you want to complete the document? This action cannot be undone. Please ensure that you have completed prefilling all relevant fields before proceeding."
 msgstr "您确定要完成此文档吗？此操作无法撤销。请确保您已完成所有相关字段的预填后再继续。"
@@ -2020,16 +1953,6 @@ msgstr "确定要删除此团队吗？"
 #: apps/remix/app/routes/_authenticated+/settings+/security.linked-accounts.tsx
 msgid "Are you sure?"
 msgstr "你确定吗？"
-
-#. placeholder {0}: OFFER_DETAILS.breakevenPeriod
-#. placeholder {1}: OFFER_DETAILS.competitorMonthlyPrice
-#: apps/remix/app/routes/offer.tsx
-msgid "Around {0} is where this becomes cheaper than staying on a {1}/month signing subscription."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Assign roles, set the order, and let Leuna handle the routing so your signer experience stays straightforward from the first email to the final signature."
-msgstr ""
 
 #: apps/remix/app/components/tables/organisation-groups-table.tsx
 msgid "Assigned Teams"
@@ -2086,10 +2009,6 @@ msgctxt "Recipient role progressive verb"
 msgid "Assisting"
 msgstr "协助中"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Associates, partners, and ops track every agreement in one place. Nothing gets lost between matters. Reporting is built in, not bolted on."
-msgstr ""
-
 #: apps/remix/app/components/forms/document-preferences-form.tsx
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
 #: packages/lib/types/document-meta.ts
@@ -2136,10 +2055,6 @@ msgstr "审计日志详情"
 msgid "Audit Logs"
 msgstr "审计日志"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Audit trails and completion history"
-msgstr ""
-
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/certificate.tsx
 #: packages/lib/server-only/pdf/render-certificate.ts
 msgid "Authentication Level"
@@ -2159,31 +2074,11 @@ msgid "Authenticator app"
 msgstr "身份验证器应用"
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Auto Follow-Up"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
 msgid "Automate reliable updates from send to sign."
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
 msgid "Automate signing across 6,000+ apps with zero code."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Automated reminders go to pending signers on your schedule. Expiration dates keep offer windows clean. You stop chasing. You start hiring."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Automatic follow-up keeps counterparties on schedule. Expiration windows protect against stale agreements sitting in someone's inbox past their negotiated close."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Automatic reminders go to vendors before they go quiet. Set expiration dates so contracts don't drift past their negotiated window."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Automatic reminders keep deals warm. Expiration dates create urgency. You focus on the next call — Leuna handles the nudges."
 msgstr ""
 
 #: apps/remix/app/components/general/document-signing/document-signing-auto-sign.tsx
@@ -2210,10 +2105,6 @@ msgstr "正在等待邮箱确认"
 msgid "Back"
 msgstr "返回"
 
-#: apps/remix/app/routes/purchase+/lifetime.success.tsx
-msgid "Back to Offer"
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/admin+/site-settings.tsx
 msgid "Background Color"
 msgstr "背景颜色"
@@ -2239,18 +2130,9 @@ msgstr "横幅已更新"
 msgid "Before you get started, please confirm your email address by clicking the button below:"
 msgstr "在开始之前，请点击下方按钮确认您的邮箱地址："
 
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
-msgid "Benefits"
-msgstr ""
-
 #: packages/ui/primitives/signature-pad/signature-pad-color-picker.tsx
 msgid "Black"
 msgstr "黑色"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Bleeding cash every single month"
-msgstr ""
 
 #: packages/ui/primitives/signature-pad/signature-pad-color-picker.tsx
 msgid "Blue"
@@ -2264,25 +2146,9 @@ msgstr "底部对齐"
 msgid "Brand Details"
 msgstr "品牌详情"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Brand Presence"
-msgstr ""
-
 #: apps/remix/app/components/forms/branding-preferences-form.tsx
 msgid "Brand Website"
 msgstr "品牌网站"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Branded agreements make every offer feel intentional. Your company's identity shows up at every step — before the employee's first day."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Branded agreements signal professionalism and consistency. Every counterparty sees your firm's identity — not a generic signing tool."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Branded Experience"
-msgstr ""
 
 #: apps/remix/app/components/general/admin-global-settings-section.tsx
 #: apps/remix/app/components/general/settings-nav-desktop.tsx
@@ -2320,35 +2186,11 @@ msgstr "品牌偏好设置已更新"
 msgid "Branding URL"
 msgstr "品牌 URL"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Breakeven"
-msgstr ""
-
 #: apps/remix/app/components/tables/admin-document-logs-table.tsx
 #: apps/remix/app/components/tables/document-logs-table.tsx
 #: apps/remix/app/components/tables/settings-security-activity-table.tsx
 msgid "Browser"
 msgstr "浏览器"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Build the onboarding packet once. Use it for every hire."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Build your MSA or NDA once, generate a shareable link, and let prospects sign on their schedule. No attachment. No back-and-forth."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Build your NDA, MSA, or supplier intake form once. Share a link and every vendor self-serves — without involving your team."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Build your onboarding kit once and share it as a link. Customers sign at their own pace. You never re-create the wheel."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Built for teams tired of another subscription"
-msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
 msgid "Built to be trusted with your most important documents."
@@ -2361,10 +2203,6 @@ msgstr "批量复制"
 #: apps/remix/app/components/dialogs/organisation-member-invite-dialog.tsx
 msgid "Bulk Import"
 msgstr "批量导入"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Bulk Outreach"
-msgstr ""
 
 #. placeholder {0}: template.title
 #: packages/lib/jobs/definitions/internal/bulk-send-template.handler.ts
@@ -2416,10 +2254,6 @@ msgstr "继续操作即表示您同意我们的<0>服务条款</0>和<1>隐私�
 #: packages/ui/components/recipient/recipient-role-select.tsx
 msgid "Can prepare"
 msgstr "可预填"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Can small teams use this, or is it only for solo users?"
-msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
 msgid "Can we scale our workflows as we grow?"
@@ -2526,14 +2360,6 @@ msgstr "取消"
 msgid "Cancelled by user"
 msgstr "已被用户取消"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Candidate Experience"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Candidates respond on time. Employees don't forget."
-msgstr ""
-
 #: apps/remix/app/components/embed/authoring/configure-document-upload.tsx
 msgid "Cannot remove document"
 msgstr "无法移除文档"
@@ -2631,10 +2457,6 @@ msgstr ""
 msgid "Chinese"
 msgstr "中文"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Choose a use case to see how Leuna can support common agreement workflows across your organization."
-msgstr ""
-
 #: apps/remix/app/components/dialogs/template-direct-link-dialog.tsx
 msgid "Choose an existing recipient from below to continue"
 msgstr "从下方选择一个已存在的收件人以继续"
@@ -2669,13 +2491,8 @@ msgstr "认领账号"
 
 #: apps/remix/app/components/dialogs/template-direct-link-dialog.tsx
 #: apps/remix/app/components/tables/templates-table.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
+#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
+#: apps/remix/app/routes/purchase+/lifetime.success.tsx
 msgid "Claim Lifetime Access"
 msgstr ""
 
@@ -2688,7 +2505,7 @@ msgid "Claim lifetime access to create documents from templates."
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Claim the lifetime deal and start sending documents today."
+msgid "Claim Your Lifetime Deal"
 msgstr ""
 
 #: packages/ui/primitives/data-table.tsx
@@ -2731,22 +2548,6 @@ msgstr "点击复制签署链接以发送给收件人"
 msgid "Click to insert field"
 msgstr "点击以插入字段"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Client ID"
-msgstr "客户端 ID"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Client ID is required"
-msgstr "客户端 ID 为必填项"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Client Secret"
-msgstr "客户端密钥"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Client secret is required"
-msgstr "客户端密钥为必填项"
-
 #: apps/remix/app/components/dialogs/ai-features-enable-dialog.tsx
 #: apps/remix/app/components/dialogs/ai-field-detection-dialog.tsx
 #: apps/remix/app/components/dialogs/ai-field-detection-dialog.tsx
@@ -2782,28 +2583,6 @@ msgstr "折叠侧边栏"
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
 msgid "Communication"
 msgstr "通信"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Company Identity"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Company-Wide Acknowledgements"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Compare and Choose"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Compare Leuna with the tools most teams already know across the workflow details that affect everyday signing."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
-msgid "Comparison"
-msgstr ""
 
 #: apps/remix/app/components/embed/embed-direct-template-client-page.tsx
 #: apps/remix/app/components/embed/embed-direct-template-client-page.tsx
@@ -2862,14 +2641,6 @@ msgstr "已完成文档"
 #: apps/remix/app/components/general/document/document-certificate-qr-view.tsx
 msgid "Completed on {formattedDate}"
 msgstr "完成时间 {formattedDate}"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Completion Tracking"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Comply confidently with US eSIGN, UETA, and EU eIDAS regulations. Generate fully compliant, legally enforceable electronic signatures across borders."
-msgstr ""
 
 #: packages/lib/constants/pdf-viewer-i18n.ts
 #: packages/lib/constants/pdf-viewer-i18n.ts
@@ -3038,17 +2809,9 @@ msgstr "继续登录"
 msgid "Continue to Workspace"
 msgstr ""
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Contract Deadlines"
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents._index.tsx
 msgid "Contracts"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Control who signs and in what order, every time."
 msgstr ""
 
 #: apps/remix/app/components/forms/document-preferences-form.tsx
@@ -3120,8 +2883,6 @@ msgstr "字段已复制到剪贴板"
 #: apps/remix/app/components/tables/settings-public-profile-templates-table.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: packages/ui/components/document/document-share-button.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copied to clipboard"
@@ -3164,19 +2925,6 @@ msgstr "复制令牌"
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
 msgid "Copy Value"
 msgstr "复制值"
-
-#. placeholder {0}: new Date().getFullYear()
-#: apps/remix/app/routes/offer.tsx
-msgid "Copyright {0} Leuna. All rights reserved."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Counterparties sign without friction. You get valid signatures."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Counterparty Experience"
-msgstr ""
 
 #: apps/remix/app/components/dialogs/admin-organisation-create-dialog.tsx
 #: apps/remix/app/components/dialogs/folder-create-dialog.tsx
@@ -3349,10 +3097,6 @@ msgstr "创建你的账号，开始使用最先进的文档签署功能。"
 msgid "Create your account and start using state-of-the-art document signing. Open and beautiful signing is within your grasp."
 msgstr "创建你的账号，开始使用最先进的文档签署功能。开放且优雅的签署体验触手可及。"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Create your offer letter, NDA, and handbook acknowledgement as a template. New hire link goes out in seconds — not hours."
-msgstr ""
-
 #: apps/remix/app/components/dialogs/public-profile-template-manage-dialog.tsx
 #: apps/remix/app/components/general/document/document-page-view-information.tsx
 #: apps/remix/app/components/general/template/template-page-view-documents-table.tsx
@@ -3444,34 +3188,29 @@ msgid "Custom branding controls"
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Custom branding means vendors see your company's identity on every document. It signals credibility and consistency from the first page."
+msgid "Custom Branding Controls"
 msgstr ""
 
 #: packages/ui/components/document/expiration-period-picker.tsx
 msgid "Custom duration"
 msgstr "自定义时长"
 
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
+msgid "Custom email domain \"{emailDomainId}\" cannot be managed in this deployment because email-domain provisioning is disabled."
+msgstr ""
+
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
+msgid "Custom email domain management is unavailable in the community edition."
+msgstr ""
+
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
+msgid "Custom email domain setup requires enterprise-only infrastructure that is not included in this deployment."
+msgstr ""
+
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups._index.tsx
 msgid "Custom Organisation Groups"
 msgstr "自定义组织组"
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "Custom quote"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Customer Experience"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Customer-First Signing"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Customers complete on time. Without a nudge from you."
-msgstr ""
 
 #: apps/remix/app/components/general/app-command-menu.tsx
 msgid "Dark Mode"
@@ -3516,14 +3255,6 @@ msgstr "日期设置"
 msgid "David is the Employee, Lucas is the Manager"
 msgstr "David 是员工，Lucas 是经理"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Deadline Management"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Deal Routing"
-msgstr ""
-
 #: apps/remix/app/components/general/organisations/organisation-invitations.tsx
 #: apps/remix/app/routes/_unauthenticated+/organisation.sso.confirmation.$token.tsx
 #: packages/email/templates/organisation-invite.tsx
@@ -3558,10 +3289,6 @@ msgstr "默认信封过期时间"
 msgid "Default file"
 msgstr "默认文件"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Default Organisation Role for New Users"
-msgstr "新用户的默认组织角色"
-
 #: apps/remix/app/components/forms/document-preferences-form.tsx
 msgid "Default Recipients"
 msgstr "默认收件人"
@@ -3592,10 +3319,6 @@ msgstr "默认值"
 #: apps/remix/app/components/forms/editor/editor-field-dropdown-form.tsx
 msgid "Default Value"
 msgstr "默认值"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Define the chain once. Contracts move from internal approvers to the vendor automatically — no email threads, no dropped handoffs."
-msgstr ""
 
 #: apps/remix/app/components/general/admin-global-settings-section.tsx
 msgid "Delegate document ownership"
@@ -3692,12 +3415,7 @@ msgid "Delete email"
 msgstr "删除邮箱"
 
 #: apps/remix/app/components/dialogs/organisation-email-domain-delete-dialog.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 msgid "Delete email domain"
-msgstr "删除邮箱域名"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
-msgid "Delete Email Domain"
 msgstr "删除邮箱域名"
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor.tsx
@@ -3766,8 +3484,8 @@ msgstr "已删除"
 msgid "Deleting account..."
 msgstr "正在删除账号..."
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Deploy the same agreement across every counterparty at once."
+#: apps/remix/app/routes/open-source.tsx
+msgid "Deployed revision"
 msgstr ""
 
 #: apps/remix/app/components/general/webhook-logs-sheet.tsx
@@ -3959,10 +3677,6 @@ msgstr "显示名称"
 msgid "Display your name and email in documents"
 msgstr "在文档中显示你的姓名和邮箱"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Distribute 500 NDAs in the time it takes to send one."
-msgstr ""
-
 #: apps/remix/app/components/general/document/document-edit-form.tsx
 msgid "Distribute Document"
 msgstr "分发文档"
@@ -3976,31 +3690,8 @@ msgid "DKIM records generated. Please add the DNS records to verify your domain.
 msgstr "已生成 DKIM 记录。请添加 DNS 记录以验证您的域名。"
 
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 msgid "DNS Records"
 msgstr "DNS 记录"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Sign"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Leuna fits into your existing workflow — from no-code automation with Zapier to full API access for teams building signing into their own products."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-msgid "Sign Lifetime"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Leuna reads your contract, finds the signature fields, and assigns them to the right signer. Your rep sends it in seconds, not minutes."
-msgstr ""
-
-#: apps/remix/app/components/dialogs/account-delete-dialog.tsx
-msgid "Sign will delete <0>all of your documents</0>, along with all of your completed documents, signatures, and all other resources belonging to your Account."
-msgstr "Sign 将删除<0>你所有的文档</0>，包括所有已完成的文档、签名以及属于你账号的其他所有资源。"
 
 #: apps/remix/app/components/general/settings-nav-desktop.tsx
 #: apps/remix/app/components/general/template/template-page-view-documents-table.tsx
@@ -4183,10 +3874,6 @@ msgstr "文档 ID（旧版）"
 msgid "Document inbox"
 msgstr "文档收件箱"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Document Intake"
-msgstr ""
-
 #: apps/remix/app/components/embed/authoring/configure-document-upload.tsx
 msgid "Document is already uploaded"
 msgstr "文档已上传"
@@ -4246,10 +3933,6 @@ msgstr "文档偏好"
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.document.tsx
 msgid "Document preferences updated"
 msgstr "文档偏好设置已更新"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Document Processing"
-msgstr ""
 
 #: apps/remix/app/components/dialogs/document-resend-dialog.tsx
 msgid "Document re-sent"
@@ -4477,7 +4160,6 @@ msgstr "不要转移（删除所有文档）"
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
 #: apps/remix/app/components/tables/inbox-table.tsx
 #: apps/remix/app/routes/_recipient+/sign.$token+/complete.tsx
-#: packages/email/template-components/template-document-completed.tsx
 msgid "Download"
 msgstr "下载"
 
@@ -4489,6 +4171,10 @@ msgstr "下载审计日志"
 #: apps/remix/app/components/general/document/document-certificate-download-button.tsx
 msgid "Download Certificate"
 msgstr "下载证书"
+
+#: packages/email/template-components/template-document-completed.tsx
+msgid "Download document"
+msgstr ""
 
 #: apps/remix/app/components/dialogs/envelope-download-dialog.tsx
 msgid "Download Files"
@@ -4541,22 +4227,6 @@ msgstr "绘制"
 #: apps/remix/app/components/general/admin-global-settings-section.tsx
 msgid "Draw signature"
 msgstr "手写签名"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Draw, type, or upload — legal doesn't care how they sign. What matters is that they actually do. Every method is legally valid."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Dreading the annual subscription price hike"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Drop in a vendor agreement. Fields appear automatically."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Drop in your proposal. Walk away. It's ready to sign."
-msgstr ""
 
 #: apps/remix/app/components/dialogs/envelope-item-edit-dialog.tsx
 msgid "Drop PDF here or click to select"
@@ -4638,10 +4308,6 @@ msgstr "例如：0"
 msgid "E.g. 100"
 msgstr "例如：100"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Each vendor's identity is verified. Every action is logged. When auditors come or disputes arise, your records are airtight."
-msgstr ""
-
 #: apps/remix/app/components/general/document/document-page-view-button.tsx
 #: apps/remix/app/components/general/document/document-page-view-dropdown.tsx
 #: apps/remix/app/components/general/teams/team-email-dropdown.tsx
@@ -4706,7 +4372,6 @@ msgstr "例如：Mac"
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/certificate.tsx
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/certificate.tsx
@@ -4761,16 +4426,11 @@ msgid "Email Domain"
 msgstr "电子邮件域名"
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
-msgid "Email domain not found"
-msgstr "未找到邮箱域名"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 msgid "Email Domain Settings"
 msgstr "邮箱域名设置"
 
 #: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains._index.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
 msgid "Email Domains"
@@ -4880,7 +4540,6 @@ msgstr "验证邮件已重新发送"
 #: apps/remix/app/components/tables/organisation-email-domains-table.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains._index.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 msgid "Emails"
 msgstr "邮箱"
 
@@ -4962,10 +4621,6 @@ msgstr "启用直接链接签署"
 #: packages/ui/primitives/template-flow/add-template-placeholder-recipients.tsx
 msgid "Enable signing order"
 msgstr "启用签署顺序"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Enable SSO portal"
-msgstr "启用 SSO 门户"
 
 #: apps/remix/app/components/forms/document-preferences-form.tsx
 msgid "Enable team API tokens to delegate document ownership to another team member."
@@ -5094,10 +4749,6 @@ msgstr "在此输入你的文本"
 #: apps/remix/app/components/dialogs/envelope-distribute-dialog.tsx
 msgid "Envelope distributed"
 msgstr "信封已分发"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Envelope fees"
-msgstr ""
 
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/audit-log.tsx
 #: packages/lib/server-only/pdf/render-audit-logs.ts
@@ -5239,50 +4890,6 @@ msgstr "事件"
 msgid "Event Type"
 msgstr "事件类型"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Every agreement looks like it came from your company, not a third-party tool. Build trust from the first page to the last signature."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every contract looks like it came from you — because it did."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every customer signature is authenticated and logged. If there's ever a dispute, you have the receipts. Customers feel protected. So do you."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every document a customer touches looks like it came from you — not from a signing tool they've never heard of. Trust lives in the details."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every document looks as good as your team does."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every document reflects your firm's standard of care."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every rep's pipeline, one signing workspace."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every signature on Leuna is cryptographically sealed, timestamped, and backed by a complete audit trail. Legally binding in the US and EU — and  so you can verify exactly how it works."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every signature, verified. Every dispute, resolved."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every signature, verified. Every record, clean."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Every supplier gets the same standard agreement, instantly."
-msgstr ""
-
 #: apps/remix/app/components/dialogs/folder-update-dialog.tsx
 #: packages/lib/constants/document-visibility.ts
 #: packages/ui/components/document/document-visibility-select.tsx
@@ -5301,25 +4908,9 @@ msgstr "所有人都已签署"
 msgid "Everyone has signed! You will receive an email copy of the signed document."
 msgstr "所有人都已签署！您将收到一份已签署文档的电子邮件副本。"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Everything on this page leads back to one simple offer: one payment, long-term access, and a faster way to get agreements signed."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Everything you need to send, sign, and close without another recurring fee."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Evidentiary Record"
-msgstr ""
-
 #: apps/remix/app/components/dialogs/passkey-create-dialog.tsx
 msgid "Exceeded timeout"
 msgstr "超时"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Execution Control"
-msgstr ""
 
 #: apps/remix/app/components/general/document-signing/document-signing-page-view-v2.tsx
 msgid "Expand sidebar"
@@ -5348,45 +4939,6 @@ msgstr "将在 {0} 后过期"
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.tokens.tsx
 msgid "Expires on {0}"
 msgstr "将于 {0} 到期"
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "Explore approval routing"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "Explore audit trail"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Explore HR templates"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Explore legal templates"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Explore sales templates"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "Explore signing order"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Explore templates"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Explore vendor templates"
-msgstr ""
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
 #: packages/ui/primitives/document-flow/add-settings.tsx
@@ -5500,14 +5052,7 @@ msgid "Failed: {failedCount}"
 msgstr "失败：{failedCount}"
 
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "FAQ"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-msgid "Feature"
 msgstr ""
 
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/text-field.tsx
@@ -5585,23 +5130,6 @@ msgstr "文件大小超过 {APP_DOCUMENT_UPLOAD_SIZE_LIMIT} MB 限制"
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains._index.tsx
 msgid "Filter by status"
 msgstr "按状态筛选"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Finance reviews. Legal approves. Vendor signs. In that order."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Finance, operations, and legal see the same pipeline. Nothing gets duplicated. Nothing gets lost between departments."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "Find the Right Plan"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Firm Identity"
-msgstr ""
 
 #: apps/remix/app/components/dialogs/document-move-to-folder-dialog.tsx
 #: apps/remix/app/components/dialogs/envelopes-bulk-move-dialog.tsx
@@ -5685,7 +5213,7 @@ msgid "French"
 msgstr "法语"
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Frictionless Signing"
+msgid "Frequently asked questions"
 msgstr ""
 
 #: apps/remix/app/components/embed/embed-direct-template-client-page.tsx
@@ -5699,12 +5227,6 @@ msgstr ""
 #: apps/remix/app/components/general/envelope-signing/envelope-signer-form.tsx
 msgid "Full Name"
 msgstr "全名"
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-msgid "Future product updates"
-msgstr ""
 
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
 #: apps/remix/app/components/general/direct-template/direct-template-page.tsx
@@ -5726,28 +5248,25 @@ msgstr "生成 DKIM 记录"
 msgid "Generate Links"
 msgstr "生成链接"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Gentle reminders go out automatically. Set expiration windows so agreements don't linger. Your team stays focused on the next customer."
-msgstr ""
-
 #: packages/lib/constants/i18n.ts
 msgid "German"
 msgstr "德语"
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Get API Access"
+msgid "Get Access Now"
 msgstr ""
 
-#: apps/remix/app/routes/offer.tsx
+#: apps/remix/app/routes/_index.tsx
+#: apps/remix/app/routes/_index.tsx
+#: apps/remix/app/routes/_index.tsx
+#: apps/remix/app/routes/_index.tsx
+#: apps/remix/app/routes/_index.tsx
 msgid "Get Lifetime Access"
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Get Started"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Getting punished financially for growing"
+#: apps/remix/app/routes/_index.tsx
+msgid "Get Lifetime Access - $99"
 msgstr ""
 
 #: packages/ui/components/document/document-global-auth-action-select.tsx
@@ -5759,11 +5278,14 @@ msgstr "全局收件人操作认证"
 msgid "Global Settings"
 msgstr "全局设置"
 
+#: apps/remix/app/routes/open-source.tsx
+msgid "GNU Affero General Public License v3.0"
+msgstr ""
+
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents.$id._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks.$id._index.tsx
@@ -5772,6 +5294,8 @@ msgstr "全局设置"
 msgid "Go back"
 msgstr "返回"
 
+#: apps/remix/app/components/general/community-edition-feature-notice.tsx
+#: apps/remix/app/components/general/community-edition-unavailable.tsx
 #: apps/remix/app/components/general/generic-error-layout.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents.$id._layout.tsx
@@ -5864,14 +5388,6 @@ msgstr "组名"
 msgid "Groups"
 msgstr "组"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Growth"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Hands-Off Follow-Up"
-msgstr ""
-
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-recipient-form.tsx
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-recipient-form.tsx
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-recipient-form.tsx
@@ -5889,10 +5405,6 @@ msgstr "将助理设置为最后一位签署人意味着 TA 将无法执行任�
 msgid "Height:"
 msgstr "高度："
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Held hostage by per-user limits"
-msgstr ""
-
 #: apps/remix/app/components/embed/embed-document-signing-page-v1.tsx
 msgid "Help complete the document for other signers."
 msgstr "帮助其他签署人完成文档。"
@@ -5904,10 +5416,6 @@ msgstr "帮助 AI 将字段分配给正确的收件人。"
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.support.tsx
 msgid "Here are the support channels available to your workspace:"
 msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
-msgid "Here you can add email domains to your organisation."
-msgstr "您可以在此向组织添加邮箱域名。"
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.general.tsx
 msgid "Here you can edit your organisation details."
@@ -5992,24 +5500,12 @@ msgstr "首页（无文件夹）"
 msgid "Horizontal"
 msgstr "水平"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "How it works"
-msgstr ""
-
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
 msgid "How long recipients have to complete this document after it is sent. Uses the team default when set to inherit."
 msgstr "设置此文档在发送后，收件人可完成签署的时间长度。当设置为继承时，将使用团队默认值。"
 
 #: apps/remix/app/routes/_index.tsx
 msgid "How quickly can our team get started?"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "HR Ops Visibility"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Human Resources"
 msgstr ""
 
 #: apps/remix/app/routes/_unauthenticated+/organisation.sso.confirmation.$token.tsx
@@ -6063,10 +5559,6 @@ msgstr "正在识别输入字段"
 msgid "Identifying recipients"
 msgstr "正在识别收件人"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "If you already know you are going to keep sending contracts, the simplest version of the math is also the best one: one payment now instead of another fee every month after that."
-msgstr ""
-
 #: apps/remix/app/routes/embed+/v2+/authoring+/_layout.tsx
 msgid "If you are using staging, ensure that you have set the host prop on the embedding component to the staging domain (https://stg-app.leuna.app)"
 msgstr "如果您在使用预发布环境，请确保已将嵌入组件的 host 属性设置为预发布域名 (https://stg-app.leuna.app)"
@@ -6086,10 +5578,6 @@ msgstr "如果在收件箱中未找到确认链接，你可以在下方重新请
 #: apps/remix/app/components/forms/2fa/enable-authenticator-app-dialog.tsx
 msgid "If your authenticator app does not support QR codes, you can use the following code instead:"
 msgstr "如果你的验证器应用不支持二维码，你可以使用以下代码："
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Image placeholder"
-msgstr ""
 
 #: apps/remix/app/routes/_unauthenticated+/organisation.sso.confirmation.$token.tsx
 msgid "Important: What This Means"
@@ -6134,33 +5622,8 @@ msgid "Include the Signing Certificate in the Document"
 msgstr "在文档中包含签署证书"
 
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "Included"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Included in the lifetime deal"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "Includes:"
 msgstr "包含："
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Independent consultant"
-msgstr ""
 
 #: apps/remix/app/components/general/document/document-page-view-information.tsx
 #: apps/remix/app/components/general/template/template-page-view-information.tsx
@@ -6224,24 +5687,15 @@ msgstr "已插入"
 msgid "Instance Stats"
 msgstr "实例统计"
 
+#: apps/remix/app/components/general/marketing-header.tsx
 #: apps/remix/app/routes/_index.tsx
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
 msgid "Integrations"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Internal review first. Then the customer gets their turn. No awkward re-sends. No \"wait, we need to change that.\""
 msgstr ""
 
 #: apps/remix/app/components/forms/2fa/view-recovery-codes-dialog.tsx
 msgid "Invalid code. Please try again."
 msgstr "验证码无效。请重试。"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Invalid domains"
-msgstr "无效的域名"
 
 #: apps/remix/app/components/general/default-recipients-multiselect-combobox.tsx
 #: packages/ui/primitives/document-flow/add-signers.types.ts
@@ -6347,14 +5801,6 @@ msgstr "IP 地址"
 msgid "Is Leuna built for individual users or teams?"
 msgstr ""
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Is this really a one-time payment?"
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Issuer URL"
-msgstr "签发者 URL"
-
 #. placeholder {0}: publicProfile.name
 #: apps/remix/app/routes/_profile+/p.$url.tsx
 msgid "It looks like {0} hasn't added any documents to their profile yet."
@@ -6376,10 +5822,6 @@ msgstr "似乎没有提供令牌，如果你正尝试验证邮箱，请点击邮
 msgid "It supports both, but the workflows on this page are designed for teams that need shared visibility, reusable processes, and a faster path from draft to signature."
 msgstr ""
 
-#: apps/remix/app/routes/offer.tsx
-msgid "It works for both. The page focuses on freelancers, agencies, and small teams because they usually feel subscription fatigue the fastest, but the workflow supports collaborative signing use cases too."
-msgstr ""
-
 #: apps/remix/app/components/embed/embed-document-waiting-for-turn.tsx
 msgid "It's currently not your turn to sign. Please check back soon as this document should be available for you to sign shortly."
 msgstr "当前还不是您签署的顺序。请稍后再来查看，此文档很快就会可供您签署。"
@@ -6391,10 +5833,6 @@ msgstr "现在还不是你签署的顺序。轮到你签署时，你会收到一
 #: packages/lib/constants/i18n.ts
 msgid "Italian"
 msgstr "意大利语"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Jamie Patel"
-msgstr ""
 
 #: packages/lib/constants/i18n.ts
 msgid "Japanese"
@@ -6419,25 +5857,9 @@ msgstr "加入时间"
 msgid "Joined {0}"
 msgstr "加入时间 {0}"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Keep the same core signing workflow, templates, and tracking features, but swap the recurring pricing model for a one-time purchase."
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 msgid "Key identifiers and relationships for this team."
 msgstr "此团队的关键标识符和关联关系。"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Know exactly who signed what and when. Compliance audits, employment disputes, or policy reviews — your records hold up."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Know exactly who signed, when, and how they authenticated. When legal needs proof, you have it. No gray area."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Know who signed, when, and how to prove it."
-msgstr ""
 
 #: packages/lib/constants/i18n.ts
 msgid "Korean"
@@ -6528,10 +5950,6 @@ msgstr "上次验证时间"
 msgid "Last Year"
 msgstr "去年"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Launch a promotion or onboard a partner cohort. Upload the list, send once, and every recipient gets their own personalized agreement."
-msgstr ""
-
 #: packages/email/template-components/template-document-self-signed.tsx
 msgid "Learn more"
 msgstr "了解详情"
@@ -6557,33 +5975,11 @@ msgid "Left"
 msgstr "左对齐"
 
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "Legal"
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Legal Ops"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Legal signs before the rep. Always."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
 msgid "Legally binding (US & EU)"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Legally binding signatures with a complete audit trail."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Let AI handle field detection so your team spends time on substance, not setup. Every agreement enters the workflow ready to route."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Let customers sign however feels natural — a drawn signature, a typed name, or a saved file. Fewer barriers means more completions."
 msgstr ""
 
 #: apps/remix/app/components/forms/editor/editor-field-generic-field-forms.tsx
@@ -6593,6 +5989,14 @@ msgstr "字间距"
 #: apps/remix/app/components/forms/editor/editor-field-generic-field-forms.tsx
 msgid "Letter Spacing"
 msgstr "字间距"
+
+#: apps/remix/app/routes/_index.tsx
+msgid "Leuna fits into your existing workflow"
+msgstr ""
+
+#: apps/remix/app/routes/open-source.tsx
+msgid "License"
+msgstr ""
 
 #: apps/remix/app/components/general/admin-license-status-banner.tsx
 msgid "License Expired - Please renew your license to continue using enterprise features."
@@ -6637,8 +6041,6 @@ msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "Lifetime Deal"
 msgstr ""
 
@@ -6727,23 +6129,11 @@ msgstr "正在加载..."
 msgid "Local timezone"
 msgstr "本地时区"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Lock in approved language as a template, generate a signing link, and deploy it across every business unit that needs it."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Lock In Your Lifetime Deal"
-msgstr ""
-
 #: apps/remix/app/components/general/direct-template/direct-template-signing-auth-page.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-auth-account.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-auth-page.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
-#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
+#: apps/remix/app/components/general/marketing-header.tsx
+#: apps/remix/app/components/general/marketing-header.tsx
 msgid "Login"
 msgstr "登录"
 
@@ -6770,10 +6160,6 @@ msgstr "管理"
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
 msgid "Manage {0}'s profile"
 msgstr "管理 {0} 的资料"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Manage a custom SSO login portal for your organisation."
-msgstr "为您的组织管理自定义 SSO 登录门户。"
 
 #: apps/remix/app/routes/_authenticated+/settings+/organisations.tsx
 msgid "Manage all organisations you are currently associated with."
@@ -6872,10 +6258,6 @@ msgstr "管理此组织中的团队。"
 msgid "Manage users"
 msgstr "管理用户"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
-msgid "Manage your email domain settings."
-msgstr "管理您的邮箱域名设置。"
-
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
 msgid "Manage your organisation group settings."
 msgstr "管理组织组设置。"
@@ -6896,10 +6278,6 @@ msgstr "在此管理站点设置"
 msgid "Manager"
 msgstr "管理者"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Manager signs off before the candidate ever sees it."
-msgstr ""
-
 #: apps/remix/app/components/dialogs/folder-update-dialog.tsx
 #: packages/lib/constants/document-visibility.ts
 msgid "Managers and above"
@@ -6908,10 +6286,6 @@ msgstr "管理者及以上"
 #: apps/remix/app/components/dialogs/ai-field-detection-dialog.tsx
 msgid "Mapping fields to recipients"
 msgstr "正在将字段映射到收件人"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Marcus Rivera"
-msgstr ""
 
 #: apps/remix/app/components/general/document-signing/document-signing-complete-dialog.tsx
 msgid "Mark as viewed"
@@ -7022,12 +6396,6 @@ msgstr "月活跃用户：至少创建过一份文档的用户"
 msgid "Monthly Active Users: Users that had at least one of their documents completed"
 msgstr "月活跃用户：至少有一份文档被完成的用户"
 
-#. placeholder {0}: OFFER_DETAILS.competitorMonthlyPrice
-#. placeholder {1}: OFFER_DETAILS.competitorAnnualCost
-#: apps/remix/app/routes/offer.tsx
-msgid "Most teams already pay around {0} a month, or {1} a year, just to keep sending basic agreements."
-msgstr ""
-
 #: apps/remix/app/routes/_index.tsx
 msgid "Most teams can start sending documents the same day by setting up their workspace, uploading a document, and creating their first signing flow in just a few minutes."
 msgstr ""
@@ -7043,10 +6411,6 @@ msgstr "移动"
 #: apps/remix/app/components/dialogs/template-move-to-folder-dialog.tsx
 msgid "Move \"{templateTitle}\" to a folder"
 msgstr "将“{templateTitle}”移动到文件夹"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Move agreements forward faster with a trusted signing experience built for teams that want speed, control, and flexibility."
-msgstr ""
 
 #: apps/remix/app/components/dialogs/document-move-to-folder-dialog.tsx
 msgid "Move Document to Folder"
@@ -7076,18 +6440,6 @@ msgstr "移动到文件夹"
 
 #: apps/remix/app/routes/_index.tsx
 msgid "Multi-layer signer authentication"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Multi-signer flows that still feel simple to send."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Multi-signer workflows"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Multi-Vendor Distribution"
 msgstr ""
 
 #: packages/ui/components/document/document-global-auth-access-select.tsx
@@ -7127,7 +6479,6 @@ msgstr "N/A"
 #: apps/remix/app/components/tables/settings-security-passkey-table.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 #: packages/lib/utils/fields.ts
 #: packages/ui/primitives/document-flow/add-fields.tsx
 #: packages/ui/primitives/document-flow/add-signers.tsx
@@ -7148,9 +6499,7 @@ msgstr "名称为必填项"
 msgid "Name Settings"
 msgstr "姓名设置"
 
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
-#: apps/remix/app/routes/offer.tsx
+#: apps/remix/app/components/general/marketing-header.tsx
 msgid "Navigation menu"
 msgstr ""
 
@@ -7182,10 +6531,6 @@ msgstr "永不过期"
 msgid "Never expires"
 msgstr "永不过期"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "New hires sign the way that feels right to them."
-msgstr ""
-
 #: apps/remix/app/components/forms/editor/editor-field-dropdown-form.tsx
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/dropdown-field.tsx
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/dropdown-field.tsx
@@ -7202,10 +6547,6 @@ msgstr "新选项 {0}"
 #: apps/remix/app/components/forms/password.tsx
 msgid "New Password"
 msgstr "新密码"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "New regulation? Updated terms? Send to your entire vendor base in a single action. Each vendor gets their own agreement. You track them all."
-msgstr ""
 
 #: apps/remix/app/components/dialogs/team-group-create-dialog.tsx
 #: apps/remix/app/components/dialogs/team-member-create-dialog.tsx
@@ -7282,18 +6623,10 @@ msgstr "未找到与“{searchTerm}”匹配的文件夹"
 msgid "No folders yet."
 msgstr "还没有文件夹。"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "No friction. No drop-off. Just signed."
-msgstr ""
-
 #: apps/remix/app/components/embed/embed-document-rejected.tsx
 #: apps/remix/app/routes/_recipient+/sign.$token+/rejected.tsx
 msgid "No further action is required from you at this time."
 msgstr "目前您无需再执行任何操作。"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "No manual setup. AI detects where the candidate needs to sign and where HR needs to countersign. You focus on the hire, not the paperwork."
-msgstr ""
 
 #: apps/remix/app/components/dialogs/team-member-create-dialog.tsx
 msgid "No members selected"
@@ -7393,10 +6726,6 @@ msgstr "未找到有效的收件人"
 msgid "No value found."
 msgstr "未找到值。"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "No vendor should delay a deal because they can't figure out how to sign. Draw, type, or upload — they're never blocked."
-msgstr ""
-
 #: apps/remix/app/routes/_unauthenticated+/forgot-password.tsx
 msgid "No worries, it happens! Enter your email and we'll email you a special link to reset your password."
 msgstr "别担心，这很常见！输入你的邮箱，我们会给你发送一个用于重置密码的特殊链接。"
@@ -7404,7 +6733,6 @@ msgstr "别担心，这很常见！输入你的邮箱，我们会给你发送一
 #: apps/remix/app/components/dialogs/envelope-distribute-dialog.tsx
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
 #: apps/remix/app/components/forms/editor/editor-field-number-form.tsx
-#: apps/remix/app/routes/offer.tsx
 #: packages/lib/constants/document.ts
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "None"
@@ -7413,10 +6741,6 @@ msgstr "无"
 #: packages/lib/constants/document-auth.ts
 msgid "None (Overrides global settings)"
 msgstr "无（覆盖全局设置）"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Northstar Labs"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents.$id._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents.$id.edit.tsx
@@ -7436,14 +6760,6 @@ msgstr "未设置"
 #: apps/remix/app/components/tables/documents-table-empty-state.tsx
 msgid "Nothing to do"
 msgstr "暂无待处理事项"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Notify a thousand customers like you're sending to one."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "NovaCloud"
-msgstr ""
 
 #: apps/remix/app/components/dialogs/ai-field-detection-dialog.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-number-field.tsx
@@ -7471,14 +6787,6 @@ msgstr "数字设置"
 #: apps/remix/app/components/general/admin-global-settings-section.tsx
 msgid "Off"
 msgstr "关闭"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Offer"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Offer Letter Prep"
-msgstr ""
 
 #: apps/remix/app/components/general/admin-global-settings-section.tsx
 msgid "On"
@@ -7517,42 +6825,11 @@ msgstr "更新 DNS 记录后，最多可能需要 48 小时才能完成传播。
 msgid "Once your template is set up, share the link anywhere you want. The person who opens the link will be able to enter their information in the direct link recipient field and complete any other fields assigned to them."
 msgstr "模板设置完成后，将链接分享到任意位置。打开链接的人可以在直链收件人字段中填写信息，并完成分配给 TA 的其他字段。"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "One lifetime deal. Everything you need to keep sending."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "One lifetime deal. Everything you need to start signing."
-msgstr ""
-
 #: apps/remix/app/components/embed/multisign/multi-sign-document-list.tsx
 msgid "One of the documents in the current bundle has a signing role that is not compatible with the current signing experience."
 msgstr "当前文档包中的某个文档包含与当前签署体验不兼容的签署角色。"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "One single payment, done forever"
-msgstr ""
-
 #: apps/remix/app/routes/_index.tsx
-msgid "One template closes a hundred deals."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "One workspace for your whole people team."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "One-time lifetime deal"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "One-time offer"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "one-time payment"
 msgstr ""
 
@@ -7580,29 +6857,13 @@ msgstr "只允许上传 PDF 文件"
 msgid "Oops! Something went wrong."
 msgstr "噢！出错了。"
 
-#: apps/remix/app/routes/purchase+/lifetime.success.tsx
-msgid "Open Checkout Again"
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
 msgid "Open menu"
 msgstr "打开菜单"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Open signing infrastructure"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid " e-signing. One payment. No limits."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid " e-signing. One payment. No recurring signing bill."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-msgid ". Proudly transparent."
+#: apps/remix/app/routes/open-source.tsx
+#: apps/remix/app/routes/open-source.tsx
+msgid "Open Source"
 msgstr ""
 
 #: apps/remix/app/components/general/stack-avatars-with-tooltip.tsx
@@ -7638,10 +6899,6 @@ msgstr "或"
 msgid "Or continue with"
 msgstr "或者使用以下方式继续"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Org-Wide Visibility"
-msgstr ""
-
 #: apps/remix/app/components/general/template/template-type.tsx
 #: apps/remix/app/components/tables/admin-organisations-table.tsx
 #: apps/remix/app/components/tables/admin-user-teams-table.tsx
@@ -7658,10 +6915,6 @@ msgstr "组织"
 #: packages/lib/constants/organisations-translations.ts
 msgid "Organisation Admin"
 msgstr "组织管理员"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Organisation authentication portal URL"
-msgstr "组织认证门户 URL"
 
 #: apps/remix/app/components/dialogs/admin-organisation-create-dialog.tsx
 msgid "Organisation created"
@@ -7743,6 +6996,18 @@ msgid "Organisation Settings"
 msgstr "组织设置"
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
+msgid "Organisation SSO configuration and account linking require enterprise-only services that are disabled in this deployment."
+msgstr ""
+
+#: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
+msgid "Organisation SSO is unavailable"
+msgstr ""
+
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
+msgid "Organisation SSO is unavailable in the community edition."
+msgstr ""
+
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 msgid "Organisation SSO Portal"
 msgstr "组织 SSO 门户"
@@ -7816,11 +7081,6 @@ msgstr "否则将把文档创建为草稿。"
 msgid "Override organisation settings"
 msgstr "覆盖组织设置"
 
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "Own a full signing workflow with a single payment and long-term access to the tools teams need to send, sign, and scale."
-msgstr ""
-
 #: apps/remix/app/components/dialogs/admin-organisation-member-update-dialog.tsx
 #: apps/remix/app/components/dialogs/admin-organisation-member-update-dialog.tsx
 #: apps/remix/app/components/tables/admin-organisations-table.tsx
@@ -7850,17 +7110,9 @@ msgstr "所有者文档已创建"
 msgid "Owner recipient expired"
 msgstr "所有者收件人已过期"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Ownership"
-msgstr ""
-
 #: apps/remix/app/components/dialogs/admin-organisation-member-update-dialog.tsx
 msgid "Ownership transferred to {organisationMemberName}."
 msgstr "所有权已转移给 {organisationMemberName}。"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Owning your e-signature tool"
-msgstr ""
 
 #. placeholder {0}: table.getState().pagination.pageIndex + 1
 #. placeholder {1}: table.getPageCount() || 1
@@ -7947,40 +7199,20 @@ msgstr "密码已更新"
 msgid "Password updated!"
 msgstr "密码已更新！"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Pay Forever"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Pay once"
+#: apps/remix/app/routes/_index.tsx
+msgid "Pay once and use Forever"
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Pay once and get long-term access to the signing workflows, templates, and team collaboration tools you need to move faster."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Pay once for Leuna and stop renting your signing workflow. No monthly seat fees, no per-envelope math, and no renewal email waiting for you next quarter."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Pay Once Only"
+msgid "Pay once only."
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Pay once, keep building with Leuna."
+msgid "Pay once. Keep sending forever."
 msgstr ""
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Pay once, keep the signing workflow, and move on without another recurring charge attached to every agreement you send."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Pay once, keep the workflow, and stop budgeting for e-signature rent."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Payment model"
+#: apps/remix/app/routes/_index.tsx
+msgid "Pay once. Send contracts for life."
 msgstr ""
 
 #: apps/remix/app/components/dialogs/envelope-download-dialog.tsx
@@ -8031,10 +7263,6 @@ msgstr "待处理的组织邀请"
 msgid "Pending since"
 msgstr "待处理起始时间"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Per-recipient authentication and a complete audit trail give you ironclad records. For disputes, regulatory reviews, or compliance — it's all there."
-msgstr ""
-
 #: apps/remix/app/components/tables/user-organisations-table.tsx
 msgctxt "Personal organisation (adjective)"
 msgid "Personal"
@@ -8082,12 +7310,6 @@ msgstr "在文档中放置并配置表单字段"
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/text-field.tsx
 msgid "Placeholder"
 msgstr "占位符"
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "Plan-dependent"
-msgstr ""
 
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-invite.tsx
@@ -8196,10 +7418,6 @@ msgstr "请标记为已查看以完成"
 msgid "Please mark as viewed to complete."
 msgstr "请标记为已查看以完成。"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Please note that anyone who signs in through your portal will be added to your organisation as a member."
-msgstr "请注意，任何通过您的门户登录的人都会被添加为您组织的成员。"
-
 #: apps/remix/app/components/dialogs/template-direct-link-dialog.tsx
 msgid "Please note that proceeding will remove direct linking recipient and turn it into a placeholder."
 msgstr "请注意，继续操作将移除直接链接收件人，并将其转为占位符。"
@@ -8296,17 +7514,9 @@ msgstr "请上传文档后继续"
 msgid "Please upload a logo"
 msgstr "请上传一个 Logo"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Policy update? Send to the entire org in one action. Each employee gets their own form. You see who's signed and who still needs a nudge."
-msgstr ""
-
 #: packages/lib/constants/i18n.ts
 msgid "Polish"
 msgstr "波兰语"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Portfolio Distribution"
-msgstr ""
 
 #: packages/lib/constants/i18n.ts
 msgid "Portuguese (Brazil)"
@@ -8365,34 +7575,13 @@ msgstr "在发送前预览文档"
 msgid "Preview what the signed document will look like with placeholder data"
 msgstr "使用占位数据预览签署后的文档效果"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Price certainty"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Price locked in for life"
-msgstr ""
-
+#: apps/remix/app/components/general/marketing-header.tsx
 #: apps/remix/app/routes/_index.tsx
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "Pricing"
 msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Pricing model"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Priority access to new features"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "Privacy Policy"
 msgstr ""
 
@@ -8419,15 +7608,7 @@ msgid "Processing document"
 msgstr "正在处理文档"
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Procurement"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
 msgid "Product"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Professional Delivery"
 msgstr ""
 
 #: apps/remix/app/components/general/app-command-menu.tsx
@@ -8456,25 +7637,9 @@ msgstr "个人资料已更新"
 msgid "Progress"
 msgstr "进度"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Proof of Signing"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Prospects sign the way they want."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Prove who agreed. Protect your customers and yourself."
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/settings+/security.linked-accounts.tsx
 msgid "Provider"
 msgstr "提供方"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Provider has been updated successfully"
-msgstr "提供方已成功更新"
 
 #: apps/remix/app/components/general/template/template-type.tsx
 #: apps/remix/app/components/tables/templates-table.tsx
@@ -8501,14 +7666,6 @@ msgstr "公共模板"
 #: apps/remix/app/components/tables/templates-table.tsx
 msgid "Public templates are connected to your public profile. Any modifications to public templates will also appear in your public profile."
 msgstr "公开模板与公开资料相关联。对公开模板的任何修改也会显示在你的公开资料中。"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Questions people usually ask before they switch."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Questions teams usually ask before they start signing."
-msgstr ""
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor.tsx
 msgid "Quick Actions"
@@ -8572,16 +7729,7 @@ msgid "Ready"
 msgstr "就绪"
 
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "Ready to Start?"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Real-time delivery, open, and signing updates."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Real-time document tracking"
 msgstr ""
 
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/certificate.tsx
@@ -8755,10 +7903,6 @@ msgstr "收件人仍然会保留他们自己的文档副本"
 msgid "Record"
 msgstr "记录"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Record Keeping"
-msgstr ""
-
 #: apps/remix/app/components/dialogs/organisation-email-domain-records-dialog.tsx
 msgid "Record Name"
 msgstr "记录名称"
@@ -8779,17 +7923,9 @@ msgstr "恢复代码已复制"
 msgid "Recovery codes"
 msgstr "恢复代码"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Recruiters, HR managers, and payroll all see the same status. Offers, onboarding, and policy acknowledgements — tracked in one place."
-msgstr ""
-
 #: packages/ui/primitives/signature-pad/signature-pad-color-picker.tsx
 msgid "Red"
 msgstr "红色"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Redirect URI"
-msgstr "重定向 URI"
 
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
@@ -8887,14 +8023,12 @@ msgstr "提醒：请 {recipientActionVerb} 您的文档"
 #: apps/remix/app/components/tables/settings-public-profile-templates-table.tsx
 #: apps/remix/app/components/tables/team-groups-table.tsx
 #: apps/remix/app/components/tables/team-members-table.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 #: packages/ui/primitives/document-flow/add-fields.tsx
 #: packages/ui/primitives/document-flow/field-item.tsx
 msgid "Remove"
 msgstr "移除"
 
 #: apps/remix/app/components/tables/organisation-email-domains-table.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 msgid "Remove email domain"
 msgstr "移除邮箱域名"
 
@@ -8935,18 +8069,10 @@ msgstr "重命名文档"
 msgid "Rename Template"
 msgstr "重命名模板"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Renting your e-signature tool"
-msgstr ""
-
 #: apps/remix/app/components/forms/password.tsx
 #: apps/remix/app/components/forms/reset-password.tsx
 msgid "Repeat Password"
 msgstr "重复密码"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Repeatable Packets"
-msgstr ""
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-upload-page.tsx
 msgid "Replace failed"
@@ -8966,10 +8092,6 @@ msgstr "回复邮箱"
 #: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Reply To Email <0>(Optional)</0>"
 msgstr "回复电子邮件 <0>（可选）</0>"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Reps, managers, and ops all see the same status. No one re-sends a document that's already signed. No one loses a customer in the handoff."
-msgstr ""
 
 #: apps/remix/app/components/general/webhook-logs-sheet.tsx
 msgid "Request"
@@ -9006,10 +8128,6 @@ msgstr "必填字段"
 #: apps/remix/app/components/forms/editor/editor-field-generic-field-forms.tsx
 msgid "Required Field"
 msgstr "必填字段"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Required scopes"
-msgstr "必需的作用域"
 
 #: apps/remix/app/routes/_authenticated+/admin+/unsealed-documents._index.tsx
 msgid "Reseal"
@@ -9110,6 +8228,7 @@ msgstr "重试"
 
 #: apps/remix/app/components/general/document-signing/document-signing-page-view-v2.tsx
 #: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
+#: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
 #: apps/remix/app/routes/_unauthenticated+/organisation.decline.$token.tsx
 #: apps/remix/app/routes/_unauthenticated+/organisation.invite.$token.tsx
 #: apps/remix/app/routes/_unauthenticated+/team.verify.email.$token.tsx
@@ -9121,10 +8240,6 @@ msgstr "返回"
 #: apps/remix/app/routes/_recipient+/sign.$token+/waiting.tsx
 msgid "Return Home"
 msgstr "返回主页"
-
-#: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
-msgid "Return to the Leuna sign-in page here"
-msgstr "在此返回 Sign 登录页面"
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor.tsx
 msgid "Return to documents"
@@ -9143,19 +8258,16 @@ msgstr "返回登录"
 msgid "Return to templates"
 msgstr "返回模板列表"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Reusable Flows"
-msgstr ""
+#: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
+msgid "Return to the Leuna sign-in page here"
+msgstr "在此返回 Sign 登录页面"
 
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "Reusable templates"
 msgstr ""
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Reusable templates for the documents you send all the time."
+#: apps/remix/app/routes/_index.tsx
+msgid "Reusable Templates"
 msgstr ""
 
 #: packages/email/templates/organisation-account-link-confirmation.tsx
@@ -9180,10 +8292,6 @@ msgstr "撤销所有会话"
 #: apps/remix/app/components/forms/editor/editor-field-generic-field-forms.tsx
 msgid "Right"
 msgstr "右对齐"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Right-Order Signing"
-msgstr ""
 
 #: apps/remix/app/components/dialogs/admin-organisation-member-update-dialog.tsx
 #: apps/remix/app/components/dialogs/organisation-member-update-dialog.tsx
@@ -9210,41 +8318,9 @@ msgstr "角色"
 msgid "Roles"
 msgstr "角色"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Roll out compliance agreements across every supplier at once."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Route agreements through internal legal review, then outside counsel, then counterparty. Set it once. The workflow enforces it."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Route every offer through the right internal approvers first. Candidates receive a complete, approved packet — never an early draft."
-msgstr ""
-
 #: packages/ui/primitives/data-table-pagination.tsx
 msgid "Rows per page"
 msgstr "每页行数"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Sales"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Sales Operations, Northstar Labs"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Sales Templates"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Same great experience, every single customer."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Sarah Chen"
-msgstr ""
 
 #: apps/remix/app/components/dialogs/template-direct-link-dialog.tsx
 #: apps/remix/app/components/embed/authoring/configure-fields-view.tsx
@@ -9273,18 +8349,6 @@ msgstr "保存失败"
 #: packages/ui/primitives/template-flow/add-template-fields.tsx
 msgid "Save Template"
 msgstr "保存模板"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Save your common contracts once, then send them again in a few clicks instead of rebuilding the workflow each time."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Scale Without Sacrifice"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Scaling seamlessly without extra fees"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/admin+/unsealed-documents._index.tsx
 msgid "Seal job triggered"
@@ -9353,19 +8417,14 @@ msgstr "搜索语言…"
 msgid "Secret"
 msgstr "密钥"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Secure documents with flexible identity verification, including 2FA, OTPs, or hardware passkeys. Customize access controls globally or per individual recipient."
-msgstr ""
-
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
+#: apps/remix/app/components/general/marketing-header.tsx
 #: apps/remix/app/components/general/settings-nav-desktop.tsx
 #: apps/remix/app/components/general/settings-nav-mobile.tsx
 #: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 #: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 #: apps/remix/app/routes/_index.tsx
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
 msgid "Security"
 msgstr "安全"
 
@@ -9378,80 +8437,13 @@ msgstr ""
 msgid "Security activity"
 msgstr "安全活动"
 
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "See AI field detection"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "See bulk send"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "See custom branding"
-msgstr ""
-
 #: apps/remix/app/components/general/admin-license-status-banner.tsx
 msgid "See Documentation"
 msgstr "查看文档"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "See how Leuna stacks up against the usual options."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "See reminders and expiration"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "See signing options"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "See team reporting"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-msgid "See team workspace"
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/admin+/documents.$id.tsx
 msgid "See the background jobs tab for the status"
 msgstr "状态请查看后台作业选项卡"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "See the Lifetime Price"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "See what changes when the signing tool stops acting like rent."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "See which deals are stalled, who's waiting on a signature, and what closed this week — without asking anyone for a status update."
-msgstr ""
 
 #: apps/remix/app/components/general/document-signing/document-signing-dropdown-field.tsx
 #: packages/ui/primitives/document-flow/field-content.tsx
@@ -9524,10 +8516,6 @@ msgstr "选择认证方式"
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/dropdown-field.tsx
 msgid "Select default option"
 msgstr "选择默认选项"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Select default role"
-msgstr "选择默认角色"
 
 #: apps/remix/app/components/forms/editor/editor-field-checkbox-form.tsx
 #: apps/remix/app/components/forms/editor/editor-field-radio-form.tsx
@@ -9666,10 +8654,6 @@ msgstr "发送"
 msgid "Send a test webhook with sample data to verify your integration is working correctly."
 msgstr "发送带有示例数据的测试 Webhook，以验证集成是否正常工作。"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Send agreements that hold up under ESIGN, UETA, and eIDAS-aligned workflows, with the signer history and evidence attached automatically."
-msgstr ""
-
 #: apps/remix/app/components/forms/send-confirmation-email.tsx
 msgid "Send confirmation email"
 msgstr "发送确认邮件"
@@ -9701,10 +8685,6 @@ msgstr "发送信封"
 msgid "Send on Behalf of Team"
 msgstr "以团队名义发送"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Send policy updates, consent forms, or renewal agreements to your entire base at once — with each customer's name, not a mass address."
-msgstr ""
-
 #: packages/ui/components/document/document-email-checkboxes.tsx
 msgid "Send recipient expired email to the owner"
 msgstr "向所有者发送收件人过期邮件"
@@ -9723,19 +8703,7 @@ msgid "Send Status"
 msgstr "发送状态"
 
 #: apps/remix/app/routes/_index.tsx
-msgid "Send the right document without configuring anything."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Send the signing link"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Send the updated handbook to everyone. Track every response."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Send your first document for signature in minutes."
+msgid "Send, sign, and store unlimited contracts. No subscriptions."
 msgstr ""
 
 #: apps/remix/app/components/tables/documents-table.tsx
@@ -9770,10 +8738,6 @@ msgstr "会话已被撤销"
 #: apps/remix/app/components/general/claim-account.tsx
 msgid "Set a password"
 msgstr "设置密码"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Set the order once: legal reviews, manager approves, rep countersigns. No one chases the chain. It moves itself."
-msgstr ""
 
 #: apps/remix/app/components/embed/authoring/configure-document-view.tsx
 msgid "Set up your document properties and recipient information"
@@ -9821,10 +8785,6 @@ msgstr "分享链接"
 #: packages/ui/components/document/document-share-button.tsx
 msgid "Share your signing experience!"
 msgstr "分享您的签署体验！"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Shared Visibility"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
 msgid "Show"
@@ -9874,6 +8834,10 @@ msgstr "以 {0} <0>（{1}）</0> 的身份签署"
 #: apps/remix/app/components/general/document-signing/document-signing-name-field.tsx
 msgid "Sign as<0>{0} <1>({1})</1></0>"
 msgstr "以<0>{0} <1>（{1}）</1></0>的身份签署"
+
+#: apps/remix/app/routes/_index.tsx
+msgid "Sign contracts online. Pay once. Own it forever $99"
+msgstr ""
 
 #: apps/remix/app/components/embed/embed-direct-template-client-page.tsx
 #: apps/remix/app/components/embed/embed-document-signing-page-v1.tsx
@@ -9950,6 +8914,10 @@ msgstr "使用 Microsoft 注册"
 #: apps/remix/app/components/forms/signup.tsx
 msgid "Sign Up with OIDC"
 msgstr "使用 OIDC 注册"
+
+#: apps/remix/app/components/dialogs/account-delete-dialog.tsx
+msgid "Sign will delete <0>all of your documents</0>, along with all of your completed documents, signatures, and all other resources belonging to your Account."
+msgstr "Sign 将删除<0>你所有的文档</0>，包括所有已完成的文档、签名以及属于你账号的其他所有资源。"
 
 #: apps/remix/app/components/dialogs/ai-field-detection-dialog.tsx
 #: apps/remix/app/components/embed/embed-direct-template-client-page.tsx
@@ -10106,13 +9074,6 @@ msgstr "{displayName} 在“{documentName}”的签署时间窗口已过期"
 msgid "Signing window expired for {0}"
 msgstr "{0} 的签署时间窗口已过期"
 
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
-#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
-msgid "Signup"
-msgstr ""
-
 #: apps/remix/app/components/forms/signup.tsx
 msgid "Signup is currently disabled or not available for your email domain."
 msgstr "当前已禁用注册，或您的电子邮箱域名不支持注册。"
@@ -10135,10 +9096,6 @@ msgstr "站点设置"
 #: apps/remix/app/components/dialogs/ai-recipient-detection-dialog.tsx
 msgid "Skip"
 msgstr "跳过"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Smart Setup"
-msgstr ""
 
 #: packages/ui/primitives/document-flow/missing-signature-field-dialog.tsx
 msgid "Some signers have not been assigned a signature field. Please assign at least 1 signature field to each signer before proceeding."
@@ -10275,29 +9232,18 @@ msgstr "抱歉，我们未能下载证书。请稍后再试。"
 msgid "Source"
 msgstr "来源"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Space-separated list of domains. Leave empty to allow all domains."
-msgstr "以空格分隔的域名列表。留空则允许所有域名。"
+#: apps/remix/app/components/general/open-source-notice.tsx
+#: apps/remix/app/routes/_index.tsx
+msgid "Source Code"
+msgstr ""
+
+#: apps/remix/app/routes/open-source.tsx
+msgid "Source repository"
+msgstr ""
 
 #: packages/lib/constants/i18n.ts
 msgid "Spanish"
 msgstr "西班牙语"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
-msgid "SSO"
-msgstr "SSO"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Standard Forms"
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Start from a PDF, Word file, or reusable template and place the fields where each signer needs them."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Start from your standard. Never from scratch."
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 msgid "Stats"
@@ -10330,10 +9276,6 @@ msgstr "步骤 {0}/{1}"
 msgid "Step <0>{step} of {maxStep}</0>"
 msgstr "步骤 <0>{step} / {maxStep}</0>"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Stop chasing. Start closing."
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/admin+/unsealed-documents._index.tsx
 msgid "Stuck For"
 msgstr "已卡住时长"
@@ -10357,6 +9299,10 @@ msgstr "提交"
 #: apps/remix/app/components/tables/admin-document-jobs-table.tsx
 msgid "Submitted"
 msgstr "已提交"
+
+#: apps/remix/app/routes/_index.tsx
+msgid "Subscriptions add up faster than you know."
+msgstr ""
 
 #: apps/remix/app/components/dialogs/admin-organisation-create-dialog.tsx
 #: apps/remix/app/components/dialogs/admin-organisation-member-update-dialog.tsx
@@ -10409,7 +9355,6 @@ msgstr "已提交"
 #: apps/remix/app/components/tables/settings-security-passkey-table-actions.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks.$id._index.tsx
 #: apps/remix/app/routes/embed+/v1+/authoring+/document.edit.$id.tsx
 #: apps/remix/app/routes/embed+/v1+/authoring+/template.edit.$id.tsx
@@ -10425,8 +9370,8 @@ msgid "Successfully created: {successCount}"
 msgstr "创建成功：{successCount}"
 
 #: packages/email/templates/bulk-send-complete.tsx
-msgid "Summary:"
-msgstr "摘要："
+msgid "Summary"
+msgstr ""
 
 #: apps/remix/app/components/dialogs/organisation-email-create-dialog.tsx
 msgid "support"
@@ -10443,10 +9388,6 @@ msgstr "支持"
 #: apps/remix/app/components/forms/support-ticket-form.tsx
 msgid "Support ticket created"
 msgstr "支持工单已创建"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Switched from a monthly signing tool"
-msgstr ""
 
 #: apps/remix/app/components/tables/organisation-email-domains-table.tsx
 msgid "Sync"
@@ -10467,10 +9408,6 @@ msgctxt "Audit log format"
 msgid "System auto inserted fields"
 msgstr "系统自动插入了字段"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Tailor every signing workflow to the team behind it."
-msgstr ""
-
 #: apps/remix/app/components/tables/admin-user-teams-table.tsx
 #: apps/remix/app/components/tables/organisation-insights-table.tsx
 #: apps/remix/app/components/tables/organisation-teams-table.tsx
@@ -10482,11 +9419,7 @@ msgstr "团队"
 
 #. placeholder {0}: team.name
 #: packages/lib/server-only/team/delete-team.ts
-msgid "Team \"{0}\" has been deleted on Sign"
-msgstr "团队“{0}”已在 Sign 上被删除"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Team access"
+msgid "Team \"{0}\" has been deleted on Leuna"
 msgstr ""
 
 #: packages/lib/constants/teams-translations.ts
@@ -10498,9 +9431,11 @@ msgid "Team Assignments"
 msgstr "团队分配"
 
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
 msgid "Team collaboration"
+msgstr ""
+
+#: apps/remix/app/routes/_index.tsx
+msgid "Team Collaboration"
 msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
@@ -10632,10 +9567,6 @@ msgstr "团队设置"
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 msgid "Team URL"
 msgstr "团队 URL"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Team Visibility"
-msgstr ""
 
 #: apps/remix/app/components/general/org-menu-switcher.tsx
 #: apps/remix/app/components/tables/admin-organisation-overview-table.tsx
@@ -10774,7 +9705,6 @@ msgid "Templates partially deleted"
 msgstr "模板已部分删除"
 
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
 msgid "Terms of Service"
 msgstr ""
 
@@ -10863,17 +9793,9 @@ msgstr "收件人查看文档所需的认证方式。"
 msgid "The content to show in the banner, HTML is allowed"
 msgstr "横幅中要显示的内容，允许使用 HTML"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "The customer signs when the team is ready. Not before."
-msgstr ""
-
 #: apps/remix/app/components/forms/email-preferences-form.tsx
 msgid "The default email to use when sending emails to recipients"
 msgstr "向收件人发送邮件时使用的默认邮箱"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "The difference is not only price. It is the feeling of using the same workflow without watching another subscription total climb in the background."
-msgstr ""
 
 #: apps/remix/app/components/dialogs/template-direct-link-dialog.tsx
 #: apps/remix/app/components/general/template/template-direct-link-badge.tsx
@@ -10951,10 +9873,6 @@ msgstr "文档名称"
 msgid "The email address which will show up in the \"Reply To\" field in emails"
 msgstr "在邮件中显示于“回复至”字段的邮箱地址"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
-msgid "The email domain you are looking for may have been removed, renamed or may have never existed."
-msgstr "您要查找的邮箱域名可能已被删除、重命名，或从未存在。"
-
 #: apps/remix/app/components/forms/signin.tsx
 msgid "The email or password provided is incorrect."
 msgstr "提供的邮箱或密码不正确。"
@@ -11008,12 +9926,8 @@ msgstr "以下签署人缺少签名字段："
 msgid "The following team has been deleted. You will no longer be able to access this team and its documents"
 msgstr "以下团队已被删除。您将无法再访问该团队及其文档"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "The last time you'll pay for e-signing."
-msgstr ""
-
 #: apps/remix/app/routes/_index.tsx
-msgid "The lifetime deal includes access to the core signing workflows, reusable templates, team collaboration features, and future product updates listed on this page."
+msgid "The lifetime deal includes access to the core Leuna signing workflows, reusable templates, team collaboration features, custom branding controls."
 msgstr ""
 
 #. placeholder {0}: form.watch('name')
@@ -11021,14 +9935,6 @@ msgstr ""
 #: apps/remix/app/components/dialogs/assistant-confirmation-dialog.tsx
 msgid "The next recipient to sign this document will be <0>{0}</0> (<1>{1}</1>)."
 msgstr "下一个需要签署此文档的收件人是<0>{0}</0>（<1>{1}</1>）。"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "The offer is framed around ongoing access to the evolving product, so you are not buying a frozen one-off snapshot."
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "The OpenID discovery endpoint URL for your provider"
-msgstr "您提供方的 OpenID 发现端点 URL"
 
 #: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
 msgid "The organisation authentication portal does not exist, or is not configured"
@@ -11151,6 +10057,10 @@ msgstr "{displayName} 在文档 “{documentName}” 的签署时间窗口已过
 msgid "The site banner is a message that is shown at the top of the site. It can be used to display important information to your users."
 msgstr "站点横幅是在站点顶部显示的一条消息。你可以利用它向用户展示重要信息。"
 
+#: apps/remix/app/routes/open-source.tsx
+msgid "The software is provided without warranty. See the GNU Affero General Public License for details."
+msgstr ""
+
 #: packages/email/templates/team-email-removed.tsx
 msgid "The team email <0>{teamEmail}</0> has been removed from the following team"
 msgstr "团队邮箱 <0>{teamEmail}</0> 已从以下团队中移除"
@@ -11243,10 +10153,6 @@ msgstr "Webhook 已创建成功。"
 msgid "The webhook you are looking for may have been removed, renamed or may have never existed."
 msgstr "您要查找的 Webhook 可能已被删除、重命名，或从未存在。"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "The whole legal team, one execution workspace."
-msgstr ""
-
 #: apps/remix/app/components/tables/documents-table-empty-state.tsx
 msgid "There are no active drafts at the current moment. You can upload a document to start drafting."
 msgstr "目前没有活动草稿。你可以上传文档开始创建草稿。"
@@ -11301,6 +10207,14 @@ msgstr "此操作可撤销，但请务必小心，因为账户可能会受到永
 #: apps/remix/app/components/dialogs/ai-recipient-detection-dialog.tsx
 msgid "This can take a minute or two depending on the size of your document."
 msgstr "根据文档大小，这可能需要一到两分钟。"
+
+#: apps/remix/app/routes/open-source.tsx
+msgid "This deployment is provided as a modified fork of an AGPL-3.0 licensed project."
+msgstr ""
+
+#: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
+msgid "This deployment is running the community edition, so organisation SSO is disabled."
+msgstr ""
 
 #: packages/email/template-components/template-document-super-delete.tsx
 msgid "This document can not be recovered, if you would like to dispute the reason for future documents please contact support."
@@ -11373,8 +10287,8 @@ msgid "This document was created using a direct link."
 msgstr "此文档是通过直接链接创建的。"
 
 #: packages/email/template-components/template-footer.tsx
-msgid "This document was sent using <0>Leuna</0>."
-msgstr "此文档是使用 <0>Sign</0> 发送的。"
+msgid "This document was sent using <0>Sign</0>."
+msgstr ""
 
 #: apps/remix/app/components/dialogs/envelope-duplicate-dialog.tsx
 msgid "This document will be duplicated."
@@ -11428,14 +10342,6 @@ msgstr "此文件夹包含多个项目。删除它将移除所有子文件夹，
 #: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "This is how the document will reach the recipients once the document is ready for signing."
 msgstr "这是文档在准备好签署后将如何发送到收件人手中的方式。"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "This is the required scopes you must set in your provider's settings"
-msgstr "这是您必须在提供方设置中配置的必需作用域"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "This is the URL which users will use to sign in to your organisation."
-msgstr "这是用户用来登录您组织的 URL。"
 
 #: apps/remix/app/components/dialogs/envelope-item-delete-dialog.tsx
 msgid "This item cannot be deleted"
@@ -11526,17 +10432,9 @@ msgstr "这将检查并同步此组织所有邮箱域名的状态"
 msgid "This will delete the existing SES identity for <0>{0}</0> and recreate it using the same DKIM keys. The user will not need to update their DNS records. The domain status will be reset to Pending."
 msgstr "这将删除 <0>{0}</0> 的现有 SES 身份，并使用相同的 DKIM 密钥重新创建。用户无需更新其 DNS 记录。域名状态将被重置为“待处理”。"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
-msgid "This will remove all emails associated with this email domain"
-msgstr "这将移除此邮箱域名下的所有邮箱"
-
 #: apps/remix/app/components/dialogs/session-logout-all-dialog.tsx
 msgid "This will sign you out of all other devices. You will need to sign in again on those devices to continue using your account."
 msgstr "这将使您在所有其他设备上退出登录。您需要在那些设备上重新登录才能继续使用账户。"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Three steps. The same simple signing workflow, minus the monthly bill."
-msgstr ""
 
 #: apps/remix/app/components/tables/admin-document-logs-table.tsx
 #: apps/remix/app/components/tables/document-logs-table.tsx
@@ -11555,6 +10453,10 @@ msgstr "时区"
 #: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Time Zone"
 msgstr "时区"
+
+#: apps/remix/app/routes/_index.tsx
+msgid "Time-stamped logs for a secure, end-to-end chain of evidence."
+msgstr ""
 
 #: apps/remix/app/components/dialogs/envelope-rename-dialog.tsx
 #: apps/remix/app/components/embed/authoring/configure-document-view.tsx
@@ -11787,14 +10689,6 @@ msgstr "注册为 Sign 用户的签署人总数"
 msgid "Total Users"
 msgstr "用户总数"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Track and complete"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Track every interaction from creation to completion with a time-stamped log. Maintain a secure, end-to-end chain of evidence for all your agreements."
-msgstr ""
-
 #: apps/remix/app/components/dialogs/team-delete-dialog.tsx
 msgid "Transfer documents to a different team"
 msgstr "将文档转移到其他团队"
@@ -11807,10 +10701,6 @@ msgstr ""
 #: apps/remix/app/components/dialogs/webhook-edit-dialog.tsx
 msgid "Triggers"
 msgstr "触发条件"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Trusted by growing teams"
-msgstr ""
 
 #: apps/remix/app/components/dialogs/ai-field-detection-dialog.tsx
 #: apps/remix/app/components/dialogs/ai-field-detection-dialog.tsx
@@ -11981,6 +10871,12 @@ msgstr "未授权"
 msgid "Unavailable"
 msgstr ""
 
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
+msgid "Unavailable in Community Edition"
+msgstr ""
+
 #: apps/remix/app/components/general/stack-avatars-with-tooltip.tsx
 msgid "Uncompleted"
 msgstr "未完成"
@@ -12014,10 +10910,15 @@ msgid "Unknown name"
 msgstr "未知姓名"
 
 #: apps/remix/app/routes/_index.tsx
+msgid "Unlimited Contracts"
+msgstr ""
+
 #: apps/remix/app/routes/_index.tsx
+msgid "Unlimited contracts for life"
+msgstr ""
+
 #: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/offer.tsx
-msgid "Unlimited documents"
+msgid "Unlimited contracts for life. One payment."
 msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/settings+/security.linked-accounts.tsx
@@ -12056,9 +10957,7 @@ msgstr "未命名组"
 #: apps/remix/app/components/tables/settings-public-profile-templates-table.tsx
 #: apps/remix/app/components/tables/settings-security-passkey-table-actions.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Update"
@@ -12238,29 +11137,9 @@ msgstr "上传模板"
 msgid "Upload Template Document"
 msgstr "上传模板文档"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Upload the agreement and let AI place the fields. No manual setup means your team gets onboarding packets out the door faster."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Upload the agreement. AI maps the signature requirements."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Upload the document, send the link, and track it through completion with the audit trail attached at the end."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Upload the offer letter. AI fills in the signature fields."
-msgstr ""
-
 #: apps/remix/app/components/forms/branding-preferences-form.tsx
 msgid "Upload your brand logo (max 5MB, JPG, PNG, or WebP)"
 msgstr "上传你的品牌 Logo（最大 5MB，JPG、PNG 或 WebP）"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Upload your document"
-msgstr ""
 
 #: apps/remix/app/components/general/document/document-page-view-information.tsx
 #: apps/remix/app/components/general/template/template-page-view-information.tsx
@@ -12303,10 +11182,7 @@ msgstr "使用验证器"
 msgid "Use Backup Code"
 msgstr "使用备份代码"
 
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_index.tsx
-#: apps/remix/app/routes/_unauthenticated+/_layout.tsx
+#: apps/remix/app/components/general/marketing-header.tsx
 msgid "Use Cases"
 msgstr ""
 
@@ -12372,10 +11248,6 @@ msgstr "使用该邮箱的用户已存在。请使用其他邮箱地址。"
 msgid "Users"
 msgstr "用户"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Uses templates and multi-signer workflows daily"
-msgstr ""
-
 #: apps/remix/app/components/forms/editor/editor-field-checkbox-form.tsx
 #: apps/remix/app/components/forms/editor/editor-field-number-form.tsx
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/checkbox-field.tsx
@@ -12396,18 +11268,6 @@ msgstr "验证失败"
 msgid "Value"
 msgstr "值"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Vendor Templates"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Vendor-Side Ease"
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Vendors sign however their workflow allows."
-msgstr ""
-
 #: packages/email/template-components/template-access-auth-2fa.tsx
 msgid "Verification Code Required"
 msgstr "需要验证码"
@@ -12420,10 +11280,6 @@ msgstr "验证邮件已发送"
 msgid "Verification email sent successfully."
 msgstr "验证邮件发送成功。"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Verified Consent"
-msgstr ""
-
 #: apps/remix/app/components/general/document-signing/access-auth-2fa-form.tsx
 msgid "Verify & Complete"
 msgstr "验证并完成"
@@ -12435,6 +11291,10 @@ msgstr "验证域名"
 #: apps/remix/app/routes/_unauthenticated+/verify-email._index.tsx
 msgid "Verify Email"
 msgstr "验证邮箱"
+
+#: apps/remix/app/routes/_index.tsx
+msgid "Verify identities instantly with 2FA, OTPs, and custom access controls."
+msgstr ""
 
 #: apps/remix/app/components/general/verify-email-banner.tsx
 msgid "Verify Now"
@@ -12530,10 +11390,6 @@ msgstr "查看审计日志"
 msgid "View Codes"
 msgstr "查看代码"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
-msgid "View DNS Records"
-msgstr "查看 DNS 记录"
-
 #: packages/email/templates/document-created-from-direct-template.tsx
 msgid "View document"
 msgstr "查看文档"
@@ -12602,10 +11458,6 @@ msgstr "查看恢复代码"
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/_layout.tsx
 msgid "View teams"
 msgstr "查看团队"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
-msgid "View the DNS records for this email domain"
-msgstr "查看此邮箱域名的 DNS 记录"
 
 #: apps/remix/app/components/embed/multisign/multi-sign-document-list.tsx
 #: apps/remix/app/components/general/document/document-page-view-recipients.tsx
@@ -12684,10 +11536,6 @@ msgstr "想拥有自己的公开资料吗？"
 msgid "Warning: Assistant as last signer"
 msgstr "警告：助理为最后一位签署人"
 
-#: apps/remix/app/routes/offer.tsx
-msgid "Watch the document move from sent to signed, then download the completed file and audit trail when it is done."
-msgstr ""
-
 #: apps/remix/app/routes/purchase+/lifetime.success.tsx
 msgid "We are still verifying your purchase."
 msgstr ""
@@ -12724,10 +11572,6 @@ msgstr "我们无法更新该组。请重试。"
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 msgid "We couldn't update the organisation. Please try again."
 msgstr "我们无法更新该组织。请重试。"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "We couldn't update the provider. Please try again."
-msgstr "我们未能更新该提供方。请重试。"
 
 #: packages/lib/client-only/providers/envelope-editor-provider.tsx
 #: packages/lib/client-only/providers/envelope-editor-provider.tsx
@@ -13101,10 +11945,6 @@ msgstr "欢迎加入 {organisationName}"
 msgid "Welcome to Leuna!"
 msgstr "欢迎来到 Sign！"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Well-known URL is required"
-msgstr "必须填写 Well-known URL"
-
 #: apps/remix/app/routes/_recipient+/sign.$token+/waiting.tsx
 msgid "Were you trying to edit this document instead?"
 msgstr "你是想编辑这份文档吗？"
@@ -13132,18 +11972,6 @@ msgstr "点击继续后，系统会提示你添加设备上第一个可用的验
 msgid "When you sign a document, we can automatically fill in and sign the following fields using information that has already been provided. You can also manually sign or remove any automatically signed fields afterwards if you desire."
 msgstr "当您签署文档时，我们可以使用已提供的信息自动填写并签署以下字段。之后如有需要，您也可以手动签署或移除任何自动签署的字段。"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Whether they draw, type, or upload — there's no reason to drop out. A signature that fits their style is a signature you actually get."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Whether they draw, type, or upload a signature — the experience is frictionless from day one. First impressions matter, even on paperwork."
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "Whether to enable the SSO portal for your organisation"
-msgstr "是否为您的组织启用 SSO 门户"
-
 #: apps/remix/app/routes/_profile+/p.$url.tsx
 msgid "While waiting for them to do so you can create your own Leuna account and get started with document signing right away."
 msgstr "在等待对方操作期间，你可以创建自己的 Sign 账号，立即开始使用文档签署功能。"
@@ -13151,10 +11979,6 @@ msgstr "在等待对方操作期间，你可以创建自己的 Sign 账号，立
 #: apps/remix/app/components/dialogs/document-resend-dialog.tsx
 msgid "Who do you want to remind?"
 msgstr "你想提醒谁？"
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Who signed. When. How. Provable."
-msgstr ""
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-page.tsx
 #: packages/ui/primitives/document-flow/field-item.tsx
@@ -13172,14 +11996,6 @@ msgstr "撰写将在您的公共主页上展示的简介"
 #: apps/remix/app/components/forms/document-preferences-form.tsx
 msgid "Yes"
 msgstr "是"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Yes. Leuna is built around the same electronic signature standards teams already rely on for enforceable agreements and documented audit trails."
-msgstr ""
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Yes. The offer is positioned as a one-time payment for long-term access to the core Leuna signing experience instead of another monthly software bill."
-msgstr ""
 
 #: apps/remix/app/routes/_index.tsx
 msgid "Yes. You can start with simple signing flows and expand into more repeatable templates, approvals, and collaboration as your volume and process maturity increase."
@@ -13388,10 +12204,6 @@ msgstr "您只能在草稿信封中检测字段"
 #: packages/email/templates/confirm-team-email.tsx
 msgid "You can revoke access at any time in your team settings on Leuna <0>here</0>."
 msgstr "你可以随时在 Sign 的团队设置中撤销访问权限，入口在<0>这里</0>。"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "You can see what happened to the document without chasing people manually or wondering if the link ever made it to the recipient."
-msgstr ""
 
 #: apps/remix/app/components/forms/public-profile-form.tsx
 msgid "You can update the profile URL by updating the team URL in the general settings page."
@@ -13899,10 +12711,6 @@ msgstr "头像已成功更新。"
 msgid "Your banner has been updated successfully."
 msgstr "横幅已成功更新。"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Your brand on the document that closes the deal."
-msgstr ""
-
 #: apps/remix/app/components/forms/branding-preferences-form.tsx
 msgid "Your brand website URL"
 msgstr "你的品牌网站 URL"
@@ -13960,10 +12768,6 @@ msgstr "您针对模板“{templateName}”的批量发送操作已完成。"
 #: apps/remix/app/components/dialogs/public-profile-template-manage-dialog.tsx
 msgid "Your direct signing templates"
 msgstr "你的直接签署模板"
-
-#: apps/remix/app/routes/purchase+/lifetime.success.tsx
-msgid "Your Leuna account now has the lifetime access benefit. Continue to your workspace to create and send documents."
-msgstr ""
 
 #: apps/remix/app/components/dialogs/ai-features-enable-dialog.tsx
 msgid "Your document content will be sent securely to our AI provider solely for detection and will not be stored or used for training."
@@ -14044,8 +12848,8 @@ msgid "Your email has already been confirmed. You can now use all features of Le
 msgstr "您的邮箱已确认。您现在可以使用 Sign 的全部功能。"
 
 #: apps/remix/app/routes/_unauthenticated+/verify-email.$token.tsx
-msgid "Your email has been successfully confirmed! You can now use all features of Leuna."
-msgstr "你的邮箱已成功确认！你现在可以使用 Sign 的所有功能。"
+msgid "Your email has been successfully confirmed! You can now use all features of Sign."
+msgstr ""
 
 #. placeholder {0}: teamEmail.team.name
 #. placeholder {1}: teamEmail.team.url
@@ -14070,8 +12874,8 @@ msgstr "您的信封已成功重新发送。"
 msgid "Your existing tokens"
 msgstr "你现有的令牌"
 
-#: apps/remix/app/routes/_index.tsx
-msgid "Your logo. Your colors. Their confidence."
+#: apps/remix/app/routes/purchase+/lifetime.success.tsx
+msgid "Your Leuna account now has the lifetime access benefit. We are refreshing your access and taking you to your workspace now."
 msgstr ""
 
 #: apps/remix/app/components/general/document-signing/document-signing-complete-dialog.tsx
@@ -14128,10 +12932,6 @@ msgstr "你的恢复代码已复制到剪贴板。"
 #: apps/remix/app/components/forms/2fa/view-recovery-codes-dialog.tsx
 msgid "Your recovery codes are listed below. Please store them in a safe place."
 msgstr "你的恢复代码列在下方。请妥善保存。"
-
-#: apps/remix/app/routes/offer.tsx
-msgid "Your signer receives a clean link and can review and sign without creating an account."
-msgstr ""
 
 #: apps/remix/app/components/embed/embed-recipient-expired.tsx
 msgid "Your signing window for this document has expired. Please contact the sender for a new invitation."
@@ -14206,18 +13006,6 @@ msgstr "您的验证码是 {code}"
 #: packages/email/template-components/template-access-auth-2fa.tsx
 msgid "Your verification code:"
 msgstr "您的验证码："
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Your whole procurement function, one contract view."
-msgstr ""
-
-#: apps/remix/app/routes/_index.tsx
-msgid "Your whole support org, one document view."
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-msgid "your-domain.com another-domain.com"
-msgstr "your-domain.com another-domain.com"
 
 #: apps/remix/app/routes/_index.tsx
 msgid "Zapier"

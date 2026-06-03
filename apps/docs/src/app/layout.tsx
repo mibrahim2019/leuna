@@ -16,8 +16,7 @@ export const metadata: Metadata = {
     template: '%s | Sign Docs',
     default: 'Sign Docs',
   },
-  description:
-    'The official documentation for Sign, the open-source document signing platform.',
+  description: 'The official documentation for Sign, the open-source document signing platform.',
   openGraph: {
     siteName: 'Sign Docs',
     type: 'website',
@@ -27,11 +26,11 @@ export const metadata: Metadata = {
     site: '@documenso',
   },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   },
 };

@@ -34,14 +34,6 @@ import { appMetaTags } from '~/utils/meta';
 import { requirePolarAccessForRoute } from '../utils/polar-auth-gate.server';
 import type { Route } from './+types/_index';
 
-const BUILT_FOR_AUDIENCES = [
-  { id: 'agencies', label: <Trans>Agencies</Trans> },
-  { id: 'small-businesses', label: <Trans>Small businesses</Trans> },
-  { id: 'freelancers', label: <Trans>Freelancers</Trans> },
-  { id: 'founders', label: <Trans>Founders</Trans> },
-  { id: 'consultants', label: <Trans>Consultants</Trans> },
-] as const;
-
 const FEATURED_ON_LOGOS = [
   { src: '/static/featured/capterra-dark.svg', alt: 'Capterra' },
   { src: '/static/featured/g2.svg', alt: 'G2' },
@@ -72,15 +64,6 @@ const COMPETITOR_PRICING = [
   },
 ] as const;
 
-const TESTIMONIALS = [
-  {
-    id: 'northstar-labs',
-    quoteHighlightClass: 'bg-[#EEC643]/45',
-    quote: <Trans>"We cut our contract turnaround from days to minutes"</Trans>,
-    person: <Trans>Omar</Trans>,
-    company: <Trans>Blitz Creed</Trans>,
-  },
-] as const;
 const FAQ_ITEMS = [
   {
     id: 'what-is-included',
@@ -250,13 +233,11 @@ export default function Home() {
                   </p>
 
                   <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-                    <Trans>You only need signatures, not another subscription.</Trans>
+                    <Trans>Sign contracts online. Pay once. Own it forever $99</Trans>
                   </h1>
 
                   <p className="mt-3 text-base text-black md:text-lg">
-                    <Trans>
-                      Pay once for Leuna and keep sending contracts without another monthly bill
-                    </Trans>
+                    <Trans>Send, sign, and store unlimited contracts. No subscriptions.</Trans>
                   </p>
 
                   <div className="mt-6">
@@ -265,46 +246,6 @@ export default function Home() {
                         <Trans>Get Lifetime Access - $99</Trans>
                       </Link>
                     </Button>
-                  </div>
-
-                  <div className="mt-6">
-                    <p className="text-sm font-medium uppercase tracking-[0.2em] text-black">
-                      <Trans>Built for</Trans>
-                    </p>
-
-                    <div className="mt-4 flex flex-wrap items-center gap-1.5">
-                      {BUILT_FOR_AUDIENCES.map((audience) => (
-                        <div
-                          key={audience.id}
-                          className="whitespace-nowrap rounded-md border border-border/50 bg-white px-2.5 py-1.5 text-xs font-semibold tracking-[0.1em] text-foreground md:px-3"
-                        >
-                          {audience.label}
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="pt-4 md:pt-4">
-                      {TESTIMONIALS.map((testimonial) => (
-                        <div key={testimonial.id} className="w-full">
-                          <blockquote className="text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
-                            <span>
-                              <span
-                                className={cn(
-                                  'rounded-sm px-1.5 py-0.5 [box-decoration-break:clone]',
-                                  testimonial.quoteHighlightClass,
-                                )}
-                              >
-                                {testimonial.quote}
-                              </span>
-                            </span>
-
-                            <span className="ml-3 inline text-base font-medium tracking-normal text-muted-foreground md:text-lg">
-                              {testimonial.person} @{testimonial.company}
-                            </span>
-                          </blockquote>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 </div>
 
@@ -558,28 +499,6 @@ export default function Home() {
                   </div>
                 </CardContent>
               </Card>
-
-              <Card className="flex h-full flex-col rounded-2xl border-0 bg-transparent shadow-none">
-                <CardContent className="flex h-full flex-col justify-center p-6 md:p-7">
-                  <blockquote className="max-w-full text-3xl font-semibold leading-tight tracking-tight text-foreground md:text-4xl">
-                    <span className="rounded-sm bg-[#EEC643]/45 px-1.5 py-0.5 [box-decoration-break:clone]">
-                      <Trans>
-                        "Finally, don&apos;t have to keep paying month on month just to send
-                        contracts."
-                      </Trans>
-                    </span>
-                  </blockquote>
-
-                  <div className="mt-8 border-t border-border/50 pt-4">
-                    <p className="text-sm font-semibold text-foreground">
-                      <Trans>Liban I.</Trans>
-                    </p>
-                    <p className="text-sm text-black">
-                      <Trans>Founder, AdCraftery </Trans>
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </section>
 
@@ -613,7 +532,7 @@ export default function Home() {
                 </p>
 
                 <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                  <Trans>Questions teams usually ask before they start signing.</Trans>
+                  <Trans>Frequently asked questions</Trans>
                 </h2>
               </div>
 
