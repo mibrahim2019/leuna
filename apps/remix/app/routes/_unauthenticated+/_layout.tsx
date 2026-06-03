@@ -9,7 +9,7 @@ export default function Layout() {
       <div
         className="absolute inset-0 opacity-80"
         style={{
-          backgroundImage: 'radial-gradient(#444CF7 1px, #E5E5F7 1px)',
+          backgroundImage: 'radial-gradient(#ffff 1px, #E5E5F7 1px)',
           backgroundSize: '10px 10px',
         }}
         aria-hidden
