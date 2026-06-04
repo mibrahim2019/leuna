@@ -11,18 +11,20 @@ export type BrowserFrameProps = {
 export const BrowserFrame = ({ children, className, url = 'leuna.app' }: BrowserFrameProps) => (
   <div
     className={cn(
-      'overflow-hidden rounded-lg border border-border/50 bg-white shadow-lg shadow-black/5',
+      'overflow-hidden rounded-md border border-border/40 bg-white shadow-sm shadow-black/5',
       className,
     )}
   >
-    <div className="flex items-center gap-3 border-b border-border/50 bg-muted/40 px-4 py-3">
-      <div className="flex shrink-0 gap-1.5" aria-hidden>
-        <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
-        <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
-        <span className="h-3 w-3 rounded-full bg-[#28C840]" />
+    <div className="flex items-center gap-2 border-b border-border/40 bg-muted/30 px-2.5 py-1.5 sm:px-3">
+      <div className="flex shrink-0 gap-1" aria-hidden>
+        <span className="h-2 w-2 rounded-full bg-[#FF5F57]" />
+        <span className="h-2 w-2 rounded-full bg-[#FEBC2E]" />
+        <span className="h-2 w-2 rounded-full bg-[#28C840]" />
       </div>
-      <div className="mx-auto flex w-full max-w-sm items-center justify-center rounded-md border border-border/50 bg-white px-3 py-1.5">
-        <span className="truncate text-xs text-muted-foreground">{url}</span>
+      <div className="mx-auto flex w-full max-w-xs items-center justify-center rounded border border-border/40 bg-white px-2 py-0.5 sm:max-w-sm">
+        <span className="truncate text-[10px] leading-none text-muted-foreground sm:text-[11px]">
+          {url}
+        </span>
       </div>
     </div>
     <div className="overflow-hidden">{children}</div>
